@@ -1,4 +1,4 @@
-package priv.mm.Thread;
+package priv.mm.thread;
 
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -11,7 +11,7 @@ class Task implements Runnable {
         try {
             int sleepTime = new Random().nextInt(10);
             System.out.println(Thread.currentThread() + " sleep " + sleepTime + " seconds");
-            // Thread.sleep(sleepTime * 1000);
+            // thread.sleep(sleepTime * 1000);
             TimeUnit.SECONDS.sleep(sleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();

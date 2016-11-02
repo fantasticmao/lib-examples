@@ -1,4 +1,4 @@
-package priv.mm.Thread;
+package priv.mm.thread;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -101,10 +101,4 @@ public final class JacksonUtil {
         }
         return json;
     }
-
-    public static void main(String[] args) {
-        String str = "[\"a\",\"b\"]";
-        List list = JacksonUtil.Json2List(str);
-        System.out.println(list);
-    }
 }

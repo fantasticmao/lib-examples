@@ -1,4 +1,4 @@
-package priv.mm.Thread;
+package priv.mm.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

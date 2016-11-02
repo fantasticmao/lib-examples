@@ -1,8 +1,5 @@
 package priv.mm.base;
 
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.println;
-
 /**
  * Method
  * Created by MaoMao on 2016/10/29.
@@ -19,6 +16,6 @@ public class Method {
     public static void main(String[] args) {
         User user = new User();
         new Method().changeName(user);
-        println(user.name);
+        System.out.println(user.name);
     }
 }

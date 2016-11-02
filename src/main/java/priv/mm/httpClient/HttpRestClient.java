@@ -1,4 +1,4 @@
-package priv.mm.httpclient;
+package priv.mm.httpClient;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
@@ -40,7 +40,6 @@ public class HttpRestClient {
     private static HttpRestClient instance = null;
 
     private HttpRestClient() {
-        super();
         this.exec = Executors.newFixedThreadPool(5);
     }
 

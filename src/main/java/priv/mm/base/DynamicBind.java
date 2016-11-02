@@ -5,26 +5,30 @@ package priv.mm.base;
  * Created by MaoMao on 2016/10/31.
  */
 class Father {
+     Father() {
+        System.out.println("father init...");
+        foo();
+    }
+
     void foo() {
-        System.out.println("father...");
+        System.out.println("father foo...");
     }
 }
 
 class Son extends Father {
+    Son() {
+        System.out.println("son init...");
+        foo();
+    }
+
     @Override
     void foo() {
-        System.out.println("son...");
+        System.out.println("son foo...");
     }
 }
 
 public class DynamicBind {
-    void run(Father father) {
-        father.foo();
-    }
-
     public static void main(String[] args) {
-        DynamicBind d = new DynamicBind();
-        d.run(new Father());
-        d.run(new Son());
+        new Son();
     }
 }
