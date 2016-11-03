@@ -1,11 +1,7 @@
-package priv.mm.innerClass;
+package priv.mm.innerClasses;
 
 /**
- * 在内部类中，可随意访问外部类的字段
- * <p>使用.this可在内部类中获取外部类对象的引用<pre>
- * Sequence sequence = Sequence.this;
- * </pre>使用.new可在外部类对象上获取内部类的引用<pre>
- * Selector selector = new Sequence(10).new SequenceSelector();</pre></p>
+ * 在内部类中，可随意访问外部类对象的属性和方法
  */
 interface Selector {
     boolean end();
@@ -45,11 +41,6 @@ public class Sequence {
         public void next() {
             if (i < items.length) i++;
         }
-
-        public Sequence sequence() {
-            Sequence sequence = Sequence.this;
-            return sequence;
-        }
     }
 
     public Selector selector() {
@@ -66,11 +57,5 @@ public class Sequence {
             System.out.print(selector.current() + " ");
             selector.next();
         }
-        new Sequence(1){
-            @Override
-            public void add(Object o) {
-                super.add(o);
-            }
-        };
     }
 }
