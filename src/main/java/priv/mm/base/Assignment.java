@@ -1,9 +1,5 @@
 package priv.mm.base;
 
-/**
- * Assignment
- * Created by MaoMao on 2016/10/29.
- */
 class Tank {
     int level;
 
@@ -15,6 +11,11 @@ class Tank {
     }
 }
 
+/**
+ * Assignment
+ * 引用的实质
+ * Created by MaoMao on 2016/10/29.
+ */
 public class Assignment {
     public static void main(String[] args) {
         Tank t1 = new Tank();

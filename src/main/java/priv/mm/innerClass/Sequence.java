@@ -1,8 +1,5 @@
-package priv.mm.innerClasses;
+package priv.mm.innerClass;
 
-/**
- * 在内部类中，可随意访问外部类对象的属性和方法
- */
 interface Selector {
     boolean end();
 

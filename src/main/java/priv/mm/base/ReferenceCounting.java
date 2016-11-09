@@ -1,9 +1,5 @@
 package priv.mm.base;
 
-/**
- * ReferenceCounting
- * Created by MaoMao on 2016/11/1.
- */
 class Shared {
     private int refCount = 0;
     private static long counter = 0;
@@ -51,6 +47,10 @@ class Composing {
     }
 }
 
+/**
+ * ReferenceCounting
+ * Created by MaoMao on 2016/11/1.
+ */
 public class ReferenceCounting {
     public static void main(String[] args) {
         Shared shared = new Shared();

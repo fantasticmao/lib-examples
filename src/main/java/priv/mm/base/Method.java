@@ -1,13 +1,14 @@
 package priv.mm.base;
 
-/**
- * Method
- * Created by MaoMao on 2016/10/29.
- */
 class User {
     String name;
 }
 
+/**
+ * Method
+ * 引用的实质
+ * Created by MaoMao on 2016/10/29.
+ */
 public class Method {
     void changeName(User user) {
         user.name = "Tom";

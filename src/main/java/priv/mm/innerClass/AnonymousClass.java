@@ -1,8 +1,5 @@
-package priv.mm.innerClasses;
+package priv.mm.innerClass;
 
-/**
- * Created by MaoMao on 2016/11/3.
- */
 abstract class Base {
     public Base(int i) {
         System.out.println("constructor... " + i);
@@ -11,6 +8,9 @@ abstract class Base {
     public abstract void foo();
 }
 
+/**
+ * 匿名内部类
+ */
 public class AnonymousClass {
     public static void main(String[] args) {
         // 使用外部定义的变量，必须是final修饰的

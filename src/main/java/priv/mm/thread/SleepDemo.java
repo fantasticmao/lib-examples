@@ -21,7 +21,7 @@ class Task implements Runnable {
 
 /**
  * SleepDemo
- * 创建一个任务，它将睡眠1至10秒随机时间，并显示睡眠时间，退出。并行一定数量的该任务
+ * 进程休眠
  * Created by MaoMao on 2016/10/1.
  */
 public class SleepDemo {

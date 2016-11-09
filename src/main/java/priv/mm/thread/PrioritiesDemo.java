@@ -5,6 +5,7 @@ import java.util.concurrent.Executors;
 
 /**
  * PrioritiesDemo
+ * 优先级进程
  * Created by MaoMao on 2016/10/2.
  */
 public class PrioritiesDemo implements Runnable {

@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 /**
  * TimerDemo
+ * 定时器
  * Created by MaoMao on 2016/10/1.
  */
 public class TimerDemo {
