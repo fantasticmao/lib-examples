@@ -14,7 +14,7 @@ public class PrioritiesDemo implements Runnable {
     private volatile double d;
     private int priority;
 
-    public PrioritiesDemo(int priority) {
+    private PrioritiesDemo(int priority) {
         this.priority = priority;
     }
 

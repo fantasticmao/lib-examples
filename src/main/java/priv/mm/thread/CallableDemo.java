@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
-class TaskWithResult implements Callable<String> {
-    private int id;
-
-    public TaskWithResult(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public String call() throws Exception {
-        return "result of TaskWithResult " + id;
-    }
-}
-
 /**
  * CallableDemo
  * Created by MaoMao on 2016/10/1.
  */
 public class CallableDemo {
+    private static class TaskWithResult implements Callable<String> {
+        private int id;
+
+        TaskWithResult(int id) {
+            this.id = id;
+        }
+
+        @Override
+        public String call() throws Exception {
+            return "result of TaskWithResult " + id;
+        }
+    }
+
     public static void main(String[] args) {
         ExecutorService exec = Executors.newCachedThreadPool();
         List<Future<String>> results = new ArrayList<>();
@@ -31,12 +31,10 @@ public class CallableDemo {
         for (Future<String> fs : results) {
             try {
                 System.out.println(fs.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                exec.shutdown();
+                exec.shutdownNow();
             }
         }
     }

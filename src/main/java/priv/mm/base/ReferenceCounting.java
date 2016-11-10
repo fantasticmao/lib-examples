@@ -5,15 +5,15 @@ class Shared {
     private static long counter = 0;
     private final long id = counter++;
 
-    public Shared() {
+    Shared() {
         System.out.println("creating " + this);
     }
 
-    public void addRef() {
+    void addRef() {
         refCount++;
     }
 
-    protected void dispose() {
+    void dispose() {
         if (--refCount == 0) {
             System.out.println("disposing " + this);
         }
@@ -30,13 +30,13 @@ class Composing {
     private static long counter = 0;
     private final long id = counter++;
 
-    public Composing(Shared shared) {
+    Composing(Shared shared) {
         System.out.println("creating " + this);
         this.shared = shared;
         this.shared.addRef();
     }
 
-    protected void dispose() {
+    void dispose() {
         System.out.println("disposing " + this);
         shared.dispose();
     }

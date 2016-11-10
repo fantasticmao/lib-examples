@@ -9,14 +9,12 @@ package priv.mm.innerClass;
  * 4. 也可在接口中定义静态内部类
  */
 public class StaticClass {
-    private static String str = "hello";
-
     private static void foo() {
-        System.out.println(str);
+        System.out.println("hello");
     }
 
-    static class Inner {
-        public void bar() {
+    private static class Inner {
+        private void bar() {
             StaticClass.foo();
         }
     }

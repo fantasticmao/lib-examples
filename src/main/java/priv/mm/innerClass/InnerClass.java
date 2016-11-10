@@ -6,7 +6,7 @@ package priv.mm.innerClass;
 public class InnerClass {
     private String str;
 
-    public InnerClass(String str) {
+    private InnerClass(String str) {
         this.str = str;
     }
 
@@ -14,8 +14,8 @@ public class InnerClass {
         return "hello ";
     }
 
-    class Inner {
-        public String bar() {
+    private class Inner {
+        String bar() {
             return foo() + str;
         }
     }

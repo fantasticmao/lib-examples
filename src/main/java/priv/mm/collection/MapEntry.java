@@ -4,8 +4,8 @@ import java.util.*;
 
 /**
  * MapEntry
- * 在foreach表达式下，Map.Entry比Map快；
- * 在lambda表达式下，两者差不多；
+ * 在foreach时，Map.Entry比Map快；
+ * 在lambda和method reference时，Map.Entry比Map慢；
  * Created by maomao on 16-11-9.
  */
 public class MapEntry {
@@ -17,17 +17,17 @@ public class MapEntry {
         }
 
         long beginTime1 = System.currentTimeMillis();
-        //map.entrySet().forEach(entry -> entry.getValue());
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            entry.getValue();
-        }
+        map.entrySet().forEach(Map.Entry::getValue);
+        //for (Map.Entry<String, Integer> entry : map.entrySet()) {
+        //    entry.getValue();
+        //}
         long endTime1 = System.currentTimeMillis();
 
         long beginTime2 = System.currentTimeMillis();
-        //map.keySet().forEach(key -> map.get(key));
-        for (String key : map.keySet()) {
-            map.get(key);
-        }
+        map.keySet().forEach(map::get);
+        //for (String key : map.keySet()) {
+        //    map.get(key);
+        //}
         long endTime2 = System.currentTimeMillis();
 
         System.out.println("Map.Entry time: " + (endTime1 - beginTime1));

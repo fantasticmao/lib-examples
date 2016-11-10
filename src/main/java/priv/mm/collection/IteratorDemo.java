@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class IteratorDemo {
 
-    public static void display(Iterator<?> it) {
+    private static void display(Iterator<?> it) {
         while (it.hasNext()) {
             System.out.print(it.next() + " ");
         }

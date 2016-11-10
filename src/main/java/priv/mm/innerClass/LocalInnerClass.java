@@ -6,13 +6,13 @@ package priv.mm.innerClass;
 public class LocalInnerClass {
     private String str;
 
-    public LocalInnerClass(String str) {
+    private LocalInnerClass(String str) {
         this.str = str;
     }
 
-    public void foo(final String str2) {
+    private void foo(final String str2) {
         class Inner {
-            void bar() {
+            private void bar() {
                 System.out.println(str + str2);
             }
         }

@@ -1,22 +1,22 @@
 package priv.mm.base;
 
-class Tank {
-    int level;
-
-    @Override
-    public String toString() {
-        return "Tank{" +
-                "level=" + level +
-                '}';
-    }
-}
-
 /**
  * Assignment
  * 引用的实质
  * Created by MaoMao on 2016/10/29.
  */
 public class Assignment {
+    private static class Tank {
+        int level;
+
+        @Override
+        public String toString() {
+            return "Tank{" +
+                    "level=" + level +
+                    '}';
+        }
+    }
+
     public static void main(String[] args) {
         Tank t1 = new Tank();
         Tank t2 = new Tank();

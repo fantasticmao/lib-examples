@@ -100,19 +100,9 @@ public class HttpRestClient {
      */
     public void sendUnBlock(final Method method, final String url, final Map<String, String> header, final Map<String, Object> body) {
         if (method == Method.POST || method == Method.PUT) {
-            exec.submit(new Runnable() {
-                @Override
-                public void run() {
-                    _send(method, url, header, body);
-                }
-            });
+            exec.submit(() -> _send(method, url, header, body));
         } else if (method == Method.GET || method == Method.DELETE) {
-            exec.submit(new Runnable() {
-                @Override
-                public void run() {
-                    _send(method, url, header, null);
-                }
-            });
+            exec.submit(() -> _send(method, url, header, null));
         }
     }
 

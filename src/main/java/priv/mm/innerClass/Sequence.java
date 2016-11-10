@@ -1,24 +1,24 @@
 package priv.mm.innerClass;
 
-interface Selector {
-    boolean end();
-
-    Object current();
-
-    void next();
-}
-
 public class Sequence {
     private Object[] items;
-    public int next = 0;
+    private int next = 0;
 
-    public Sequence(int size) {
+    private Sequence(int size) {
         super();
         items = new Object[size];
     }
 
-    public void add(Object o) {
+    private void add(Object o) {
         if (next < items.length) items[next++] = o;
+    }
+
+    private interface Selector {
+        boolean end();
+
+        Object current();
+
+        void next();
     }
 
     private class SequenceSelector implements Selector {
@@ -40,7 +40,7 @@ public class Sequence {
         }
     }
 
-    public Selector selector() {
+    private Selector selector() {
         return new SequenceSelector();
     }
 
