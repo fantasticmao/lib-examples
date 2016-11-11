@@ -7,13 +7,13 @@ import java.util.concurrent.*;
  * Created by maomao on 16-11-10.
  */
 public class BlockingQueueDemo {
-    private BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(20);
+    private BlockingQueue<Integer> queue =new ArrayBlockingQueue<>(20);
 
     private class Consumer implements Runnable {
 
         @Override
         public void run() {
-            for (; ; ) {
+            while (!Thread.interrupted()){
                 try {
                     queue.take();
                     System.out.println("consumer take ...");
@@ -28,7 +28,7 @@ public class BlockingQueueDemo {
 
         @Override
         public void run() {
-            for (; ; ) {
+            while (!Thread.interrupted()) {
                 try {
                     queue.put(1);
                     System.out.println("producer put ...");

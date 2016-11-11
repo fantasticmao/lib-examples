@@ -3,7 +3,7 @@ package priv.mm.java8;
 import java.util.Arrays;
 
 /*
- * static、default并不影响lambda接口，可以任意使用
+ * static、default并不影响FunctionalInterface接口，可以任意使用
  */
 @FunctionalInterface
 interface Foo {

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
  *
  * Created by maomao on 16-11-10.
  */
-public class StreamDemo {
+public class StreamAPIDemo {
     public static void main(String[] args) {
         Stream.of("one", "two", "three")
                 .forEach(e -> System.out.print(e + " "));

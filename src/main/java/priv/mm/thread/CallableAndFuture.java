@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * CallableDemo
+ * CallableAndFuture
  * Created by MaoMao on 2016/10/1.
  */
-public class CallableDemo {
+public class CallableAndFuture {
     private static class TaskWithResult implements Callable<String> {
         private int id;
 
