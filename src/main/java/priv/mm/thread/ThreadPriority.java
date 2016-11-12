@@ -4,17 +4,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * ThreadPriorityDemo
+ * ThreadPriority
  * 进程优先级
  * Created by MaoMao on 2016/10/2.
  */
-public class ThreadPriorityDemo implements Runnable {
+public class ThreadPriority implements Runnable {
     private int countDown = 5;
     // volatile修饰变量 拒绝编译器优化
     private volatile double d;
     private int priority;
 
-    private ThreadPriorityDemo(int priority) {
+    private ThreadPriority(int priority) {
         this.priority = priority;
     }
 
@@ -43,10 +43,10 @@ public class ThreadPriorityDemo implements Runnable {
         ExecutorService exec = Executors.newCachedThreadPool();
         // 5个低优先级线程
         for (int i = 0; i < 5; i++) {
-            exec.execute(new ThreadPriorityDemo(Thread.MIN_PRIORITY));
+            exec.execute(new ThreadPriority(Thread.MIN_PRIORITY));
         }
         // 1个高优先级线程
-        exec.execute(new ThreadPriorityDemo(Thread.MAX_PRIORITY));
+        exec.execute(new ThreadPriority(Thread.MAX_PRIORITY));
         exec.shutdown();
     }
 }
