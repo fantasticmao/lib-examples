@@ -1,4 +1,4 @@
-package priv.mm.thread;
+package priv.mm.thread.simulation;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ProducerAndConsumer {
     private static class Buffer {
-        int s1 = 1; // 缓冲区对于生产者的资源信号量，默认1可用
-        int s2 = 0; // 缓冲区对于消费者的资源信号量，默认0不可用
+        volatile int s1 = 1; // 缓冲区对于生产者的资源信号量，默认1可用
+        volatile int s2 = 0; // 缓冲区对于消费者的资源信号量，默认0不可用
         final Queue<String> queue = new LinkedList<>();
 
         synchronized int p(int signal) {
