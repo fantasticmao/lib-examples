@@ -4,8 +4,6 @@ import java.util.*;
 
 /**
  * MapEntry
- * 在foreach时，Map.Entry比Map快；
- * 在lambda时，Map.Entry比Map慢；
  * Created by maomao on 16-11-9.
  */
 public class MapEntry {
