@@ -9,15 +9,15 @@ import java.util.Arrays;
  */
 public class ParameterReference {
     private static void change(String str, int[] a) {
-        str = new String("hi");
+        str = "hello world";
         a[0] = 0;
     }
 
     public static void main(String[] args) {
-        String str = new String("hello");
+        String str = "hello";
         int[] a = {1, 2, 3};
-        System.out.println("str: " + str + " int[]: " + Arrays.toString(a));
+        System.out.println("String: " + str + " int[]: " + Arrays.toString(a));
         change(str, a);
-        System.out.println("str: " + str + " int[]: " + Arrays.toString(a));
+        System.out.println("String: " + str + " int[]: " + Arrays.toString(a));
     }
 }
