@@ -1,7 +1,5 @@
 package priv.mm.base;
 
-import java.io.IOException;
-
 /**
  * ExceptionDemo
  * Created by MaoMao on 2016/11/16.

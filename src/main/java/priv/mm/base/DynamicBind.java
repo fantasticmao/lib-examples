@@ -1,7 +1,7 @@
 package priv.mm.base;
 
 class Father {
-     Father() {
+    Father() {
         System.out.println("father init...");
         foo();
     }

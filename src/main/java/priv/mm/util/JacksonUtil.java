@@ -1,4 +1,4 @@
-package priv.mm.jackson;
+package priv.mm.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JsonNode;

@@ -44,7 +44,7 @@ public final class Optional<T> {
     }
 
     public T orElse(T other) {
-        return value != null ? null : other;
+        return value != null ? value : other;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package priv.mm.httpClient;
+package priv.mm.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
@@ -13,7 +13,6 @@ import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
-import priv.mm.jackson.JacksonUtil;
 
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
