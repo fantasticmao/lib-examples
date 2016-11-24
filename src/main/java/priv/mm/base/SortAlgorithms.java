@@ -78,7 +78,27 @@ public class SortAlgorithms {
      */
     private static int[] shellSort(int[] A) {
         int[] a = Arrays.copyOf(A, A.length);
-        return null;
+        int h = 1;
+        while (h < a.length / 3)
+            h = h * 3 + 1;
+        for (; h > 0; h = --h / 3) {
+            // h=1, 4, 13, 40, 121...
+            for (int i = h; i < a.length; i++) {
+                int key = a[i];
+                int j = i - h;
+                while (j >= 0 && key < a[j]) {
+                    a[j + h] = a[j];
+                    j -= h;
+                }
+                a[j + h] = key;
+            }
+        }
+        return a;
+    }
+
+    private static int[] quickSort(int[] A) {
+        int[] a = Arrays.copyOf(A, A.length);
+        return a;
     }
 
     public static void main(String[] args) {
@@ -87,9 +107,11 @@ public class SortAlgorithms {
         for (int i = 0; i < A.length; i++) {
             A[i] = random.nextInt(100);
         }
-        System.out.println(Arrays.toString(A));
-        System.out.println(Arrays.toString(bubbleSort(A)));
-        System.out.println(Arrays.toString(selectSort(A)));
-        System.out.println(Arrays.toString(insertSort(A)));
+        //System.out.println(Arrays.toString(A));
+        //System.out.println("bubbleSort: " + Arrays.toString(bubbleSort(A)));
+        //System.out.println("selectSort: " + Arrays.toString(selectSort(A)));
+        //System.out.println("insertSort: " + Arrays.toString(insertSort(A)));
+        System.out.println("shellSort: " + Arrays.toString(shellSort(A)));
+        //System.out.println("quickSort: " + Arrays.toString(quickSort(A)));
     }
 }
