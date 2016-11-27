@@ -21,5 +21,6 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpasyncclient:4.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore-nio:4.4.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:15.0" level="project" />
   </component>
 </module>
