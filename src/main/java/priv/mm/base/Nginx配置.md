@@ -5,15 +5,40 @@ Nginx配置
 - `error_log /var/log/nginx/error.log warn;` 错误日志文件
 - `pid /var/run/nginx.pid;` 进程号保存文件
 
-### events
-- `# use epoll` Linux下的打开，采用Linux内核epoll事件处理机制
+# events
+- `# use epoll` Linux下的开启，采用Linux内核epoll事件处理机制
 - `worker_connections 1204;` 每个进程最大的连接数
 
-### http
+# http
 - `include mime.types;` 导入文件扩展名与文件类型映射表
 - `default_type application/octet-stream;` 默认请求的返回文件类型
 - `sendfile on;` 开启发送文件
 - `keepalive_timeout 65;` 设置http持久连接
+
+## [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
+- 语法：`server_name name ...`
+- 默认：`server_name "";`
+- 上下文：`server`
+
+> Sets names of a virtual server,for example: 
+
+```
+server {
+    server_name example.com www.example.com;
+}
+
+```
+
+> The first name becomes the primary server name.<br>
+> Server names can include an asterisk (“*”) replacing the first or last part of a name:
+
+```
+server {
+    server_name example.com *.example.com www.example.*;
+}
+```
+
+详情见官方文档
 
 ### [listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
 - 语法：`listen address[:port] [default_server] [ssl] [http2|spdy] [proxy_protocol] ...`
@@ -69,31 +94,6 @@ listen unix:/var/run/nginx.sock;
 
 详情见官方文档
 
-### [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
-- 语法：`server_name name ...`
-- 默认：`server_name "";`
-- 上下文：`server`
-
-> Sets names of a virtual server,for example: 
-
-```
-server {
-    server_name example.com www.example.com;
-}
-
-```
-
-> The first name becomes the primary server name.<br>
-> Server names can include an asterisk (“*”) replacing the first or last part of a name:
-
-```
-server {
-    server_name example.com *.example.com www.example.*;
-}
-```
-
-详情见官方文档
-
 ### [location](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)
 - 语法：`location [=|~|~*|^~] uri {...}` `location @name {...}`
 - 默认：`—` 
@@ -103,7 +103,7 @@ server {
 > expressions are specified with the preceding “~*” modifier (for case-insensitive matching), or
 > the “~” modifier (for case-sensitive matching).
 
-location可以被 **前缀字符串** 或者 **正则表达式** 定义。正则表达式通过`~*`修饰符（不敏感大小写）和`~`修饰符（敏感大小写）指定。
+location可以被**前缀字符串**或者**正则表达式**定义。正则表达式通过`~*`修饰符（不敏感大小写）和`~`修饰符（敏感大小写）指定。
 
 > If the longest matching prefix location has the “^~” modifier then regular expressions are not checked.
 
@@ -130,11 +130,11 @@ location ^~ /images/ {
 location ~* \.(gif|jpg|jpeg)$ {
     [ configuration E ]
 }
-1. “/” 请求匹配configuration A
-2. “/index.html” 请求匹配configuration B
-3. “/documents/document.html” 请求匹配configuration C
-4. “/images/1.gif” 请求匹配configuration D
-5. “/documents/1.jpg” 请求匹配configuration E.
+1. /                        --> configuration A
+2. /index.html              --> configuration B
+3. /documents/document.html --> configuration C
+4. /images/1.gif            --> configuration D
+5. /documents/1.jpg         --> configuration E
 ```
 #### [proxy_pass](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
 - 语法：`proxy_pass URL;`
