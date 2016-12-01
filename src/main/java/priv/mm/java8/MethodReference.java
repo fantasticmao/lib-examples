@@ -38,6 +38,5 @@ public class MethodReference {
         for (String str : stringArray) {
             System.out.printf(str + " ");
         }
-
     }
 }
