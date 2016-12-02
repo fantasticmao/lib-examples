@@ -1,19 +1,29 @@
 Nginx配置
 ---
 - `user nginx;` 运行用户
-- `worker_processes auto;` 开启进程数，应当为CPU核的2陪
-- `error_log /var/log/nginx/error.log warn;` 错误日志文件
-- `pid /var/run/nginx.pid;` 进程号保存文件
+- `worker_processes auto;` 开启进程数，应当为CPU核数的2陪
+- `pid /run/nginx.pid;` 进程号保存文件
 
 # events
 - `# use epoll` Linux下的开启，采用Linux内核epoll事件处理机制
 - `worker_connections 1204;` 每个进程最大的连接数
 
 # http
+- `sendfile on;` 开启发送文件
+- `tcp_nopush on;` 开启tcp_nopush
+- `tcp_nodelay on;` 开启tcp_nodelay
+- `keepalive_timeout 65;` 设置http持久连接
+- `types_hash_max_size 2048;`
 - `include mime.types;` 导入文件扩展名与文件类型映射表
 - `default_type application/octet-stream;` 默认请求的返回文件类型
-- `sendfile on;` 开启发送文件
-- `keepalive_timeout 65;` 设置http持久连接
+- `ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE` ssl协议
+- `ssl_prefer_server_ciphers on;`
+- `ssl_session_cache shared:SSL:10m;`
+- `ssl_session_timeout 10m;`
+- `access_log /var/log/nginx/access.log;` access日志
+- `error_log /var/log/nginx/error.log;` error日志
+- `gzip on;` 开启gzip
+- `gzip_disable "msie6";`
 
 ### listen
 - 语法：`listen address[:port] [default_server] [ssl] [http2|spdy] [proxy_protocol] ...`
@@ -164,7 +174,7 @@ location /some/path/ {
 ```
 if (proxy_pass指定URI) {
     // 规范化请求URI中匹配location的部分被proxy_pass指定的URI替换
-    return http://127.0.0.1/path/......;
+    return http://127.0.0.1/remote/......;
 } else {
     if (处理源请求URI) {
         // 客户端发出的相同形式传递
