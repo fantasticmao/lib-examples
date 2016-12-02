@@ -15,32 +15,7 @@ Nginx配置
 - `sendfile on;` 开启发送文件
 - `keepalive_timeout 65;` 设置http持久连接
 
-## [server](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
-- 语法：`server_name name ...`
-- 默认：`server_name "";`
-- 上下文：`server`
-
-> Sets names of a virtual server,for example: 
-
-```
-server {
-    server_name example.com www.example.com;
-}
-
-```
-
-> The first name becomes the primary server name.<br>
-> Server names can include an asterisk (“*”) replacing the first or last part of a name:
-
-```
-server {
-    server_name example.com *.example.com www.example.*;
-}
-```
-
-详情见官方文档
-
-### [listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
+### listen
 - 语法：`listen address[:port] [default_server] [ssl] [http2|spdy] [proxy_protocol] ...`
 - 默认：`listen *:80 | *:8000;`
 - 上下文：`server`
@@ -49,7 +24,7 @@ server {
 > accept requests. Both address and port, or only address or only port can be specified. An address may
 > also be a hostname, for example:
 
-为Nginx接受的请求，设置IP的`address`和`port`或设置UNIX域套接字`path`。可以指定地址和端口，或仅地址和仅端口。地址也可以是域名：
+为Nginx接受的请求，设置IP的`address`地址和`port`端口或设置UNIX域套接字`path`路径。可以指定地址和端口，或仅地址和仅端口。地址也可以是域名：
 
 ```
 listen 127.0.0.1:8000;
@@ -72,7 +47,6 @@ listen [::1];
 
 UNIX-domain sockets使用以`unix:`开头指定：
 
-
 ```
 listen unix:/var/run/nginx.sock;
 ```
@@ -92,7 +66,27 @@ listen unix:/var/run/nginx.sock;
 
 如果存在配置`default_server`参数，那么当前指定的`address:port`成为默认虚拟主机。如果不存在配置`default_server`参数，那么第一个`address:port`将会成为默认的虚拟主机。
 
-详情见官方文档
+详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
+
+### server_name
+- 语法：`server_name name ...`
+- 默认：`server_name "";`
+- 上下文：`server`
+
+> Sets names of a virtual server,for example:<br>
+> 
+> server {<br>
+>   server_name example.com www.example.com;<br>
+> }
+> 
+> The first name becomes the primary server name
+> Server names can include an asterisk (“*”) replacing the first or last part of a name:
+>
+> server {<br>
+>   server_name example.com *.example.com www.example.*;<br>
+> }
+
+详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
 
 ### [location](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)
 - 语法：`location [=|~|~*|^~] uri {...}` `location @name {...}`
@@ -116,19 +110,19 @@ location可以被**前缀字符串**或者**正则表达式**定义。正则表�
 
 ```
 location = / {
-    [ configuration A ]
+    [configuration A]
 }
 location / {
-    [ configuration B ]
+    [configuration B]
 }
 location /documents/ {
-    [ configuration C ]
+    [configuration C]
 }
 location ^~ /images/ {
-    [ configuration D ]
+    [configuration D]
 }
 location ~* \.(gif|jpg|jpeg)$ {
-    [ configuration E ]
+    [configuration E]
 }
 1. /                        --> configuration A
 2. /index.html              --> configuration B
@@ -136,7 +130,9 @@ location ~* \.(gif|jpg|jpeg)$ {
 4. /images/1.gif            --> configuration D
 5. /documents/1.jpg         --> configuration E
 ```
-#### [proxy_pass](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
+详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)
+
+#### proxy_pass
 - 语法：`proxy_pass URL;`
 - 默认：`—`
 - 上下文：`location` `if in location` `limit_except`
@@ -145,7 +141,7 @@ location ~* \.(gif|jpg|jpeg)$ {
 > server, the part of a normalized request URI matching the location is replaced by a URI 
 > specified in the directive:
 
-当请求通过Nginx服务器时，若`proxy_pass`**指定了URI**，则请求URI中的规范部分被`proxy_pass`指定的URI替换。（大白话就是127.0.0.1被域名替换）
+当请求传递给Nginx时，若`proxy_pass`指定了URI，则规范化请求URI中匹配location的部分被`proxy_pass`指定的URI替换。（大白话就是/name/匹配了/remote/，将被替换）
 
 ```
 location /name/ {
@@ -157,10 +153,26 @@ location /name/ {
 > form as sent by a client when the original request is processed, or the full normalized 
 > request URI is passed when processing the changed URI:
 
-当源请求通过Nginx服务器时，若`proxy_pass`**未指定URI**，
+若`proxy_pass`未指定URI，则处理源请求URI时，请求URI以客户端发出的相同形式传递给Nginx，或者处理已改变的URI时，传递所有规范化的URI。
 
 ```
 location /some/path/ {
     proxy_pass http://127.0.0.1;
 }
 ```
+
+```
+if (proxy_pass指定URI) {
+    // 规范化请求URI中匹配location的部分被proxy_pass指定的URI替换
+    return http://127.0.0.1/path/......;
+} else {
+    if (处理源请求URI) {
+        // 客户端发出的相同形式传递
+        return http://127.0.0.1;
+    } else {
+        // 传递所有规范化的URI
+        return http://127.0.0.1/all/; 
+    } 
+}
+```
+详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
