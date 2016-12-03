@@ -31,19 +31,36 @@ import java.util.concurrent.Future;
 
 /**
  * HttpRestClient
- * Created by MaoMao on 2016/8/17.
+ * 支持同步阻塞式和异步阻塞式的http请求
+ *
+ * @author MaoMao
+ * @since 2016.8.17
  */
 public class HttpRestClient {
     private ExecutorService exec;
     private static HttpRestClient instance = null;
+    private static HttpRestClient asyncInstance = null;
 
     private HttpRestClient() {
-        this.exec = Executors.newFixedThreadPool(5);
+
+    }
+
+    private HttpRestClient(int nThreads) {
+        this.exec = Executors.newFixedThreadPool(nThreads);
     }
 
     public static HttpRestClient getInstance() {
         return instance == null ? instance = new HttpRestClient() : instance;
     }
+
+    public static HttpRestClient getAsyncInstance() {
+        return getAsyncInstance(5);
+    }
+
+    public static HttpRestClient getAsyncInstance(int nThreads) {
+        return asyncInstance == null ? asyncInstance = new HttpRestClient(nThreads) : asyncInstance;
+    }
+
 
     public enum Method {
         GET, POST, PUT, DELETE
@@ -257,6 +274,8 @@ public class HttpRestClient {
      * @return
      */
     private String _sendAsync(final Method method, final String url, final Map<String, String> header, final Map<String, Object> body) {
+        if (exec == null)
+            throw new RuntimeException("Thread poll is not initialized");
         System.out.println("---------------------------------AsyncRequest Begin---------------------------------");
         System.out.println("Method: " + method);
         System.out.println("URL: " + url);
@@ -293,7 +312,8 @@ public class HttpRestClient {
     }
 
     public static void main(String[] args) {
-        String result = HttpRestClient.getInstance().send(Method.GET, "http://www.baidu.com");
-        System.out.println(result);
+        HttpRestClient.getInstance().send(Method.GET, "http://www.baidu.com");
+        HttpRestClient.getAsyncInstance().sendAsync(Method.GET, "http://www.baidu.com");
+        HttpRestClient.getAsyncInstance(10).sendAsync(Method.GET, "http://www.baidu.com");
     }
 }

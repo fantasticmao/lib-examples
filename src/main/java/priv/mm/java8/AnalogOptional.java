@@ -3,34 +3,34 @@ package priv.mm.java8;
 import java.util.Objects;
 
 /**
- * java8 Optional
+ * 模拟java8 Optional
  * Created by maomao on 16-11-20.
  */
-public final class Optional<T> {
-    private static final Optional<?> EMPTY = new Optional<>();
+public final class AnalogOptional<T> {
+    private static final AnalogOptional<?> EMPTY = new AnalogOptional<>();
 
     private final T value;
 
-    private Optional() {
+    private AnalogOptional() {
         this.value = null;
     }
 
-    private Optional(T value) {
+    private AnalogOptional(T value) {
         Objects.requireNonNull(value);
         this.value = value;
     }
 
-    public static <T> Optional<T> empty() {
+    public static <T> AnalogOptional<T> empty() {
         @SuppressWarnings("unchecked")
-        Optional<T> t = (Optional<T>) EMPTY;
+        AnalogOptional<T> t = (AnalogOptional<T>) EMPTY;
         return t;
     }
 
-    public static <T> Optional<T> of(T value) {
-        return new Optional<>(value);
+    public static <T> AnalogOptional<T> of(T value) {
+        return new AnalogOptional<>(value);
     }
 
-    public static <T> Optional<T> ofNullable(T value) {
+    public static <T> AnalogOptional<T> ofNullable(T value) {
         return value == null ? empty() : of(value);
     }
 
@@ -53,11 +53,11 @@ public final class Optional<T> {
             return true;
         }
 
-        if (!(obj instanceof Optional)) {
+        if (!(obj instanceof AnalogOptional)) {
             return false;
         }
 
-        Optional<?> other = (Optional<?>) obj;
+        AnalogOptional<?> other = (AnalogOptional<?>) obj;
         return Objects.equals(value, other.value);
     }
 
@@ -69,7 +69,7 @@ public final class Optional<T> {
     @Override
     public String toString() {
         return value != null
-                ? String.format("Optional[%s]", value)
-                : "Optional.empty";
+                ? String.format("AnalogOptional[%s]", value)
+                : "AnalogOptional.empty";
     }
 }
