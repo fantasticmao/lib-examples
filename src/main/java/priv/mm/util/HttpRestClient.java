@@ -31,7 +31,7 @@ import java.util.concurrent.Future;
 
 /**
  * HttpRestClient
- * 支持同步阻塞式和异步阻塞式的http请求
+ * 支持同步阻塞式、同步非阻塞式、异步阻塞式的http请求
  *
  * @author MaoMao
  * @since 2016.8.17
@@ -85,13 +85,11 @@ public class HttpRestClient {
      * @return String
      */
     public String send(Method method, String url, Map<String, String> header, Map<String, Object> body) {
-        String result;
+        String result = "{}";
         if (method == Method.POST || method == Method.PUT) {
             result = _send(method, url, header, body);
         } else if (method == Method.GET || method == Method.DELETE) {
             result = _send(method, url, header, null);
-        } else {
-            result = "{\"status\":" + false + ",\"desc\":\"Unknown HTTMethod\"}";
         }
         return result;
     }
@@ -115,6 +113,9 @@ public class HttpRestClient {
      * @return String
      */
     public void sendUnBlock(final Method method, final String url, final Map<String, String> header, final Map<String, Object> body) {
+        if (exec == null)
+            throw new RuntimeException("Thread poll is not initialized");
+
         if (method == Method.POST || method == Method.PUT) {
             exec.submit(() -> _send(method, url, header, body));
         } else if (method == Method.GET || method == Method.DELETE) {
@@ -141,13 +142,11 @@ public class HttpRestClient {
      * @return String
      */
     public String sendAsync(Method method, String url, Map<String, String> header, Map<String, Object> body) {
-        String result;
+        String result = "{}";
         if (method == Method.POST || method == Method.PUT) {
             result = _sendAsync(method, url, header, body);
         } else if (method == Method.GET || method == Method.DELETE) {
             result = _sendAsync(method, url, header, null);
-        } else {
-            result = "{\"status\":" + false + ",\"desc\":\"Unknown HTTMethod\"}";
         }
         return result;
     }
@@ -171,12 +170,8 @@ public class HttpRestClient {
     private CloseableHttpAsyncClient getHttpAsyncClient(boolean isSSL) throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         CloseableHttpAsyncClient client;
         if (isSSL) {
-            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
-                //信任所有
-                public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                    return true;
-                }
-            }).build();
+            // 信任所有
+            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, (e1, e2) -> true).build();
             client = HttpAsyncClients.custom().setSSLContext(sslContext).build();
         } else {
             client = HttpAsyncClients.custom().build();
@@ -185,11 +180,11 @@ public class HttpRestClient {
     }
 
     private HttpUriRequest dealRequest(Method method, String url, Map<String, String> header, Map<String, Object> body) throws URISyntaxException, IOException {
-        HttpRequestBase request;
         if (StringUtils.isBlank(url) || !url.matches("http(s)?://(\\w+\\.)+(\\w+(/)?)*")) {
-            throw new IOException("Illegal URL Error");
+            throw new RuntimeException("Illegal URL");
         }
 
+        HttpRequestBase request;
         URL target = new URL(url);
         switch (method) {
             case GET:
@@ -205,7 +200,7 @@ public class HttpRestClient {
                 request = new HttpDelete(target.toURI());
                 break;
             default:
-                throw new IOException("Illegal HTTMethod Error");
+                throw new RuntimeException("Illegal HTTMethod");
         }
 
         if (header != null && !header.isEmpty()) {
@@ -274,8 +269,6 @@ public class HttpRestClient {
      * @return
      */
     private String _sendAsync(final Method method, final String url, final Map<String, String> header, final Map<String, Object> body) {
-        if (exec == null)
-            throw new RuntimeException("Thread poll is not initialized");
         System.out.println("---------------------------------AsyncRequest Begin---------------------------------");
         System.out.println("Method: " + method);
         System.out.println("URL: " + url);

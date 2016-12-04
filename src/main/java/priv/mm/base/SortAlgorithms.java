@@ -5,7 +5,9 @@ import java.util.Random;
 
 /**
  * SortAlgorithms
- * Created by maomao on 16-11-14.
+ *
+ * @author MaoMao
+ * @since 2016.11.14
  */
 public class SortAlgorithms {
     /**

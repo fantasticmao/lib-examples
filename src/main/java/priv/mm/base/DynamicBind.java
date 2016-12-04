@@ -26,7 +26,9 @@ class Son extends Father {
 /**
  * DynamicBind
  * 多态中的动态绑定
- * Created by MaoMao on 2016/10/31.
+ *
+ * @author MaoMao
+ * @since 2016.10.31
  */
 public class DynamicBind {
     public static void main(String[] args) {

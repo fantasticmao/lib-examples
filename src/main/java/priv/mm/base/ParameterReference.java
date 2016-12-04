@@ -4,8 +4,10 @@ import java.util.Arrays;
 
 /**
  * ParameterReference
- * 方法参数实质是引用的副本
- * Created by MaoMao on 2016/10/29.
+ * JAVA方法传递的参数实质是引用的副本
+ *
+ * @author MaoMao
+ * @since 2016.10.29
  */
 public class ParameterReference {
     private static void change(String str, int[] a) {

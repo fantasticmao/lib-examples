@@ -2,7 +2,9 @@ package priv.mm.base;
 
 /**
  * ExceptionDemo
- * Created by MaoMao on 2016/11/16.
+ *
+ * @author MaoMao
+ * @since 2016.11.16
  */
 public class ExceptionDemo {
     public static void main(String[] args) {
