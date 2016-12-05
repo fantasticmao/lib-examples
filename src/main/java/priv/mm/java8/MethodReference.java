@@ -61,7 +61,6 @@ public class MethodReference {
     /**
      * Reference to a constructor
      * ClassName::new
-     *
      */
     public static void m4() {
         List<Person> roster = Person.createRoster();
