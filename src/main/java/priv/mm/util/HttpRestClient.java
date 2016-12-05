@@ -212,7 +212,10 @@ public class HttpRestClient {
         if (body != null && !body.isEmpty()) {
             String s = JacksonUtil.Object2Json(body);
             StringEntity bodyEntity = new StringEntity(s, "UTF-8");
-            ((HttpEntityEnclosingRequestBase) request).setEntity(bodyEntity);
+            if (request instanceof HttpEntityEnclosingRequestBase)
+                ((HttpEntityEnclosingRequestBase) request).setEntity(bodyEntity);
+            else
+                throw new RuntimeException("Illegal HttpRequestBase");
         }
         return request;
     }
