@@ -80,11 +80,11 @@ public class SortAlgorithms {
      */
     private static int[] shellSort(int[] A) {
         int[] a = Arrays.copyOf(A, A.length);
-        int h = 1;
-        while (h < a.length / 3)
+        int h = 1;// h=1, 4, 13, 40, 121...
+        while (h < a.length)
             h = h * 3 + 1;
+        h = --h / 3;
         for (; h > 0; h = --h / 3) {
-            // h=1, 4, 13, 40, 121...
             for (int i = h; i < a.length; i++) {
                 int key = a[i];
                 int j = i - h;
