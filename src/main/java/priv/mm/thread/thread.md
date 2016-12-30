@@ -2,6 +2,11 @@
 ---
 #### JDK5线程池框架
 
+#### 捕获异常 
+线程的本质特性，导致不能捕获从线程中逃逸的异常。为了解决这个问题，可以修改Executor生产线程的方式。
+创建新的ThreadFactory，为每个新创建的线程绑定Thread.UncaughtExceptionHandler接口。
+此接口是JDK1.5中提供，允许在每个线程绑定异常处理器。Thread.UncaughtExceptionHandler.uncaughtException()在线程因未捕获异常而终止时被调用。
+
 #### 线程之间的协作
 - wait()与notifyAll()
     1. wait()通常由另一个进程调用，使当前进程进入等待状态
