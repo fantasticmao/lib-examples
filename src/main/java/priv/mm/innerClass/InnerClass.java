@@ -4,10 +4,11 @@ package priv.mm.innerClass;
  * 内部类可随意访问外部类对象的属性和方法
  */
 public class InnerClass {
-    private String str;
+    private String str = "world";
 
-    private InnerClass(String str) {
-        this.str = str;
+    public static void main(String[] args) {
+        Inner inner = new InnerClass().new Inner();
+        System.out.println(inner.bar());
     }
 
     private String foo() {
@@ -18,10 +19,5 @@ public class InnerClass {
         String bar() {
             return foo() + str;
         }
-    }
-
-    public static void main(String[] args) {
-        Inner inner = new InnerClass("world").new Inner();
-        System.out.println(inner.bar());
     }
 }

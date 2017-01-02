@@ -1,6 +1,6 @@
 package priv.mm.innerClass;
 
-class WithInner {
+class Outer {
     class Inner {
     }
 }
@@ -8,13 +8,13 @@ class WithInner {
 /**
  * 继承内部类，必须实例化其外部类
  */
-public class InheritInnerClass extends WithInner.Inner {
-    private InheritInnerClass(WithInner wi) {
-        wi.super();
+public class InheritInnerClass extends Outer.Inner {
+    private InheritInnerClass(Outer outer) {
+        outer.super();
     }
 
     public static void main(String[] args) {
-        WithInner wi = new WithInner();
+        Outer wi = new Outer();
         new InheritInnerClass(wi);
     }
 }
