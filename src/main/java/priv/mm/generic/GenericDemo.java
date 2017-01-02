@@ -1,4 +1,4 @@
-package priv.mm.base;
+package priv.mm.generic;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * <blockquote><pre>
  *     class A {
  *         static <T> void f(T t) {
- *         // ...
+ *             // ...
  *     }
  * </pre></blockquote>
  * f()的参数类型由方法返回值前的`泛型参数`决定。
@@ -32,21 +32,10 @@ import java.util.ArrayList;
  */
 public class GenericDemo {
 
-    /**
-     * 可以使用泛型组建`元组`——将一组对象打包存储在一个单一对象中。
-     */
-    class Two<A, B> {
-        A a;
-        B b;
-    }
-
-    /*
-     * 泛型类
-     */
-    class A<T> {
-        void f(T t) {
-            System.out.println(t.getClass().getName());
-        }
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
+        GenericDemo demo = new GenericDemo();
+        demo.f(1);
+        demo.erasedType();
     }
 
     /**
@@ -68,14 +57,23 @@ public class GenericDemo {
     void erasedType() {
         Class c1 = new ArrayList<String>().getClass();
         Class c2 = new ArrayList<Integer>().getClass();
-        System.out.println(c1.getTypeParameters()[0].getGenericDeclaration());
-        System.out.println(c2.getTypeParameters()[0].getGenericDeclaration());
         System.out.println(c1 == c2);
     }
 
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
-        GenericDemo demo = new GenericDemo();
-        demo.f(1);
-        demo.erasedType();
+    /**
+     * 可以使用泛型组建`元组`——将一组对象打包存储在一个单一对象中。
+     */
+    class Two<A, B> {
+        A a;
+        B b;
+    }
+
+    /*
+     * 泛型类
+     */
+    class A<T> {
+        void f(T t) {
+            System.out.println(t.getClass().getName());
+        }
     }
 }
