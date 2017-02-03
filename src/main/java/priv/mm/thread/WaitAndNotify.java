@@ -8,7 +8,9 @@ import java.util.concurrent.TimeUnit;
  * WaitAndNotify
  * wait()、notify()、notifyAll()都属于基类Object的方法
  * 调用时默认使用当前对象是this
- * Created by maomao on 16-11-9.
+ *
+ * @author maomao
+ * @since 2016.11.09
  */
 public class WaitAndNotify {
 

@@ -176,7 +176,9 @@ class ThreadMethod {
 /**
  * ThreadVariations
  * 匿名内部类进程
- * Created by MaoMao on 2016/10/2.
+ *
+ * @author maomao
+ * @since 2016.10.02
  */
 public class ThreadVariations {
     public static void main(String[] args) {

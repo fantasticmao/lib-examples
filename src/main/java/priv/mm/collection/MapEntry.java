@@ -1,10 +1,15 @@
 package priv.mm.collection;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * MapEntry
- * Created by maomao on 16-11-9.
+ *
+ * @author maomao
+ * @since 2016.11.09
  */
 public class MapEntry {
     public static void main(String[] args) {

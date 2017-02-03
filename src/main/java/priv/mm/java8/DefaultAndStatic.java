@@ -16,7 +16,9 @@ interface Base {
  * 接口的
  * 1. default修饰符类似abstract class中的实现方法
  * 2. static修饰符允许接口拥有静态方法
- * Created by maomao on 16-11-9.
+ *
+ * @author maomao
+ * @since 2016.11.09
  */
 public class DefaultAndStatic implements Base {
     @Override

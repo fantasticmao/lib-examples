@@ -5,7 +5,9 @@ import java.util.*;
 /**
  * QueueDemo
  * 队列Queue只允许在队尾(rear)插入，队首(front)弹出的数据结构
- * Created by maomao on 16-11-9.
+ *
+ * @author maomao
+ * @since 2016.11.09
  */
 public class QueueDemo {
 

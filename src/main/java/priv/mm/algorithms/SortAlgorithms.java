@@ -1,4 +1,4 @@
-package priv.mm.base;
+package priv.mm.algorithms;
 
 import java.util.Arrays;
 import java.util.Random;

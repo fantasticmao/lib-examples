@@ -13,7 +13,7 @@ import java.util.Set;
  * m4. 引用构造方法
  * <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">官方文档</a>
  *
- * @author MaoMao
+ * @author maomao
  * @since 2016.11.10
  */
 public class MethodReference {

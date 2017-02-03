@@ -2,7 +2,9 @@ package priv.mm.regex;
 
 /**
  * MatcherDemo
- * Created by maomao on 16-12-23.
+ *
+ * @author maomao
+ * @since 2016.12.23
  */
 public class MatcherDemo {
     private static void matches() {
