@@ -4,7 +4,9 @@ import java.util.concurrent.*;
 
 /**
  * BlockingQueue阻塞队列
- * Created by maomao on 16-11-10.
+ *
+ * @author maomao
+ * @since 2016.11.10
  */
 public class BlockingQueueDemo {
     private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(3);

@@ -6,7 +6,9 @@ import java.util.concurrent.*;
 
 /**
  * CallableAndFuture
- * Created by MaoMao on 2016/10/1.
+ *
+ * @author maomao
+ * @since 2016.10.01
  */
 public class CallableAndFuture {
     private static class TaskWithResult implements Callable<String> {

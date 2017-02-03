@@ -13,7 +13,9 @@ interface Foo {
 /**
  * Lambda、FunctionalInterface
  * <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">官方文档</a>
- * Created by maomao on 16-11-10.
+ *
+ * @author maomao
+ * @since 2016.11.10
  */
 public class LambdaAndFunctional {
 

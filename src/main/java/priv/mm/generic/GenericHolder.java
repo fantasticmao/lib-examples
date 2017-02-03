@@ -4,7 +4,7 @@ package priv.mm.generic;
  * 使用javap -c GenericHolder
  *
  * @author maomao
- * @since 2017.1.2
+ * @since 2017.01.02
  */
 public class GenericHolder<T> {
     private T obj;

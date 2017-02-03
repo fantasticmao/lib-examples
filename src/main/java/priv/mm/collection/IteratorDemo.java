@@ -4,7 +4,9 @@ import java.util.*;
 
 /**
  * IteratorDemo
- * Created by maomao on 16-11-9.
+ *
+ * @author maomao
+ * @since 2016.11.09
  */
 public class IteratorDemo {
 

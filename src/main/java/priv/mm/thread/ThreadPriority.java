@@ -6,7 +6,9 @@ import java.util.concurrent.Executors;
 /**
  * ThreadPriority
  * 进程优先级
- * Created by MaoMao on 2016/10/2.
+ *
+ * @author maomao
+ * @since 2016.10.02
  */
 public class ThreadPriority implements Runnable {
     private int countDown = 5;

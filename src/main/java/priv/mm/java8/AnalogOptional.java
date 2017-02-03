@@ -4,7 +4,9 @@ import java.util.Objects;
 
 /**
  * 模拟java8 Optional
- * Created by maomao on 16-11-20.
+ *
+ * @author maomao
+ * @since 2016.11.20
  */
 public final class AnalogOptional<T> {
     private static final AnalogOptional<?> EMPTY = new AnalogOptional<>();

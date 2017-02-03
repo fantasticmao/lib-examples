@@ -7,7 +7,8 @@ import java.util.stream.Stream;
  * 类似JavaScript数组方法
  * 具体API参考源码
  *
- * Created by maomao on 16-11-10.
+ * @author maomao
+ * @since 2016.11.10
  */
 public class StreamAPIDemo {
     public static void main(String[] args) {
