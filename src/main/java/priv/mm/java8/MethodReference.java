@@ -67,7 +67,4 @@ public class MethodReference {
         Set<Person> rosterSet = Person.transferElements(roster, HashSet<Person>::new);
     }
 
-
-    public static void main(String[] args) {
-    }
 }
