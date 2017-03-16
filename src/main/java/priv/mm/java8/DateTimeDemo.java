@@ -3,10 +3,11 @@ package priv.mm.java8;
 import junit.framework.Assert;
 
 import java.time.*;
+import java.time.chrono.JapaneseDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
-
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
-import static java.time.temporal.TemporalAdjusters.previousOrSame;
+import java.time.temporal.TemporalAdjusters;
 
 /**
  * DateTimeDemo
@@ -15,7 +16,8 @@ import static java.time.temporal.TemporalAdjusters.previousOrSame;
  * @since 2016.11.20
  */
 public class DateTimeDemo {
-    public static void main(String[] args) {
+
+    static void demo() {
         LocalDateTime timePoint = LocalDateTime.now(); // The current date and time
         LocalDate.of(2012, Month.DECEMBER, 12); // from values
         LocalDate.ofEpochDay(150); // middle of 1970
@@ -35,8 +37,8 @@ public class DateTimeDemo {
         LocalDateTime yetAnother = thePast.plusWeeks(3).plus(3, ChronoUnit.WEEKS);
 
 
-        LocalDateTime foo = timePoint.with(lastDayOfMonth());
-        LocalDateTime bar = timePoint.with(previousOrSame(DayOfWeek.WEDNESDAY));
+        LocalDateTime foo = timePoint.with(TemporalAdjusters.lastDayOfMonth());
+        LocalDateTime bar = timePoint.with(TemporalAdjusters.previousOrSame(DayOfWeek.WEDNESDAY));
         // Using value classes as adjusters
         timePoint.with(LocalTime.now());
 
@@ -71,6 +73,87 @@ public class DateTimeDemo {
         // A duration of 3 seconds and 5 nanoseconds
         Duration duration = Duration.ofSeconds(3, 5);
         Duration oneDay = Duration.between(LocalDate.now().withMonth(1), LocalDate.now());
+    }
+
+    static void localDateTime() {
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now.getMonth());
+        System.out.println(now.get(ChronoField.MONTH_OF_YEAR));
+        // 使用 with 修改已有的 LocalDateTime 对象
+        System.out.println(now.withDayOfMonth(1));
+        // 使用 plus 加/减已有的 LocalDateTime 对象
+        System.out.println(now.plusDays(1));
+        // 使用 minus 加/减已有的 LocalDateTime 对象
+        System.out.println(now.minusDays(1));
+    }
+
+    /**
+     * Instant 以时间戳方式计算
+     */
+    static void instant() {
+        Instant instant = Instant.now();
+        System.out.println(instant);
+    }
+
+    /**
+     * 获取两个 Temporal 之间的 Duration
+     * 由于 Duration 主要用于以秒和纳秒衡量时间的长短，所以 between 无法应用与 LocalDate 对象作参数
+     */
+    static void duration() {
+        LocalDateTime dateTime1 = LocalDateTime.of(2017, 1, 1, 0, 30, 0);
+        LocalDateTime dateTime2 = LocalDateTime.of(2017, 1, 1, 0, 0, 0);
+        Duration duration = Duration.between(dateTime1, dateTime2);
+        System.out.println(duration);
+    }
+
+    /**
+     * Period 允许以年、月、日等单位获取多个 Temporal 的时间间隔
+     */
+    static void period() {
+        LocalDate date1 = LocalDate.of(2017, 1, 1);
+        LocalDate date2 = LocalDate.of(2017, 1, 2);
+        Period period = Period.between(date1, date2);
+        System.out.println(period);
+    }
+
+    /**
+     * 对 Temporal 进行复杂的操作，如将日期调整到下周日，或者是本月的最后一天
+     */
+    static void temporalAdjuster() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime newDateTime = now.with(TemporalAdjusters.lastDayOfMonth());
+        System.out.println(newDateTime);
+    }
+
+    /**
+     * 格式化
+     */
+    static void format() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        String str = dateTime.format(DateTimeFormatter.ISO_DATE_TIME);
+        System.out.println(str);
+    }
+
+    /**
+     * 通过 {区域/城市} 的地区 ID 形式创建ZoneId，组合 Temporal 实例可以构造ZonedDateTime对象
+     */
+    static void zone() {
+        ZoneId zoneId = ZoneId.of("Europe/Paris");
+        ZonedDateTime dateTime = LocalDateTime.now().atZone(zoneId);
+        System.out.println(dateTime);
+    }
+
+    /**
+     * 不同的日历
+     */
+    static void calendar() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        JapaneseDate date = JapaneseDate.from(dateTime);
+        System.out.println(date);
+    }
+
+    public static void main(String[] args) {
+        zone();
     }
 
 }
