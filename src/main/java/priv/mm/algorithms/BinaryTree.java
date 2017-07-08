@@ -7,7 +7,7 @@ package priv.mm.algorithms;
  * @since 2017.02.03
  */
 public class BinaryTree {
-    static class Node {
+    private class Node {
         int key;
         Node leftChild;
         Node rightChild;
@@ -32,7 +32,7 @@ public class BinaryTree {
         POST // 后序遍历
     }
 
-    Node root;
+    private Node root;
 
     public Node find(int key) {
         Node currentNode = root;
