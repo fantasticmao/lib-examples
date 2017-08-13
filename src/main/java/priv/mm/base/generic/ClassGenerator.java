@@ -1,4 +1,4 @@
-package priv.mm.generic;
+package priv.mm.base.generic;
 
 /**
  * 擦除丢失了`泛型参数`的确切信息

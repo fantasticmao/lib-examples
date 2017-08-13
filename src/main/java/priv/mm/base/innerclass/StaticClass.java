@@ -1,4 +1,4 @@
-package priv.mm.innerClass;
+package priv.mm.base.innerclass;
 
 /**
  * 1. 静态内部类意味着：

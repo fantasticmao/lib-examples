@@ -1,4 +1,4 @@
-package priv.mm.generic;
+package priv.mm.base.generic;
 
 /**
  * @author maomao

@@ -1,4 +1,4 @@
-package priv.mm.reference;
+package priv.mm.clazz;
 
 /**
  * 类加载Demo
@@ -29,7 +29,7 @@ public class ClassLoaderDemo {
     public static void main(String[] args) {
         try {
             //
-            Class.forName("priv.mm.reference.B");
+            Class.forName("priv.mm.clazz.B");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

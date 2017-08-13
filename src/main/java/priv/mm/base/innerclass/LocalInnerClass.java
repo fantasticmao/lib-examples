@@ -1,4 +1,4 @@
-package priv.mm.innerClass;
+package priv.mm.base.innerclass;
 
 /**
  * 局部内部类的作用域在局部方法内

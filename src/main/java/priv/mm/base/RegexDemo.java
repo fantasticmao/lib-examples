@@ -1,12 +1,12 @@
-package priv.mm.regex;
+package priv.mm.base;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * MatcherDemo
- *
+ * RegexDemo
+ * <p>
  * Characters
  * x: 字符x
  * \\: 反斜杠
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * \0nn:
  * \0mnn:	The character with octal value 0mnn (0 <= m <= 3, 0 <= n <= 7)
  * \xhh	The character with hexadecimal value 0xhh
- * \uhhhh	The character with hexadecimal value 0xhhhh
+ * \ uhhhh	The character with hexadecimal value 0xhhhh
  * \x{h...h}	The character with hexadecimal value 0xh...h (Character.MIN_CODE_POINT  <= 0xh...h <=  Character.MAX_CODE_POINT)
  * \t: 制表符\u0009
  * \n: 换行符\u000A
@@ -23,8 +23,8 @@ import java.util.regex.Pattern;
  * \a:The alert (bell) character ('\u0007')
  * \e:The escape character ('\u001B')
  * \cx:The control character corresponding to x
- *
- *
+ * <p>
+ * <p>
  * Character classes
  * [abc]: a|b|c
  * [^abc]: !(a|b|c)
@@ -33,8 +33,8 @@ import java.util.regex.Pattern;
  * [a-z&&[def]]: (a-z)&&(d|e|f)
  * [a-z&&[^bc]]: (a-z)&&!(b|c)
  * [a-z&&[^m-p]]: (a-z)&&!(m-p)
- *
- *
+ * <p>
+ * <p>
  * Predefined character classes
  * .: 任意字符
  * \d: 数字[0-9]
@@ -47,17 +47,17 @@ import java.util.regex.Pattern;
  * \V: 非垂直空白字符[^\v]
  * \w: 单词字符[a-zA-Z_0-9]
  * \W: 非单词字符^\w]
- *
- *
+ * <p>
+ * <p>
  * POSIX character classes (US-ASCII only)
- *
- *
+ * <p>
+ * <p>
  * java.lang.Character classes (simple java character type)
- *
- *
+ * <p>
+ * <p>
  * Classes for Unicode scripts, blocks, categories and binary properties
- *
- *
+ * <p>
+ * <p>
  * Boundary matchers
  * ^: 行的起始位置
  * $: 行的结束位置
@@ -67,12 +67,12 @@ import java.util.regex.Pattern;
  * \G: The end of the previous match
  * \Z: The end of the input but for the final terminator, if any
  * \z: The end of the input
- *
- *
+ * <p>
+ * <p>
  * Linebreak matcher
  * \R	Any Unicode linebreak sequence, is equivalent to \u000D\u000A|[\u000A\u000B\u000C\u000D\u0085\u2028\u2029]
- *
- *
+ * <p>
+ * <p>
  * Greedy quantifiers 贪婪型
  * X?: 匹配零次或一次
  * X*: 匹配零次或多次
@@ -80,8 +80,8 @@ import java.util.regex.Pattern;
  * X{n}: 匹配n次
  * X{n,}: 至少匹配n次
  * X{n,m}: 至少匹配n次，最多匹配m次
- *
- *
+ * <p>
+ * <p>
  * Reluctant quantifiers 勉强型
  * X??: X, once or not at all
  * X*?: X, zero or more times
@@ -89,8 +89,8 @@ import java.util.regex.Pattern;
  * X{n}?: X, exactly n times
  * X{n,}?: X, at least n times
  * X{n,m}?: X, at least n but not more than m times
- *
- *
+ * <p>
+ * <p>
  * Possessive quantifiers 占有型
  * X?+: X, once or not at all
  * X*+: X, zero or more times
@@ -98,25 +98,25 @@ import java.util.regex.Pattern;
  * X{n}+: X, exactly n times
  * X{n,}+: X, at least n times
  * X{n,m}+: X, at least n but not more than m times
- *
- *
+ * <p>
+ * <p>
  * Logical operators
  * XY: X followed by Y
  * X|Y: Either X or Y
  * (X): X, as a capturing group
- *
- *
+ * <p>
+ * <p>
  * Back references
  * \n: Whatever the nth capturing group matched
  * \k<name>: Whatever the named-capturing group "name" matched
- *
- *
+ * <p>
+ * <p>
  * Quotation
  * \: Nothing, but quotes the following character
  * \Q: 开始引用到\E截止的字符串
  * \E: 结束引用从\Q起始的字符串
- *
- *
+ * <p>
+ * <p>
  * Special constructs (named-capturing and non-capturing)
  * (?<name>X): X, as a named-capturing group
  * (?:X): X, as a non-capturing group
@@ -131,7 +131,7 @@ import java.util.regex.Pattern;
  * @author maomao
  * @since 2016.12.23
  */
-public class MatcherDemo {
+public class RegexDemo {
 
     /**
      * 匹配字符串的整个部分
@@ -184,6 +184,11 @@ public class MatcherDemo {
     }
 
     public static void main(String[] args) {
-        MatcherDemo.findAndGroup();
+        String content = "啦啦啦啦<a class=\"ilink unline\" href =\"//www.google.com\" target=\"_blank\">//www.google.com</a>啦啦啦</p>";
+        String regex = "href( )*=( )*\"//";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(content);
+        content = matcher.replaceAll("href=\"http://");
+        System.out.println(content);
     }
 }
