@@ -1,4 +1,4 @@
-package priv.mm.innerClass;
+package priv.mm.base.innerclass;
 
 /**
  * 使用.this可在内部类中获取外部类对象的引用

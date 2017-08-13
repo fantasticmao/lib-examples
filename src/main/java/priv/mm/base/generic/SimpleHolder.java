@@ -1,4 +1,4 @@
-package priv.mm.generic;
+package priv.mm.base.generic;
 
 /**
  * 使用javap -c SimpleHolder

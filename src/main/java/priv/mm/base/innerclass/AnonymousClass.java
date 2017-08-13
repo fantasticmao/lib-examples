@@ -1,4 +1,4 @@
-package priv.mm.innerClass;
+package priv.mm.base.innerclass;
 
 abstract class Base {
     Base(int i) {

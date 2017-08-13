@@ -1,4 +1,4 @@
-package priv.mm.innerClass;
+package priv.mm.base.innerclass;
 
 class Outer {
     class Inner {

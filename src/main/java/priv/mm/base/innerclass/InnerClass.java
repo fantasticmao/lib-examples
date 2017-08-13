@@ -1,4 +1,4 @@
-package priv.mm.innerClass;
+package priv.mm.base.innerclass;
 
 /**
  * 内部类可随意访问外部类对象的属性和方法
