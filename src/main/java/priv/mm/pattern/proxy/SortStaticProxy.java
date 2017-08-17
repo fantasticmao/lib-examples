@@ -27,7 +27,7 @@ public class SortStaticProxy<T extends Comparable> implements Sortable<T> {
 
     public static void main(String[] args) {
         Sortable<Integer> sortable = new QuickSort<>();
-        SortStaticProxy<Integer> proxy = new SortStaticProxy<>(sortable);
+        Sortable<Integer> proxy = new SortStaticProxy<>(sortable);
         proxy.sort(Collections.emptyList());
     }
 }
