@@ -39,7 +39,7 @@ public class ExceptionDemo {
         } catch (CheckException e) {
             e.printStackTrace();
         }
-        demo.unCheckMethod(); //
+        demo.unCheckMethod(); // 非检查型异常
     }
 
 }
