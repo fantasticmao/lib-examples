@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
  */
 public class ThreadPriority implements Runnable {
     private int countDown = 5;
-    // volatile修饰变量 拒绝编译器优化
+    // volatile 修饰变量 拒绝编译器优化
     private volatile double d;
     private int priority;
 

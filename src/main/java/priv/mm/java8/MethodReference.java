@@ -7,13 +7,13 @@ import java.util.Set;
 
 /**
  * MethodReference
- * m1. 引用静态方法
- * m2. 引用特定对象的实例方法
- * m3. 引用特定类型的任意对象的实例方法
- * m4. 引用构造方法
- * <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">官方文档</a>
+ * 1. 引用静态方法
+ * 2. 引用特定对象的实例方法
+ * 3. 引用特定类型的任意对象的实例方法
+ * 4. 引用构造方法
  *
  * @author maomao
+ * @see <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">官方文档</a>
  * @since 2016.11.10
  */
 public class MethodReference {

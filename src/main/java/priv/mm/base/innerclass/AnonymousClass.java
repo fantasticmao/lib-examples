@@ -1,6 +1,7 @@
 package priv.mm.base.innerclass;
 
 abstract class Base {
+
     Base(int i) {
         System.out.println("constructor... " + i);
     }

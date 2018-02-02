@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * ParameterReference
- * JAVA方法传递的参数实质是引用的副本
+ * Java 方法传递的参数实质是引用的副本
  *
  * @author MaoMao
  * @since 2016.10.29

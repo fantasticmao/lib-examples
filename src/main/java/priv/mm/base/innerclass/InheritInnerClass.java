@@ -1,6 +1,7 @@
 package priv.mm.base.innerclass;
 
 class Outer {
+
     class Inner {
     }
 }

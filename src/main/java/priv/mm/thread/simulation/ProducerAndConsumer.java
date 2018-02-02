@@ -8,7 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Producer and Consumer without BlockingQueue
- * Created by maomao on 16-11-10.
+ *
+ * @author maomao
+ * @since 2016/11/10
  */
 public class ProducerAndConsumer {
     private static class Buffer {

@@ -3,7 +3,7 @@ package priv.mm.collection;
 import java.util.concurrent.*;
 
 /**
- * BlockingQueue阻塞队列
+ * BlockingQueue 阻塞队列
  *
  * @author maomao
  * @since 2016.11.10

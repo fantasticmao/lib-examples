@@ -12,10 +12,12 @@ import java.util.UUID;
  * @since 2016.11.09
  */
 public class MapEntry {
+
     public static void main(String[] args) {
-        Map<String, Integer> map = new HashMap<>();
+        final int size = 1_000_000;
+        Map<String, Integer> map = new HashMap<>(size);
         Random random = new Random();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < size; i++) {
             map.put(UUID.randomUUID().toString(), random.nextInt());
         }
 

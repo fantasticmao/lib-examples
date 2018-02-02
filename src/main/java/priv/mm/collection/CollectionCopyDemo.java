@@ -9,7 +9,7 @@ import java.util.HashSet;
  * @since 2017/8/22
  */
 public class CollectionCopyDemo {
-    private static HashSet<Integer> set = new HashSet<>();
+    private static HashSet<Integer> set = new HashSet<>(3);
 
     static {
         set.add(1);

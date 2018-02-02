@@ -1,7 +1,7 @@
 package priv.mm.base.generic;
 
 /**
- * 使用javap -c SimpleHolder
+ * 使用 javap -c SimpleHolder
  *
  * @author maomao
  * @since 2017.01.02

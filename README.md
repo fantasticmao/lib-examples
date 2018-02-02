@@ -1,5 +1,5 @@
 Demo
 ---
 Java Demo
-- JDK: 1.8.0_111
-- IDE: IDEA 2016
+- JDK: 1.8.0_151
+- IDE: IDEA 2017.1.3

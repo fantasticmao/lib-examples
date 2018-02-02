@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * \a:The alert (bell) character ('\u0007')
  * \e:The escape character ('\u001B')
  * \cx:The control character corresponding to x
- * <p>
+ * </p>
  * <p>
  * Character classes
  * [abc]: a|b|c
@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
  * [a-z&&[def]]: (a-z)&&(d|e|f)
  * [a-z&&[^bc]]: (a-z)&&!(b|c)
  * [a-z&&[^m-p]]: (a-z)&&!(m-p)
- * <p>
+ * </p>
  * <p>
  * Predefined character classes
  * .: 任意字符
@@ -47,16 +47,16 @@ import java.util.regex.Pattern;
  * \V: 非垂直空白字符[^\v]
  * \w: 单词字符[a-zA-Z_0-9]
  * \W: 非单词字符^\w]
- * <p>
+ * </p>
  * <p>
  * POSIX character classes (US-ASCII only)
- * <p>
+ * </p>
  * <p>
  * java.lang.Character classes (simple java character type)
- * <p>
+ * </p>
  * <p>
  * Classes for Unicode scripts, blocks, categories and binary properties
- * <p>
+ * </p>
  * <p>
  * Boundary matchers
  * ^: 行的起始位置
@@ -67,11 +67,11 @@ import java.util.regex.Pattern;
  * \G: The end of the previous match
  * \Z: The end of the input but for the final terminator, if any
  * \z: The end of the input
- * <p>
+ * </p>
  * <p>
  * Linebreak matcher
  * \R	Any Unicode linebreak sequence, is equivalent to \u000D\u000A|[\u000A\u000B\u000C\u000D\u0085\u2028\u2029]
- * <p>
+ * </p>
  * <p>
  * Greedy quantifiers 贪婪型
  * X?: 匹配零次或一次
@@ -80,7 +80,7 @@ import java.util.regex.Pattern;
  * X{n}: 匹配n次
  * X{n,}: 至少匹配n次
  * X{n,m}: 至少匹配n次，最多匹配m次
- * <p>
+ * </p>
  * <p>
  * Reluctant quantifiers 勉强型
  * X??: X, once or not at all
@@ -89,7 +89,7 @@ import java.util.regex.Pattern;
  * X{n}?: X, exactly n times
  * X{n,}?: X, at least n times
  * X{n,m}?: X, at least n but not more than m times
- * <p>
+ * </p>
  * <p>
  * Possessive quantifiers 占有型
  * X?+: X, once or not at all
@@ -98,24 +98,24 @@ import java.util.regex.Pattern;
  * X{n}+: X, exactly n times
  * X{n,}+: X, at least n times
  * X{n,m}+: X, at least n but not more than m times
- * <p>
+ * </p>
  * <p>
  * Logical operators
  * XY: X followed by Y
  * X|Y: Either X or Y
  * (X): X, as a capturing group
- * <p>
+ * </p>
  * <p>
  * Back references
  * \n: Whatever the nth capturing group matched
  * \k<name>: Whatever the named-capturing group "name" matched
- * <p>
+ * </p>
  * <p>
  * Quotation
  * \: Nothing, but quotes the following character
  * \Q: 开始引用到\E截止的字符串
  * \E: 结束引用从\Q起始的字符串
- * <p>
+ * </p>
  * <p>
  * Special constructs (named-capturing and non-capturing)
  * (?<name>X): X, as a named-capturing group
@@ -127,6 +127,7 @@ import java.util.regex.Pattern;
  * (?<=X): X, via zero-width positive lookbehind
  * (?<!X): X, via zero-width negative lookbehind
  * (?>X): X, as an independent, non-capturing group
+ * </p>
  *
  * @author maomao
  * @since 2016.12.23

@@ -34,9 +34,9 @@ public class SortAlgorithms {
 
     /**
      * 选择排序
-     * 1. 记录初始下标min=i，遍历i~n元素，查找并记录最小元素下标min。
-     * 2. 若min!=i，则交换最小元素a[min]与初始元素a[i]。
-     * 3. i++，重复1-2步骤。
+     * 1. 记录初始下标 min=i，遍历 i~n 元素，查找并记录最小元素下标 min。
+     * 2. 若 min!=i，则交换最小元素 a[min] 与初始元素 a[i]。
+     * 3. i++，重复 1-2 步骤。
      */
     private static int[] selectSort(int[] a) {
         int len = a.length;
@@ -60,7 +60,7 @@ public class SortAlgorithms {
 
     /**
      * 插入排序
-     * 把无序区的第一个元素key插入到有序区的合适位置。
+     * 把无序区的第一个元素 key 插入到有序区的合适位置。
      */
     private static int[] insertSort(int[] a) {
         int len = a.length;

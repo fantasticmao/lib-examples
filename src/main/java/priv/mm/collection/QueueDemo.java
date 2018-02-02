@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * QueueDemo
- * 队列Queue只允许在队尾(rear)插入，队首(front)弹出的数据结构
+ * Queue 队列只允许在队尾(rear)插入，队首(front)弹出的数据结构
  *
  * @author maomao
  * @since 2016.11.09
@@ -19,10 +19,10 @@ public class QueueDemo {
     }
 
     /**
-     * Queue接口中的几个方法：
-     * 1. 添加元素时，应使用offer()而不是add()
-     * 2. 队列中无元素时，remove()和element()抛出异常，poll()和peek()返回null
-     * 3. remove()和poll()弹出并移除队首元素，element()和peek()仅弹出队首元素
+     * {@link Queue} 接口中的几个方法：
+     * 1. 添加元素时，应使用 {@link Queue#offer(Object)} 而不是 {@link Queue#add(Object)}
+     * 2. 队列中无元素时，{@link Queue#remove()} 和 {@link Queue#element()} 抛出异常，{@link Queue#poll()} 和 {@link Queue#peek()} 返回 {@code null}
+     * 3. {@link Queue#remove()} 和 {@link Queue#poll()} 弹出并移除队首元素，{@link Queue#element()} 和 {@link Queue#peek()} 仅弹出队首元素
      */
     private static Queue<?> queue() {
         Queue<String> queue = new LinkedList<>();
@@ -33,9 +33,9 @@ public class QueueDemo {
     }
 
     /**
-     * 优先级Queue
-     * offer()元素时，会根据优先级排序元素，默认以自然顺序。
-     * 可以带Comparator对象的构造方法，设置自定义排序规则
+     * 优先级队列
+     * {@link PriorityQueue#offer(Object)} 元素时，会根据优先级排序元素，默认以自然顺序。
+     * 可以使用带 {@link Comparator} 对象的构造方法，设置自定义排序规则
      */
     private static Queue<?> priorityQueue() {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -47,8 +47,7 @@ public class QueueDemo {
 
     /**
      * 双向队列
-     * Doug Lea在JDK1.6中支持
-     * 提供队列常规操作、两端的操作、Stack操作、Collection操作
+     * 提供队列常规操作、两端的操作、栈操作、集合操作
      */
     private static Deque<?> deque() {
         Deque<String> deque = new LinkedList<>();

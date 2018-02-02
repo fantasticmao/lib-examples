@@ -5,6 +5,7 @@ package priv.mm.clazz;
  * <p>
  * 所有的类都是在对其第一次使用时，动态加载到JVM，构造器算类的静态方法。
  * static语句在类第一次被加载时执行
+ * </p>
  */
 class A {
     static {

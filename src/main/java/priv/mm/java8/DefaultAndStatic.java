@@ -14,8 +14,8 @@ interface Base {
 
 /**
  * 接口的
- * 1. default修饰符类似abstract class中的实现方法
- * 2. static修饰符允许接口拥有静态方法
+ * 1. default 修饰符类似 abstract class 中的实现方法
+ * 2. static 修饰符允许接口拥有静态方法
  *
  * @author maomao
  * @since 2016.11.09

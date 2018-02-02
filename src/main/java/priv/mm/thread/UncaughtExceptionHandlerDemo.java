@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 /**
- * 使用Thread.UncaughtExceptionHandler捕获线程中逃逸的异常
+ * 使用 {@link Thread.UncaughtExceptionHandler} 捕获线程中逃逸的异常
  *
  * @author maomao
  * @since 2016.12.30
