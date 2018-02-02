@@ -2,8 +2,11 @@ package priv.mm.java8;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -22,27 +25,27 @@ import java.util.stream.Stream;
  * @since 2016.11.10
  */
 public class StreamDemo {
-    private Stream<String> stream1, stream2, stream3, stream4;
 
     public void create() {
-        stream1 = Stream.of("one", "two", "three");
-        stream2 = Arrays.stream(new String[]{"four", "five", "six"});
-        stream3 = Stream.empty();
-        stream4 = Stream.generate(() -> "Hello");
+        Stream<Integer> stream1 = Stream.of(1, 2, 3);
+
+        Stream<Integer> stream2 = Arrays.stream(new Integer[]{1, 2, 3});
+
+        Stream<String> stream3 = Stream.empty();
+
+        Stream<String> stream4 = Stream.generate(() -> "Hello");
+
         Stream<BigInteger> stream5 = Stream.iterate(BigInteger.ZERO, n -> n.add(BigInteger.ONE));
+
+        IntStream intStream1 = IntStream.of(1, 2, 3);
+
+        IntStream intStream2 = Arrays.stream(new int[]{1, 2, 3});
+
+        IntStream intStream3 = Stream.of(1, 2, 3).mapToInt(i -> i);
     }
 
-    private static void intermediate() {
-
-    }
-
-    public static void terminal() {
-
-    }
-
-    public static void main(String[] args) {
-        List<Integer> list1 = Arrays.asList(1, 1, null, 2, 3, 4, null, 5, 8, 7, 6, 9);
-        long count = list1.stream()
+    private void intermediate() {
+        long count = Stream.of(1, 1, null, 2, 3, 4, null, 5, 8, 7, 6, 9)
                 .filter(Objects::nonNull)
                 .distinct()
                 .sorted()
@@ -52,17 +55,27 @@ public class StreamDemo {
                 .limit(3)
                 .count();
         System.out.println(count);
+    }
 
-        List<Integer> list2 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    public void terminal() {
+        Stream.of("one", "two", "three").forEach(System.out::println);
 
-        Integer sum = list2.stream().reduce(0, (x, y) -> x + y);
-        System.out.println(sum);
+        String[] str = Stream.of("one", "two", "three").toArray(String[]::new);
 
-        // min返回的是一个Optional对象
-        Integer min = list2.stream().min(Integer::compareTo).orElse(0);
-        System.out.println(min);
+        Integer total = Stream.of(1, 2, 3).reduce(100, Integer::sum);
 
-        Boolean isMatch = list2.stream().anyMatch(e -> e == 3);
-        System.out.println(isMatch);
+        String join = Stream.of("one", "two", "three").collect(Collectors.joining(", "));
+
+        LinkedList list = Stream.of("one", "two", "three").collect(Collectors.toCollection(LinkedList::new));
+
+        Optional<Integer> min = Stream.of(1, 2, 3).min(Integer::compare);
+
+        Optional<Integer> max = Stream.of(1, 2, 3).max(Integer::compare);
+
+        Long count = Stream.of(1, 2, 3).count();
+
+        Boolean isPositive = Stream.of(1, 2, 3).allMatch(i -> i > 0);
+
+        Integer first = Stream.of(1, 2, 3).findFirst().orElse(-1);
     }
 }
