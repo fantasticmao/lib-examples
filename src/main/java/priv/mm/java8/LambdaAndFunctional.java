@@ -2,8 +2,8 @@ package priv.mm.java8;
 
 import java.util.Arrays;
 
-/*
- * static、default并不影响FunctionalInterface接口，可以任意使用
+/**
+ * static、default 并不影响 {@link FunctionalInterface} 接口，可以任意使用
  */
 @FunctionalInterface
 interface Foo {
@@ -12,9 +12,9 @@ interface Foo {
 
 /**
  * Lambda、FunctionalInterface
- * <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">官方文档</a>
  *
  * @author maomao
+ * @see <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">官方文档</a>
  * @since 2016.11.10
  */
 public class LambdaAndFunctional {

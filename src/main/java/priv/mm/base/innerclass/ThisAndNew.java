@@ -1,10 +1,9 @@
 package priv.mm.base.innerclass;
 
 /**
- * 使用.this可在内部类中获取外部类对象的引用
- *  ThisAndNew.this.value
- * 使用.new可在外部类对象上获取内部类的引用
- *  new ThisAndNew().new Inner().foo()
+ * ThisAndNew
+ * 1. 使用 .this 可在内部类中获取外部类对象的引用：ThisAndNew.this.value
+ * 2. 使用.new可在外部类对象上获取内部类的引用：new ThisAndNew().new Inner().foo()
  */
 public class ThisAndNew {
     private String value = ".this and .new";

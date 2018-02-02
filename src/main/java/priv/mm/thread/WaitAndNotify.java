@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * WaitAndNotify
- * wait()、notify()、notifyAll()都属于基类Object的方法
- * 调用时默认使用当前对象是this
+ * {@link Object#wait()}、{@link Object#notify()}、{@link Object#notifyAll()} 都属于基类 {@link Object} 的方法
+ * 调用时默认使用当前对象是 {@code this}
  *
  * @author maomao
  * @since 2016.11.09

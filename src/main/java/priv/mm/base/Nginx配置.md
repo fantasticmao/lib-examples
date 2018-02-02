@@ -1,28 +1,28 @@
 Nginx配置
 ---
 - `user nginx;` 运行用户
-- `worker_processes auto;` 开启进程数，应当为CPU核数的2陪
+- `worker_processes auto;` 开启进程数，应当为 CPU 核数的 2 陪
 - `pid /run/nginx.pid;` 进程号保存文件
 
 # events
-- `# use epoll` Linux下的开启，采用Linux内核epoll事件处理机制
+- `# use epoll` Linux 下的开启，采用 Linux 内核 epoll 事件处理机制
 - `worker_connections 1204;` 每个进程最大的连接数
 
 # http
 - `sendfile on;` 开启发送文件
-- `tcp_nopush on;` 开启tcp_nopush
-- `tcp_nodelay on;` 开启tcp_nodelay
-- `keepalive_timeout 65;` 设置http持久连接
+- `tcp_nopush on;` 开启 tcp_nopush
+- `tcp_nodelay on;` 开启 tcp_nodelay
+- `keepalive_timeout 65;` 设置 http 持久连接
 - `types_hash_max_size 2048;`
 - `include mime.types;` 导入文件扩展名与文件类型映射表
 - `default_type application/octet-stream;` 默认请求的返回文件类型
-- `ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE` ssl协议
+- `ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE` ssl 协议
 - `ssl_prefer_server_ciphers on;`
 - `ssl_session_cache shared:SSL:10m;`
 - `ssl_session_timeout 10m;`
-- `access_log /var/log/nginx/access.log;` access日志
-- `error_log /var/log/nginx/error.log;` error日志
-- `gzip on;` 开启gzip
+- `access_log /var/log/nginx/access.log;` access 日志
+- `error_log /var/log/nginx/error.log;` error 日志
+- `gzip on;` 开启 gzip
 - `gzip_disable "msie6";`
 
 ### listen
@@ -34,7 +34,7 @@ Nginx配置
 > accept requests. Both address and port, or only address or only port can be specified. An address may
 > also be a hostname, for example:
 
-为Nginx接受的请求，设置IP的`address`地址和`port`端口或设置UNIX域套接字`path`路径。可以指定地址和端口，或仅地址和仅端口。地址也可以是域名：
+为 Nginx 接受的请求，设置 IP 的 `address` 和 `port` 或设置 UNIX 域套接字 `path`。可以指定地址和端口，或仅地址和仅端口。地址也可以是域名：
 
 ```
 listen 127.0.0.1:8000;
@@ -46,7 +46,7 @@ listen localhost:8000;
 
 > IPv6 addresses (0.7.36) are specified in square brackets:
 
-IPv6 address使用方括号指定：
+IPv6 address 使用方括号指定：
 
 ```
 listen [::]:8000;
@@ -55,7 +55,7 @@ listen [::1];
 
 > UNIX-domain sockets (0.8.21) are specified with the “unix:” prefix: 
 
-UNIX-domain sockets使用以`unix:`开头指定：
+UNIX-domain sockets 使用以 `unix:` 开头指定：
 
 ```
 listen unix:/var/run/nginx.sock;
@@ -63,20 +63,20 @@ listen unix:/var/run/nginx.sock;
 
 > If only address is given, the port 80 is used.
 
-若仅有`address`，则默认使用80`port`。
+若仅有 `address`，则默认使用80 `port`。
 
 > If the directive is not present then either *:80 is used if nginx runs with the superuser
 > privileges, or *:8000 otherwise.
 
-`listen`配置不存在的情况下，如果Nginx是以超级管理员权限运行，那么使用`*:80`，否则使用`*:8000`。
+`listen` 配置不存在的情况下，如果 Nginx 是以超级管理员权限运行，那么使用 `*:80`，否则使用 `*:8000`。
 
 > The default_server parameter, if present, will cause the server to become the default server for the
 > specified address:port pair. If none of the directives have the default_server parameter then the
 > first server with the address:port pair will be the default server for this pair.
 
-如果存在配置`default_server`参数，那么当前指定的`address:port`成为默认虚拟主机。如果不存在配置`default_server`参数，那么第一个`address:port`将会成为默认的虚拟主机。
+如果存在配置 `default_server` 参数，那么当前指定的 `address:port` 成为默认虚拟主机。如果不存在配置 `default_server` 参数，那么第一个 `address:port` 将会成为默认的虚拟主机。
 
-详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
+详情见 [官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
 
 ### server_name
 - 语法：`server_name name ...`
@@ -96,7 +96,7 @@ listen unix:/var/run/nginx.sock;
 >   server_name example.com *.example.com www.example.*;<br>
 > }
 
-详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
+详情见 [官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
 
 ### [location](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)
 - 语法：`location [=|~|~*|^~] uri {...}` `location @name {...}`
@@ -107,16 +107,16 @@ listen unix:/var/run/nginx.sock;
 > expressions are specified with the preceding “~*” modifier (for case-insensitive matching), or
 > the “~” modifier (for case-sensitive matching).
 
-location可以被**前缀字符串**或者**正则表达式**定义。正则表达式通过`~*`修饰符（不敏感大小写）和`~`修饰符（敏感大小写）指定。
+location 可以被 **前缀字符串** 或者 **正则表达式** 定义。正则表达式通过 `~*` 修饰符（不敏感大小写）和 `~` 修饰符（敏感大小写）指定。
 
 > If the longest matching prefix location has the “^~” modifier then regular expressions are not checked.
 
-如果最长的location匹配了`^~`修饰的**前缀字符串**，那么正则表达式将不会被检查。
+如果最长的 location 匹配了 `^~` 修饰的 **前缀字符串**，那么正则表达式将不会被检查。
 
 > Also, using the “=” modifier it is possible to define an 
 > exact match of URI and location. If an exact match is found, the search terminates.
 
-使用`=`修饰符定义URI和location的精确匹配。如果精确匹配成功，那么终止搜索。
+使用 `=` 修饰符定义 URI 和 location 的精确匹配。如果精确匹配成功，那么终止搜索。
 
 ```
 location = / {
@@ -140,7 +140,7 @@ location ~* \.(gif|jpg|jpeg)$ {
 4. /images/1.gif            --> configuration D
 5. /documents/1.jpg         --> configuration E
 ```
-详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)
+详情见 [官方文档](http://nginx.org/en/docs/http/ngx_http_core_module.html#location)
 
 #### proxy_pass
 - 语法：`proxy_pass URL;`
@@ -151,7 +151,7 @@ location ~* \.(gif|jpg|jpeg)$ {
 > server, the part of a normalized request URI matching the location is replaced by a URI 
 > specified in the directive:
 
-当请求传递给Nginx时，若`proxy_pass`指定了URI，则规范化请求URI中匹配location的部分被`proxy_pass`指定的URI替换。（大白话就是/name/匹配了/remote/，将被替换）
+当请求传递给 Nginx 时，若 `proxy_pass` 指定了 URI，则规范化请求 URI 中匹配 location 的部分被 `proxy_pass` 指定的 URI 替换。（大白话就是 /name/ 匹配了 /remote/，将被替换）
 
 ```
 location /name/ {
@@ -163,7 +163,7 @@ location /name/ {
 > form as sent by a client when the original request is processed, or the full normalized 
 > request URI is passed when processing the changed URI:
 
-若`proxy_pass`未指定URI，则处理源请求URI时，请求URI以客户端发出的相同形式传递给Nginx，或者处理已改变的URI时，传递所有规范化的URI。
+若 `proxy_pass` 未指定 URI，则处理源请求 URI 时，请求 URI 以客户端发出的相同形式传递给 Nginx，或者处理已改变的 URI 时，传递所有规范化的 URI。
 
 ```
 location /some/path/ {
@@ -185,4 +185,4 @@ if (proxy_pass指定URI) {
     } 
 }
 ```
-详情见[官方文档](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
+详情见 [官方文档](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)

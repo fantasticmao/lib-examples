@@ -135,7 +135,7 @@ public class DateTimeDemo {
     }
 
     /**
-     * 通过 {区域/城市} 的地区 ID 形式创建ZoneId，组合 Temporal 实例可以构造ZonedDateTime对象
+     * 通过 {区域/城市} 的地区 ID 形式创建 ZoneId，组合 Temporal 实例可以构造 ZonedDateTime 对象
      */
     static void zone() {
         ZoneId zoneId = ZoneId.of("Europe/Paris");
