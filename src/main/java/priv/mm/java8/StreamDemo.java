@@ -44,7 +44,7 @@ public class StreamDemo {
         IntStream intStream3 = Stream.of(1, 2, 3).mapToInt(i -> i);
     }
 
-    private void intermediate() {
+    public void intermediate() {
         long count = Stream.of(1, 1, null, 2, 3, 4, null, 5, 8, 7, 6, 9)
                 .filter(Objects::nonNull)
                 .distinct()
