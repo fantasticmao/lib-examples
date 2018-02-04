@@ -7,12 +7,12 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * InputStreamDemo
+ * FileStreamDemo
  *
  * @author maodh
  * @since 04/02/2018
  */
-public class InputStreamDemo {
+public class FileStreamDemo {
 
     public static void main(String[] args) {
         File file = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/声声慢.txt");

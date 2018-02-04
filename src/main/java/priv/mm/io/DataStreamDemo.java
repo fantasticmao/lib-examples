@@ -6,23 +6,23 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * PrimitiveTypes
+ * DataStreamDemo
  * 使用 <code>xxd -b &lt;file&gt;</code>查看二进制文件
  *
  * @author maodh
  * @since 04/02/2018
  */
-public class PrimitiveTypes {
+public class DataStreamDemo {
 
     public static void main(String[] args) {
-        File booleanFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Boolean.txt");
-        File charFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Char.txt");
-        File byteFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Byte.txt");
-        File shortFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Short.txt");
-        File intFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Int.txt");
-        File longFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Long.txt");
-        File floatFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Float.txt");
-        File doubleFile = new File("/Users/maomao/IdeaProjects/PrimitiveTypes/src/main/java/priv/mm/io/temp/Double.txt");
+        File booleanFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Boolean.txt");
+        File charFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Char.txt");
+        File byteFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Byte.txt");
+        File shortFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Short.txt");
+        File intFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Int.txt");
+        File longFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Long.txt");
+        File floatFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Float.txt");
+        File doubleFile = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/temp/Double.txt");
         try (DataOutputStream booleanOut = new DataOutputStream(new FileOutputStream(booleanFile));
              DataOutputStream charOut = new DataOutputStream(new FileOutputStream(charFile));
              DataOutputStream byteOut = new DataOutputStream(new FileOutputStream(byteFile));
