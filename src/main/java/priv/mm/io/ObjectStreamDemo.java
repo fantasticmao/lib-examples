@@ -5,16 +5,17 @@ import java.io.*;
 /**
  * ObjectStreamDemo
  * <p>
- * 在序列化和反序列化过程中，对需要特殊处理的类，可以使用这些精确的特征来实现特殊的方法：
+ * 在序列化和反序列化过程中需要特殊处理的类，可以实现这些指定签名的特殊方法：
  * <br>
  * <pre>
  * private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException;
- * private void writeObject(java.io.ObjectOutputStream stream) throws IOException
+ * private void writeObject(java.io.ObjectOutputStream stream) throws IOException;
  * private void readObjectNoData() throws ObjectStreamException;
  * </pre>
  * </p>
  *
  * @author maodh
+ * @see java.util.Date
  * @since 04/02/2018
  */
 public class ObjectStreamDemo {
@@ -32,17 +33,6 @@ public class ObjectStreamDemo {
             this.password = password;
         }
 
-        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-            ObjectInputStream.GetField readFields = in.readFields();
-            final String readUsername = (String) readFields.get("username", "");
-            final String readPassword = (String) readFields.get("password", "");
-
-            this.username = readUsername;
-            System.out.println("解密密码：" + readPassword);
-            this.password = new StringBuffer(readPassword).reverse().toString();
-            System.out.println("原始密码：" + password);
-        }
-
         private void writeObject(ObjectOutputStream out) throws IOException {
             System.out.println("原始密码：" + password);
             final String putPassword = new StringBuffer(password).reverse().toString();
@@ -52,6 +42,17 @@ public class ObjectStreamDemo {
             putFields.put("username", username);
             putFields.put("password", putPassword);
             out.writeFields();
+        }
+
+        private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            ObjectInputStream.GetField readFields = in.readFields();
+            final String readUsername = (String) readFields.get("username", "");
+            final String readPassword = (String) readFields.get("password", "");
+
+            this.username = readUsername;
+            System.out.println("解密密码：" + readPassword);
+            this.password = new StringBuffer(readPassword).reverse().toString();
+            System.out.println("原始密码：" + password);
         }
 
         @Override
