@@ -10,6 +10,14 @@ import java.io.IOException;
  * 使用 <code>xxd -b &lt;file&gt;</code>查看二进制文件
  *
  * @author maodh
+ * @see DataOutputStream#writeBoolean(boolean)
+ * @see DataOutputStream#writeChar(int)
+ * @see DataOutputStream#writeByte(int)
+ * @see DataOutputStream#writeShort(int)
+ * @see DataOutputStream#writeInt(int)
+ * @see DataOutputStream#writeLong(long)
+ * @see DataOutputStream#writeFloat(float)
+ * @see DataOutputStream#writeDouble(double)
  * @since 04/02/2018
  */
 public class DataStreamDemo {
