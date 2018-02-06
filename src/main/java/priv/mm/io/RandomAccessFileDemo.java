@@ -9,6 +9,10 @@ import java.nio.charset.StandardCharsets;
  * RandomAccessFileDemo
  *
  * @author maodh
+ * @see RandomAccessFile#length()
+ * @see RandomAccessFile#read()
+ * @see RandomAccessFile#seek(long)
+ * @see RandomAccessFile#getFilePointer()
  * @since 06/02/2018
  */
 public class RandomAccessFileDemo {

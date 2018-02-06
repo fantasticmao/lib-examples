@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -11,6 +12,8 @@ import java.nio.file.Paths;
  * MemoryMappedFileDemo
  *
  * @author maodh
+ * @see FileChannel#open(Path, OpenOption...)
+ * @see FileChannel#map(FileChannel.MapMode, long, long)
  * @since 06/02/2018
  */
 public class MemoryMappedFileDemo {

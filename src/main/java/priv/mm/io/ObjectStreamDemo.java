@@ -16,6 +16,8 @@ import java.io.*;
  *
  * @author maodh
  * @see java.util.Date
+ * @see ObjectStreamDemo.User#readObject(byte[])
+ * @see ObjectStreamDemo.User#writeObject(User)
  * @since 04/02/2018
  */
 public class ObjectStreamDemo {
