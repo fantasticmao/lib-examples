@@ -15,7 +15,8 @@ import java.nio.charset.StandardCharsets;
 public class FileStreamDemo {
 
     public static void main(String[] args) {
-        File file = new File("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/声声慢.txt");
+        String classPath = FilesDemo.class.getResource("/").getPath();
+        File file = new File(classPath + "/声声慢.txt");
         try (InputStream in = new FileInputStream(file)) {
             final int length = in.available();
             if (length > 0) {

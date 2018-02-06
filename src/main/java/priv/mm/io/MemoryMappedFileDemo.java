@@ -16,7 +16,8 @@ import java.nio.file.Paths;
 public class MemoryMappedFileDemo {
 
     public static void main(String[] args) {
-        Path path = Paths.get("/Users/maomao/IdeaProjects/Demo/src/main/java/priv/mm/io/声声慢.txt");
+        String classPath = FilesDemo.class.getResource("/").getPath();
+        Path path = Paths.get(classPath, "声声慢.txt");
         try (FileChannel channel = FileChannel.open(path)) {
             final long size = channel.size();
             final byte[] bytes = new byte[(int) size];
