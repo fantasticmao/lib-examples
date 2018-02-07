@@ -1,29 +1,53 @@
 package priv.mm.thread.simulation;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import priv.mm.thread.Semaphore;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Producer and Consumer without BlockingQueue
+ * 生产者与消费者问题分析
+ * <ul>
+ * <li>任何时刻只能有一个线程访问缓冲区</li>
+ * <li>缓冲区为空时，消费者必须等待生产者</li>
+ * <li>缓冲区为满时，生产者必须等待消费者</li>
+ * </ul>
  *
  * @author maomao
+ * @see Buffer 缓冲区
+ * @see Producer 生产者
+ * @see Consumer 消费者
  * @since 2016/11/10
  */
 public class ProducerAndConsumer {
-    private static class Buffer {
-        volatile int s1 = 1; // 缓冲区对于生产者的资源信号量，默认1可用
-        volatile int s2 = 0; // 缓冲区对于消费者的资源信号量，默认0不可用
-        final Queue<String> queue = new LinkedList<>();
 
-        synchronized int p(int signal) {
-            return --signal;
+    private static class Buffer {
+        private Semaphore mutex; // 互斥信号量
+        private Semaphore fullBuffers; // 消费信号量
+        private Semaphore emptyBuffers; // 生产信号量
+
+        public Buffer(final int capacity) {
+            this.mutex = new Semaphore(1);
+            this.fullBuffers = new Semaphore(0);
+            this.emptyBuffers = new Semaphore(capacity);
         }
 
-        synchronized int v(int signal) {
-            return ++signal;
+        public void deposit() {
+            emptyBuffers.p();
+            mutex.p();
+            System.out.println("produce ...");
+            mutex.v();
+            fullBuffers.v();
+        }
+
+        public void remove() {
+            fullBuffers.p();
+            mutex.p();
+            System.out.println("consume ...");
+            mutex.v();
+            emptyBuffers.v();
         }
     }
 
@@ -34,27 +58,10 @@ public class ProducerAndConsumer {
             this.buffer = buffer;
         }
 
-        void produce(String str) throws InterruptedException {
-            synchronized (buffer) {
-                if (buffer.s1 <= 0)
-                    buffer.wait(); // s1资源不够时，线程进入等待
-                buffer.s1 = buffer.p(buffer.s1); // s1资源足够时，执行p操作，线程占用资源
-                buffer.queue.offer(str);
-                System.out.println("生产 " + str + " ...");
-                buffer.s2 = buffer.v(buffer.s2); // 线程释放s2资源
-                if (buffer.s2 > 0)
-                    buffer.notifyAll(); // s2资源足够时，执行v操作，唤醒等待s2资源的线程
-            }
-        }
-
         @Override
         public void run() {
             while (!Thread.interrupted()) {
-                try {
-                    produce("meat");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                buffer.deposit();
             }
         }
     }
@@ -66,37 +73,20 @@ public class ProducerAndConsumer {
             this.buffer = buffer;
         }
 
-        void consume() throws InterruptedException {
-            synchronized (buffer) {
-                if (buffer.s2 < 0)
-                    buffer.wait(); // s2资源不够时，线程进入等待
-                buffer.s2 = buffer.p(buffer.s2); // s2资源足够时，执行p操作，线程占用资源
-                String str = buffer.queue.poll();
-                System.out.println("消费 " + str + " ...");
-                buffer.s1 = buffer.v(buffer.s1); // 线程释放s1资源
-                if (buffer.s1 > 0)
-                    buffer.notifyAll(); // s1资源足够时，执行v操作，唤醒等待s1资源的线程
-            }
-        }
-
         @Override
         public void run() {
             while (!Thread.interrupted()) {
-                try {
-                    consume();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                buffer.remove();
             }
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Buffer buffer = new Buffer();
+        final Buffer buffer = new Buffer(2);
         ExecutorService exec = Executors.newCachedThreadPool();
         exec.execute(new Producer(buffer));
         exec.execute(new Consumer(buffer));
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.MILLISECONDS.sleep(1);
         exec.shutdownNow();
     }
 }
