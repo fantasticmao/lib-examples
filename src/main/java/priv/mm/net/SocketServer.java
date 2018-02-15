@@ -1,11 +1,10 @@
 package priv.mm.net;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 /**
  * SocketServer
@@ -15,16 +14,21 @@ import java.util.concurrent.TimeUnit;
  */
 public class SocketServer {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        ServerSocket serverSocket = new ServerSocket(8080);
-        Socket client;
-        while (true) {
-            TimeUnit.SECONDS.sleep(1);
-            client = serverSocket.accept();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+    public static void main(String[] args) throws IOException {
+        try (ServerSocket serverSocket = new ServerSocket(9999);
+             Socket socket = serverSocket.accept();
+             InputStream in = socket.getInputStream();
+             OutputStream out = socket.getOutputStream();
+             Scanner scanner = new Scanner(in, StandardCharsets.UTF_8.name());
+             PrintWriter writer = new PrintWriter(
+                     new OutputStreamWriter(out, StandardCharsets.UTF_8), true)) {
+            writer.println("Hello, MaoMao!");
             String line;
-            while ((line = reader.readLine()) != null) {
+            while (scanner.hasNextLine()) {
+                line = scanner.nextLine();
+                if ("bye".equals(line.trim().toLowerCase())) break;
                 System.out.println(line);
+                writer.println("Echo: " + line);
             }
         }
     }
