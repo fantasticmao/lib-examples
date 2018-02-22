@@ -18,7 +18,7 @@ public class SocketTest {
 
     public static void main(String[] args) {
         try (Socket socket = new Socket()) {
-            InetSocketAddress address = new InetSocketAddress("time-a.nist.gov", 1803);
+            InetSocketAddress address = new InetSocketAddress("time-a.nist.gov", 13);
             socket.connect(address, 5_000);
             socket.setSoTimeout(5_000);
             try (Scanner scanner = new Scanner(socket.getInputStream(), StandardCharsets.UTF_8.name())) {
