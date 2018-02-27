@@ -7,14 +7,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
- * SocketServer
+ * SocketThreadServer
  *
  * @author maodh
+ * @see <a href="https://javadoop.com/post/java-nio">Java NIO：Buffer、Channel 和 Selector </a>
+ * @see <a href="https://javadoop.com/post/nio-and-aio">Java 非阻塞 IO 和异步 IO</a>
  * @see <a href="https://www.ibm.com/developerworks/java/library/j-javaio/">多路复用 IO</a>
  * @see <a href="https://www.ibm.com/developerworks/cn/java/j-lo-io-optimize/index.html">概念：同步阻塞IO、同步非阻塞IO、异步非阻塞IO</a>
  * @since 2017/9/4
  */
-public class SocketServer {
+public class SocketThreadServer {
 
     private static class ThreadEchoHandler implements Runnable {
         private Socket socket;
