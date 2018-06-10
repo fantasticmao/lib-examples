@@ -13,6 +13,8 @@ public class ClassLoaderTest {
 
     public static void main(String[] args) throws Exception {
         ClassLoader testClassLoader = new ClassLoader() {
+
+            // 重写 loadClass()，破坏双亲委托模型
             @Override
             public Class<?> loadClass(String name) throws ClassNotFoundException {
                 String className = name.substring(name.lastIndexOf(".") + 1) + ".class";
@@ -29,18 +31,12 @@ public class ClassLoaderTest {
                 }
                 return super.loadClass(name);
             }
-
-            @Override
-            public String toString() {
-                return "customize class loader";
-            }
         };
 
+        // 对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立其在 Java 虚拟机中的唯一性。
+        // 每一个类加载器，都拥有独立的类名称空间。
         Object obj1 = testClassLoader.loadClass(ClassLoaderTest.class.getName()).newInstance();
-        Object obj2 = new ClassLoaderTest();
-
         System.out.println(obj1.getClass());
-        System.out.println(obj2.getClass());
-        System.out.println(obj1.getClass() == obj2.getClass());
+        System.out.println(obj1.getClass().isAssignableFrom(ClassLoaderTest.class));
     }
 }
