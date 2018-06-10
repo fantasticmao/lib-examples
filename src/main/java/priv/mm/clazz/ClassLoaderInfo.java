@@ -1,14 +1,14 @@
-package priv.mm.base;
+package priv.mm.clazz;
 
 import java.net.URL;
 
 /**
- * ClassLoaderDemo
+ * ClassLoaderInfo
  *
  * @author maodh
  * @since 2017/8/20
  */
-public class ClassLoaderDemo {
+public class ClassLoaderInfo {
 
     /**
      * {@code BootstrapClassloader} 引导类加载器，又称启动类加载器，是最顶层的类加载器，主要用来加载 Java 核心类，如 rt.jar、resources.jar。
@@ -31,7 +31,6 @@ public class ClassLoaderDemo {
         for (String ext : exts) {
             System.out.println(ext);
         }
-
     }
 
     /**
@@ -39,7 +38,7 @@ public class ClassLoaderDemo {
      * 或者 CLASSPATH 操作系统属性所指定的 JAR 类包路径。调用 {@link ClassLoader#getSystemClassLoader()} 可以获取该类加载器。
      * 如果没有特别指定，用户自定义的任何类加载器都应将 {@link ClassLoader} 作为它的父类加载器。
      */
-    private static void classLoader() {
+    private static void appClassLoader() {
         String path = System.getProperty("java.class.path");
         String[] paths = path.split(":");
         for (String s : paths) {
