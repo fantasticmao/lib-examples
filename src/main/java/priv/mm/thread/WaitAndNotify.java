@@ -17,12 +17,14 @@ public class WaitAndNotify {
     private static class Runnable1 implements Runnable {
 
         @Override
-        public synchronized void run() {
-            try {
-                this.wait();//释放1的锁，进入等待
-                System.out.println("r1 run ...");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        public void run() {
+            synchronized (this) {
+                try {
+                    this.wait();//释放1的锁，进入等待
+                    System.out.println("r1 run ...");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -38,6 +40,7 @@ public class WaitAndNotify {
         public void run() {
             synchronized (r) {
                 try {
+                    System.out.println("r2 run ...");
                     TimeUnit.SECONDS.sleep(2);
                     r.notifyAll();//唤醒1的锁
                 } catch (InterruptedException e) {
@@ -50,9 +53,11 @@ public class WaitAndNotify {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
         Runnable1 r1 = new Runnable1();
+        Runnable2 r2 = new Runnable2(r1);
         exec.execute(r1);
-        exec.execute(new Runnable2(r1));
+        exec.execute(r2);
+
         TimeUnit.SECONDS.sleep(3);
-        exec.shutdownNow();
+        exec.shutdown();
     }
 }
