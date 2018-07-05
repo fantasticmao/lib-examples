@@ -12,20 +12,25 @@ import java.util.concurrent.Executors;
 public class TurnPrint {
 
     private static class Task1 implements Runnable {
-        private final Object lock;
+        private final Object obj;
 
-        public Task1(Object lock) {
-            this.lock = lock;
+        public Task1(Object obj) {
+            this.obj = obj;
         }
 
         @Override
         public void run() {
-            synchronized (lock) {
+            // 获取 obj 锁
+            synchronized (obj) {
                 for (; ; ) {
                     System.out.println(Thread.currentThread().getName() + " ***");
-                    lock.notify();
+                    // notify() 和 notifyAll() 操作不会 unlock（释放 obj 持有的锁）
+                    // notify()：从 obj 的 wait set 中删除线程
+                    // notifyAll()：从 obj 的 wait set 中删除所有线程
+                    obj.notify();
                     try {
-                        lock.wait();
+                        // wait()：添加当前线程至 obj 的 wait set 中，并 unlock（释放 obj 持有的锁）
+                        obj.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -35,21 +40,21 @@ public class TurnPrint {
     }
 
     private static class Task2 implements Runnable {
-        private final Object lock;
+        private final Object obj;
 
-        public Task2(Object lock) {
-            this.lock = lock;
+        public Task2(Object obj) {
+            this.obj = obj;
         }
 
         @Override
         public void run() {
-            synchronized (lock) {
+            synchronized (obj) {
                 for (; ; ) {
-                    synchronized (lock) {
+                    synchronized (obj) {
                         System.out.println(Thread.currentThread().getName() + " ******");
-                        lock.notify();
+                        obj.notify();
                         try {
-                            lock.wait();
+                            obj.wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
