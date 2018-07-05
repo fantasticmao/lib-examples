@@ -2,6 +2,7 @@ package priv.mm.thread.simulation;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TurnPrint
@@ -33,6 +34,7 @@ public class TurnPrint {
                         obj.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        break; // 中断线程时，结束循环
                     }
                 }
             }
@@ -50,26 +52,27 @@ public class TurnPrint {
         public void run() {
             synchronized (obj) {
                 for (; ; ) {
-                    synchronized (obj) {
-                        System.out.println(Thread.currentThread().getName() + " ******");
-                        obj.notify();
-                        try {
-                            obj.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    System.out.println(Thread.currentThread().getName() + " ******");
+                    obj.notify();
+                    try {
+                        obj.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        break;
                     }
                 }
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
         Object lock = new Object();
         Task1 task1 = new Task1(lock);
         Task2 task2 = new Task2(lock);
         exec.submit(task1);
         exec.submit(task2);
+        TimeUnit.SECONDS.sleep(1);
+        exec.shutdownNow();
     }
 }

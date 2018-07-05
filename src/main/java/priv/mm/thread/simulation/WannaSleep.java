@@ -1,7 +1,5 @@
 package priv.mm.thread.simulation;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,48 +28,55 @@ public class WannaSleep {
 
     private static class Deskmate implements Runnable {
         private Student student;
+        private Teacher teacher;
 
-        public Deskmate(Student student) {
+        public Deskmate(Student student, Teacher teacher) {
             this.student = student;
+            this.teacher = teacher;
         }
 
         @Override
         public void run() {
             synchronized (student) {
-                System.out.println(Thread.currentThread().getName() + " 好的");
-                while (!Teacher.coming) {
+                synchronized (teacher) {
+                    System.out.println(Thread.currentThread().getName() + " 好的");
                     System.out.println(Thread.currentThread().getName() + " ......");
+                    try {
+                        teacher.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(Thread.currentThread().getName() + " 同桌快醒醒，老师来了!");
+                    student.notify();
                 }
-                System.out.println(Thread.currentThread().getName() + " 同桌快醒醒，老师来了!");
-                student.notify();
             }
         }
     }
 
     private static class Teacher implements Runnable {
-        public static volatile boolean coming = false;
 
         @Override
         public void run() {
-            try {
-                TimeUnit.NANOSECONDS.sleep(1);
-                System.out.println(Thread.currentThread().getName() + " 同学们我来了");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            synchronized (this) {
+                try {
+                    TimeUnit.NANOSECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + " 同学们，我来了");
+                this.notify();
             }
-            coming = true;
         }
     }
 
     public static void main(String[] args) {
-        ExecutorService exec = Executors.newCachedThreadPool();
         Student student = new Student();
-        Deskmate deskmate = new Deskmate(student);
         Teacher teacher = new Teacher();
+        Deskmate deskmate = new Deskmate(student, teacher);
 
-        exec.submit(student);
-        exec.submit(deskmate);
-        exec.submit(teacher);
-        exec.shutdown();
+        // 如果先调度 teacher 线程的话，会导致 deskmate 忙等待
+        new Thread(student, "student").start();
+        new Thread(deskmate, "deskmate").start();
+        new Thread(teacher, "teacher").start();
     }
 }
