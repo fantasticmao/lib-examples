@@ -19,7 +19,7 @@ public class CallableAndFuture {
         }
 
         @Override
-        public String call() throws Exception {
+        public String call() {
             return "result of TaskWithResult " + id;
         }
     }
@@ -35,9 +35,8 @@ public class CallableAndFuture {
                 System.out.println(fs.get());
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
-            } finally {
-                exec.shutdownNow();
             }
         }
+        exec.shutdownNow();
     }
 }

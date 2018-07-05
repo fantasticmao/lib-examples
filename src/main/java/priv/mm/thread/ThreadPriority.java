@@ -2,6 +2,7 @@ package priv.mm.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * ThreadPriority
@@ -11,9 +12,8 @@ import java.util.concurrent.Executors;
  * @since 2016.10.02
  */
 public class ThreadPriority implements Runnable {
-    private int countDown = 5;
-    // volatile 修饰变量 拒绝编译器优化
-    private volatile double d;
+    private AtomicInteger countDown = new AtomicInteger(5);
+    private volatile double d; // volatile 修饰变量，拒绝编译指令重排序
     private int priority;
 
     private ThreadPriority(int priority) {
@@ -22,7 +22,7 @@ public class ThreadPriority implements Runnable {
 
     @Override
     public String toString() {
-        return Thread.currentThread() + ": " + countDown;
+        return Thread.currentThread().getName() + ": " + countDown;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ThreadPriority implements Runnable {
                 }
             }
             System.out.println(this);
-            if (--countDown == 0) return;
+            if (countDown.decrementAndGet() == 0) return;
         }
     }
 
