@@ -23,6 +23,7 @@ public class TurnPrint {
             synchronized (lock) {
                 for (; ; ) {
                     System.out.println(Thread.currentThread().getName() + " ***");
+                    lock.notify();
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {
@@ -46,6 +47,7 @@ public class TurnPrint {
                 for (; ; ) {
                     synchronized (lock) {
                         System.out.println(Thread.currentThread().getName() + " ******");
+                        lock.notify();
                         try {
                             lock.wait();
                         } catch (InterruptedException e) {
