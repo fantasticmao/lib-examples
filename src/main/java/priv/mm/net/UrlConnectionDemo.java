@@ -35,7 +35,6 @@ public class UrlConnectionDemo {
         URLConnection connection = url.openConnection();
 
         // 2. 使用 setXXX() 来设置任意的请求属性
-        connection.setDoInput(true);
         connection.setConnectTimeout(800);
         connection.setReadTimeout(800);
 
@@ -93,6 +92,6 @@ public class UrlConnectionDemo {
     }
 
     public static void main(String[] args) throws IOException {
-        post();
+        get();
     }
 }
