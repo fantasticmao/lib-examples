@@ -92,15 +92,15 @@ public class SortAlgorithms {
         int temp;
         for (int i = 0; i < len - 1; i++) {
             int min = i;
-            for (int j = i; j < len - 1; j++) {
-                if (arr[min] > arr[j + 1]) {
-                    min = j + 1;
+            for (int j = i + 1; j < len; j++) {
+                if (arr[min] > arr[j]) {
+                    min = j;
                 }
             }
             if (min != i) {
-                temp = arr[i];
-                arr[i] = arr[min];
-                arr[min] = temp;
+                temp = arr[min];
+                arr[min] = arr[i];
+                arr[i] = temp;
             }
         }
         return arr;
