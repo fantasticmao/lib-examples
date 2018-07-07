@@ -109,6 +109,11 @@ public class SortAlgorithms {
     /**
      * 堆排序
      */
+    private static int[] heapSort(int[] a) {
+        int len = a.length;
+        int[] arr = Arrays.copyOf(a, len);
+        return arr;
+    }
 
     /**
      * 快速排序
