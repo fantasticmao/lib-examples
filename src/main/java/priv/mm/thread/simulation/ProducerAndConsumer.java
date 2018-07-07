@@ -2,6 +2,7 @@ package priv.mm.thread.simulation;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,74 +22,28 @@ import java.util.concurrent.TimeUnit;
  */
 public class ProducerAndConsumer {
 
-    private interface Buffer {
-        void deposit();
+    private static class Buffer {
+        private Semaphore mutex; // 互斥信号量
+        private Semaphore fullBuffers; // 消费信号量
+        private Semaphore emptyBuffers; // 生产信号量
 
-        void remove();
-    }
-
-    private static class SimpleBuffer implements Buffer {
-        private priv.mm.thread.Semaphore mutex; // 互斥信号量
-        private priv.mm.thread.Semaphore fullBuffers; // 消费信号量
-        private priv.mm.thread.Semaphore emptyBuffers; // 生产信号量
-
-        public SimpleBuffer(final int capacity) {
-            this.mutex = new priv.mm.thread.Semaphore(1);
-            this.fullBuffers = new priv.mm.thread.Semaphore(0);
-            this.emptyBuffers = new priv.mm.thread.Semaphore(capacity);
+        public Buffer(final int capacity) {
+            this.mutex = new Semaphore(1);
+            this.fullBuffers = new Semaphore(0);
+            this.emptyBuffers = new Semaphore(capacity);
         }
 
-        @Override
-        public void deposit() {
-            emptyBuffers.p();
-            mutex.p();
-            System.out.println("produce ...");
-            mutex.v();
-            fullBuffers.v();
-        }
-
-        @Override
-        public void remove() {
-            fullBuffers.p();
-            mutex.p();
-            System.out.println("consume ...");
-            mutex.v();
-            emptyBuffers.v();
-        }
-    }
-
-    private static class JdkBuffer implements Buffer {
-        private java.util.concurrent.Semaphore mutex; // 互斥信号量
-        private java.util.concurrent.Semaphore fullBuffers; // 消费信号量
-        private java.util.concurrent.Semaphore emptyBuffers; // 生产信号量
-
-        public JdkBuffer(final int capacity) {
-            this.mutex = new java.util.concurrent.Semaphore(1);
-            this.fullBuffers = new java.util.concurrent.Semaphore(0);
-            this.emptyBuffers = new java.util.concurrent.Semaphore(capacity);
-        }
-
-        @Override
-        public void deposit() {
-            try {
-                emptyBuffers.acquire();
-                mutex.acquire();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        public void deposit() throws InterruptedException {
+            emptyBuffers.acquire();
+            mutex.acquire();
             System.out.println("produce ...");
             mutex.release();
             fullBuffers.release();
         }
 
-        @Override
-        public void remove() {
-            try {
-                fullBuffers.acquire();
-                mutex.acquire();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        public void remove() throws InterruptedException {
+            fullBuffers.acquire();
+            mutex.acquire();
             System.out.println("consume ...");
             mutex.release();
             emptyBuffers.release();
@@ -105,7 +60,11 @@ public class ProducerAndConsumer {
         @Override
         public void run() {
             while (!Thread.interrupted()) {
-                buffer.deposit();
+                try {
+                    buffer.deposit();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -120,13 +79,17 @@ public class ProducerAndConsumer {
         @Override
         public void run() {
             while (!Thread.interrupted()) {
-                buffer.remove();
+                try {
+                    buffer.remove();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        final Buffer buffer = new JdkBuffer(2);
+        final Buffer buffer = new Buffer(2);
         ExecutorService exec = Executors.newCachedThreadPool();
         exec.execute(new Producer(buffer));
         exec.execute(new Consumer(buffer));
