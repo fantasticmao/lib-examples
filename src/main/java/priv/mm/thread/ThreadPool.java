@@ -35,7 +35,7 @@ public class ThreadPool {
         //ExecutorService executorService = Executors.newCachedThreadPool(threadFactory);
         //ExecutorService executorService = Executors.newSingleThreadExecutor(threadFactory);
         for (int i = 0; i < 10; i++)
-            executorService.submit(() -> System.out.println(Thread.currentThread().getName()));
+            executorService.execute(() -> System.out.println(Thread.currentThread().getName()));
         executorService.shutdown();
         //executorService.shutdownNow();
     }
