@@ -18,7 +18,7 @@ public class ThreadLocalDemo {
         int poolSize = 5;
         ExecutorService executorService = Executors.newFixedThreadPool(poolSize);
         for (int i = 0; i < poolSize; i++) {
-            executorService.submit(() -> {
+            executorService.execute(() -> {
                 ThreadLocalDemo.THREAD_LOCAL_INTEGER.set(ThreadLocalDemo.THREAD_LOCAL_INTEGER.get() + 1);
                 System.out.println(String.format("AtomicInteger: %d\nThreadLocal<Integer>: %d\n",
                         ThreadLocalDemo.ATOMIC_INTEGER.incrementAndGet(),

@@ -35,7 +35,7 @@ public final class SemaphoreDemo {
         SwimmingPool swimmingPool = new SwimmingPool(5);
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < 20; i++) {
-            executorService.submit(() -> {
+            executorService.execute(() -> {
                 try {
                     swimmingPool.in();
                     System.out.println(Thread.currentThread().getName() + " go swimming ...");

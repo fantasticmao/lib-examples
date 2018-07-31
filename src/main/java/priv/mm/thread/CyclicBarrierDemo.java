@@ -20,7 +20,7 @@ public class CyclicBarrierDemo {
         System.out.println("start ...");
 
         for (int i = 0; i < SIZE; i++) {
-            executorService.submit(() -> {
+            executorService.execute(() -> {
                 int timeout = count.incrementAndGet();
                 try {
                     TimeUnit.SECONDS.sleep(timeout);
