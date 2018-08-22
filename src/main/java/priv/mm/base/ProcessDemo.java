@@ -16,6 +16,6 @@ public class ProcessDemo {
         InputStream inputStream = process.getInputStream();
         byte[] bytes = new byte[1 << 5];
         inputStream.read(bytes);
-        System.out.println(new String(bytes));
+        System.out.println(new String(bytes).trim());
     }
 }
