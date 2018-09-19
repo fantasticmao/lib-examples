@@ -14,8 +14,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * ZooKeeperLockDemo
+ * 使用 <code>Apache Curator</code> 互斥锁来构建应用
  *
  * @author maodh
+ * @see <a href="https://curator.apache.org/">Apache Curator</a>
  * @since 2018/9/19
  */
 public class ZooKeeperLockDemo {
@@ -55,9 +57,9 @@ public class ZooKeeperLockDemo {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService exec = Executors.newCachedThreadPool();
-
         final int batchSize = 5;
+        ExecutorService exec = Executors.newFixedThreadPool(batchSize);
+
         ZooKeeperLockDemo demo = new ZooKeeperLockDemo();
         for (int i = 0; i < batchSize; i++) {
             //exec.execute(demo.new Count());
