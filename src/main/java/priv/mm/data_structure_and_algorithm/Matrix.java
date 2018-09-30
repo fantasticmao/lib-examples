@@ -1,4 +1,4 @@
-package priv.mm.algorithmsanddatastructures;
+package priv.mm.data_structure_and_algorithm;
 
 import java.io.Serializable;
 
