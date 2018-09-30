@@ -1,4 +1,4 @@
-package priv.mm.designpattern.reactor;
+package priv.mm.design_pattern.reactor;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

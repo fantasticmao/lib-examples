@@ -1,4 +1,4 @@
-package priv.mm.designpattern.proxy;
+package priv.mm.design_pattern.proxy;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,19 +1,19 @@
-package priv.mm.designpattern.proxy;
+package priv.mm.design_pattern.proxy;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
- * ShellSort
+ * QuickSort
  *
  * @author maodh
  * @since 2017/8/13
  */
-public class ShellSort<T extends Comparable> implements Sortable<T> {
+public class QuickSort<T extends Comparable> implements Sortable<T> {
 
     @Override
     public List<T> sort(List<T> list) {
-        System.out.println("shell sort");
+        System.out.println("quick sort");
         return Collections.emptyList();
     }
 }

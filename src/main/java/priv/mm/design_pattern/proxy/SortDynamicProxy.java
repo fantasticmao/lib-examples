@@ -1,7 +1,7 @@
-package priv.mm.designpattern.proxy;
+package priv.mm.design_pattern.proxy;
 
-import priv.mm.designpattern.proxy.handler.MethodStartHandler;
-import priv.mm.designpattern.proxy.handler.TimeDurationHandler;
+import priv.mm.design_pattern.proxy.handler.MethodStartHandler;
+import priv.mm.design_pattern.proxy.handler.TimeDurationHandler;
 
 import java.lang.reflect.Proxy;
 

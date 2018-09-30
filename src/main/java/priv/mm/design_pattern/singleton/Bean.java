@@ -1,4 +1,4 @@
-package priv.mm.designpattern.singleton;
+package priv.mm.design_pattern.singleton;
 
 /**
  * Bean

@@ -1,6 +1,6 @@
 package priv.mm.io.net;
 
-import priv.mm.designpattern.reactor.Dispatcher;
+import priv.mm.design_pattern.reactor.Dispatcher;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

@@ -1,4 +1,4 @@
-package priv.mm.designpattern.proxy.handler;
+package priv.mm.design_pattern.proxy.handler;
 
 import java.lang.reflect.Method;
 
