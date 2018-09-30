@@ -1,4 +1,4 @@
-package priv.mm.designpattern.builder;
+package priv.mm.design_pattern.builder;
 
 /**
  * Human

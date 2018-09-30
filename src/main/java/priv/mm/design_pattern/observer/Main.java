@@ -1,4 +1,4 @@
-package priv.mm.designpattern.observer;
+package priv.mm.design_pattern.observer;
 
 /**
  * Main
