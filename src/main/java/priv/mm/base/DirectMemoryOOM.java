@@ -13,8 +13,8 @@ import java.lang.reflect.Field;
  */
 public class DirectMemoryOOM {
 
-    public static void main(String[] args) throws IllegalAccessException {
-        Field unsafeField = Unsafe.class.getDeclaredFields()[0];
+    public static void main(String[] args) throws Exception {
+        Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
         unsafeField.setAccessible(true);
         Unsafe unsafe = (Unsafe) unsafeField.get(null);
         while (true) {
