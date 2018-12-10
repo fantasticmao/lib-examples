@@ -24,6 +24,8 @@
         <protoc.version>3.5.1</protoc.version>
         <protobuf.version>3.5.1</protobuf.version>
 
+        <ehcache.version>3.6.2</ehcache.version>
+
         <guava.version>27.0-jre</guava.version>
     </properties>
 
@@ -102,6 +104,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
         </dependency>
 
         <dependency>
