@@ -1,4 +1,4 @@
-package priv.mm.data_structure_and_algorithm;
+package priv.mm.guava;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnel;
@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
  * BloomFilterDemo
  *
  * @author maodh
+ * @see <a href="https://china.googleblog.com/2007/07/bloom-filter_7469.html">数学之美系列二十一 － 布隆过滤器（Bloom Filter）</a>
  * @since 2018/11/8
  */
 public class BloomFilterDemo {
