@@ -39,9 +39,9 @@ public class BigFileReadDemo {
         try (FileChannel fileChannel = FileChannel.open(bigFile.toPath())) {
             byte[] bytes = new byte[bufferSize];
             ByteBuffer byteBuffer = ByteBuffer.allocate(bufferSize);
-            for (long position = 0, totalSize = fileChannel.size(); position <= totalSize; position += bufferSize) {
-                if ((position + bufferSize) > totalSize) { // 最后一次读取
-                    final int lastSize = (int) (totalSize - position);
+            while (fileChannel.position() < fileChannel.size()) {
+                if ((fileChannel.position() + bufferSize) > fileChannel.size()) { // 最后一次读取
+                    final int lastSize = (int) (fileChannel.size() - fileChannel.position());
                     byteBuffer = ByteBuffer.allocate(lastSize);
                     bytes = new byte[lastSize];
                 }
@@ -50,8 +50,6 @@ public class BigFileReadDemo {
                     byteBuffer.get(bytes);
                     byteBuffer.clear();
                     // 处理 byte[]
-                } else {
-                    throw new RuntimeException("read big file error");
                 }
             }
         } catch (IOException e) {
