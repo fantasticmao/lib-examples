@@ -59,6 +59,7 @@ public class BigFileReadDemo {
         }
     }
 
+    // FIXME
     private void useMemoryMappedFile() {
         final int bufferSize = 100 * 1024;
         try (FileChannel fileChannel = FileChannel.open(bigFile.toPath())) {
@@ -93,7 +94,7 @@ public class BigFileReadDemo {
 
         new Thread(() -> {
             long start = System.nanoTime();
-            demo.useMemoryMappedFile();
+            //demo.useMemoryMappedFile();
             long end = System.nanoTime();
             System.out.println("MemoryMappedFile cost " + (end - start) / Math.pow(10, 9) + " second");
         }).start();
