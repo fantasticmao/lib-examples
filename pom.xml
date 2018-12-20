@@ -25,8 +25,10 @@
         <protobuf.version>3.5.1</protobuf.version>
 
         <ehcache.version>3.6.2</ehcache.version>
-
         <guava.version>27.0-jre</guava.version>
+        <xmemcached.version>2.3.2</xmemcached.version>
+
+        <hystrix-core.version>1.5.18</hystrix-core.version>
     </properties>
 
     <dependencies>
@@ -100,6 +102,7 @@
             <version>${grpc.version}</version>
         </dependency>
 
+        <!-- jol dependency -->
         <dependency>
             <groupId>org.openjdk.jol</groupId>
             <artifactId>jol-core</artifactId>
@@ -124,7 +127,14 @@
         <dependency>
             <groupId>com.googlecode.xmemcached</groupId>
             <artifactId>xmemcached</artifactId>
-            <version>2.3.2</version>
+            <version>${xmemcached.version}</version>
+        </dependency>
+
+        <!-- hystrix dependency -->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>${hystrix-core.version}</version>
         </dependency>
     </dependencies>
 
