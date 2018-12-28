@@ -2,7 +2,6 @@ package priv.mm.concurrent;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * ThreadLocalDemo
@@ -11,7 +10,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 2018/7/26
  */
 public class ThreadLocalDemo {
-    private static final AtomicInteger ATOMIC_INTEGER = new AtomicInteger(1);
     private static final ThreadLocal<Integer> THREAD_LOCAL_INTEGER = ThreadLocal.withInitial(() -> 1);
 
     public static void main(String[] args) {
@@ -19,9 +17,8 @@ public class ThreadLocalDemo {
         ExecutorService executorService = Executors.newFixedThreadPool(poolSize);
         for (int i = 0; i < poolSize; i++) {
             executorService.execute(() -> {
-                ThreadLocalDemo.THREAD_LOCAL_INTEGER.set(ThreadLocalDemo.THREAD_LOCAL_INTEGER.get() + 1);
-                System.out.println(String.format("AtomicInteger: %d\nThreadLocal<Integer>: %d\n",
-                        ThreadLocalDemo.ATOMIC_INTEGER.incrementAndGet(),
+                System.out.println(String.format("ThreadName: %s ThreadLocal<Integer>: %d\n",
+                        Thread.currentThread().getName(),
                         ThreadLocalDemo.THREAD_LOCAL_INTEGER.get()));
             });
         }
