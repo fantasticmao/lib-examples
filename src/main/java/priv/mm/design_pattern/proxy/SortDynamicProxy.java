@@ -4,6 +4,7 @@ import priv.mm.design_pattern.proxy.handler.MethodStartHandler;
 import priv.mm.design_pattern.proxy.handler.TimeDurationHandler;
 
 import java.lang.reflect.Proxy;
+import java.util.Collections;
 
 /**
  * SortDynamicProxy
@@ -29,4 +30,36 @@ public class SortDynamicProxy {
                 sortable.getClass().getInterfaces(), handler);
     }
 
+    public static class Builder<T extends Comparable> {
+        private Sortable<T> proxy;
+
+        private Builder(Sortable<T> proxy) {
+            this.proxy = proxy;
+        }
+
+        public static <T extends Comparable> Builder<T> create(Sortable<T> sortable) {
+            return new Builder<>(sortable);
+        }
+
+        public Sortable<T> build() {
+            return this.proxy;
+        }
+
+        public Builder<T> proxyTime() {
+            this.proxy = SortDynamicProxy.proxyTime(this.proxy);
+            return this;
+        }
+
+        public Builder<T> proxyMethod() {
+            this.proxy = SortDynamicProxy.proxyMethod(this.proxy);
+            return this;
+        }
+    }
+
+    public static void main(String[] args) {
+        Sortable<Integer> shellSort = new ShellSort<>();
+        Sortable<Integer> shellSortProxy = Builder.create(shellSort)
+                .proxyTime().proxyMethod().build();
+        shellSortProxy.sort(Collections.emptyList());
+    }
 }
