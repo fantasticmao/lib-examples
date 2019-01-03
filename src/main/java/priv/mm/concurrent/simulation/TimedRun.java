@@ -49,11 +49,12 @@ public class TimedRun {
         } finally {
             future.cancel(true);
         }
+        executorService.shutdown();
     }
 
     public static void main(String[] args) throws InterruptedException {
         TimedRun timedRun = new TimedRun();
         AtomicInteger atomicInteger = new AtomicInteger(1);
-        timedRun.run1(1, () -> System.out.println(atomicInteger.getAndIncrement()));
+        timedRun.run3(1, () -> System.out.println(atomicInteger.getAndIncrement()));
     }
 }
