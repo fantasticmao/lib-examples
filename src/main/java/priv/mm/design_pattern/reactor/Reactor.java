@@ -32,7 +32,7 @@ public class Reactor implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
-                int num = selector.select(); // 阻塞等待时间发生
+                int num = selector.select(); // 阻塞等待事件发生
                 if (num <= 0) continue;
 
                 Set<SelectionKey> keys = selector.selectedKeys();
