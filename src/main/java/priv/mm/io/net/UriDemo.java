@@ -16,7 +16,7 @@ import java.net.URI;
 public class UriDemo {
 
     public static void main(String[] args) {
-        URI uri = URI.create("https://gist.github.com:443/FantasticMao/a8448eef6e16b3d5fb8dd5e3c37ebb62?query=1#fragment=2");
+        URI uri = URI.create("http://httpbin.org:80/get?query=1#fragment=2");
         System.out.println("scheme: " + uri.getScheme());
         System.out.println("host: " + uri.getHost());
         System.out.println("port: " + uri.getPort());
