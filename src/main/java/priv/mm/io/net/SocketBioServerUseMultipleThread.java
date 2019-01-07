@@ -51,7 +51,7 @@ public class SocketBioServerUseMultipleThread {
         public void run() {
             try (OutputStream out = socket.getOutputStream();
                  PrintWriter writer = new PrintWriter(out)) {
-                writer.print("hello client");
+                writer.print("hello client\r\n");
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {

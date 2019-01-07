@@ -29,7 +29,7 @@ public class Dispatcher {
             SocketChannel clientSocketChannel = serverSocketChannel.accept();
             clientSocketChannel.configureBlocking(false);
 
-            clientSocketChannel.register(selector, SelectionKey.OP_READ);
+            clientSocketChannel.register(selector, SelectionKey.OP_READ); // 接收连接之后，监听「读」事件
         }
 
         // a connection was established with a remote server.
@@ -48,7 +48,7 @@ public class Dispatcher {
                 data = new String(dataByte, StandardCharsets.UTF_8);
                 System.out.println(data);
 
-                socketChannel.register(selector, SelectionKey.OP_WRITE);
+                socketChannel.register(selector, SelectionKey.OP_WRITE); // 读取数据之后，监听「写」事件
             } else if (num == -1) {
                 socketChannel.close();
             }
@@ -60,7 +60,7 @@ public class Dispatcher {
             ByteBuffer buffer = ByteBuffer.wrap(("Echo: " + data).getBytes());
             socketChannel.write(buffer);
 
-            socketChannel.register(selector, SelectionKey.OP_READ);
+            socketChannel.register(selector, SelectionKey.OP_READ); // 写入数据之后，再次监听「读」事件
         }
     }
 }

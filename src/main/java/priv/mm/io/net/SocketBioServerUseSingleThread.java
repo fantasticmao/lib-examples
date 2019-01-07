@@ -21,7 +21,7 @@ public class SocketBioServerUseSingleThread {
                 Socket socket = serverSocket.accept(); // 线程处于阻塞状态，等待接收连接
                 try (OutputStream out = socket.getOutputStream();
                      PrintWriter writer = new PrintWriter(out)) {
-                    writer.print("hello client");
+                    writer.print("hello client\r\n");
                 }
             }
         }
