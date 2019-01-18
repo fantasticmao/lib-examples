@@ -37,7 +37,7 @@ public class Dispatcher {
         }
 
         // a channel is ready for reading
-        if (key.isReadable()) {
+        if (key.isValid() && key.isReadable()) {
             SocketChannel socketChannel = (SocketChannel) key.channel();
             ByteBuffer buffer = ByteBuffer.allocate(1024);
             int num = socketChannel.read(buffer);
@@ -55,7 +55,7 @@ public class Dispatcher {
         }
 
         // a channel is ready for writing
-        if (key.isWritable()) {
+        if (key.isValid() && key.isWritable()) {
             SocketChannel socketChannel = (SocketChannel) key.channel();
             ByteBuffer buffer = ByteBuffer.wrap(("Echo: " + data).getBytes());
             socketChannel.write(buffer);
