@@ -26,6 +26,7 @@
 
         <ehcache.version>3.6.2</ehcache.version>
         <guava.version>27.0-jre</guava.version>
+        <jedis.version>3.0.0</jedis.version>
         <xmemcached.version>2.3.2</xmemcached.version>
 
         <hystrix-core.version>1.5.18</hystrix-core.version>
@@ -121,6 +122,13 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <!-- redis dependency -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
         </dependency>
 
         <!-- memcached dependency -->
