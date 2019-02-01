@@ -8,12 +8,14 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import priv.mm.netty.time.TimeServerHandler;
+import io.netty.handler.codec.http.HttpServerCodec;
+import priv.mm.netty.http.HttpServerHandler;
 
 import java.net.InetSocketAddress;
 
 /**
  * Server
+ * Test Command: <code>telnet localhost 9999</code>
  *
  * @author maodh
  * @since 2019/2/2
@@ -37,8 +39,8 @@ public class Server {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // ch.pipeline().addLast(new DiscardServerHandler());
-                            ch.pipeline().addLast(new TimeServerHandler());
-                            // ch.pipeline().addLast(new HttpServerHandler());
+                            // ch.pipeline().addLast(new TimeServerHandler());
+                            ch.pipeline().addLast(new HttpServerCodec()).addLast(new HttpServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
