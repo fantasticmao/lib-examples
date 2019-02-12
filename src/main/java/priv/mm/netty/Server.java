@@ -8,6 +8,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import priv.mm.netty.http.HttpServerHandler;
 
@@ -40,7 +41,11 @@ public class Server {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // ch.pipeline().addLast(new DiscardServerHandler());
                             // ch.pipeline().addLast(new TimeServerHandler());
-                            ch.pipeline().addLast(new HttpServerCodec()).addLast(new HttpServerHandler());
+                            ch.pipeline()
+                                    .addLast(new HttpServerCodec())
+                                    // 聚合分块传输的 HTTP 报文
+                                    .addLast(new HttpObjectAggregator(1024 * 1024))
+                                    .addLast(new HttpServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
