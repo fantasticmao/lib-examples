@@ -16,14 +16,16 @@ public class StringPaddingDemo {
         for (String str : stringList) {
             System.out.println("#" + String.format("%-20s", str) + "#");
         }
-        System.out.println();
         for (String str : stringList) {
-            System.out.println("#" + String.format("%6s", str) + "#");
+            System.out.println("#" + String.format("%20s", str) + "#");
         }
     }
 
     private static void numberPadding() {
         List<Integer> integerList = Arrays.asList(1, 22, 333, 4444);
+        for (Integer integer : integerList) {
+            System.out.println("#" + String.format("%-6d", integer) + "#");
+        }
         for (Integer integer : integerList) {
             System.out.println("#" + String.format("%6d", integer) + "#");
         }
@@ -31,5 +33,6 @@ public class StringPaddingDemo {
 
     public static void main(String[] args) {
         StringPaddingDemo.stringPadding();
+        StringPaddingDemo.numberPadding();
     }
 }
