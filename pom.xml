@@ -186,6 +186,20 @@
             </extension>
         </extensions>
 
+        <!-- maven-resources-plugin filter demo -->
+        <!-- see doc: https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html -->
+        <filters>
+            <filter>src/main/resources/config_prd.properties</filter>
+            <!--<filter>src/main/resources/config_dev.properties</filter>-->
+        </filters>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
