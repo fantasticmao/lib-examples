@@ -20,6 +20,8 @@
         <zookeeper.version>3.4.13</zookeeper.version>
         <curator.version>4.0.0</curator.version>
 
+        <rocketmq.version>4.4.0</rocketmq.version>
+
         <grpc.version>1.12.0</grpc.version>
         <protoc.version>3.5.1</protoc.version>
         <protobuf.version>3.5.1</protobuf.version>
@@ -96,6 +98,13 @@
                     <artifactId>zookeeper</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- rocketmq dependency -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>${rocketmq.version}</version>
         </dependency>
 
         <!-- grpc dependency -->
