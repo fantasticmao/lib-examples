@@ -28,8 +28,10 @@
 
         <ehcache.version>3.6.2</ehcache.version>
         <guava.version>27.0-jre</guava.version>
+
         <jedis.version>3.0.0</jedis.version>
         <xmemcached.version>2.3.2</xmemcached.version>
+        <mongodb-driver.version>3.10.2</mongodb-driver.version>
 
         <hystrix-core.version>1.5.18</hystrix-core.version>
     </properties>
@@ -176,6 +178,13 @@
             <groupId>com.googlecode.xmemcached</groupId>
             <artifactId>xmemcached</artifactId>
             <version>${xmemcached.version}</version>
+        </dependency>
+
+        <!-- mongo driver dependency -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+            <version>${mongodb-driver.version}</version>
         </dependency>
 
         <!-- hystrix dependency -->
