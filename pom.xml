@@ -17,8 +17,8 @@
 
         <netty.version>4.1.25.Final</netty.version>
 
-        <zookeeper.version>3.4.13</zookeeper.version>
-        <curator.version>4.0.0</curator.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
+        <curator.version>4.2.0</curator.version>
 
         <rocketmq.version>4.4.0</rocketmq.version>
 
