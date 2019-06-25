@@ -1,17 +1,14 @@
 package priv.mm.zookeeper;
 
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.ZooDefs;
-import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.*;
 
 import java.util.List;
 
 /**
  * SimpleOperationDemo
  *
- * @see <a href="https://zookeeper.apache.org/doc/current/index.html">ZooKeeper</a>
  * @author maodh
+ * @see <a href="https://zookeeper.apache.org/doc/current/index.html">ZooKeeper</a>
  * @since 2018/9/17
  */
 public class SimpleOperationDemo {
@@ -58,7 +55,13 @@ public class SimpleOperationDemo {
     }
 
     public static void main(String[] args) throws Exception {
-        final ZooKeeper zooKeeper = new ZooKeeper("localhost:2181", 1_000, null);
+        final ZooKeeper zooKeeper = new ZooKeeper("localhost:2181", 1_000, event -> {
+            // 监听 zookeeper 建立连接事件
+            if (Watcher.Event.KeeperState.SyncConnected.equals(event.getState())
+                    && Watcher.Event.EventType.None.equals(event.getType())) {
+                System.out.println("watch zookeeper connected ...");
+            }
+        });
         SimpleOperationDemo demo = new SimpleOperationDemo(zooKeeper);
         demo.testCreateAndGet();
     }
