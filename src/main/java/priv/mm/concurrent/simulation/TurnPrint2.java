@@ -3,78 +3,87 @@ package priv.mm.concurrent.simulation;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * TurnPrint
+ * TurnPrint2
  *
- * @author maodh
- * @since 2018/6/30
+ * @author maomao
+ * @since 2019-08-12
  */
-public class TurnPrint {
+public class TurnPrint2 {
 
     private static class Task1 implements Runnable {
-        private final Object obj;
+        private final ReentrantLock lock;
+        private Condition condition;
         private int count;
 
-        public Task1(Object obj) {
-            this.obj = obj;
+        public Task1(ReentrantLock lock, Condition condition) {
+            this.lock = lock;
+            this.condition = condition;
             this.count = 0;
         }
 
         @Override
         public void run() {
-            // 获取 obj 锁
-            synchronized (obj) {
+            lock.lock();
+            try {
                 for (; !Thread.currentThread().isInterrupted(); count = count + 2) {
                     System.out.println("Task1 count: " + count);
-                    // notify() 和 notifyAll() 操作不会 unlock（释放 obj 持有的锁）
-                    // notify()：从 obj 的 wait set 中删除线程
-                    // notifyAll()：从 obj 的 wait set 中删除所有线程
-                    obj.notify();
+                    condition.signal();
                     try {
-                        // wait()：添加当前线程至 obj 的 wait set 中，并 unlock（释放 obj 持有的锁）
-                        obj.wait();
+                        condition.await();
                     } catch (InterruptedException e) {
-                        break; // 中断线程时，结束循环
+                        break;
                     }
                 }
+            } finally {
+                lock.unlock();
             }
         }
     }
 
     private static class Task2 implements Runnable {
-        private final Object obj;
+        private final ReentrantLock lock;
+        private Condition condition;
         private int count;
 
-        public Task2(Object obj) {
-            this.obj = obj;
+        public Task2(ReentrantLock lock, Condition condition) {
+            this.lock = lock;
+            this.condition = condition;
             this.count = 1;
         }
 
         @Override
         public void run() {
-            synchronized (obj) {
+            lock.lock();
+            try {
                 for (; !Thread.currentThread().isInterrupted(); count = count + 2) {
                     System.out.println("Task2 count: " + count);
-                    obj.notify();
+                    condition.signal();
                     try {
-                        obj.wait();
+                        condition.await();
                     } catch (InterruptedException e) {
                         break;
                     }
                 }
+            } finally {
+                lock.unlock();
             }
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
-        Object lock = new Object();
-        Task1 task1 = new Task1(lock);
-        Task2 task2 = new Task2(lock);
+        ReentrantLock lock = new ReentrantLock();
+        Condition condition = lock.newCondition();
+        Task1 task1 = new Task1(lock, condition);
+        Task2 task2 = new Task2(lock, condition);
         exec.submit(task1);
         exec.submit(task2);
         TimeUnit.MILLISECONDS.sleep(10);
         exec.shutdownNow();
     }
+
 }
