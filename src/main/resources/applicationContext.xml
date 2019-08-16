@@ -7,7 +7,7 @@
         <constructor-arg value="Demo"/>
     </bean>
 
-    <bean name="user" class="priv.mm.spring.ApplicationContextDemo.TestBean" scope="prototype">
+    <bean name="user" class="priv.mm.spring.ioc.ApplicationContextDemo.TestBean" scope="prototype">
         <property name="name" value="tom"/>
         <property name="age" value="18"/>
     </bean>
