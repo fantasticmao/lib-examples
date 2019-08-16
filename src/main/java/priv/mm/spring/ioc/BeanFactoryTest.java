@@ -1,4 +1,4 @@
-package priv.mm.spring;
+package priv.mm.spring.ioc;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
