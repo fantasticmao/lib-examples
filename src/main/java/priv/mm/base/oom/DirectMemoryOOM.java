@@ -1,4 +1,4 @@
-package priv.mm.base;
+package priv.mm.base.oom;
 
 import sun.misc.Unsafe;
 

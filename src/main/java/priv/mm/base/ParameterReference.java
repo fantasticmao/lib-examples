@@ -4,19 +4,21 @@ import java.util.Arrays;
 
 /**
  * ParameterReference
- * Java 方法传递的参数实质是引用的副本
+ *
+ * <p>Java 方法传递的参数实质是引用的副本</p>
  *
  * @author MaoMao
  * @since 2016.10.29
  */
 public class ParameterReference {
+
     private static void change(String str, int[] a) {
-        str = "hello world";
+        str = "Hello Sam";
         a[0] = 0;
     }
 
     public static void main(String[] args) {
-        String str = "hello";
+        String str = "Hello Tom";
         int[] a = {1, 2, 3};
         System.out.println("String: " + str + " int[]: " + Arrays.toString(a));
         change(str, a);
