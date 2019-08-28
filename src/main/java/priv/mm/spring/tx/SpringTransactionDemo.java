@@ -3,7 +3,7 @@ package priv.mm.spring.tx;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * Configuration
+ * SpringTransactionDemo
  *
  * @author maomao
  * @since 2019-08-15
@@ -15,6 +15,6 @@ public class SpringTransactionDemo {
                 = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         UserService userService = applicationContext.getBean(UserService.class);
         User user = new User("Tom");
-        userService.insertUserThrowException(user);
+        userService.required(user);
     }
 }

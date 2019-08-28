@@ -15,6 +15,8 @@ public interface UserDao {
 
     void insertUser(User user);
 
+    void updateUser(User user);
+
 }
 
 @Repository
@@ -24,7 +26,13 @@ class UserDaoImpl implements UserDao {
 
     @Override
     public void insertUser(User user) {
-        String sql = "INSERT INTO user(name) VALUES (?)";
+        final String sql = "INSERT INTO user(name) VALUES (?)";
         jdbcTemplate.update(sql, user.getName());
+    }
+
+    @Override
+    public void updateUser(User user) {
+        final String sql = "UPDATE user SET name = ? WHERE id = ?";
+        jdbcTemplate.update(sql, user.getName(), user.getId());
     }
 }
