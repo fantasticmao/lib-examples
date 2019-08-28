@@ -1,5 +1,7 @@
 package priv.mm.base;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +13,8 @@ import java.util.List;
  */
 public class StringPaddingDemo {
 
-    private static void stringPadding() {
+    @Test
+    public void stringPadding() {
         List<String> stringList = Arrays.asList("1", "22", "333", "4444");
         for (String str : stringList) {
             System.out.println("#" + String.format("%-20s", str) + "#");
@@ -21,7 +24,8 @@ public class StringPaddingDemo {
         }
     }
 
-    private static void numberPadding() {
+    @Test
+    public void numberPadding() {
         List<Integer> integerList = Arrays.asList(1, 22, 333, 4444);
         for (Integer integer : integerList) {
             System.out.println("#" + String.format("%-6d", integer) + "#");
@@ -29,10 +33,5 @@ public class StringPaddingDemo {
         for (Integer integer : integerList) {
             System.out.println("#" + String.format("%6d", integer) + "#");
         }
-    }
-
-    public static void main(String[] args) {
-        StringPaddingDemo.stringPadding();
-        StringPaddingDemo.numberPadding();
     }
 }
