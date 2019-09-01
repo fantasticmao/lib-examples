@@ -28,6 +28,7 @@
 
         <ehcache.version>3.6.2</ehcache.version>
         <guava.version>27.0-jre</guava.version>
+        <disruptor.version>3.4.2</disruptor.version>
 
         <jol-core.version>0.9</jol-core.version>
         <javassist.version>3.25.0-GA</javassist.version>
@@ -168,6 +169,13 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <!-- disruptor -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>${disruptor.version}</version>
         </dependency>
 
         <!-- jol dependency -->
