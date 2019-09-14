@@ -1,10 +1,13 @@
 package priv.mm.disruptor.asynclogger;
 
-import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.TimeoutBlockingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
+import com.lmax.disruptor.dsl.ProducerType;
 
+import javax.annotation.Nonnull;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * LogEventMain
@@ -16,23 +19,33 @@ public class LogEventMain {
 
     public static void main(String[] args) throws InterruptedException {
         // 启动 Disruptor
-        final LogEventFactory factory = new LogEventFactory();
+        final LogEvent.LogEventFactory factory = new LogEvent.LogEventFactory();
         final int bufferSize = 2 << 10;
         Disruptor<LogEvent> disruptor = new Disruptor<>(factory, bufferSize, new ThreadFactory() {
+            private AtomicInteger number = new AtomicInteger(0);
+
             @Override
-            public Thread newThread(Runnable runnable) {
-                return new Thread(runnable);
+            public Thread newThread(@Nonnull Runnable runnable) {
+                return new Thread(runnable, "Disruptor-EventProcessor-" + number.incrementAndGet());
             }
-        });
-        disruptor.handleEventsWith(new LogEventConsumer());
+        }, ProducerType.MULTI, new TimeoutBlockingWaitStrategy(10L, TimeUnit.MILLISECONDS)/* 消费者的等待策略 */);
+        disruptor.handleEventsWith(new LogEvent.LogEventConsumer()); // 单个消费者
         disruptor.start();
 
-        // 生产事件
-        final RingBuffer<LogEvent> ringBuffer = disruptor.getRingBuffer();
-        LogEventProducer producer = new LogEventProducer(ringBuffer);
-        for (int i = 0; i < 100; i++) {
-            producer.put("event: " + i);
-        }
+        // 生产事件，多个生产者
+        final LogEventTranslator eventTranslator = new LogEventTranslator();
+        new Thread(() -> {
+            for (int i = 0; i < 100; i++) {
+                disruptor.publishEvent(eventTranslator, i);
+            }
+        }).run();
+
+        new Thread(() -> {
+            for (int i = 0; i < 100; i++) {
+                disruptor.publishEvent(eventTranslator, i);
+            }
+        }).run();
+
 
         // 注销 Disruptor
         TimeUnit.SECONDS.sleep(1);
