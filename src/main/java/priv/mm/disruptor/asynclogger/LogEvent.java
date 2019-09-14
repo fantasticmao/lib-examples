@@ -1,5 +1,8 @@
 package priv.mm.disruptor.asynclogger;
 
+import com.lmax.disruptor.EventFactory;
+import com.lmax.disruptor.EventHandler;
+
 /**
  * LogEvent
  *
@@ -17,4 +20,21 @@ public class LogEvent {
     public String toString() {
         return msg;
     }
+
+    public static class LogEventFactory implements EventFactory<LogEvent> {
+
+        @Override
+        public LogEvent newInstance() {
+            return new LogEvent();
+        }
+    }
+
+    public static class LogEventConsumer implements EventHandler<LogEvent> {
+
+        @Override
+        public void onEvent(LogEvent event, long sequence, boolean endOfBatch) throws Exception {
+            System.out.println(Thread.currentThread().getName() + " " + event);
+        }
+    }
+
 }
