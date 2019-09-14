@@ -38,6 +38,7 @@
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
         <mysql.version>8.0.13</mysql.version>
+        <elasticsearch.version>7.3.1</elasticsearch.version>
 
         <hystrix-core.version>1.5.18</hystrix-core.version>
     </properties>
@@ -225,6 +226,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+
+        <!-- elasticsearch dependency -->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
         </dependency>
 
         <!-- hystrix dependency -->
