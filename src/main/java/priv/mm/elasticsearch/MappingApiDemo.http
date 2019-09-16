@@ -1,0 +1,6 @@
+// mapping API
+// https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
+
+### 查看 mappping
+GET http://localhost:9200/bank/_mapping
+Content-Type: application/json

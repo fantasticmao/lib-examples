@@ -1,0 +1,33 @@
+// cat API
+// https://www.elastic.co/guide/en/elasticsearch/reference/current/cat.html
+
+### 查询 master node 默认显示字段
+GET http://localhost:9200/_cat/master?help
+Content-Type: application/json
+
+### 查询 master node 信息
+GET http://localhost:9200/_cat/master?v
+Content-Type: application/json
+
+### 指定字段，查询 node 信息
+GET http://localhost:9200/_cat/nodes?v&h=ip,port,heapPercent,name
+Content-Type: application/json
+
+### 查询集群健康状态
+GET http://localhost:9200/_cat/health?format=json
+Content-Type: application/json
+
+### 查询所有或指定索引信息
+GET http://localhost:9200/_cat/indices?v
+// GET http://localhost:9200/_cat/indices/bank?v
+Content-Type: application/json
+
+### 查询所有或指定索引的文档个数
+GET http://localhost:9200/_cat/count?v
+// GET http://localhost:9200/_cat/count/bank?v
+Content-Type: application/json
+
+### 查询所有或指定索引的分片信息
+GET http://localhost:9200/_cat/shards?v
+// GET http://localhost:9200/_cat/shards/bank?v
+Content-Type: application/json
