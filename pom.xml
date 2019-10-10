@@ -34,6 +34,7 @@
         <javassist.version>3.25.0-GA</javassist.version>
         <byte-buddy.version>1.10.1</byte-buddy.version>
 
+        <h2.version>1.4.199</h2.version>
         <jedis.version>3.0.0</jedis.version>
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
@@ -198,6 +199,13 @@
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
             <version>${byte-buddy.version}</version>
+        </dependency>
+
+        <!-- h2 dependency -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
 
         <!-- redis dependency -->
