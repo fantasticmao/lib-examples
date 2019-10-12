@@ -1,16 +1,17 @@
 package priv.mm.h2;
 
 import org.h2.tools.Server;
+import org.junit.Test;
 
 import java.sql.*;
 
 /**
- * H2Demo
+ * BackAndRestore
  *
  * @author maomao
  * @since 2019-10-10
  */
-public class H2Demo {
+public class BackAndRestore {
 
     static {
         try {
@@ -20,7 +21,8 @@ public class H2Demo {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    @Test
+    public void backup() throws SQLException {
         Server server = Server.createWebServer();
         server.start();
 
@@ -32,10 +34,35 @@ public class H2Demo {
                         ")");
             }
 
-            try (PreparedStatement statement = connection.prepareStatement("INSERT INTO user(name) VALUES ('Tom'), ('Sam')")) {
+            try (PreparedStatement statement = connection.prepareStatement("INSERT INTO user(name) VALUES ('张三'), ('李四')")) {
                 statement.execute();
             }
 
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM user")) {
+                ResultSet resultSet = statement.executeQuery();
+                int id;
+                String name;
+                while (resultSet.next()) {
+                    id = resultSet.getInt(1);
+                    name = resultSet.getString(2);
+                    System.out.printf("id:%d name:%s%n", id, name);
+                }
+            }
+
+            try (PreparedStatement statement = connection.prepareStatement("SCRIPT TO 'target/h2.sql' CHARSET 'utf-8'")) {
+                statement.execute();
+            }
+        }
+
+        server.stop();
+    }
+
+    @Test
+    public void restore() throws SQLException, InterruptedException {
+        Server server = Server.createWebServer();
+        server.start();
+
+        try (Connection connection = DriverManager.getConnection("jdbc:h2:mem:test;INIT=runscript from 'target/h2.sql'")) {
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM user")) {
                 ResultSet resultSet = statement.executeQuery();
                 int id;
