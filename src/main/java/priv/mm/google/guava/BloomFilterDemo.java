@@ -1,4 +1,4 @@
-package priv.mm.guava;
+package priv.mm.google.guava;
 
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnel;

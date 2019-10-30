@@ -1,4 +1,4 @@
-package priv.mm.zookeeper;
+package priv.mm.apache.zookeeper;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;

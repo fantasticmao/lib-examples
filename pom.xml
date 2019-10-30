@@ -14,34 +14,31 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring.version>4.3.18.RELEASE</spring.version>
-
         <netty.version>4.1.25.Final</netty.version>
+        <elasticsearch.version>7.3.1</elasticsearch.version>
 
-        <zookeeper.version>3.4.14</zookeeper.version>
-        <curator.version>4.2.0</curator.version>
+        <apache.zookeeper.version>3.4.14</apache.zookeeper.version>
+        <apache.curator.version>4.2.0</apache.curator.version>
+        <apache.rocketmq.version>4.4.0</apache.rocketmq.version>
+        <apache.commons-digester3>3.2</apache.commons-digester3>
 
-        <rocketmq.version>4.4.0</rocketmq.version>
+        <google.grpc.version>1.12.0</google.grpc.version>
+        <google.protoc.version>3.5.1</google.protoc.version>
+        <google.protobuf.version>3.5.1</google.protobuf.version>
+        <google.guava.version>27.0-jre</google.guava.version>
 
-        <grpc.version>1.12.0</grpc.version>
-        <protoc.version>3.5.1</protoc.version>
-        <protobuf.version>3.5.1</protobuf.version>
+        <netflix.hystrix-core.version>1.5.18</netflix.hystrix-core.version>
 
         <ehcache.version>3.6.2</ehcache.version>
-        <guava.version>27.0-jre</guava.version>
         <disruptor.version>3.4.2</disruptor.version>
-
         <jol-core.version>0.9</jol-core.version>
         <javassist.version>3.25.0-GA</javassist.version>
         <byte-buddy.version>1.10.1</byte-buddy.version>
-
         <h2.version>1.4.199</h2.version>
         <jedis.version>3.0.0</jedis.version>
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
         <mysql.version>8.0.13</mysql.version>
-        <elasticsearch.version>7.3.1</elasticsearch.version>
-
-        <hystrix-core.version>1.5.18</hystrix-core.version>
     </properties>
 
     <dependencies>
@@ -91,11 +88,18 @@
             <version>${netty.version}</version>
         </dependency>
 
+        <!-- elasticsearch dependency -->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+
         <!-- zookeeper dependency -->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
-            <version>${zookeeper.version}</version>
+            <version>${apache.zookeeper.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>io.netty</groupId>
@@ -107,7 +111,7 @@
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
-            <version>${curator.version}</version>
+            <version>${apache.curator.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.zookeeper</groupId>
@@ -120,20 +124,26 @@
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
-            <version>${rocketmq.version}</version>
+            <version>${apache.rocketmq.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-digester3</artifactId>
+            <version>${apache.commons-digester3}</version>
         </dependency>
 
         <!-- grpc dependency -->
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>${protobuf.version}</version>
+            <version>${google.protobuf.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty</artifactId>
-            <version>${grpc.version}</version>
+            <version>${google.grpc.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>io.netty</groupId>
@@ -150,13 +160,27 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
-            <version>${grpc.version}</version>
+            <version>${google.grpc.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
-            <version>${grpc.version}</version>
+            <version>${google.grpc.version}</version>
+        </dependency>
+
+        <!-- guava dependency -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google.guava.version}</version>
+        </dependency>
+
+        <!-- hystrix dependency -->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>${netflix.hystrix-core.version}</version>
         </dependency>
 
         <!-- ehcache dependency -->
@@ -164,13 +188,6 @@
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <version>${ehcache.version}</version>
-        </dependency>
-
-        <!-- guava dependency -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
         </dependency>
 
         <!-- disruptor -->
@@ -235,20 +252,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
-
-        <!-- elasticsearch dependency -->
-        <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-high-level-client</artifactId>
-            <version>${elasticsearch.version}</version>
-        </dependency>
-
-        <!-- hystrix dependency -->
-        <dependency>
-            <groupId>com.netflix.hystrix</groupId>
-            <artifactId>hystrix-core</artifactId>
-            <version>${hystrix-core.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -310,8 +313,8 @@
 
                 <configuration>
                     <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
-                    <protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${google.grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
+                    <protocArtifact>com.google.protobuf:protoc:${google.protoc.version}:exe:${os.detected.classifier}</protocArtifact>
                 </configuration>
             </plugin>
         </plugins>

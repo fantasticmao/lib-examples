@@ -1,4 +1,4 @@
-package priv.mm.zookeeper;
+package priv.mm.apache.zookeeper;
 
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.Watcher;
