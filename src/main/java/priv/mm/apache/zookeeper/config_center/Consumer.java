@@ -1,4 +1,4 @@
-package priv.mm.zookeeper.config_center;
+package priv.mm.apache.zookeeper.config_center;
 
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;

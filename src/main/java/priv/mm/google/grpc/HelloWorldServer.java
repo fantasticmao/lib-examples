@@ -1,4 +1,4 @@
-package priv.mm.grpc;
+package priv.mm.google.grpc;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;

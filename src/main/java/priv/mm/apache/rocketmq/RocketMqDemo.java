@@ -1,4 +1,4 @@
-package priv.mm.rocketmq;
+package priv.mm.apache.rocketmq;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
