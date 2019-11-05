@@ -19,11 +19,9 @@ import java.util.concurrent.TimeUnit;
  */
 public interface UserService {
 
-    @Transactional
-    void insertUser(User user);
+    int insertUser(User user);
 
-    @Transactional
-    void updateUser(User user);
+    boolean updateUser(User user);
 
     /**
      * 执行异常，导致事务回滚
@@ -31,8 +29,7 @@ public interface UserService {
      * @see org.springframework.transaction.interceptor.TransactionInterceptor#invoke(MethodInvocation)
      * @see org.springframework.transaction.interceptor.TransactionAspectSupport#invokeWithinTransaction(Method, Class, TransactionAspectSupport.InvocationCallback)
      */
-    @Transactional
-    void updateUserThrowException(User user);
+    boolean updateUserThrowException(User user);
 
     /**
      * 执行超时，导致事务回滚
@@ -41,10 +38,14 @@ public interface UserService {
      * @see org.springframework.jdbc.core.JdbcTemplate#applyStatementSettings(Statement)
      * @see org.springframework.transaction.support.ResourceHolderSupport#getTimeToLiveInSeconds()
      */
-    @Transactional(timeout = 2)
-    void updateUserOverTimeout(User user);
+    boolean updateUserOverTimeout(User user);
 
-    void required(User user);
+    /**
+     * 在代理模式下，只有外部方法调用才会触发事务切面逻辑，同一个类的内部方法调用不会产生新的事务。
+     *
+     * @see <a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/data-access.html#transaction-declarative-attransactional-settings">@Transactional Settings</a>
+     */
+    boolean selfInvocationWillNotLeadToAnActualTransaction(User user);
 }
 
 @Service
@@ -53,36 +54,43 @@ class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public void insertUser(User user) {
-        userDao.insertUser(user);
+    @Transactional
+    public int insertUser(User user) {
+        return userDao.insertUser(user);
     }
 
     @Override
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    @Transactional
+    public boolean updateUser(User user) {
+        return userDao.updateUser(user);
     }
 
     @Override
-    public void updateUserThrowException(User user) {
+    @Transactional
+    public boolean updateUserThrowException(User user) {
         userDao.updateUser(user);
         throw new RuntimeException();
     }
 
     @Override
-    public void updateUserOverTimeout(User user) {
+    @Transactional(timeout = 2)
+    public boolean updateUserOverTimeout(User user) {
         try {
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        userDao.updateUser(user);
+        return userDao.updateUser(user);
     }
 
     @Override
-    public void required(User user) {
-        insertUser(user);
-        user.setName(user.getName() + new Random().nextInt());
-        updateUser(user);
+    @Transactional
+    public boolean selfInvocationWillNotLeadToAnActualTransaction(User user) {
+        final int id = insertUser(user);
+        user.setId(id);
+        user.setName(user.getName() + new Random().nextInt(10));
+        // updateUserOverTimeout 方法的事务超时设置不会被触发
+        return updateUserOverTimeout(user);
     }
 }
 

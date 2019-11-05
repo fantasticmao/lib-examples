@@ -15,6 +15,6 @@ public class SpringTransactionDemo {
                 = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         UserService userService = applicationContext.getBean(UserService.class);
         User user = new User("Tom");
-        userService.required(user);
+        userService.selfInvocationWillNotLeadToAnActualTransaction(user);
     }
 }

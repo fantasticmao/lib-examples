@@ -1,9 +1,12 @@
 package priv.mm.spring.tx;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.sql.PreparedStatement;
 
 /**
  * UserDao
@@ -13,9 +16,9 @@ import javax.annotation.Resource;
  */
 public interface UserDao {
 
-    void insertUser(User user);
+    int insertUser(User user);
 
-    void updateUser(User user);
+    boolean updateUser(User user);
 
 }
 
@@ -25,14 +28,20 @@ class UserDaoImpl implements UserDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void insertUser(User user) {
+    public int insertUser(User user) {
         final String sql = "INSERT INTO user(name) VALUES (?)";
-        jdbcTemplate.update(sql, user.getName());
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement prep = connection.prepareStatement(sql, new String[]{"id"});
+            prep.setString(1, user.getName());
+            return prep;
+        }, keyHolder);
+        return keyHolder.getKey().intValue();
     }
 
     @Override
-    public void updateUser(User user) {
+    public boolean updateUser(User user) {
         final String sql = "UPDATE user SET name = ? WHERE id = ?";
-        jdbcTemplate.update(sql, user.getName(), user.getId());
+        return jdbcTemplate.update(sql, user.getName(), user.getId()) > 0;
     }
 }
