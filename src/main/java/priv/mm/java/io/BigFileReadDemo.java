@@ -1,5 +1,7 @@
 package priv.mm.java.io;
 
+import org.junit.Test;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,13 +18,11 @@ import java.nio.file.Paths;
  * @since 2018/12/17
  */
 public class BigFileReadDemo {
-    private File bigFile;
+    // TODO 生成大文件
+    private File bigFile = Paths.get("").toFile();
 
-    public BigFileReadDemo(String path) {
-        bigFile = Paths.get(path).toFile();
-    }
-
-    private void useBufferedInputStream() {
+    @Test
+    public void useBufferedInputStream() {
         final int bufferSize = 100 * 1024;
         try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(bigFile), bufferSize)) {
             byte[] bytes = new byte[bufferSize];
@@ -34,7 +34,8 @@ public class BigFileReadDemo {
         }
     }
 
-    private void useNioChannel() {
+    @Test
+    public void useNioChannel() {
         final int bufferSize = 100 * 1024;
         try (FileChannel fileChannel = FileChannel.open(bigFile.toPath())) {
             byte[] bytes = new byte[bufferSize];
@@ -58,7 +59,8 @@ public class BigFileReadDemo {
     }
 
     // FIXME
-    private void useMemoryMappedFile() {
+    @Test
+    public void useMemoryMappedFile() {
         final int bufferSize = 100 * 1024;
         try (FileChannel fileChannel = FileChannel.open(bigFile.toPath())) {
             for (long position = 0, totalSize = fileChannel.size(); position <= totalSize; position += bufferSize) {
@@ -71,30 +73,5 @@ public class BigFileReadDemo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        BigFileReadDemo demo = new BigFileReadDemo("/var/log/bbs/bbs.log");
-
-        new Thread(() -> {
-            long start = System.nanoTime();
-            demo.useBufferedInputStream();
-            long end = System.nanoTime();
-            System.out.println("BufferedInputStream cost " + (end - start) / Math.pow(10, 9) + " second");
-        }).start();
-
-        new Thread(() -> {
-            long start = System.nanoTime();
-            demo.useNioChannel();
-            long end = System.nanoTime();
-            System.out.println("NIO Channel cost " + (end - start) / Math.pow(10, 9) + " second");
-        }).start();
-
-        new Thread(() -> {
-            long start = System.nanoTime();
-            //demo.useMemoryMappedFile();
-            long end = System.nanoTime();
-            System.out.println("MemoryMappedFile cost " + (end - start) / Math.pow(10, 9) + " second");
-        }).start();
     }
 }

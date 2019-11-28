@@ -1,5 +1,6 @@
 package priv.mm.spring.ioc;
 
+import org.junit.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
@@ -17,12 +18,13 @@ public class BeanFactoryTest {
      *
      * @see org.springframework.beans.factory.BeanFactory#getBean(String)
      */
-    public static void testGetBean() {
+    @Test
+    public void testGetBean() {
         DefaultListableBeanFactory rootBeanFactory = new DefaultListableBeanFactory();
         rootBeanFactory.setSerializationId("Root BeanFactory");
 
         XmlBeanDefinitionReader rootBeanDefinitionReader = new XmlBeanDefinitionReader(rootBeanFactory);
-        rootBeanDefinitionReader.loadBeanDefinitions("classpath:applicationContext.xml");
+        rootBeanDefinitionReader.loadBeanDefinitions(BeanFactoryTest.class.getResource("applicationContext.xml").toString());
 
         String project1 = rootBeanFactory.getBean("project", String.class);
         System.out.println(project1);
@@ -31,13 +33,10 @@ public class BeanFactoryTest {
         subBeanFactory.setSerializationId("Sub BeanFactory");
 
         XmlBeanDefinitionReader subBeanDefinitionReader = new XmlBeanDefinitionReader(subBeanFactory);
-        subBeanDefinitionReader.loadBeanDefinitions("classpath:applicationSubContext.xml");
+        subBeanDefinitionReader.loadBeanDefinitions(BeanFactoryTest.class.getResource("applicationSubContext.xml").toString());
 
         String project2 = subBeanFactory.getBean("project", String.class);
         System.out.println(project2);
     }
 
-    public static void main(String[] args) {
-        testGetBean();
-    }
 }

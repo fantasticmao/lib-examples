@@ -3,7 +3,7 @@ package priv.mm.java.io;
 import java.io.*;
 
 /**
- * ObjectStreamDemo
+ * IoStreamHookDemo
  * <p>
  * 在序列化和反序列化过程中需要特殊处理的类，可以实现这些指定签名的特殊方法：
  * <br>
@@ -16,11 +16,11 @@ import java.io.*;
  *
  * @author maodh
  * @see java.util.Date
- * @see ObjectStreamDemo.User#readObject(byte[])
- * @see ObjectStreamDemo.User#writeObject(User)
+ * @see IoStreamHookDemo.User#readObject(byte[])
+ * @see IoStreamHookDemo.User#writeObject(User)
  * @since 04/02/2018
  */
-public class ObjectStreamDemo {
+public class IoStreamHookDemo {
 
     private static class User implements Serializable {
         private static final long serialVersionUID = 2196964377342851692L;
