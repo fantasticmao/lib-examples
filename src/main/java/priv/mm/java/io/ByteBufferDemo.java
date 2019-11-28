@@ -1,5 +1,7 @@
 package priv.mm.java.io;
 
+import org.junit.Test;
+
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
@@ -11,7 +13,8 @@ import java.util.Arrays;
  */
 public class ByteBufferDemo {
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         byte[] bytes = new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         int size = 5;
         byte[] tmpBytes = new byte[size];

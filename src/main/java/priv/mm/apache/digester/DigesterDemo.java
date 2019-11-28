@@ -40,7 +40,7 @@ public class DigesterDemo {
         digester.addSetProperties("employee/office/address");
         digester.addSetNext("employee/office/address", "setAddress");
 
-        URL xmlUrl = DigesterDemo.class.getResource("/example.xml");
+        URL xmlUrl = DigesterDemo.class.getResource("example.xml");
         Employee employee = digester.parse(xmlUrl);
         Assert.assertNotNull(employee);
         Assert.assertEquals("Brian", employee.getFirstName());

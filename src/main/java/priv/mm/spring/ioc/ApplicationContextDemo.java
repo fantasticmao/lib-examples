@@ -1,5 +1,6 @@
 package priv.mm.spring.ioc;
 
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,15 +12,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ApplicationContextDemo {
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         // debug IoC 容器的初始化
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        String configLocation = ApplicationContextDemo.class.getResource("applicationContext.xml").toString();
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(configLocation);
         // debug IoC 容器的依赖注入
         TestBean project = applicationContext.getBean("user", TestBean.class);
         System.out.println(project);
     }
 
-    public static class TestBean{
+    public static class TestBean {
         private String name;
         private int age;
 

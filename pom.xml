@@ -21,6 +21,7 @@
         <apache.curator.version>4.2.0</apache.curator.version>
         <apache.rocketmq.version>4.4.0</apache.rocketmq.version>
         <apache.commons-digester3>3.2</apache.commons-digester3>
+        <apache.freemarker.version>2.3.29</apache.freemarker.version>
 
         <google.grpc.version>1.12.0</google.grpc.version>
         <google.protoc.version>3.5.1</google.protoc.version>
@@ -131,6 +132,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-digester3</artifactId>
             <version>${apache.commons-digester3}</version>
+        </dependency>
+
+        <!-- mm.apache.freemarker dependency -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${apache.freemarker.version}</version>
         </dependency>
 
         <!-- grpc dependency -->

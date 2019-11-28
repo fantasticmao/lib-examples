@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class LogEventMain {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         // 启动 Disruptor
         final LogEvent.LogEventFactory factory = new LogEvent.LogEventFactory();
         final int bufferSize = 2 << 10;
@@ -29,11 +29,11 @@ public class LogEventMain {
                 return new Thread(runnable, "Disruptor-EventProcessor-" + number.incrementAndGet());
             }
         }, ProducerType.MULTI, new TimeoutBlockingWaitStrategy(10L, TimeUnit.MILLISECONDS)/* 消费者的等待策略 */);
-        disruptor.handleEventsWith(new LogEvent.LogEventConsumer()); // 单个消费者
+        disruptor.handleEventsWith(new LogEventConsumer()); // 单个消费者
         disruptor.start();
 
         // 生产事件，多个生产者
-        final LogEventTranslator eventTranslator = new LogEventTranslator();
+        final LogEvent.LogEventTranslator eventTranslator = new LogEvent.LogEventTranslator();
         new Thread(() -> {
             for (int i = 0; i < 100; i++) {
                 disruptor.publishEvent(eventTranslator, i);
@@ -45,10 +45,8 @@ public class LogEventMain {
                 disruptor.publishEvent(eventTranslator, i);
             }
         }).run();
-
 
         // 注销 Disruptor
-        TimeUnit.SECONDS.sleep(1);
-        disruptor.shutdown();
+        disruptor.shutdown(1, TimeUnit.SECONDS);
     }
 }
