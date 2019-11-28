@@ -38,7 +38,7 @@ public class FreemarkerDemo {
         template.process(data, out);
     }
 
-    private Configuration getConfiguration() throws IOException, URISyntaxException {
+    public Configuration getConfiguration() throws IOException, URISyntaxException {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_29);
         URI templateUri = FreemarkerDemo.class.getResource(".").toURI();
         cfg.setDirectoryForTemplateLoading(new File(templateUri));
