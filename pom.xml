@@ -31,9 +31,11 @@
 
         <netflix.hystrix-core.version>1.5.18</netflix.hystrix-core.version>
 
+        <openjdk.jol.version>0.9</openjdk.jol.version>
+        <openjdk.jmh.version>1.22</openjdk.jmh.version>
+
         <ehcache.version>3.6.2</ehcache.version>
         <disruptor.version>3.4.2</disruptor.version>
-        <jol-core.version>0.9</jol-core.version>
         <javassist.version>3.25.0-GA</javassist.version>
         <byte-buddy.version>1.10.1</byte-buddy.version>
         <h2.version>1.4.199</h2.version>
@@ -199,6 +201,26 @@
             <version>${netflix.hystrix-core.version}</version>
         </dependency>
 
+        <!-- openjdk jol dependency -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${openjdk.jol.version}</version>
+        </dependency>
+
+        <!-- openjdk jmh dependency -->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${openjdk.jmh.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${openjdk.jmh.version}</version>
+        </dependency>
+
         <!-- ehcache dependency -->
         <dependency>
             <groupId>org.ehcache</groupId>
@@ -211,13 +233,6 @@
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
             <version>${disruptor.version}</version>
-        </dependency>
-
-        <!-- jol dependency -->
-        <dependency>
-            <groupId>org.openjdk.jol</groupId>
-            <artifactId>jol-core</artifactId>
-            <version>${jol-core.version}</version>
         </dependency>
 
         <!-- Javassist dependency -->
