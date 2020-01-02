@@ -1,4 +1,4 @@
-package priv.mm.base.java8;
+package priv.mm.java.java8;
 
 import java.time.LocalDate;
 
