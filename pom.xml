@@ -50,7 +50,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>priv.mm.demo</groupId>
+            <groupId>cn.fantasticmao.demo</groupId>
             <artifactId>demo-java-ast</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
