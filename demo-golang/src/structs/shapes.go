@@ -1,4 +1,4 @@
-package shapes
+package structs
 
 import "math"
 

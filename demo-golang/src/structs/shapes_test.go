@@ -1,4 +1,4 @@
-package shapes
+package structs
 
 import (
 	"testing"
@@ -19,19 +19,8 @@ func TestShapes(t *testing.T) {
 	// 表格测试驱动（table driven tests）适用场景：测试一个接口的不同实现、测试不同参数的函数调用
 	for _, tt := range aresTests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := tt.shape.Area()
-			if got != tt.want {
-				t.Errorf("%#v got %.2f want %.2f", tt.shape, got, tt.want)
-			}
+			assertAreaCorrectMessage(t, tt.shape, tt.want)
 		})
-	}
-
-	assertPerimeterCorrectMessage := func(t *testing.T, shape Shape, want float64) {
-		t.Helper()
-		got := shape.Perimeter()
-		if got != want {
-			t.Errorf("got %.2f want %.2f", got, want)
-		}
 	}
 
 	t.Run("calculate rectangle perimeter", func(t *testing.T) {
@@ -45,4 +34,20 @@ func TestShapes(t *testing.T) {
 		want := 62.83185307179586
 		assertPerimeterCorrectMessage(t, circle, want)
 	})
+}
+
+func assertAreaCorrectMessage(t *testing.T, shape Shape, want float64) {
+	t.Helper()
+	got := shape.Area()
+	if got != want {
+		t.Errorf("got %.2f want %.2f", got, want)
+	}
+}
+
+func assertPerimeterCorrectMessage(t *testing.T, shape Shape, want float64) {
+	t.Helper()
+	got := shape.Perimeter()
+	if got != want {
+		t.Errorf("got %.2f want %.2f", got, want)
+	}
 }

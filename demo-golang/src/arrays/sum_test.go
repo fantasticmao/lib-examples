@@ -6,13 +6,6 @@ import (
 )
 
 func TestSum(t *testing.T) {
-	assertCorrectMessage := func(t *testing.T, got, want []int) {
-		t.Helper()
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got '%v' want '%v'", got, want)
-		}
-	}
-
 	t.Run("collection of 5 numbers", func(t *testing.T) {
 		numbers := [5]int{1, 2, 3, 4, 5}
 		got := Sum1(numbers)
@@ -49,4 +42,11 @@ func TestSum(t *testing.T) {
 		assertCorrectMessage(t, got, want)
 	})
 
+}
+
+func assertCorrectMessage(t *testing.T, got, want []int) {
+	t.Helper()
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got '%v' want '%v'", got, want)
+	}
 }
