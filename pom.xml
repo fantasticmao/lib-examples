@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>${java.encoding}</project.build.sourceEncoding>
 
         <spring.version>4.3.18.RELEASE</spring.version>
-        <netty.version>4.1.25.Final</netty.version>
+        <netty.version>4.1.42.Final</netty.version>
         <elasticsearch.version>7.3.1</elasticsearch.version>
 
         <apache.zookeeper.version>3.4.14</apache.zookeeper.version>
