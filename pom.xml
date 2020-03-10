@@ -24,7 +24,8 @@
         <apache.rocketmq.version>4.4.0</apache.rocketmq.version>
         <apache.commons-digester3>3.2</apache.commons-digester3>
         <apache.freemarker.version>2.3.29</apache.freemarker.version>
-        <apache.maven.invoker>3.0.1</apache.maven.invoker>
+        <apache.maven.invoker.version>3.0.1</apache.maven.invoker.version>
+        <apache.lucene.version>8.4.1</apache.lucene.version>
 
         <google.grpc.version>1.12.0</google.grpc.version>
         <google.protoc.version>3.5.1</google.protoc.version>
@@ -157,7 +158,14 @@
         <dependency>
             <groupId>org.apache.maven.shared</groupId>
             <artifactId>maven-invoker</artifactId>
-            <version>${apache.maven.invoker}</version>
+            <version>${apache.maven.invoker.version}</version>
+        </dependency>
+
+        <!-- lucene dependency -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${apache.lucene.version}</version>
         </dependency>
 
         <!-- google grpc dependency -->
