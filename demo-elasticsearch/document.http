@@ -1,0 +1,18 @@
+// document API
+// https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html
+
+### 按 _id 查询文档
+GET http://localhost:9200/bank/_doc/1
+Content-Type: application/json
+
+### 判断 _id 所属的文档是否存在
+HEAD http://localhost:9200/bank/_doc/1
+Content-Type: application/json
+
+### 按 _id 查询文档 _scource
+GET http://localhost:9200/bank/_source/1
+Content-Type: application/json
+
+### 判断 _id 所属的文档 _source 是否存在
+HEAD http://localhost:9200/bank/_source/1
+Content-Type: application/json
