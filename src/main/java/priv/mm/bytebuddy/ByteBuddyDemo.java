@@ -4,18 +4,9 @@ import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.implementation.FixedValue;
 import net.bytebuddy.implementation.MethodDelegation;
-import net.bytebuddy.implementation.bind.annotation.AllArguments;
-import net.bytebuddy.implementation.bind.annotation.Origin;
-import net.bytebuddy.implementation.bind.annotation.RuntimeType;
-import net.bytebuddy.implementation.bind.annotation.SuperCall;
 import net.bytebuddy.matcher.ElementMatchers;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.concurrent.Callable;
 
 /**
  * ByteBuddyDemo
@@ -27,64 +18,41 @@ import java.util.concurrent.Callable;
 public class ByteBuddyDemo {
 
     @Test
-    public void test() throws Exception {
+    public void tutorial() throws Exception {
         Object obj = new ByteBuddy()
-                .subclass(Object.class)
-                .method(ElementMatchers.named("toString"))
-                .intercept(FixedValue.value("Hello Byte Buddy"))
-                .make()
-                .load(ClassLoader.getSystemClassLoader())
-                .getLoaded()
-                .newInstance()
-                .toString();
+            .subclass(Object.class)
+            .method(ElementMatchers.named("toString")).intercept(FixedValue.value("Hello Byte Buddy"))
+            .method(ElementMatchers.named("hashCode")).intercept(FixedValue.value(1234))
+            .make()
+            .load(ClassLoader.getSystemClassLoader())
+            .getLoaded()
+            .newInstance();
         Assert.assertEquals("Hello Byte Buddy", obj.toString());
+        Assert.assertEquals(1234, obj.hashCode());
     }
 
     @Test
     public void methodDelegation() throws Exception {
         Object obj = new ByteBuddy()
-                .subclass(Object.class)
-                .method(ElementMatchers.named("toString"))
-                .intercept(MethodDelegation.to(PrintInfoInterceptor1.class))
-                .make()
-                .load(ClassLoader.getSystemClassLoader())
-                .getLoaded()
-                .newInstance();
-        obj.toString();
-    }
-
-    public static class PrintInfoInterceptor1 {
-
-        @RuntimeType
-        public static Object intercept(@SuperCall Callable<?> callable, @Origin Class<?> clazz, @Origin Method method,
-                                       @AllArguments Object[] arguments) throws Exception {
-            try {
-                return callable.call();
-            } finally {
-                System.out.printf("invoke %s#%s(%s)%n", clazz.getName(), method.getName(),
-                        String.join(",", Arrays.stream(arguments).map(Objects::toString).toArray(String[]::new)));
-            }
-        }
+            .subclass(Object.class)
+            .method(ElementMatchers.named("toString")).intercept(MethodDelegation.to(InterceptorByMethodDelegation.class))
+            .make()
+            .load(ClassLoader.getSystemClassLoader())
+            .getLoaded()
+            .newInstance();
+        System.out.println("toString: " + obj.toString());
     }
 
     @Test
     public void advice() throws Exception {
         Object obj = new ByteBuddy()
-                .subclass(Object.class)
-                .method(ElementMatchers.named("toString"))
-                .intercept(Advice.to(PrintInfoInterceptor2.class))
-                .make()
-                .load(ClassLoader.getSystemClassLoader())
-                .getLoaded()
-                .newInstance();
-        obj.toString();
+            .subclass(Object.class)
+            .method(ElementMatchers.named("toString")).intercept(Advice.to(InterceptionByAdvice.class))
+            .make()
+            .load(ClassLoader.getSystemClassLoader())
+            .getLoaded()
+            .newInstance();
+        System.out.println("toString: " + obj.toString());
     }
 
-    public static class PrintInfoInterceptor2 {
-
-        @Advice.OnMethodEnter
-        public static void onMethodEnter() {
-            System.out.println("!!!!!!!!!!!");
-        }
-    }
 }
