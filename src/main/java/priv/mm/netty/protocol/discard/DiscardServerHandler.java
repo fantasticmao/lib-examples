@@ -1,9 +1,10 @@
 package priv.mm.netty.protocol.discard;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.CharsetUtil;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.embedded.EmbeddedChannel;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * DiscardServerHandler
@@ -11,18 +12,17 @@ import io.netty.util.CharsetUtil;
  * @author maodh
  * @since 2018/6/24
  */
-public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
+public class DiscardServerHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf in = (ByteBuf) msg;
-        System.out.println(in.toString(CharsetUtil.UTF_8));
-        ctx.writeAndFlush(msg);
+    public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        System.out.println(msg);
     }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();
-        ctx.close();
+    @Test
+    public void unitTest() {
+        EmbeddedChannel embeddedChannel = new EmbeddedChannel(new DiscardServerHandler());
+        embeddedChannel.writeInbound("Hello World");
+        Assert.assertFalse(embeddedChannel.finish());
     }
 }
