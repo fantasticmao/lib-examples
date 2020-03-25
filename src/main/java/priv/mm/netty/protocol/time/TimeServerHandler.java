@@ -1,4 +1,4 @@
-package priv.mm.netty.time;
+package priv.mm.netty.protocol.time;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFutureListener;

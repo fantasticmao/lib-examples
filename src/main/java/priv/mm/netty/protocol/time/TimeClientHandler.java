@@ -1,23 +1,29 @@
-package priv.mm.netty.discard;
+package priv.mm.netty.protocol.time;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.CharsetUtil;
+
+import java.util.Date;
 
 /**
- * DiscardServerHandler
+ * TimeClientHandler
  *
  * @author maodh
- * @since 2018/6/24
+ * @since 2018/6/25
  */
-public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
+public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf in = (ByteBuf) msg;
-        System.out.println(in.toString(CharsetUtil.UTF_8));
-        ctx.writeAndFlush(msg);
+        ByteBuf m = (ByteBuf) msg;
+        try {
+            long currentTimeMillis = m.readLong();
+            System.out.println("server time: " + new Date(currentTimeMillis));
+            ctx.close();
+        } finally {
+            m.release();
+        }
     }
 
     @Override

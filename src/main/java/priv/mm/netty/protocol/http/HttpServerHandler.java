@@ -1,4 +1,4 @@
-package priv.mm.netty.http;
+package priv.mm.netty.protocol.http;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
