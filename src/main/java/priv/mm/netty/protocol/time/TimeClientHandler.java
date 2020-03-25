@@ -2,7 +2,10 @@ package priv.mm.netty.protocol.time;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.embedded.EmbeddedChannel;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.Date;
 
@@ -12,23 +15,23 @@ import java.util.Date;
  * @author maodh
  * @since 2018/6/25
  */
-public class TimeClientHandler extends ChannelInboundHandlerAdapter {
+public class TimeClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf m = (ByteBuf) msg;
-        try {
-            long currentTimeMillis = m.readLong();
-            System.out.println("server time: " + new Date(currentTimeMillis));
-            ctx.close();
-        } finally {
-            m.release();
-        }
+    public void channelRead0(ChannelHandlerContext ctx, ByteBuf byteBuf) throws Exception {
+        final long currentTimeMillis = byteBuf.readLong();
+        System.out.println("read timestamp: " + new Date(currentTimeMillis));
+        ctx.close();
     }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();
-        ctx.close();
+    @Test
+    public void unitTest() {
+        EmbeddedChannel embeddedChannel = new EmbeddedChannel(new TimeClientHandler());
+        ByteBuf byteBuf = embeddedChannel.alloc().buffer(Long.BYTES);
+        final long timestamp = System.currentTimeMillis();
+        byteBuf.writeLong(timestamp);
+        embeddedChannel.writeInbound(byteBuf);
+        System.out.println("write timestamp: " + timestamp);
+        Assert.assertFalse(embeddedChannel.finish());
     }
 }
