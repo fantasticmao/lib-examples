@@ -1,4 +1,4 @@
-package priv.mm.netty;
+package priv.mm.netty.protocol;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -10,7 +10,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
-import priv.mm.netty.http.HttpServerHandler;
+import priv.mm.netty.protocol.http.HttpServerHandler;
 
 import java.net.InetSocketAddress;
 

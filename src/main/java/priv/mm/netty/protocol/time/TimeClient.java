@@ -1,4 +1,4 @@
-package priv.mm.netty.time;
+package priv.mm.netty.protocol.time;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
