@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.fantasticmao.demo</groupId>
+        <artifactId>java</artifactId>
+        <version>SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+
+    <artifactId>java-apache</artifactId>
+
+    <name>demo-java-apache</name>
+
+    <properties>
+        <apache.zookeeper.version>3.4.14</apache.zookeeper.version>
+        <apache.curator.version>4.2.0</apache.curator.version>
+        <apache.rocketmq.version>4.4.0</apache.rocketmq.version>
+        <apache.commons-digester3>3.2</apache.commons-digester3>
+        <apache.freemarker.version>2.3.29</apache.freemarker.version>
+        <apache.maven.invoker.version>3.0.1</apache.maven.invoker.version>
+        <apache.lucene.version>8.4.1</apache.lucene.version>
+    </properties>
+
+    <build>
+        <!-- maven-resources-plugin filter demo -->
+        <!-- see doc: https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html -->
+        <filters>
+            <filter>src/main/resources/config_prd.properties</filter>
+            <!--<filter>src/main/resources/config_dev.properties</filter>-->
+        </filters>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <dependencies>
+        <!-- ZooKeeper dependency -->
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${apache.zookeeper.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${apache.curator.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- RocketMQ dependency -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>${apache.rocketmq.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-digester3</artifactId>
+            <version>${apache.commons-digester3}</version>
+        </dependency>
+
+        <!-- FreeMarker dependency -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${apache.freemarker.version}</version>
+        </dependency>
+
+        <!-- Maven Invoker dependency -->
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-invoker</artifactId>
+            <version>${apache.maven.invoker.version}</version>
+        </dependency>
+
+        <!-- Lucene dependency -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${apache.lucene.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>${apache.lucene.version}</version>
+        </dependency>
+    </dependencies>
+</project>
