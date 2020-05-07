@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.fantasticmao.demo</groupId>
+        <artifactId>java</artifactId>
+        <version>SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+
+    <artifactId>java-lang</artifactId>
+
+    <name>demo-java-lang</name>
+
+    <properties>
+        <javassist.version>3.25.0-GA</javassist.version>
+        <byte-buddy.version>1.10.1</byte-buddy.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.fantasticmao.demo</groupId>
+            <artifactId>java-design-pattern</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>${java.version}</version>
+            <scope>system</scope>
+            <systemPath>${java.home}/../lib/tools.jar</systemPath>
+        </dependency>
+
+        <!-- Javassist dependency -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
+        </dependency>
+
+        <!-- Byte Buddy dependency -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${byte-buddy.version}</version>
+        </dependency>
+    </dependencies>
+</project>
