@@ -1,0 +1,12 @@
+{
+  "name": "javascript-lang",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fantasticmao",
+  "license": "GPL-3.0"
+}

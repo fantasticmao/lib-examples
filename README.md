@@ -17,5 +17,7 @@
     - [openjdk](java/openjdk)
     - [others](java/others)
     - [spring](java/spring)
+- JavaScript
+    - [lang](javascript/lang)
 - Python
     - [practice](python/practice)
