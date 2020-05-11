@@ -1,27 +1,53 @@
 package cn.fantasticmao.demo.java.openjdk.jol;
 
+import org.junit.Test;
 import org.openjdk.jol.datamodel.X86_64_DataModel;
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.layouters.HotSpotLayouter;
 import org.openjdk.jol.layouters.Layouter;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * JavaObjectLayoutDemo
+ * MarkwordDebugger
  * -XX:-UseCompressedOops -XX:+UseBiasedLocking -Djol.tryWithSudo=true
  *
+ * <pre>
+ * 32 bits:
+ * --------
+ *      hash:25 ------------>| age:4    biased_lock:1 lock:2 (normal object)
+ *      JavaThread*:23 epoch:2 age:4    biased_lock:1 lock:2 (biased object)
+ *      size:32 ------------------------------------------>| (CMS free block)
+ *      PromotedObject*:29 ---------->| promo_bits:3 ----->| (CMS promoted object)
+ *
+ * 64 bits:
+ * --------
+ *      unused:25 hash:31 -->| unused:1   age:4    biased_lock:1 lock:2 (normal object)
+ *      JavaThread*:54 epoch:2 unused:1   age:4    biased_lock:1 lock:2 (biased object)
+ *      PromotedObject*:61 --------------------->| promo_bits:3 ----->| (CMS promoted object)
+ *      size:64 ----------------------------------------------------->| (CMS free block)
+ *
+ *      unused:25 hash:31 -->| cms_free:1 age:4    biased_lock:1 lock:2 (COOPs && normal object)
+ *      JavaThread*:54 epoch:2 cms_free:1 age:4    biased_lock:1 lock:2 (COOPs && biased object)
+ *      narrowOop:32 unused:24 cms_free:1 unused:4 promo_bits:3 ----->| (COOPs && CMS promoted object)
+ *      unused:21 size:35 -->| cms_free:1 unused:7 ------------------>| (COOPs && CMS free block)</pre>
+ *
  * @author maodh
+ * @see <a href="https://openjdk.java.net/projects/code-tools/jol/">OpenJDK: Java Object Layout</a>
+ * @see <a href="http://hg.openjdk.java.net/jdk8/jdk8/hotspot/file/87ee5ee27509/src/share/vm/oops/markOop.hpp">OpenJDK: markOop.hpp</a>
  * @since 2018/8/22
  */
-public class JavaObjectLayoutDemo {
+public class MarkwordDebugger {
     private Layouter layouter;
 
-    private JavaObjectLayoutDemo(Layouter layouter) {
-        this.layouter = layouter;
+    public MarkwordDebugger() throws IOException {
+        this.layouter = new HotSpotLayouter(new X86_64_DataModel());
+        System.out.println("**** Current thread info: " + JolUtil.getCurrentThreadInfo());
     }
 
-    private void thinLocking() {
+    @Test
+    public void thinLocking() {
         final Object object = new Object();
         ClassLayout layout = ClassLayout.parseInstance(object, layouter);
 
@@ -37,7 +63,8 @@ public class JavaObjectLayoutDemo {
         System.out.println(layout.toPrintable());
     }
 
-    private void biasedLocking() throws InterruptedException {
+    @Test
+    public void biasedLocking() throws InterruptedException {
         TimeUnit.SECONDS.sleep(6);
 
         final Object object = new Object();
@@ -55,7 +82,8 @@ public class JavaObjectLayoutDemo {
         System.out.println(layout.toPrintable());
     }
 
-    private void fatLocking() throws InterruptedException {
+    @Test
+    public void fatLocking() throws InterruptedException {
         final Object object = new Object();
         ClassLayout layout = ClassLayout.parseInstance(object, layouter);
 
@@ -94,12 +122,6 @@ public class JavaObjectLayoutDemo {
 
         System.out.println("**** After System.gc()");
         System.out.println(layout.toPrintable());
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        Layouter layouter = new HotSpotLayouter(new X86_64_DataModel());
-        JavaObjectLayoutDemo demo = new JavaObjectLayoutDemo(layouter);
-        demo.biasedLocking();
     }
 
 }
