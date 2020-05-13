@@ -1,6 +1,6 @@
 package cn.fantasticmao.demo.java.lang.classloader;
 
-import java.net.URL;
+import org.junit.Test;
 
 /**
  * ClassLoaderInfo
@@ -14,25 +14,22 @@ public class ClassLoaderInfo {
      * {@code BootstrapClassloader} 引导类加载器，又称启动类加载器，是最顶层的类加载器，主要用来加载 Java 核心类，如 rt.jar、resources.jar。
      * 它不是 {@link java.lang.ClassLoader} 的子类，而是 JVM 自身由 C 语言实现的，Java 程序访问不到该列加载器。
      */
-    private static void bootstrapClassLoader() {
-        URL[] urls = sun.misc.Launcher.getBootstrapClassPath().getURLs();
-        for (URL url : urls) {
-            System.out.println(url.toExternalForm());
-        }
+    @Test
+    public void bootstrapClassLoader() {
+        ClassLoader bootstrapClassLoader = ClassLoader.getPlatformClassLoader().getParent();
+        System.out.println(bootstrapClassLoader);
     }
 
     /**
      * {@code ExtClassloader} 扩展类加载器，又称应用加载器，负责加载 Java 的扩展类库，默认加载 JAVA_HOME/jre/lib/ext 目录下所有 jar 包，
      * 或者由 java.ext.dirs 系统指定的 jar 包。
      *
-     * @see sun.misc.Launcher.ExtClassLoader
+     * @see java.lang.ClassLoader#getPlatformClassLoader()
      */
-    private static void extClassLoader() {
-        String extDirs = System.getProperty("java.ext.dirs");
-        String[] exts = extDirs.split(":");
-        for (String ext : exts) {
-            System.out.println(ext);
-        }
+    @Test
+    public void extClassLoader() {
+        ClassLoader extClassLoader = ClassLoader.getPlatformClassLoader();
+        System.out.println(extClassLoader);
     }
 
     /**
@@ -40,17 +37,12 @@ public class ClassLoaderInfo {
      * 或者 CLASSPATH 操作系统属性所指定的 JAR 类包路径。调用 {@link ClassLoader#getSystemClassLoader()} 可以获取该类加载器。
      * 如果没有特别指定，用户自定义的任何类加载器都应将 {@link ClassLoader} 作为它的父类加载器。
      *
-     * @see sun.misc.Launcher.AppClassLoader
+     * @see java.lang.ClassLoader#getSystemClassLoader()
      */
-    private static void appClassLoader() {
-        String path = System.getProperty("java.class.path");
-        String[] paths = path.split(":");
-        for (String s : paths) {
-            System.out.println(s);
-        }
+    @Test
+    public void appClassLoader() {
+        ClassLoader appClassLoader = ClassLoader.getSystemClassLoader();
+        System.out.println(appClassLoader);
     }
 
-    public static void main(String[] args) {
-        bootstrapClassLoader();
-    }
 }

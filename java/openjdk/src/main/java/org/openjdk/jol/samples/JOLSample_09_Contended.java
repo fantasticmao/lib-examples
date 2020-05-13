@@ -56,10 +56,11 @@ public class JOLSample_09_Contended {
     }
 
     public static class A {
-                             int a;
-                             int b;
-        @sun.misc.Contended  int c;
-                             int d;
+        int a;
+        int b;
+        @jdk.internal.vm.annotation.Contended
+        int c;
+        int d;
     }
 
     public static class B extends A {
