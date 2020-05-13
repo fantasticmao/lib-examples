@@ -5,7 +5,7 @@
     <parent>
         <groupId>cn.fantasticmao.demo</groupId>
         <artifactId>java</artifactId>
-        <version>SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -18,19 +18,30 @@
         <byte-buddy.version>1.10.1</byte-buddy.version>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.compiler/com.sun.tools.javac.processing=cn.fantasticmao.demo.java.lang</arg>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.compiler/com.sun.tools.javac.tree=cn.fantasticmao.demo.java.lang</arg>
+                        <arg>--add-exports</arg>
+                        <arg>jdk.compiler/com.sun.tools.javac.util=cn.fantasticmao.demo.java.lang</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>cn.fantasticmao.demo</groupId>
             <artifactId>java-design-pattern</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.sun</groupId>
-            <artifactId>tools</artifactId>
-            <version>${java.version}</version>
-            <scope>system</scope>
-            <systemPath>${java.home}/../lib/tools.jar</systemPath>
         </dependency>
 
         <!-- Javassist dependency -->

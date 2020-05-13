@@ -5,7 +5,7 @@
     <parent>
         <groupId>cn.fantasticmao.demo</groupId>
         <artifactId>java</artifactId>
-        <version>SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -17,6 +17,21 @@
         <openjdk.jol.version>0.9</openjdk.jol.version>
         <openjdk.jmh.version>1.22</openjdk.jmh.version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <arg>--add-exports</arg>
+                        <arg>java.base/jdk.internal.vm.annotation=cn.fantasticmao.demo.java.openjdk</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <!-- OpenJDK JOL dependency -->

@@ -6,7 +6,14 @@ import org.junit.Test;
 /**
  * AnnotationProcessorDemo
  *
- * <p>执行 {@code mvn clean install --file demo-java-ast/pom.xml && mvn clean compile} 运行示例</p>
+ * <p>Java9 模块化之后，{@link com.sun.tools.javac} 包中没有被 {@code exports}。
+ *
+ * <p>为了使用 JDK 内部的类，运行这个示例程序需要在 {@code javac} 命令中添加以下参数：
+ * <ul>
+ *     <li>--add-exports jdk.compiler/com.sun.tools.javac.processing=cn.fantasticmao.demo.java.lang</li>
+ *     <li>--add-exports jdk.compiler/com.sun.tools.javac.tree=cn.fantasticmao.demo.java.lang</li>
+ *     <li>--add-exports jdk.compiler/com.sun.tools.javac.util=cn.fantasticmao.demo.java.lang</li>
+ * </ul>
  *
  * @author maomao
  * @see HelloAnnotation
