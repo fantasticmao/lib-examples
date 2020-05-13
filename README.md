@@ -2,8 +2,8 @@
 
 ## 目录
 
-- Golang
-    - [learn-go-with-tests](golang/learn-go-with-tests)
+- Go
+    - [learn-go-with-tests](go/learn-go-with-tests)
 - Java
     - [algorithm](java/algorithm)
     - [apache](java/apache)
