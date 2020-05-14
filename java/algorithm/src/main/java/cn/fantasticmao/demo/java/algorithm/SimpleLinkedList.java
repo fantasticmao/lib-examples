@@ -22,7 +22,7 @@ public class SimpleLinkedList<E> {
         }
     }
 
-    private SimpleLinkedList() {
+    public SimpleLinkedList() {
         this.node = null;
         this.size = 0;
     }
@@ -80,11 +80,4 @@ public class SimpleLinkedList<E> {
         return String.join(" -> ", strArray);
     }
 
-    public static void main(String[] args) {
-        SimpleLinkedList<Integer> list = new SimpleLinkedList<>();
-        for (int i = 0; i < 6; i++) {
-            list.add(i);
-        }
-        System.out.println(list.toString());
-    }
 }

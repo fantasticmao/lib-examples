@@ -4,7 +4,6 @@ import cn.fantasticmao.demo.java.designpattern.proxy.handler.MethodStartHandler;
 import cn.fantasticmao.demo.java.designpattern.proxy.handler.TimeDurationHandler;
 
 import java.lang.reflect.Proxy;
-import java.util.Collections;
 
 /**
  * SortDynamicProxy
@@ -17,27 +16,27 @@ import java.util.Collections;
 public class SortDynamicProxy {
 
     @SuppressWarnings("unchecked")
-    public static <T extends Comparable> Sortable<T> proxyTime(Sortable<T> sortable) {
+    public static <T extends Comparable<?>> Sortable<T> proxyTime(Sortable<T> sortable) {
         TimeDurationHandler handler = new TimeDurationHandler(sortable);
         return (Sortable<T>) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
-                sortable.getClass().getInterfaces(), handler);
+            sortable.getClass().getInterfaces(), handler);
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Comparable> Sortable<T> proxyMethod(Sortable<T> sortable) {
+    public static <T extends Comparable<?>> Sortable<T> proxyMethod(Sortable<T> sortable) {
         MethodStartHandler handler = new MethodStartHandler(sortable);
         return (Sortable<T>) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
-                sortable.getClass().getInterfaces(), handler);
+            sortable.getClass().getInterfaces(), handler);
     }
 
-    public static class Builder<T extends Comparable> {
+    public static class Builder<T extends Comparable<?>> {
         private Sortable<T> proxy;
 
         private Builder(Sortable<T> proxy) {
             this.proxy = proxy;
         }
 
-        public static <T extends Comparable> Builder<T> create(Sortable<T> sortable) {
+        public static <T extends Comparable<?>> Builder<T> create(Sortable<T> sortable) {
             return new Builder<>(sortable);
         }
 
@@ -54,12 +53,5 @@ public class SortDynamicProxy {
             this.proxy = SortDynamicProxy.proxyMethod(this.proxy);
             return this;
         }
-    }
-
-    public static void main(String[] args) {
-        Sortable<Integer> shellSort = new ShellSort<>();
-        Sortable<Integer> shellSortProxy = Builder.create(shellSort)
-                .proxyTime().proxyMethod().build();
-        shellSortProxy.sort(Collections.emptyList());
     }
 }

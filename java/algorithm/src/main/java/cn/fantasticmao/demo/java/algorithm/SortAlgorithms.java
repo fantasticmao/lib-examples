@@ -1,7 +1,6 @@
 package cn.fantasticmao.demo.java.algorithm;
 
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * SortAlgorithms
@@ -10,13 +9,14 @@ import java.util.Random;
  * @since 2016.11.14
  */
 public class SortAlgorithms {
+
     /**
      * 冒泡排序
      * 1. 比较前后两个元素。
      * 2. 如果前者元素大于后者，则交换它们位置。
      * 3. 向后移动一位，重复1-2。
      */
-    private static int[] bubbleSort(int[] a) {
+    public static int[] bubbleSort(int[] a) {
         int len = a.length;
         int[] arr = Arrays.copyOf(a, len);
         boolean finish = false;
@@ -41,7 +41,7 @@ public class SortAlgorithms {
      * 插入排序
      * 把无序区的第一个元素 key 插入到有序区的合适位置。
      */
-    private static int[] insertSort(int[] a) {
+    public static int[] insertSort(int[] a) {
         int len = a.length;
         int[] arr = Arrays.copyOf(a, len);
         int temp;
@@ -59,7 +59,7 @@ public class SortAlgorithms {
     /**
      * 希尔排序
      */
-    private static int[] shellSort(int[] a) {
+    public static int[] shellSort(int[] a) {
         int len = a.length;
         int[] arr = Arrays.copyOf(a, len);
         int h = 1;
@@ -86,7 +86,7 @@ public class SortAlgorithms {
      * 2. 若 min!=i，则交换最小元素 a[min] 与初始元素 a[i]。
      * 3. i++，重复 1-2 步骤。
      */
-    private static int[] selectSort(int[] a) {
+    public static int[] selectSort(int[] a) {
         int len = a.length;
         int[] arr = Arrays.copyOf(a, len);
         int temp;
@@ -124,17 +124,4 @@ public class SortAlgorithms {
         return arr;
     }
 
-    public static void main(String[] args) {
-        Random random = new Random();
-        int[] a = new int[10];
-        for (int i = 0; i < a.length; i++) {
-            a[i] = random.nextInt(100);
-        }
-        System.out.println(Arrays.toString(a));
-        System.out.println("bubbleSort: " + Arrays.toString(bubbleSort(a)));
-        System.out.println("insertSort: " + Arrays.toString(insertSort(a)));
-        System.out.println("shellSort: " + Arrays.toString(shellSort(a)));
-        System.out.println("selectSort: " + Arrays.toString(selectSort(a)));
-        //System.out.println("quickSort: " + Arrays.toString(quickSort(a)));
-    }
 }

@@ -1,13 +1,18 @@
 package cn.fantasticmao.demo.java.algorithm;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
- * 平衡二叉树
+ * 二叉搜索树
  *
  * @author maomao
  * @since 2017.02.03
  */
 public class BinaryTree {
-    private class Node {
+
+    private static class Node {
         int key;
         Node leftChild;
         Node rightChild;
@@ -19,10 +24,10 @@ public class BinaryTree {
         @Override
         public String toString() {
             return "{" +
-                    "\"key\":" + key +
-                    ", \"leftChild\":" + leftChild +
-                    ", \"rightChild\":" + rightChild +
-                    '}';
+                "\"key\":" + key +
+                ", \"leftChild\":" + leftChild +
+                ", \"rightChild\":" + rightChild +
+                '}';
         }
     }
 
@@ -51,11 +56,11 @@ public class BinaryTree {
     }
 
     /**
-     * 出现重复关键字时，节点插入到的右子节点处。不过find()只能查询多个相同关键字中的第一个。
-     * 可以修改find()，使其查询更多数据区分重复的关键字，不过这样很耗时。
-     * 合理的选择：1.业务中禁止重复的关键字;2.修改insert()，排除重复关键字。
+     * 出现重复关键字时，节点插入到的右子节点处。不过 find() 只能查询多个相同关键字中的第一个。
+     * 可以修改 find()，使其查询更多数据区分重复的关键字，不过这样很耗时。
+     * 合理的选择：1. 业务中禁止重复的关键字; 2. 修改 insert()，排除重复关键字。
      */
-    public void insert(int key) {
+    public BinaryTree insert(int key) {
         Node newNode = new Node(key);
         if (root == null) {
             root = newNode;
@@ -77,73 +82,75 @@ public class BinaryTree {
                 }
             }
         }
+        return this;
     }
 
     public void delete(int key) {
 
     }
 
-    public void traverse(TraverseType type) {
+    public List<Integer> traverse(TraverseType type) {
+        List<Integer> keyList = new LinkedList<>();
         switch (type) {
             case PRE:
-                preOrder(root);
-                break;
+                return preOrder(root, keyList);
             case IN:
-                inOrder(root);
-                break;
+                return inOrder(root, keyList);
             case POST:
-                postOrder(root);
-                break;
+                return postOrder(root, keyList);
+            default:
+                return Collections.emptyList();
         }
     }
 
     /**
      * 前序遍历
+     * <ol>
+     *     <li>访问根节点</li>
+     *     <li>访问左子节点</li>
+     *     <li>访问左右节点</li>
+     * </ol>
      */
-    private void preOrder(Node node) {
+    private List<Integer> preOrder(Node node, List<Integer> keyList) {
         if (node != null) {
-            System.out.printf(node.key + " ");
-            preOrder(node.leftChild);
-            preOrder(node.rightChild);
+            keyList.add(node.key);
+            preOrder(node.leftChild, keyList);
+            preOrder(node.rightChild, keyList);
         }
+        return keyList;
     }
 
     /**
-     * 中序遍历二叉搜索树，可得到所有节点的升序结果。
-     * 1.递归左子节点
-     * 2.访问本节点
-     * 3.递归右子节点
+     * 中序遍历（可得到所有节点的升序结果）
+     * <ol>
+     *     <li>访问左子节点</li>
+     *     <li>访问根节点</li>
+     *     <li>访问右子节点</li>
+     * </ol>>
      */
-    private void inOrder(Node node) {
+    private List<Integer> inOrder(Node node, List<Integer> keyList) {
         if (node != null) {
-            inOrder(node.leftChild);
-            System.out.printf(node.key + " ");
-            inOrder(node.rightChild);
+            inOrder(node.leftChild, keyList);
+            keyList.add(node.key);
+            inOrder(node.rightChild, keyList);
         }
+        return keyList;
     }
 
     /**
      * 后序遍历
+     * <ol>
+     *     <li>访问左子节点</li>
+     *     <li>访问右子节点</li>
+     *     <li>访问根节点</li>
+     * </ol>
      */
-    private void postOrder(Node node) {
+    private List<Integer> postOrder(Node node, List<Integer> keyList) {
         if (node != null) {
-            postOrder(node.leftChild);
-            postOrder(node.rightChild);
-            System.out.printf(node.key + " ");
+            postOrder(node.leftChild, keyList);
+            postOrder(node.rightChild, keyList);
+            keyList.add(node.key);
         }
-    }
-
-    public static void main(String[] args) {
-        BinaryTree tree = new BinaryTree();
-        tree.insert(2);
-        tree.insert(3);
-        tree.insert(1);
-        tree.insert(4);
-        System.out.println(tree.root);
-        tree.traverse(TraverseType.PRE);
-        System.out.println();
-        tree.traverse(TraverseType.IN);
-        System.out.println();
-        tree.traverse(TraverseType.POST);
+        return keyList;
     }
 }

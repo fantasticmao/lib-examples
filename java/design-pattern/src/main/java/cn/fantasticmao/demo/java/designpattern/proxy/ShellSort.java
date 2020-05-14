@@ -9,7 +9,7 @@ import java.util.List;
  * @author maodh
  * @since 2017/8/13
  */
-public class ShellSort<T extends Comparable> implements Sortable<T> {
+public class ShellSort<T extends Comparable<?>> implements Sortable<T> {
 
     @Override
     public List<T> sort(List<T> list) {

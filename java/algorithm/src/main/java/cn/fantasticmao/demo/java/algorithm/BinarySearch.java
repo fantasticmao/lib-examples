@@ -8,7 +8,7 @@ package cn.fantasticmao.demo.java.algorithm;
  */
 public class BinarySearch {
 
-    private int binarySearch(int[] arr, int low, int high, int key) {
+    public int binarySearch(int[] arr, int low, int high, int key) {
         // 参数校验
         if (arr == null || arr.length == 0 || low < 0 || high < 0) {
             return -1;
@@ -34,12 +34,4 @@ public class BinarySearch {
         }
     }
 
-
-    public static void main(String[] args) {
-        BinarySearch search = new BinarySearch();
-        int[] arr = new int[]{1, 3, 4, 6, 7, 8, 10, 13, 14, 18, 19, 21, 24, 37, 40, 45, 71};
-
-        int index = search.binarySearch(arr, 0, arr.length - 1, 7);
-        System.out.println(index);
-    }
 }

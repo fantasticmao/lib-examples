@@ -1,12 +1,6 @@
 package cn.fantasticmao.demo.java.algorithm;
 
-import org.junit.Assert;
-
-import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.Arrays;
 
 /**
  * Snowflake
@@ -61,19 +55,19 @@ public class Snowflake {
 
         final String binaryString = new String(chars);
         return String.format("raw id: %s", id) + System.lineSeparator() +
-                String.format("binary string: %s", binaryString) + System.lineSeparator() +
-                String.format("segment string: %s, %s, %s, %s",
-                        binaryString.substring(0, Snowflake.RIGHT_TIMESTAMP),
-                        binaryString.substring(Snowflake.RIGHT_TIMESTAMP, Snowflake.RIGHT_WORKER_NUMBER),
-                        binaryString.substring(Snowflake.RIGHT_WORKER_NUMBER, Snowflake.RIGHT_SEQUENCE_NUMBER),
-                        binaryString.substring(Snowflake.RIGHT_SEQUENCE_NUMBER, 64));
+            String.format("binary string: %s", binaryString) + System.lineSeparator() +
+            String.format("segment string: %s, %s, %s, %s",
+                binaryString.substring(0, Snowflake.RIGHT_TIMESTAMP),
+                binaryString.substring(Snowflake.RIGHT_TIMESTAMP, Snowflake.RIGHT_WORKER_NUMBER),
+                binaryString.substring(Snowflake.RIGHT_WORKER_NUMBER, Snowflake.RIGHT_SEQUENCE_NUMBER),
+                binaryString.substring(Snowflake.RIGHT_SEQUENCE_NUMBER, 64));
     }
 
     public synchronized long nextId() {
         long timestamp = this.timeGen();
         if (timestamp < lastTimestamp) {
             throw new IllegalArgumentException(String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
-                    lastTimestamp - timestamp));
+                lastTimestamp - timestamp));
         }
 
         if (lastTimestamp == timestamp) {
@@ -102,21 +96,4 @@ public class Snowflake {
         return timestamp;
     }
 
-    public static void main(String[] args) throws Exception {
-        final Snowflake snowflake = Snowflake.getInstance(88);
-        final int threadSize = 100;
-
-        List<Callable<Long>> tasks = new ArrayList<>(threadSize);
-        for (int i = 0; i < threadSize; i++) {
-            tasks.add(snowflake::nextId);
-        }
-        ExecutorService exec = Executors.newCachedThreadPool();
-        List<Future<Long>> idFutureList = exec.invokeAll(tasks);
-        exec.shutdown();
-        Set<Long> idList = new HashSet<>(idFutureList.size());
-        for (Future<Long> idFuture : idFutureList) {
-            idList.add(idFuture.get());
-        }
-        Assert.assertEquals(threadSize, idList.size());
-    }
 }

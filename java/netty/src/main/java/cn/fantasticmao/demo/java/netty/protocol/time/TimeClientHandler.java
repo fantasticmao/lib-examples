@@ -4,8 +4,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.embedded.EmbeddedChannel;
-import org.junit.Assert;
-import org.junit.Test;
 
 import java.util.Date;
 
@@ -24,14 +22,13 @@ public class TimeClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         ctx.close();
     }
 
-    @Test
-    public void unitTest() {
+    public static void main(String[] args) {
         EmbeddedChannel embeddedChannel = new EmbeddedChannel(new TimeClientHandler());
         ByteBuf byteBuf = embeddedChannel.alloc().buffer(Long.BYTES);
         final long timestamp = System.currentTimeMillis();
         byteBuf.writeLong(timestamp);
         embeddedChannel.writeInbound(byteBuf);
         System.out.println("write timestamp: " + timestamp);
-        Assert.assertFalse(embeddedChannel.finish());
+        assert !embeddedChannel.finish();
     }
 }

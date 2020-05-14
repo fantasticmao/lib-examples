@@ -21,32 +21,31 @@ package cn.fantasticmao.demo.java.lang.classloader;
  * </p>
  */
 public class ClassLoaderDemo {
+    static class A {
+        static {
+            System.out.println("A load ...");
+        }
+    }
+
+    static class B extends A {
+        static {
+            System.out.println("B load ...");
+        }
+    }
+
+    static class C {
+        static {
+            System.out.println("C load ...");
+        }
+
+        static final int value = 1;
+    }
 
     public static void main(String[] args) throws Exception {
-        Class.forName("priv.mm.java.classloader.B");
-        //Class.forName("priv.mm.java.classloader.B", false, ClassLoader.getSystemClassLoader());
-        ClassLoader.getSystemClassLoader().loadClass("priv.mm.java.classloader.B");
-        //ClassLoader.getSystemClassLoader().loadClass("priv.mm.java.classloader.B").newInstance();
+        Class.forName("cn.fantasticmao.demo.java.lang.classloader.ClassLoaderDemo$B");
+        //Class.forName("cn.fantasticmao.demo.java.lang.classloader.ClassLoaderDemo$B", false, ClassLoader.getSystemClassLoader());
+        ClassLoader.getSystemClassLoader().loadClass("cn.fantasticmao.demo.java.lang.classloader.ClassLoaderDemo$B");
+        //ClassLoader.getSystemClassLoader().loadClass("cn.fantasticmao.demo.java.lang.classloader.ClassLoaderDemo$B").newInstance();
         System.out.println(C.value);
     }
-}
-
-class A {
-    static {
-        System.out.println("A load ...");
-    }
-}
-
-class B extends A {
-    static {
-        System.out.println("B load ...");
-    }
-}
-
-class C {
-    static {
-        System.out.println("C load ...");
-    }
-
-    static final int value = 1;
 }

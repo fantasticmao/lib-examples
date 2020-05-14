@@ -1,6 +1,5 @@
 package cn.fantasticmao.demo.java.designpattern.proxy;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -9,7 +8,7 @@ import java.util.List;
  * @author maodh
  * @since 2017/8/13
  */
-public class SortStaticProxy<T extends Comparable> implements Sortable<T> {
+public class SortStaticProxy<T extends Comparable<?>> implements Sortable<T> {
     private Sortable<T> sortable;
 
     public SortStaticProxy(Sortable<T> sortable) {
@@ -23,11 +22,5 @@ public class SortStaticProxy<T extends Comparable> implements Sortable<T> {
         long end = System.nanoTime();
         System.out.println("spend time: " + (end - start));
         return result;
-    }
-
-    public static void main(String[] args) {
-        Sortable<Integer> sortable = new QuickSort<>();
-        Sortable<Integer> proxy = new SortStaticProxy<>(sortable);
-        proxy.sort(Collections.emptyList());
     }
 }

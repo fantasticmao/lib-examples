@@ -1,5 +1,4 @@
 module cn.fantasticmao.demo.java.designpattern {
-    requires junit;
     requires static jsr305;
 
     exports cn.fantasticmao.demo.java.designpattern.builder;

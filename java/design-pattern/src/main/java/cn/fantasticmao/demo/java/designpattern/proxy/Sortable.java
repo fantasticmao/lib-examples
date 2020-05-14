@@ -8,7 +8,7 @@ import java.util.List;
  * @author maodh
  * @since 2017/8/13
  */
-public interface Sortable<T extends Comparable> {
+public interface Sortable<T extends Comparable<?>> {
 
     List<T> sort(List<T> list);
 }

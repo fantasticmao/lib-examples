@@ -5,7 +5,6 @@ module cn.fantasticmao.demo.java.openjdk {
     requires jol.core;
     requires jmh.core;
     requires jmh.generator.annprocess;
-    requires junit;
     requires static jsr305;
 
     exports cn.fantasticmao.demo.java.openjdk.jmh;

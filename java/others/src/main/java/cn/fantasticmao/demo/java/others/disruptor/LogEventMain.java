@@ -38,13 +38,13 @@ public class LogEventMain {
             for (int i = 0; i < 100; i++) {
                 disruptor.publishEvent(eventTranslator, i);
             }
-        }).run();
+        }).start();
 
         new Thread(() -> {
             for (int i = 0; i < 100; i++) {
                 disruptor.publishEvent(eventTranslator, i);
             }
-        }).run();
+        }).start();
 
         // 注销 Disruptor
         disruptor.shutdown(1, TimeUnit.SECONDS);

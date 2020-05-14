@@ -65,10 +65,10 @@ public class LeastFrequentlyUsed<K, V> {
     @Override
     public String toString() {
         return "LeastFrequentlyUsed{" +
-                "cacheSize=" + cacheSize +
-                ", cacheMap=" + cacheMap +
-                ", countMap=" + countMap +
-                '}';
+            "cacheSize=" + cacheSize +
+            ", cacheMap=" + cacheMap +
+            ", countMap=" + countMap +
+            '}';
     }
 
     private class HitRate implements Comparable<HitRate> {
@@ -92,10 +92,10 @@ public class LeastFrequentlyUsed<K, V> {
         @Override
         public String toString() {
             return "HitRate{" +
-                    "key=" + key +
-                    ", hitCount=" + hitCount +
-                    ", lastTime=" + lastTime +
-                    '}';
+                "key=" + key +
+                ", hitCount=" + hitCount +
+                ", lastTime=" + lastTime +
+                '}';
         }
 
         void update() {
@@ -103,15 +103,5 @@ public class LeastFrequentlyUsed<K, V> {
             this.hitCount += 1;
             this.lastTime = System.nanoTime();
         }
-    }
-
-    public static void main(String[] args) {
-        LeastFrequentlyUsed<Integer, String> lfu = new LeastFrequentlyUsed<>(3);
-        lfu.put(1, "one");
-        lfu.put(2, "two");
-        lfu.put(3, "three");
-        lfu.get(1); // key 1 再次被访问，所以不会被优先淘汰
-        lfu.put(4, "four");
-        System.out.println(lfu);
     }
 }

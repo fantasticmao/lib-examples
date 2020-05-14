@@ -1,7 +1,5 @@
 package cn.fantasticmao.demo.java.lang.io;
 
-import org.junit.Test;
-
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,8 +41,7 @@ public class PrimitiveTypeDemo {
     /**
      * 使用 <code>xxd -b ${file}</code>查看二进制文件
      */
-    @Test
-    public void test() throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Map<Class<?>, Object> data = new HashMap<>();
         data.put(boolean.class, true);
         data.put(char.class, (int) 'a');
