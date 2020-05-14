@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.apache.zookeeper.config_center;
+package cn.fantasticmao.demo.java.apache.zookeeper.configcenter;
 
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
