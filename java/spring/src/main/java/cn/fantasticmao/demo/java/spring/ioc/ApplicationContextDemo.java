@@ -1,6 +1,5 @@
 package cn.fantasticmao.demo.java.spring.ioc;
 
-import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,8 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ApplicationContextDemo {
 
-    @Test
-    public void test() {
+    public static void main(String[] args) {
         // debug IoC 容器的初始化
         String configLocation = ApplicationContextDemo.class.getResource("/applicationContext.xml").toString();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(configLocation);

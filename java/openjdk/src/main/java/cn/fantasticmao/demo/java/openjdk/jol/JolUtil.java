@@ -1,7 +1,5 @@
 package cn.fantasticmao.demo.java.openjdk.jol;
 
-import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,12 +28,6 @@ public class JolUtil {
              BufferedReader bufferedReader = new BufferedReader(reader)) {
             return bufferedReader.readLine();
         }
-    }
-
-    @Test
-    public void test() throws IOException {
-        String threadInfo = JolUtil.getCurrentThreadInfo();
-        System.out.println(threadInfo);
     }
 
 }

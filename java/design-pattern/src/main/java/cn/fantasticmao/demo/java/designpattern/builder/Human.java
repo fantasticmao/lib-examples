@@ -15,7 +15,7 @@ public class Human {
         return "Human: " + firstName + "·" + lastName;
     }
 
-    private static class Builder {
+    public static class Builder {
         private Human human = new Human();
 
         public Builder firstName(String firstName) {
@@ -31,10 +31,5 @@ public class Human {
         public Human build() {
             return this.human;
         }
-    }
-
-    public static void main(String[] args) {
-        Human human = new Human.Builder().firstName("猛").lastName("毛").build();
-        System.out.println(human);
     }
 }

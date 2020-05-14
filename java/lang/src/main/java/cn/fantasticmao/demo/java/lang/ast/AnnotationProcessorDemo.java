@@ -1,7 +1,6 @@
 package cn.fantasticmao.demo.java.lang.ast;
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.util.Objects;
 
 /**
  * AnnotationProcessorDemo
@@ -28,10 +27,9 @@ public class AnnotationProcessorDemo {
         return null;
     }
 
-    @Test
-    public void test() {
+    public static void main(String[] args) {
         AnnotationProcessorDemo demo = new AnnotationProcessorDemo();
         String msg = demo.greet();
-        Assert.assertEquals("Hello 徐总", msg);
+        assert Objects.equals("Hello 徐总", msg);
     }
 }

@@ -16,11 +16,11 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.IOUtils;
-import org.junit.Assert;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 
 /**
  * LuceneDemo
@@ -66,7 +66,7 @@ public class LuceneDemo implements AutoCloseable {
             QueryParser parser = new QueryParser("fieldName", analyzer);
             Query query = parser.parse(text);
             ScoreDoc[] hits = searcher.search(query, 10).scoreDocs;
-            Assert.assertEquals(1, hits.length);
+            assert hits.length == 1;
             return searcher.doc(hits[0].doc);
         }
     }
@@ -74,10 +74,10 @@ public class LuceneDemo implements AutoCloseable {
     public static void main(String[] args) throws IOException, ParseException {
         try (LuceneDemo demo = new LuceneDemo("tempIndex")) {
             boolean result = demo.indexData("This is the text to be indexed.");
-            Assert.assertTrue(result);
+            assert result;
 
             Document document = demo.searchData("text");
-            Assert.assertEquals("This is the text to be indexed.", document.get("fieldName"));
+            assert Objects.equals("This is the text to be indexed.", document.get("fieldName"));
         }
     }
 }

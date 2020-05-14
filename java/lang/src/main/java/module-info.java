@@ -8,7 +8,6 @@ module cn.fantasticmao.demo.java.lang {
     requires net.bytebuddy;
     requires javassist;
     requires static jsr305;
-    requires junit;
 
     exports cn.fantasticmao.demo.java.lang;
     exports cn.fantasticmao.demo.java.lang.asm.bytebuddy;

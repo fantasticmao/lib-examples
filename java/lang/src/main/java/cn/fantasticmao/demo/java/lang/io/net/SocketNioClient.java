@@ -1,7 +1,5 @@
 package cn.fantasticmao.demo.java.lang.io.net;
 
-import org.junit.Assert;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -24,7 +22,7 @@ public class SocketNioClient implements Closeable {
             socketChannel.configureBlocking(true); // 阻塞连接
             boolean isConnect = socketChannel.connect(new InetSocketAddress(hostname, port));
             // 线程处于阻塞状态，直至连接成功
-            Assert.assertTrue(isConnect);
+            assert isConnect;
             System.out.println("Socket 连接成功");
         } else {
             socketChannel.configureBlocking(false); // 非阻塞连接

@@ -3,8 +3,6 @@ package cn.fantasticmao.demo.java.netty.protocol.discard;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.embedded.EmbeddedChannel;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * DiscardServerHandler
@@ -19,10 +17,9 @@ public class DiscardServerHandler extends SimpleChannelInboundHandler<String> {
         System.out.println(msg);
     }
 
-    @Test
-    public void unitTest() {
+    public static void main(String[] args) {
         EmbeddedChannel embeddedChannel = new EmbeddedChannel(new DiscardServerHandler());
         embeddedChannel.writeInbound("Hello World");
-        Assert.assertFalse(embeddedChannel.finish());
+        assert embeddedChannel.finish();
     }
 }

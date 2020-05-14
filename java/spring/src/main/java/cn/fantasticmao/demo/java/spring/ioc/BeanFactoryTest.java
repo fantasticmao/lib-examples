@@ -1,6 +1,5 @@
 package cn.fantasticmao.demo.java.spring.ioc;
 
-import org.junit.Test;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 
@@ -18,8 +17,7 @@ public class BeanFactoryTest {
      *
      * @see org.springframework.beans.factory.BeanFactory#getBean(String)
      */
-    @Test
-    public void testGetBean() {
+    public static void main(String[] args) {
         DefaultListableBeanFactory rootBeanFactory = new DefaultListableBeanFactory();
         rootBeanFactory.setSerializationId("Root BeanFactory");
 

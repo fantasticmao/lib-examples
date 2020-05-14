@@ -6,8 +6,8 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.embedded.EmbeddedChannel;
-import org.junit.Assert;
-import org.junit.Test;
+
+import java.util.Objects;
 
 /**
  * TimeServerHandler
@@ -34,12 +34,11 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
         });
     }
 
-    @Test
-    public void unitTest() {
+    public static void main(String[] args) {
         EmbeddedChannel embeddedChannel = new EmbeddedChannel(new TimeServerHandler());
-        Assert.assertTrue(embeddedChannel.finish());
+        assert embeddedChannel.finish();
         ByteBuf byteBuf = embeddedChannel.readOutbound();
-        Assert.assertEquals(Long.BYTES, byteBuf.capacity());
+        assert Objects.equals(Long.BYTES, byteBuf.capacity());
         System.out.println("read msg: " + byteBuf.readLong());
     }
 }

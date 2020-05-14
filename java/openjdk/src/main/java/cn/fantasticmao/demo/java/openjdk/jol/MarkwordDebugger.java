@@ -1,6 +1,5 @@
 package cn.fantasticmao.demo.java.openjdk.jol;
 
-import org.junit.Test;
 import org.openjdk.jol.datamodel.X86_64_DataModel;
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.layouters.HotSpotLayouter;
@@ -46,7 +45,6 @@ public class MarkwordDebugger {
         System.out.println("**** Current thread info: " + JolUtil.getCurrentThreadInfo());
     }
 
-    @Test
     public void thinLocking() {
         final Object object = new Object();
         ClassLayout layout = ClassLayout.parseInstance(object, layouter);
@@ -63,7 +61,6 @@ public class MarkwordDebugger {
         System.out.println(layout.toPrintable());
     }
 
-    @Test
     public void biasedLocking() throws InterruptedException {
         TimeUnit.SECONDS.sleep(6);
 
@@ -82,7 +79,6 @@ public class MarkwordDebugger {
         System.out.println(layout.toPrintable());
     }
 
-    @Test
     public void fatLocking() throws InterruptedException {
         final Object object = new Object();
         ClassLayout layout = ClassLayout.parseInstance(object, layouter);

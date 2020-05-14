@@ -31,12 +31,4 @@ public class LeastRecentlyUsed<K, V> extends LinkedHashMap<K, V> {
         return size() > cacheSize;
     }
 
-    public static void main(String[] args) {
-        LeastRecentlyUsed<Integer, String> lru = new LeastRecentlyUsed<>(3);
-        lru.put(1, "one");
-        lru.put(2, "two");
-        lru.put(3, "three");
-        lru.put(4, "four");
-        System.out.println(lru);
-    }
 }

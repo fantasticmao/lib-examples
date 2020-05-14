@@ -1,13 +1,12 @@
 package cn.fantasticmao.demo.java.lang.java8;
 
-import junit.framework.Assert;
-
 import java.time.*;
 import java.time.chrono.JapaneseDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Objects;
 
 /**
  * DateTimeDemo
@@ -49,7 +48,7 @@ public class DateTimeDemo {
         // You can specify the zone id when creating a zoned date time
         ZoneId id = ZoneId.of("Europe/Paris");
         ZonedDateTime zoned = ZonedDateTime.of(LocalDateTime.now(), id);
-        Assert.assertEquals(id, ZoneId.from(zoned));
+        assert Objects.equals(id, ZoneId.from(zoned));
 
 
         OffsetTime time = OffsetTime.now();
@@ -67,7 +66,7 @@ public class DateTimeDemo {
         LocalDate newDate = LocalDate.now().plus(period);
         ZonedDateTime newDateTime = ZonedDateTime.now().minus(period);
         // Components of a Period are represented by ChronoUnit values
-        Assert.assertEquals(1, period.get(ChronoUnit.DAYS));
+        assert Objects.equals(1, period.get(ChronoUnit.DAYS));
 
 
         // A duration of 3 seconds and 5 nanoseconds

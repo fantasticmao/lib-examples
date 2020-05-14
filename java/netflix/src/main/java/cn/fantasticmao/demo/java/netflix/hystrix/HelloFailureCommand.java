@@ -2,8 +2,8 @@ package cn.fantasticmao.demo.java.netflix.hystrix;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
-import org.junit.Assert;
-import org.junit.Test;
+
+import java.util.Objects;
 
 /**
  * HelloFailureCommand
@@ -29,13 +29,10 @@ public class HelloFailureCommand extends HystrixCommand<String> {
         return "Hello Failure " + name + "!";
     }
 
-    public static class UnitTest {
-
-        @Test
-        public void test() {
-            String name = "MaoMao";
-            HelloFailureCommand command = new HelloFailureCommand("MaoMao");
-            Assert.assertEquals("Hello Failure " + name + "!", command.execute());
-        }
+    public static void main(String[] args) {
+        String name = "MaoMao";
+        HelloFailureCommand command = new HelloFailureCommand("MaoMao");
+        assert Objects.equals("Hello Failure " + name + "!", command.execute());
     }
+
 }
