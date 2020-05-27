@@ -19,5 +19,6 @@
     - [spring](java/spring)
 - JavaScript
     - [lang](javascript/lang)
+    - [web-apis](javascript/web-apis)
 - Python
     - [practice](python/practice)
