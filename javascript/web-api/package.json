@@ -1,12 +1,12 @@
 {
-  "name": "javascript-lang",
+  "name": "web-api",
   "version": "1.0.0",
   "private": true,
   "description": "",
   "main": "main.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint --ext .js src/ tests/"
+    "lint": "eslint --ext .js tests/"
   },
   "author": "fantasticmao",
   "license": "GPL-3.0",
@@ -14,8 +14,12 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "babel-jest": "^26.0.1",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "eslint-config-google": "^0.14.0",
+    "fetch-mock": "^9.10.1",
     "jest": "^26.0.1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
   }
 }
