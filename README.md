@@ -1,6 +1,6 @@
 # Lib-Examples
 
-## 目录
+## Contents
 
 - Go
     - [learn-go-with-tests](go/learn-go-with-tests)
@@ -22,3 +22,9 @@
     - [web-apis](javascript/web-apis)
 - Python
     - [practice](python/practice)
+
+## Thanks
+
+Thanks to [JetBrains](https://www.jetbrains.com/?from=lib-examples) for the [Open Source License](https://www.jetbrains.com/community/opensource/) support.
+
+![intellij-idea-logo](intellij-idea.svg)
