@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.spring.ioc;
+package cn.fantasticmao.demo.java.spring.framework.ioc;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

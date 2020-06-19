@@ -7,7 +7,7 @@
         <constructor-arg value="Demo"/>
     </bean>
 
-    <bean name="user" class="cn.fantasticmao.demo.java.spring.ioc.ApplicationContextDemo.TestBean" scope="prototype">
+    <bean name="user" class="cn.fantasticmao.demo.java.spring.framework.ioc.ApplicationContextDemo.TestBean" scope="prototype">
         <property name="name" value="tom"/>
         <property name="age" value="18"/>
     </bean>

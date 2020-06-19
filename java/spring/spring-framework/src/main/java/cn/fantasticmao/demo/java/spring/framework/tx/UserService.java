@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.spring.tx;
+package cn.fantasticmao.demo.java.spring.framework.tx;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.stereotype.Service;
