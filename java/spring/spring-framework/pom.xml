@@ -6,12 +6,12 @@
         <groupId>cn.fantasticmao.demo</groupId>
         <artifactId>java</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../../</relativePath>
     </parent>
 
-    <artifactId>java-spring</artifactId>
+    <artifactId>java-spring-framework</artifactId>
 
-    <name>demo-java-spring</name>
+    <name>demo-java-spring-framework</name>
 
     <properties>
         <spring.version>4.3.18.RELEASE</spring.version>

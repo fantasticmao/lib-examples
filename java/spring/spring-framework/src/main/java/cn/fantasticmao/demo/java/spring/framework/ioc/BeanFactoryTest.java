@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.spring.ioc;
+package cn.fantasticmao.demo.java.spring.framework.ioc;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;

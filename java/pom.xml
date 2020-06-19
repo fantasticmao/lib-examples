@@ -34,7 +34,7 @@
         <module>netty</module>
         <module>openjdk</module>
         <module>others</module>
-        <module>spring</module>
+        <module>spring-framework</module>
     </modules>
 
     <build>

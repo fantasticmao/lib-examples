@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.spring.tx;
+package cn.fantasticmao.demo.java.spring.framework.tx;
 
 import com.mysql.cj.jdbc.Driver;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +34,7 @@ public class ApplicationConfiguration {
     @Bean
     public DataSource dataSource() throws SQLException {
         return new SimpleDriverDataSource(new Driver(),
-                "jdbc:mysql://localhost:3306/demo_java_spring", "root", "");
+                "jdbc:mysql://localhost:3306/demo_java_spring?useSSL=false", "root", "");
     }
 
     @Bean
