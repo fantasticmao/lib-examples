@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.spring.framework.tx;
+package cn.fantasticmao.demo.java.spring.framework.transaction;
 
 /**
  * User
