@@ -6,12 +6,12 @@
         <groupId>cn.fantasticmao.demo</groupId>
         <artifactId>java</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../../</relativePath>
+        <relativePath>../../../</relativePath>
     </parent>
 
-    <artifactId>java-spring-framework</artifactId>
+    <artifactId>java-spring-framework-data-access</artifactId>
 
-    <name>demo-java-spring-framework</name>
+    <name>demo-java-spring-framework-data-access</name>
 
     <properties>
         <spring.version>4.3.18.RELEASE</spring.version>
@@ -30,12 +30,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
         </dependency>
 
         <!-- MySQL driver dependency -->

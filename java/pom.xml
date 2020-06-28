@@ -34,7 +34,9 @@
         <module>netty</module>
         <module>openjdk</module>
         <module>others</module>
-        <module>spring-framework</module>
+        <module>spring/spring-framework/core</module>
+        <module>spring/spring-framework/data-access</module>
+        <module>spring/spring-framework/web-servlet</module>
     </modules>
 
     <build>

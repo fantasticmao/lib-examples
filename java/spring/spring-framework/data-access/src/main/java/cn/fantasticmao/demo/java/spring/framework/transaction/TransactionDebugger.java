@@ -1,14 +1,14 @@
-package cn.fantasticmao.demo.java.spring.framework.tx;
+package cn.fantasticmao.demo.java.spring.framework.transaction;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * SpringTransactionDemo
+ * TransactionDebugger
  *
  * @author maomao
  * @since 2019-08-15
  */
-public class SpringTransactionDemo {
+public class TransactionDebugger {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext

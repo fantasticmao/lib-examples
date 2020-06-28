@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.spring.framework.tx;
+package cn.fantasticmao.demo.java.spring.framework.transaction;
 
 import com.mysql.cj.jdbc.Driver;
 import org.springframework.context.annotation.Bean;
