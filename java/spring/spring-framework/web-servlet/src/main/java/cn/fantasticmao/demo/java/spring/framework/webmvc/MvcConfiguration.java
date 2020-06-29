@@ -1,7 +1,9 @@
 package cn.fantasticmao.demo.java.spring.framework.webmvc;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -48,7 +50,7 @@ public class MvcConfiguration implements WebApplicationInitializer, WebMvcConfig
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // test curl command:
-        // curl --request GET \
+        // curl -v --request GET \
         //  --url http://localhost:8080/hello \
         //  --header 'origin: https://fantasticmao.cn'
         registry.addMapping("/hello")
@@ -58,5 +60,13 @@ public class MvcConfiguration implements WebApplicationInitializer, WebMvcConfig
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index.html");
+    }
+
+    /**
+     * 支持在 Controller 方法中使用 Bean Validation
+     */
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor() {
+        return new MethodValidationPostProcessor();
     }
 }

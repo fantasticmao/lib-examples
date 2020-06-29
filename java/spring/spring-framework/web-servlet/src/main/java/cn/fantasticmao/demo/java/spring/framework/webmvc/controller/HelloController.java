@@ -13,16 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @since 2020-06-28
  */
 @Controller
+@ResponseBody
 public class HelloController {
 
     @GetMapping(value = "/hello", produces = MediaType.TEXT_PLAIN_VALUE)
-    @ResponseBody
     public String hello() {
         return "Hello Spring Web MVC!";
     }
 
     @GetMapping(value = "/say/{msg}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public String say(@PathVariable String msg) {
         return "{\"msg\":\"" + msg + "\"}";
     }
