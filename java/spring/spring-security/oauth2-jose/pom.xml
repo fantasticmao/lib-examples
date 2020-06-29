@@ -10,15 +10,8 @@
         <relativePath>../../</relativePath>
     </parent>
 
-    <artifactId>java-spring-framework-core</artifactId>
+    <artifactId>java-spring-security-oauth2-jose</artifactId>
 
-    <name>demo-java-spring-framework-core</name>
+    <name>demo-java-spring-security-oauth2-jose</name>
 
-    <dependencies>
-        <!-- Spring dependency -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-    </dependencies>
 </project>
