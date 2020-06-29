@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.spring.framework.webmvc;
+package cn.fantasticmao.demo.java.spring.framework.webmvc.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -18,13 +18,13 @@ public class HelloController {
     @GetMapping(value = "/hello", produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     public String hello() {
-        return "Hello World!";
+        return "Hello Spring Web MVC!";
     }
 
-    @GetMapping(value = "/say/{msg}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @GetMapping(value = "/say/{msg}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String say(@PathVariable String msg) {
-        return msg;
+        return "{\"msg\":\"" + msg + "\"}";
     }
 
 }
