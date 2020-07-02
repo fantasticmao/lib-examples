@@ -7,8 +7,12 @@
         <constructor-arg value="root"/>
     </bean>
 
-    <bean name="user" class="cn.fantasticmao.demo.java.spring.framework.ioc.UserBean" scope="prototype">
+    <bean name="user" class="cn.fantasticmao.demo.java.spring.framework.ioc.bean.User"
+          init-method="initMethod" destroy-method="destroyMethod">
         <property name="name" value="tom"/>
         <property name="age" value="18"/>
     </bean>
+
+    <bean class="cn.fantasticmao.demo.java.spring.framework.ioc.UserBeanPostProcessor"/>
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 </beans>
