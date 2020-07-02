@@ -15,7 +15,7 @@
     <name>demo-java-spring-framework-data-access</name>
 
     <properties>
-        <mysql.version>8.0.13</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
     </properties>
 
     <dependencies>
