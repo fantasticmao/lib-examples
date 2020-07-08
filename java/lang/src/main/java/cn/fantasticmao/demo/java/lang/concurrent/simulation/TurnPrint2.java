@@ -14,15 +14,15 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class TurnPrint2 {
 
-    private static class Task1 implements Runnable {
+    private static class Task implements Runnable {
         private final ReentrantLock lock;
-        private Condition condition;
+        private final Condition condition;
         private int count;
 
-        public Task1(ReentrantLock lock, Condition condition) {
+        public Task(ReentrantLock lock, Condition condition, int count) {
             this.lock = lock;
             this.condition = condition;
-            this.count = 0;
+            this.count = count;
         }
 
         @Override
@@ -30,37 +30,7 @@ public class TurnPrint2 {
             lock.lock();
             try {
                 for (; !Thread.currentThread().isInterrupted(); count = count + 2) {
-                    System.out.println("Task1 count: " + count);
-                    condition.signal();
-                    try {
-                        condition.await();
-                    } catch (InterruptedException e) {
-                        break;
-                    }
-                }
-            } finally {
-                lock.unlock();
-            }
-        }
-    }
-
-    private static class Task2 implements Runnable {
-        private final ReentrantLock lock;
-        private Condition condition;
-        private int count;
-
-        public Task2(ReentrantLock lock, Condition condition) {
-            this.lock = lock;
-            this.condition = condition;
-            this.count = 1;
-        }
-
-        @Override
-        public void run() {
-            lock.lock();
-            try {
-                for (; !Thread.currentThread().isInterrupted(); count = count + 2) {
-                    System.out.println("Task2 count: " + count);
+                    System.out.println(Thread.currentThread().getName() + " count: " + count);
                     condition.signal();
                     try {
                         condition.await();
@@ -78,11 +48,11 @@ public class TurnPrint2 {
         ExecutorService exec = Executors.newCachedThreadPool();
         ReentrantLock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
-        Task1 task1 = new Task1(lock, condition);
-        Task2 task2 = new Task2(lock, condition);
+        Task task1 = new Task(lock, condition, 0);
+        Task task2 = new Task(lock, condition, 1);
         exec.submit(task1);
         exec.submit(task2);
-        TimeUnit.MILLISECONDS.sleep(10);
+        TimeUnit.MILLISECONDS.sleep(50);
         exec.shutdownNow();
     }
 

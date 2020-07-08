@@ -12,13 +12,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class TurnPrint {
 
-    private static class Task1 implements Runnable {
+    private static class Task implements Runnable {
         private final Object obj;
         private int count;
 
-        public Task1(Object obj) {
+        public Task(Object obj, int count) {
             this.obj = obj;
-            this.count = 0;
+            this.count = count;
         }
 
         @Override
@@ -26,7 +26,7 @@ public class TurnPrint {
             // 获取 obj 锁
             synchronized (obj) {
                 for (; !Thread.currentThread().isInterrupted(); count = count + 2) {
-                    System.out.println("Task1 count: " + count);
+                    System.out.println(Thread.currentThread().getName() + " count: " + count);
                     // notify() 和 notifyAll() 操作不会 unlock（释放 obj 持有的锁）
                     // notify()：从 obj 的 wait set 中删除线程
                     // notifyAll()：从 obj 的 wait set 中删除所有线程
@@ -42,39 +42,14 @@ public class TurnPrint {
         }
     }
 
-    private static class Task2 implements Runnable {
-        private final Object obj;
-        private int count;
-
-        public Task2(Object obj) {
-            this.obj = obj;
-            this.count = 1;
-        }
-
-        @Override
-        public void run() {
-            synchronized (obj) {
-                for (; !Thread.currentThread().isInterrupted(); count = count + 2) {
-                    System.out.println("Task2 count: " + count);
-                    obj.notify();
-                    try {
-                        obj.wait();
-                    } catch (InterruptedException e) {
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
     public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
         Object lock = new Object();
-        Task1 task1 = new Task1(lock);
-        Task2 task2 = new Task2(lock);
+        Task task1 = new Task(lock, 0);
+        Task task2 = new Task(lock, 1);
         exec.submit(task1);
         exec.submit(task2);
-        TimeUnit.MILLISECONDS.sleep(10);
+        TimeUnit.MILLISECONDS.sleep(50);
         exec.shutdownNow();
     }
 }
