@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Transitions</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: #0000FF;
+            /* 指定 CSS 过度的属性 */
+            transition-property: background-color;
+            /* 指定 CSS 过度的时长 */
+            transition-duration: 2s;
+            /* 指定属性值变化的函数 */
+            transition-timing-function: linear;
+            /* 指定 CSS 过度的延时 */
+            transition-delay: 0.5s;
+            /*
+             * transition 是 transition-property、transition-duration、transition-timing-function、transition-delay 的缩写
+             * transition: <property> <duration> <timing-function> <delay>
+             */
+            transition: background-color 2s linear 1s;
+        }
+
+        .box:hover {
+            background-color: #FFCCCC;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+</div>
+
+</body>
+</html>
