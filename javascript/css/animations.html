@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Animations</title>
+    <style>
+        .text {
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: linear;
+            animation-name: text;
+        }
+
+        @keyframes text {
+            from {
+                margin-left: 30%;
+            }
+
+            to {
+                margin-left: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2 class="text">
+    Ball
+</h2>
+
+</body>
+</html>
