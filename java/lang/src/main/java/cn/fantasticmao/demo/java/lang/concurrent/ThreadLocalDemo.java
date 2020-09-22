@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.lang.concurrent;
 
+import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -11,16 +12,15 @@ import java.util.concurrent.Executors;
  * @since 2018/7/26
  */
 public class ThreadLocalDemo {
-    private static final ThreadLocal<Object> THREAD_LOCAL_OBJECT = ThreadLocal.withInitial(Object::new);
+    private static final ThreadLocal<Object> THREAD_LOCAL_OBJECT = new ThreadLocal<>();
     private static final InheritableThreadLocal<Object> INHERITABLE_THREAD_LOCAL_OBJECT = new InheritableThreadLocal<>();
-    private final static Object OBJ = new Object();
+    private static final Object OBJ = new Object();
 
     /**
-     * ThreadLocal 会隔离每个线程，独立创建和维护变量
+     * {@link ThreadLocal} 会隔离每个线程，独立创建和维护 {@link ThreadLocal} 中的变量
      */
     private static void threadLocal() {
         System.out.println("测试 ThreadLocal");
-
         THREAD_LOCAL_OBJECT.set(OBJ);
         System.out.printf("ThreadLocal<Object> hashCode: %d\n", THREAD_LOCAL_OBJECT.get().hashCode());
 
@@ -32,7 +32,7 @@ public class ThreadLocalDemo {
         for (int i = 0; i < poolSize * 2; i++) {
             executorService.execute(() -> {
                 System.out.printf("ThreadName: %s ThreadLocal<Object> hashCode: %d\n", Thread.currentThread().getName(),
-                        ThreadLocalDemo.THREAD_LOCAL_OBJECT.get().hashCode());
+                    Objects.hashCode(ThreadLocalDemo.THREAD_LOCAL_OBJECT.get()));
                 countDownLatch.countDown();
             });
         }
@@ -45,7 +45,7 @@ public class ThreadLocalDemo {
     }
 
     /**
-     * InheritableThreadLocal 会继承父线程中创建的变量
+     * {@link InheritableThreadLocal} 继承了 {@link ThreadLocal}，会在父子线程之间传递 {@link InheritableThreadLocal} 中的变量
      */
     private static void inheritableThreadLocal() {
         System.out.println("测试 InheritableThreadLocal");
@@ -57,7 +57,7 @@ public class ThreadLocalDemo {
         for (int i = 0; i < poolSize * 2; i++) {
             executorService.execute(() -> {
                 System.out.printf("ThreadName: %s InheritableThreadLocal<Object> hashCode: %d\n", Thread.currentThread().getName(),
-                        ThreadLocalDemo.INHERITABLE_THREAD_LOCAL_OBJECT.get().hashCode());
+                    Objects.hashCode(ThreadLocalDemo.INHERITABLE_THREAD_LOCAL_OBJECT.get()));
             });
         }
         executorService.shutdown();
