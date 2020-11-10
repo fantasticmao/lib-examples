@@ -24,7 +24,7 @@ public class ProducerAsync {
         try {
             for (int i = 0; i < 10; i++) {
                 final int index = i;
-                Message message = new Message(MqConstant.TOPIC, "tag1",
+                Message message = new Message(MqConstant.TOPIC_DEFAULT, "tag1",
                     ("Hello MQ Async " + i).getBytes(StandardCharsets.UTF_8));
                 producer.send(message, new SendCallback() {
                     @Override

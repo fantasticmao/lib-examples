@@ -21,7 +21,7 @@ public class ProducerSync {
         producer.start();
         try {
             for (int i = 0; i < 10; i++) {
-                Message message = new Message(MqConstant.TOPIC, "tag1",
+                Message message = new Message(MqConstant.TOPIC_DEFAULT, "tag1",
                     ("Hello MQ Sync " + i).getBytes(StandardCharsets.UTF_8));
                 SendResult sendResult = producer.send(message);
                 System.out.printf("%-5d %s %s %s %n", i, sendResult.getSendStatus(),
