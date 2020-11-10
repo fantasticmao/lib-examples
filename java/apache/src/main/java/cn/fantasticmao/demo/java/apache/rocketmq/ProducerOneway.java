@@ -20,7 +20,7 @@ public class ProducerOneway {
         producer.start();
         try {
             for (int i = 0; i < 10; i++) {
-                Message message = new Message(MqConstant.TOPIC, "tag1",
+                Message message = new Message(MqConstant.TOPIC_DEFAULT, "tag1",
                     ("Hello MQ Oneway " + i).getBytes(StandardCharsets.UTF_8));
                 // sendOneway 方法返回 void，所发送的消息是不可靠的
                 producer.sendOneway(message);

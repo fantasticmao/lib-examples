@@ -9,7 +9,9 @@ package cn.fantasticmao.demo.java.apache.rocketmq;
 public interface MqConstant {
     String NAME_SERVER_ADDRESS = "localhost:9876";
 
-    String TOPIC = "demo_topic";
+    // 同步消息、异步消息、单向消息
+
+    String TOPIC_DEFAULT = "topic_default";
 
     String PRODUCER_SYNC_GROUP = "producer_group_sync";
 
@@ -17,5 +19,13 @@ public interface MqConstant {
 
     String PRODUCER_ONEWAY_GROUP = "producer_group_oneway";
 
-    String CONSUMER_GROUP_DEFAULT = "consumer_group_default";
+    String CONSUMER_DEFAULT_GROUP = "consumer_group_default";
+
+    // 顺序消息
+
+    String TOPIC_ORDERED = "topic_ordered";
+
+    String PRODUCER_ORDERED_GROUP = "producer_group_ordered";
+
+    String CONSUMER_ORDERED_GROUP = "consumer_group_ordered";
 }
