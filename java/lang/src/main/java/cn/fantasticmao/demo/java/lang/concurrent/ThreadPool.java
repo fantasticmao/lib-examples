@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ThreadPool {
 
-    static class MaoMaoThreadFactory implements ThreadFactory {
+    public static class CatchableThreadFactory implements ThreadFactory {
         private static final AtomicInteger threadNumber = new AtomicInteger(0);
 
         @Override
@@ -30,7 +30,7 @@ public class ThreadPool {
     }
 
     public static void main(String[] args) {
-        MaoMaoThreadFactory threadFactory = new MaoMaoThreadFactory();
+        CatchableThreadFactory threadFactory = new CatchableThreadFactory();
         ExecutorService executorService = Executors.newFixedThreadPool(5, threadFactory);
         //ExecutorService executorService = Executors.newCachedThreadPool(threadFactory);
         //ExecutorService executorService = Executors.newSingleThreadExecutor(threadFactory);
