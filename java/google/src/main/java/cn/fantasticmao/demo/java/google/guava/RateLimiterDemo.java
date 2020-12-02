@@ -11,21 +11,17 @@ import com.google.common.util.concurrent.RateLimiter;
 public class RateLimiterDemo {
 
     public static void main(String[] args) {
-        // 1. 限制每秒钟两个请求
-        final int permitsPerSecond = 3;
+        // 每秒颁发两个令牌
+        final int permitsPerSecond = 2;
         RateLimiter limiter = RateLimiter.create(permitsPerSecond);
 
-        // 2. 受限制地执行任务
         final int size = 10;
-        final long start = System.nanoTime();
         for (int i = 0; i < size; i++) {
+            long start = System.nanoTime();
+            // 获取令牌
             limiter.acquire();
-            System.out.println("Hello " + i + ", are you OK?");
+            long end = System.nanoTime();
+            System.out.println("Hello " + i + ", " + (end - start) / Math.pow(10, 9));
         }
-        final long end = System.nanoTime();
-
-        // 3. 计算执行时间
-        // 计算结果应为  (size - 1) / permitsPerSecond
-        System.out.println((end - start) / Math.pow(10, 9));
     }
 }
