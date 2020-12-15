@@ -19,7 +19,9 @@ public interface MqConstant {
 
     String PRODUCER_ONEWAY_GROUP = "producer_group_oneway";
 
-    String CONSUMER_DEFAULT_GROUP = "consumer_group_default";
+    String CONSUMER_PUSH_GROUP = "consumer_group_push";
+
+    String CONSUMER_PULL_GROUP = "consumer_group_pull";
 
     // 顺序消息
 
