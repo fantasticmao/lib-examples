@@ -1,5 +1,4 @@
-#!/usr/local/bin/python3
-# Python 练习4 - Excel
+# Python 练习 - Excel
 
 # doc http://openpyxl.readthedocs.io/
 from openpyxl import Workbook

@@ -1,5 +1,4 @@
-#!/usr/local/bin/python3
-# Python 练习1 - 字符串和常用数据结构
+# Python 练习 - 字符串和常用数据结构
 
 import math
 

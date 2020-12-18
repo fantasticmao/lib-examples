@@ -1,5 +1,4 @@
-#!/usr/local/bin/python3
-# Python 练习3 - 文件
+# Python 练习 - 文件
 
 import time
 

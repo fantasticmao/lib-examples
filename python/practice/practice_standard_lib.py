@@ -1,5 +1,4 @@
-#!/usr/local/bin/python3
-# Python 练习5 - 标准库
+# Python 练习 - 标准库
 
 import math
 import os

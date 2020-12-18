@@ -1,5 +1,4 @@
-#!/usr/local/bin/python3
-# Python 练习6 - HTTP 和 Socket
+# Python 练习 - HTTP 和 Socket
 
 import socket
 import time

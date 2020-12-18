@@ -1,5 +1,4 @@
-#!/usr/local/bin/python3
-# Python 练习2 - 面向对象
+# Python 练习 - 面向对象
 
 
 class Person(object):
