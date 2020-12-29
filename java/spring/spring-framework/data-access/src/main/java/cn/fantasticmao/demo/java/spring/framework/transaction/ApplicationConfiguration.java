@@ -34,7 +34,7 @@ public class ApplicationConfiguration {
     @Bean
     public DataSource dataSource() throws SQLException {
         return new SimpleDriverDataSource(new Driver(),
-                "jdbc:mysql://localhost:3306/demo_java_spring?useSSL=false", "root", "");
+                "jdbc:mysql://localhost:3306/lib_examples?useSSL=false", "root", "");
     }
 
     @Bean
