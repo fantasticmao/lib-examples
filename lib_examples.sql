@@ -1,7 +1,7 @@
-CREATE DATABASE IF NOT EXISTS demo_java_spring
+CREATE DATABASE IF NOT EXISTS lib_examples
     DEFAULT CHARSET 'utf8mb4';
 
-USE demo_java_spring;
+USE lib_examples;
 
 DROP TABLE IF EXISTS user;
 
