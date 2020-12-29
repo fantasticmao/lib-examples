@@ -14,7 +14,7 @@ public class TransactionDebugger {
         AnnotationConfigApplicationContext applicationContext
                 = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         UserService userService = applicationContext.getBean(UserService.class);
-        User user = new User("Tom");
+        User user = new User("Java");
         userService.selfInvocationWillNotLeadToAnActualTransaction(user);
     }
 }
