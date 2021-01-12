@@ -9,7 +9,7 @@ import fetchMock from 'fetch-mock';
 
 test('fetch get', (done) => {
   fetchMock.mock({
-    name: 'http://example.com',
+    name: 'http://httpbin.org/get',
     method: 'GET',
   }, {
     status: 200,
@@ -23,7 +23,7 @@ test('fetch get', (done) => {
 
 test('fetch post', (done) => {
   fetchMock.mock({
-    name: 'http://example.com',
+    name: 'http://httpbin.org/get',
     method: 'POST',
   }, {
     status: 200,
