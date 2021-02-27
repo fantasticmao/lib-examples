@@ -2,6 +2,8 @@
 
 ## Contents
 
+- C
+    - [the-c-programming-language](c/the-c-programming-language)
 - Go
     - [learn-go-with-tests](go/learn-go-with-tests)
 - Java
