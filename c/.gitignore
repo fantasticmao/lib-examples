@@ -1,4 +1,5 @@
 build/
+*.dSYM
 
 ### Visual Studio Code ###
 .vscode/
