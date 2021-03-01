@@ -1,4 +1,4 @@
-/*
+/**
  * 练习 2-1
  *
  * 编写一个程序以确定分别由 signed 及 unsigned 限定的 char、short、int 与 long
