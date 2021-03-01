@@ -1,5 +1,7 @@
 package cn.fantasticmao.demo.java.algorithm;
 
+import java.util.Random;
+
 /**
  * ArraySort
  *
@@ -11,6 +13,7 @@ package cn.fantasticmao.demo.java.algorithm;
  * | 选择排序 | O(n^2)         | O(n^2)      | O(n^2)      | O(n)       | 不稳定 |
  * | 插入排序 | O(n^2)         | O(n)        | O(n^2)      | O(n)       | 稳定   |
  * | 归并排序 | O(n*log(n))    | O(n*log(n)) | O(n*log(n)) | O(n)       | 稳定   |
+ * | 快速排序 | O(n*log(n))    | O(n*log(n)) | O(n^2)      | O(n)       | 不稳定 |
  * +----------+----------------+-------------+-------------+------------+--------+
  * </pre>
  *
@@ -184,11 +187,50 @@ public interface ArraySort {
      * @see <a href="https://en.wikipedia.org/wiki/Quicksort">维基百科</a>
      */
     class QuickSort implements ArraySort {
+        private Random random = new Random();
 
         @Override
         public int[] sortArray(int[] nums) {
-            // TODO
+            quickSort(nums, 0, nums.length - 1);
             return nums;
+        }
+
+        private void quickSort(int[] nums, int start, int end) {
+            if (start < end) {
+                // 快速排序的性能与数据分布有很大关系：当数据已经完全有序时，快速排序的时间复杂度为 O(n^2)。
+                // 在算法中引入随机性，从而使得算法对于所有的数据都能获得较好的期望性能。
+                int r = random(start, end);
+                swap(nums, r, end);
+
+                // 分解为子问题，递归求解子问题
+                int pivot = partition(nums, start, end);
+                quickSort(nums, start, pivot - 1);
+                quickSort(nums, pivot + 1, end);
+            }
+        }
+
+        private int random(int from, int to) {
+            int r = random.nextInt(to - from);
+            return from + r;
+        }
+
+        private int partition(int[] nums, int start, int end) {
+            int p = nums[end];
+            int i = start;
+            for (int j = start; j < end; j++) {
+                if (nums[j] <= p) {
+                    swap(nums, i, j);
+                    i++;
+                }
+            }
+            swap(nums, i, end);
+            return i;
+        }
+
+        private void swap(int[] nums, int from, int to) {
+            int temp = nums[from];
+            nums[from] = nums[to];
+            nums[to] = temp;
         }
     }
 }

@@ -48,7 +48,6 @@ public class ArraySortTest {
         Assert.assertArrayEquals(expected, actual);
     }
 
-    @Ignore
     @Test
     public void quickSort() {
         int[] actual = new ArraySort.QuickSort().sortArray(Arrays.copyOf(array, array.length));
