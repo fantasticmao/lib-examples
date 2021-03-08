@@ -12,6 +12,7 @@
 #include <string.h>
 
 #define MAXLINE 1000
+#define STACK_SIZE 100
 
 /* _getline 函数：将一行读取 s 中，并返回其长度 */
 int _getline(char *s, int lim);
@@ -78,14 +79,14 @@ int _atoi(char *s) {
 }
 
 void _itoa(int n, char *s) {
-  const int len = (int)floor(log10(n));
-  int stack[len + 1];
-  for (int i = len; i >= 0; i--) {
-    stack[i] = n % 10;
+  int sp;
+  int stack[STACK_SIZE];
+  for (sp = 0; n > 0; sp++) {
+    stack[sp] = n % 10;
     n = n / 10;
   }
-  for (int i = 0; i <= len; i++) {
-    *s++ = stack[i] + '0';
+  for (; --sp >= 0;) {
+    *s++ = stack[sp] + '0';
   }
   *s = '\0';
 }

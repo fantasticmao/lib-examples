@@ -1,7 +1,7 @@
 /**
- * 练习 5-8
+ * 练习 5-9
  *
- * 函数 day_of_year 和 month_day 中没有进行错误检查，请解决改问题。
+ * 用指针方式代替数组下标方式改写函数 day_of_year 和 month_day。
  */
 
 #include <math.h>
@@ -37,10 +37,10 @@ int day_of_year(int year, int month, int day) {
 
   int leap = is_leap_year(year);
   day = (day < 0) ? 0 : day;
-  day = (day > daytab[leap][month]) ? daytab[leap][month] : day;
+  day = (day > *(daytab[leap] + month)) ? *(daytab[leap] + month) : day;
 
   for (int i = 1; i < month; i++) {
-    day = day + daytab[leap][i];
+    day = day + *(daytab[leap] + i);
   }
   return day;
 }
@@ -52,8 +52,8 @@ void month_day(int year, int yearday, int *pmonth, int *pday) {
   yearday = (yearday > alldays) ? alldays : yearday;
 
   int i;
-  for (i = 1; yearday > daytab[leap][i]; i++) {
-    yearday = yearday - daytab[leap][i];
+  for (i = 1; yearday > *(daytab[leap] + i); i++) {
+    yearday = yearday - *(daytab[leap] + i);
   }
   *pmonth = i;
   *pday = yearday;
