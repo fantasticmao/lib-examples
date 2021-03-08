@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 
+/* _strcat 函数：将 t 指向的字符串复制到 s 指向的字符串的尾部 */
 void _strcat(char *s, char *t);
 
 int main(int argc, char *argv[]) {

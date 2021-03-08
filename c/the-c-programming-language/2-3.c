@@ -10,6 +10,7 @@
 
 #define HEX_SIZE 16
 
+/* htoi 函数：把由十六进制数字组成的字符串转换成与之等价的整形值 */
 unsigned int htoi(const char s[]);
 
 int main(int argc, char *argv[]) {

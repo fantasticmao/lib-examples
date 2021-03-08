@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
+/* strindex 函数：返回字符串 t 在 s 中最右边出现的位置 */
 int strrindex(char s[], char t[]);
 
 int main(int argc, char* argv[]) {
