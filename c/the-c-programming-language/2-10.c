@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 
+/* lower 函数：把字符 c 转换为小写形式 */
 int lower(int c);
 
 int main(int argc, char *argv[]) {

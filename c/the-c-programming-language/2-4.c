@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 
+/* squeeze 函数：将字符串 s1 中任何与字符串 s2 中的字符匹配的字符都删除 */
 void squeeze(char s1[], char s2[]);
 
 int main(int argc, char *atgv[]) {
