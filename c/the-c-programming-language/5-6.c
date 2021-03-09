@@ -58,15 +58,15 @@ int main(int argc, char *argv[]) {
 }
 
 int _getline(char *s, int lim) {
-  char c;
-  for (; lim-- > 0 && (c = getchar()) != EOF && c != '\n';) {
+  int i, c;
+  for (i = lim; i-- > 0 && (c = getchar()) != EOF && c != '\n';) {
     *s++ = c;
   }
   if (c == '\n') {
-    *s++ = c;
+    *s = '\0';
+    i++;
   }
-  *s = '\0';
-  return MAXLINE - lim;
+  return MAXLINE - i;
 }
 
 int _atoi(char *s) {

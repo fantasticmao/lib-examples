@@ -6,6 +6,10 @@ project(the_c_programming_language)
 # specify the C standard
 set(CMAKE_C_STANDARD 99)
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE RelWithDebInfo)
+endif()
+
 # add the executable
 add_executable(2-1 2-1.c)
 add_executable(2-3 2-3.c)
@@ -25,3 +29,6 @@ add_executable(5-4 5-4.c)
 add_executable(5-5 5-5.c)
 add_executable(5-6 5-6.c)
 add_executable(5-8 5-8.c)
+add_executable(5-9 5-9.c)
+add_executable(5-10 5-10.c)
+add_executable(5-13 5-13.c)
