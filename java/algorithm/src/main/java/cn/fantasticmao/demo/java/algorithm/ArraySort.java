@@ -214,6 +214,17 @@ public interface ArraySort {
             return from + r;
         }
 
+        /**
+         * <pre>
+         *     start                          end
+         *       |                             |
+         *      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+         * nums | | | | | | | | | | | | | | | |p|
+         *      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+         *      |      i|        j|           |
+         *      |    <=p|       >p|    unknown|
+         * </pre>
+         */
         private int partition(int[] nums, int start, int end) {
             int p = nums[end];
             int i = start;
