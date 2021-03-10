@@ -8,6 +8,7 @@
 
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define STACK_SIZE 100
 
@@ -25,7 +26,7 @@ double expr(int argc, char *argv[]);
 int main(int argc, char *argv[]) {
   if (argc == 1) {
     printf("Usage: expr EXPRESSION\n");
-    return 1;
+    exit(1);
   }
   double n = expr(argc, argv);
   printf("%.2f\n", n);
@@ -52,7 +53,7 @@ double expr(int argc, char *argv[]) {
       push(c2 / c1);
     } else {
       fprintf(stderr, "error: unknow command %c\n", c);
-      break;
+      exit(3);
     }
   }
   return pop();
@@ -66,7 +67,7 @@ static int push(char c) {
     return 0;
   } else {
     fprintf(stderr, "error: stack full, can't push %d\n", c);
-    return -1;
+    exit(2);
   }
 }
 
@@ -77,6 +78,6 @@ static char pop() {
     return stack[--op];
   } else {
     fprintf(stderr, "error: stack empty\n");
-    return 0;
+    exit(2);
   }
 }
