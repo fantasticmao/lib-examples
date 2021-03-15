@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
   //     "as a latter-day Diana, a woman mistreated by her in-laws, more sinned",
   //     "against than sinning."
   // };
-  const int length = sizeof(lines) / sizeof(char *);
+  const int length = sizeof lines / sizeof(char *);
   _qsort((void **)lines, 0, length - 1,
          (int (*)(void *, void *))(numberic ? _numcmp : _strcmp));
   for (int i = 0; i < length; i++) {
