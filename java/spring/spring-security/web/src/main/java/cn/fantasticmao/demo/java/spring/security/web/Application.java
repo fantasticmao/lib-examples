@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.javaspringsecurityweb;
+package cn.fantasticmao.demo.java.spring.security.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

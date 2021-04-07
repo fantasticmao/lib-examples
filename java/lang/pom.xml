@@ -6,7 +6,7 @@
         <groupId>cn.fantasticmao.demo</groupId>
         <artifactId>java</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>java-lang</artifactId>
