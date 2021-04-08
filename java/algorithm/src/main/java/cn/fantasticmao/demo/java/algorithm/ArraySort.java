@@ -6,15 +6,16 @@ import java.util.Random;
  * ArraySort
  *
  * <pre>
- * +----------+----------------+-------------+-------------+------------+--------+
- * | 算法名称 | 平均时间复杂度 |  最好情况   |  最差情况   | 空间复杂度 | 稳定性 |
- * +----------+----------------+-------------+-------------+------------+--------+
- * | 冒泡排序 | O(n^2)         | O(n)        | O(n^2)      | O(n)       | 稳定   |
- * | 选择排序 | O(n^2)         | O(n^2)      | O(n^2)      | O(n)       | 不稳定 |
- * | 插入排序 | O(n^2)         | O(n)        | O(n^2)      | O(n)       | 稳定   |
- * | 归并排序 | O(n*log(n))    | O(n*log(n)) | O(n*log(n)) | O(n)       | 稳定   |
- * | 快速排序 | O(n*log(n))    | O(n*log(n)) | O(n^2)      | O(n)       | 不稳定 |
- * +----------+----------------+-------------+-------------+------------+--------+
+ * +----------+----------------+-------------+-------------+-------------+--------+
+ * | 算法名称 | 平均时间复杂度 |  最好情况   |  最差情况   | 空间复杂度  | 稳定性 |
+ * +----------+----------------+-------------+-------------+-------------+--------+
+ * | 冒泡排序 | O(n^2)         | O(n)        | O(n^2)      | O(1)        | 稳定   |
+ * | 选择排序 | O(n^2)         | O(n^2)      | O(n^2)      | O(1)        | 不稳定 |
+ * | 插入排序 | O(n^2)         | O(n)        | O(n^2)      | O(1)        | 稳定   |
+ * | 归并排序 | O(n*log(n))    | O(n*log(n)) | O(n*log(n)) | O(n)        | 稳定   |
+ * | 堆排序   | O(n*log(n))    | O(n*log(n)) | O(n*log(n)) | O(1)        | 不稳定 |
+ * | 快速排序 | O(n*log(n))    | O(n*log(n)) | O(n^2)      | O(n*log(n)) | 不稳定 |
+ * +----------+----------------+-------------+-------------+-------------+--------+
  * </pre>
  *
  * @author maomao
@@ -176,8 +177,82 @@ public interface ArraySort {
 
         @Override
         public int[] sortArray(int[] nums) {
-            // TODO
+            heapSort(nums);
             return nums;
+        }
+
+        /**
+         * 二叉堆中的左子节点
+         */
+        private int left(int i) {
+            return i << 1;
+        }
+
+        /**
+         * 二叉堆中的右子节点
+         */
+        private int right(int i) {
+            return (i << 1) + 1;
+        }
+
+        private void swap(int[] nums, int from, int to) {
+            int temp = nums[from];
+            nums[from] = nums[to];
+            nums[to] = temp;
+        }
+
+        /**
+         * 维护最大堆的性质：nums[parent] >= nums[children]
+         * <p>
+         * <pre>
+         *       16
+         *      /  \
+         *     14  10
+         *    / \  / \     +--+--+--+-+-+-+-+-+-+-+
+         *   8  7 9  3     |16|14|10|8|7|9|3|2|4|1|
+         *  / \ /          +--+--+--+-+-+-+-+-+-+-+
+         * 2  4 1
+         * </pre>
+         */
+        private void maxHeapify(int[] nums, int heapSize, int i) {
+            int left = left(i);
+            int right = right(i);
+            int largest = i;
+            if (left < heapSize && nums[i] < nums[left]) {
+                largest = left;
+            }
+            if (right < heapSize && nums[largest] < nums[right]) {
+                largest = right;
+            }
+            if (largest != i) {
+                swap(nums, largest, i);
+                maxHeapify(nums, heapSize, largest);
+            }
+        }
+
+        /**
+         * 建堆：用自底向上的方法，利用 {@link #maxHeapify(int[], int, int)} 把数组 nums[0...n] 转换为最大堆。
+         */
+        private void buildMaxHeapify(int[] nums) {
+            // 子数组 nums[(n/2)+1...n] 中的元素都是树的叶子结点。
+            // 建堆过程中需要对树中的非叶子节点都调用一次 maxHeapify。
+            for (int i = nums.length / 2; i >= 0; i--) {
+                maxHeapify(nums, nums.length - 1, i);
+            }
+        }
+
+        /**
+         * 堆排序算法
+         */
+        private void heapSort(int[] nums) {
+            buildMaxHeapify(nums);
+            for (int i = nums.length - 1; i > 0; i--) {
+                // 数组中的最大元素总是会在 nums[0] 位置，通过把它与 nums[n] 交换，便可以让该元素放到正确位置。
+                swap(nums, 0, i);
+                // 从堆中去掉节点 n 时，在剩余的节点中，原先根节点的子节点仍然还是最大堆，但新的根节点可能会违背最大堆的性质。
+                // 因此需要调用 maxHeapify 来在 nums[0, n-1] 节点中构造一个新的最大堆。
+                maxHeapify(nums, i, 0);
+            }
         }
     }
 

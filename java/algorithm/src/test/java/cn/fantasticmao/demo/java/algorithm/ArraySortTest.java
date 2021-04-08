@@ -1,7 +1,6 @@
 package cn.fantasticmao.demo.java.algorithm;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -41,7 +40,6 @@ public class ArraySortTest {
         Assert.assertArrayEquals(expected, actual);
     }
 
-    @Ignore
     @Test
     public void heapSort() {
         int[] actual = new ArraySort.HeapSort().sortArray(Arrays.copyOf(array, array.length));
