@@ -53,8 +53,7 @@ static int readlines(char *lines[], int maxlines) {
   int i, wc;
   char line[MAXLEN];
   for (i = maxlines; --i > 0 && (wc = readline(line, MAXLEN)) > 0; lines++) {
-    *lines = calloc(wc, sizeof(char));
-    strcpy(*lines, line);
+    *lines = strdup(line);
   }
   if (wc == 0) {
     i++;

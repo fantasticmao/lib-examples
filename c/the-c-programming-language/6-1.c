@@ -11,25 +11,24 @@
 
 #define MAXWORD 100
 
-/* getword 函数：从输入中读取下一个单词，单词可以是以字母开头的字母和数字
- * 串，也可以是一个非空白字符。函数返回值可能是单词的第一个字符、文件结束符
- * EOF 或字符本身。
+/* getword 函数：从 C 语言程序源文件中读取下一个单词，单词可以是以字母开头
+ * 的字母和数字串，也可以是一个非空白字符。函数返回值可能是单词的第一个字符、
+ * 文件结束符 EOF 或字符本身。
  */
 int getword(char *word, int lim, FILE *fp);
 
 int main(int argc, char *argv[]) {
-  if (argc > 1) {
-    FILE *fp = fopen(argv[1], "r");
-    char word[MAXWORD];
-    int c;
-    for (; (c = getword(word, MAXWORD, fp)) != EOF;) {
-      if (isalnum(c)) {
-        printf("%s\n", word);
-      }
-    }
-  } else {
+  if (argc <= 1) {
     fprintf(stderr, "usage: %s test.c \n", argv[0]);
-    exit(2);
+    return 1;
+  }
+  FILE *fp = fopen(argv[1], "r");
+  char word[MAXWORD];
+  int c;
+  for (; (c = getword(word, MAXWORD, fp)) != EOF;) {
+    if (isalnum(c)) {
+      printf("%s\n", word);
+    }
   }
   return 0;
 }
