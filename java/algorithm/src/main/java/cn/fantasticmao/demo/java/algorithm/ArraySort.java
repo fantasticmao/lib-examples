@@ -196,9 +196,11 @@ public interface ArraySort {
         }
 
         private void swap(int[] nums, int from, int to) {
-            int temp = nums[from];
-            nums[from] = nums[to];
-            nums[to] = temp;
+            if (from != to) {
+                int temp = nums[from];
+                nums[from] = nums[to];
+                nums[to] = temp;
+            }
         }
 
         /**
@@ -302,21 +304,23 @@ public interface ArraySort {
          */
         private int partition(int[] nums, int start, int end) {
             int p = nums[end];
-            int i = start;
-            for (int j = start; j < end; j++) {
+            int i = start - 1, j = start;
+            for (; j < end; j++) {
                 if (nums[j] <= p) {
-                    swap(nums, i, j);
                     i++;
+                    swap(nums, i, j);
                 }
             }
-            swap(nums, i, end);
-            return i;
+            swap(nums, i + 1, end);
+            return i + 1;
         }
 
         private void swap(int[] nums, int from, int to) {
-            int temp = nums[from];
-            nums[from] = nums[to];
-            nums[to] = temp;
+            if (from != to) {
+                int temp = nums[from];
+                nums[from] = nums[to];
+                nums[to] = temp;
+            }
         }
     }
 }
