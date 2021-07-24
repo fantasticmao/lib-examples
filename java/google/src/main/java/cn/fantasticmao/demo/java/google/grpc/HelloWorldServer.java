@@ -21,9 +21,9 @@ public class HelloWorldServer {
 
     private void start(int port) throws IOException {
         server = ServerBuilder.forPort(port)
-                .addService(new GreeterImpl())
-                .build()
-                .start();
+            .addService(new GreeterImpl())
+            .build()
+            .start();
         System.out.println("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.err.println("*** shutting down gRPC server since JVM is shutting down");
@@ -49,7 +49,20 @@ public class HelloWorldServer {
         public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
             System.out.println("*** receive a new message");
 
-            HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();
+            HelloReply reply = HelloReply.newBuilder()
+                .setMessage("Hello " + req.getName())
+                .build();
+            responseObserver.onNext(reply);
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void sayHelloAgain(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
+            System.out.println("*** receive a new message");
+
+            HelloReply reply = HelloReply.newBuilder()
+                .setMessage("Hello again " + req.getName())
+                .build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }
