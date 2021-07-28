@@ -26,9 +26,9 @@ public class HelloWorldServer {
             .start();
         System.out.println("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.err.println("*** shutting down gRPC server since JVM is shutting down");
+            System.out.println("*** shutting down gRPC server since JVM is shutting down");
             HelloWorldServer.this.stop();
-            System.err.println("*** server shut down");
+            System.out.println("*** server shut down");
         }));
     }
 
