@@ -16,11 +16,14 @@ import java.util.concurrent.TimeUnit;
  * @since 20/06/2018
  */
 public class HelloWorldClient {
-    private ManagedChannel managedChannel;
-    private GreeterGrpc.GreeterBlockingStub blockingStub;
+    private final ManagedChannel managedChannel;
+    private final GreeterGrpc.GreeterBlockingStub blockingStub;
 
     public HelloWorldClient(String host, int port) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+        ManagedChannel channel = ManagedChannelBuilder
+            .forAddress(host, port)
+            .usePlaintext()
+            .build();
         this.managedChannel = channel;
         this.blockingStub = GreeterGrpc.newBlockingStub(channel);
     }

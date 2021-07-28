@@ -14,41 +14,34 @@
     <name>demo-java-google</name>
 
     <properties>
-        <google.grpc.version>1.12.0</google.grpc.version>
-        <google.protoc.version>3.5.1</google.protoc.version>
-        <google.protobuf.version>3.5.1</google.protobuf.version>
-        <google.guava.version>29.0-jre</google.guava.version>
+        <google.protobuf.version>3.15.3</google.protobuf.version>
+        <google.protoc.version>3.15.3</google.protoc.version>
+        <google.grpc.version>1.39.0</google.grpc.version>
+        <google.guava.version>30.1.1-jre</google.guava.version>
         <google.auto-service.version>1.0-rc6</google.auto-service.version>
     </properties>
 
     <build>
         <extensions>
+            <!-- For protobuf-based codegen plugin -->
             <extension>
                 <groupId>kr.motd.maven</groupId>
                 <artifactId>os-maven-plugin</artifactId>
-                <version>1.5.0.Final</version>
+                <version>1.6.2</version>
             </extension>
         </extensions>
 
         <plugins>
-            <!-- Protocol Buffers plugin -->
+            <!-- For protobuf-based codegen plugin -->
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.5.1</version>
+                <version>0.6.1</version>
                 <executions>
                     <execution>
-                        <id>protoc compile</id>
                         <goals>
                             <goal>compile</goal>
                             <goal>compile-custom</goal>
-                        </goals>
-                    </execution>
-
-                    <execution>
-                        <id>protoc test compile</id>
-                        <goals>
-                            <goal>test-compile</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -67,16 +60,17 @@
     </build>
 
     <dependencies>
-        <!-- Google gRpc dependency -->
+        <!-- Google Protocol Buffers dependency -->
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>${google.protobuf.version}</version>
         </dependency>
 
+        <!-- Google gRPC dependency -->
         <dependency>
             <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty</artifactId>
+            <artifactId>grpc-netty-shaded</artifactId>
             <version>${google.grpc.version}</version>
         </dependency>
 
