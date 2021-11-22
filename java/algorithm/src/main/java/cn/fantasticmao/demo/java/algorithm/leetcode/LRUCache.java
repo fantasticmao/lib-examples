@@ -66,14 +66,14 @@ public class LRUCache {
             node.value = value;
             this.moveToFront(node);
         } else { // insert
-            node = new DoubleLinkedNode(key, value);
-            this.pushFront(node);
-            cache.put(key, node);
-            if (cache.size() > this.capacity) { // evict
+            if (cache.size() >= this.capacity) { // evict
                 DoubleLinkedNode lastNode = this.tail.prev;
                 this.deleteAt(lastNode);
                 cache.remove(lastNode.key);
             }
+            node = new DoubleLinkedNode(key, value);
+            this.pushFront(node);
+            cache.put(key, node);
         }
     }
 
