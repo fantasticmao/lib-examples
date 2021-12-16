@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Sortable
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/8/13
  */
 public interface Sortable<T extends Comparable<?>> {

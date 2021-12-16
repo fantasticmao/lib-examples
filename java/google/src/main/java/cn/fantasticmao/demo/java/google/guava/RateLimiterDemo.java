@@ -5,7 +5,7 @@ import com.google.common.util.concurrent.RateLimiter;
 /**
  * RateLimiterDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/12/10
  */
 public class RateLimiterDemo {

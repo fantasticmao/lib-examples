@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * SortStaticProxy
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/8/13
  */
 public class SortStaticProxy<T extends Comparable<?>> implements Sortable<T> {

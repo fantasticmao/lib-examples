@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * HelloAnnotation
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-01-09
  */
 @Target(ElementType.TYPE)

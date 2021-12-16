@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  *      narrowOop:32 unused:24 cms_free:1 unused:4 promo_bits:3 ----->| (COOPs && CMS promoted object)
  *      unused:21 size:35 -->| cms_free:1 unused:7 ------------------>| (COOPs && CMS free block)</pre>
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://openjdk.java.net/projects/code-tools/jol/">OpenJDK: Java Object Layout</a>
  * @see <a href="http://hg.openjdk.java.net/jdk8/jdk8/hotspot/file/87ee5ee27509/src/share/vm/oops/markOop.hpp">OpenJDK: markOop.hpp</a>
  * @since 2018/8/22

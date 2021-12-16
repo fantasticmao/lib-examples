@@ -19,7 +19,7 @@ import java.util.Scanner;
  * <li>如果想从某个 Web 资源获取更多信息，那么应该使用 {@link URLConnection} 类，通过它能够得到比基本的 URL 类更多的控制功能。</li>
  * </ul>
  *
- * @author maodh
+ * @author fantasticmao
  * @see java.net.URL
  * @see java.net.URLConnection
  * @see java.net.HttpURLConnection

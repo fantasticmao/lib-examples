@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Deadlock
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/7/5
  */
 public class Deadlock {

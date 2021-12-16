@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 /**
  * InterceptorByMethodDelegation
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-03-23
  */
 public class InterceptorByMethodDelegation {

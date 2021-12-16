@@ -5,7 +5,7 @@ import java.util.Observable;
 /**
  * Message
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/7/16
  */
 public class Message extends Observable {

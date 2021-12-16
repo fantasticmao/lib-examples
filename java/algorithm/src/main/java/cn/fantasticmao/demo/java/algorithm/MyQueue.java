@@ -23,7 +23,7 @@ package cn.fantasticmao.demo.java.algorithm;
  *           tail       head
  * </pre>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-05-01
  */
 public class MyQueue {

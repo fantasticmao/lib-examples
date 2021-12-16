@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 二叉搜索树
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2017.02.03
  */
 public class BinaryTree {

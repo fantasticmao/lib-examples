@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * DebugGetBeanInParentBeanFactory
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-01-12
  */
 public class DebugGetBeanInParentBeanFactory {

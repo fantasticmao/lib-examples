@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * 使用泛型类时，必须在创建对象时指定类型参数；而使用泛型方法时，不必指定类型参数，由编译器决定。
  * </p>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.12.30
  */
 public class GenericDemo {

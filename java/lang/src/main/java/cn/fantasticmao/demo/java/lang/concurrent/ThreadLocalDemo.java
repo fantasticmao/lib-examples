@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 /**
  * ThreadLocalDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/7/26
  */
 public class ThreadLocalDemo {

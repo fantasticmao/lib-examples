@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * LFUCacheTest
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2021/11/22
  */
 public class LFUCacheTest {

@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * PubSubDemo
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-06-16
  */
 public class PubSubDemo extends JedisPubSub {

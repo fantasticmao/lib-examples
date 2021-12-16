@@ -14,7 +14,7 @@ import java.util.concurrent.locks.Lock;
 /**
  * DistributedRedisLock 单机 Redis 的分布式锁实现
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/23
  */
 public class DistributedRedisLock implements Lock {

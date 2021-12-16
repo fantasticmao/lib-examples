@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * CyclicBarrierDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @see java.util.concurrent.CyclicBarrier
  * @since 2018/7/8
  */

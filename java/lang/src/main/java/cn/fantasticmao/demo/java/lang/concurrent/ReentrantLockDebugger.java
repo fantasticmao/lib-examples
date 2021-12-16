@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * ReentrantLockDebugger
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-05-29
  */
 public class ReentrantLockDebugger {

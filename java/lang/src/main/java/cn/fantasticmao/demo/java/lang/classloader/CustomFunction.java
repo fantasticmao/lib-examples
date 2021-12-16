@@ -5,7 +5,7 @@ import java.util.function.Function;
 /**
  * CustomFunction
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class CustomFunction implements Function<String, Object> {

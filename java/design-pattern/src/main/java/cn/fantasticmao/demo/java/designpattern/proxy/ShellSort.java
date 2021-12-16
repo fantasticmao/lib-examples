@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * ShellSort
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/8/13
  */
 public class ShellSort<T extends Comparable<?>> implements Sortable<T> {

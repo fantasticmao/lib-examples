@@ -10,7 +10,7 @@ import java.net.Socket;
 /**
  * SocketBioServerUseMultipleThread
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://javadoop.com/post/java-nio">Java NIO：Buffer、Channel 和 Selector </a>
  * @see <a href="https://javadoop.com/post/nio-and-aio">Java 非阻塞 IO 和异步 IO</a>
  * @see <a href="https://www.ibm.com/developerworks/java/library/j-javaio/">多路复用 IO</a>

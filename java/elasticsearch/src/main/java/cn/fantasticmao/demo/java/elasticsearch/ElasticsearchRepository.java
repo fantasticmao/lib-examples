@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * ElasticsearchRepository
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-09-12
  */
 public class ElasticsearchRepository implements AutoCloseable {

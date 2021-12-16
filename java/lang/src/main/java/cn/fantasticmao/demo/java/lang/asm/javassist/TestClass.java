@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.lang.asm.javassist;
 /**
  * TestClass
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-08-28
  */
 public class TestClass {

@@ -5,7 +5,7 @@ import java.util.ServiceLoader;
 /**
  * Main
  *
- * @author maomao
+ * @author fantasticmao
  * @see java.util.ServiceLoader
  * @see java.sql.DriverManager#loadInitialDrivers
  * @since 2020-01-02

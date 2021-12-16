@@ -4,7 +4,7 @@ package cn.fantasticmao.demo.java.lang.generic;
  * 擦除丢失了`泛型参数`的确切信息
  * {@code new T()}、{@code arg instanceof T} 都无法通过编译。
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2017.1.2
  */
 public class ClassGenerator {

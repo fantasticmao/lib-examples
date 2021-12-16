@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * BinarySearchTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class BinarySearchTest {

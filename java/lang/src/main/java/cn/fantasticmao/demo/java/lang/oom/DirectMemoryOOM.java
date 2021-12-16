@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
  * DirectMemoryOOM
  * -Xmx20M -XX:MaxDirectMemorySize=10M
  *
- * @author maodh
+ * @author fantasticmao
  * @since 22/05/2018
  */
 public class DirectMemoryOOM {

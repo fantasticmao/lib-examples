@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * HttpServerHandler
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/2/2
  */
 public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {

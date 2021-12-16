@@ -5,7 +5,7 @@ import com.lmax.disruptor.EventHandler;
 /**
  * LogEventConsumer
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-11-18
  */
 public class LogEventConsumer implements EventHandler<LogEvent> {

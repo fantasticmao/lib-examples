@@ -21,7 +21,7 @@ import java.util.stream.Stream;
  * </ul>
  * </p>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.11.10
  */
 public class StreamDemo {

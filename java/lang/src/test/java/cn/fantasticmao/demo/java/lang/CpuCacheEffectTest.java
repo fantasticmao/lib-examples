@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 /**
  * CpuCacheEffectTest
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="https://coolshell.cn/articles/10249.html">7个示例科普CPU CACHE</a>
  * @since 2020-05-14
  */

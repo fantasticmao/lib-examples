@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * HelloWorldClient
  *
- * @author maodh
+ * @author fantasticmao
  * @since 20/06/2018
  */
 public class HelloWorldClient {

@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * HashMapDebugger
  *
- * @author maodh
+ * @author fantasticmao
  * @since 12/02/2018
  */
 public class HashMapDebugger {

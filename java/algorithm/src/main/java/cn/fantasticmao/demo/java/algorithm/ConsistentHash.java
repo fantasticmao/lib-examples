@@ -8,7 +8,7 @@ import java.util.TreeMap;
  * ConsistentHash
  *
  * @param <T> 缓存节点
- * @author maomao
+ * @author fantasticmao
  * @see <a href="https://en.wikipedia.org/wiki/Consistent_hashing">Consistent hashing</a>
  * @since 2020-12-04
  */

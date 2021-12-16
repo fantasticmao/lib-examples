@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.lang.generic;
 /**
  * 使用 javap -c GenericHolder
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2017.01.02
  */
 public class GenericHolder<T> {

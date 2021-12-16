@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * ZooKeeperLockDemo
  * 使用 <code>Apache Curator</code> 互斥锁来构建应用
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://curator.apache.org/">Apache Curator</a>
  * @since 2018/9/19
  */

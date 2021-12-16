@@ -18,7 +18,7 @@ package cn.fantasticmao.demo.java.algorithm;
  *     <li>循环链表</li>
  * </ol>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-05-01
  */
 public class MyLinkedList {

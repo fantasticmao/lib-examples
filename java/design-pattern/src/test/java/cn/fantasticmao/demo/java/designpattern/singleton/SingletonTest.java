@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * SingletonTest
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/4
  */
 public class SingletonTest {

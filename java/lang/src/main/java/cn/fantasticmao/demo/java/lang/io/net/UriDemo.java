@@ -10,7 +10,7 @@ import java.net.URI;
  * <li>URI 类的另一个作用是处理绝对标识符和相对标识符。</li>
  * </ul>
  *
- * @author maodh
+ * @author fantasticmao
  * @since 22/02/2018
  */
 public class UriDemo {

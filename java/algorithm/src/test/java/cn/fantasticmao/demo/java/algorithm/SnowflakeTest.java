@@ -12,7 +12,7 @@ import java.util.concurrent.*;
 /**
  * SnowflakeTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class SnowflakeTest {

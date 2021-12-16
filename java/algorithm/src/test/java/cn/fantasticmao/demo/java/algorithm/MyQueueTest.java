@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * MyQueueTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-05-01
  */
 public class MyQueueTest {

@@ -8,7 +8,7 @@ import org.apache.zookeeper.ZooKeeper;
 /**
  * SimpleWatcherDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/9/17
  */
 public class SimpleWatcherDemo {

@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * BloomFilterDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://china.googleblog.com/2007/07/bloom-filter_7469.html">数学之美系列二十一 － 布隆过滤器（Bloom Filter）</a>
  * @since 2018/11/8
  */

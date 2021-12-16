@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 /**
  * SkipListDemo
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-09-16
  */
 public class SkipListDemo {

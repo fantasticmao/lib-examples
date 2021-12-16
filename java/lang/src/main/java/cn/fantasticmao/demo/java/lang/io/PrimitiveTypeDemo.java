@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * PrimitiveTypeDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @see DataOutputStream#writeBoolean(boolean)
  * @see DataOutputStream#writeChar(int)
  * @see DataOutputStream#writeByte(int)

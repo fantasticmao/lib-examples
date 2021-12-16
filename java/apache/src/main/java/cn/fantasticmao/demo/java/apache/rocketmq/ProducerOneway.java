@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * ProducerOneway
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-11-10
  */
 public class ProducerOneway {

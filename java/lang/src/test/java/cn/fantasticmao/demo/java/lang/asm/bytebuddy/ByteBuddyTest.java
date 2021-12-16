@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * ByteBuddyTest
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="http://bytebuddy.net/#/tutorial">Byte Buddy Tutorial</a>
  * @since 2020-05-14
  */

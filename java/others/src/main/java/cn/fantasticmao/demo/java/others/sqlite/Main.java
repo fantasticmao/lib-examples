@@ -5,7 +5,7 @@ import java.sql.*;
 /**
  * Main
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-06-17
  */
 public class Main {

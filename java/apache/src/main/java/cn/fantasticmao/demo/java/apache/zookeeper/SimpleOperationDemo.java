@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * SimpleOperationDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://zookeeper.apache.org/doc/current/index.html">ZooKeeper</a>
  * @since 2018/9/17
  */

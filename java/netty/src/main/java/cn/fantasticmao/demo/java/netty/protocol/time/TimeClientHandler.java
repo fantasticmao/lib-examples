@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * TimeClientHandler
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/6/25
  */
 public class TimeClientHandler extends SimpleChannelInboundHandler<ByteBuf> {

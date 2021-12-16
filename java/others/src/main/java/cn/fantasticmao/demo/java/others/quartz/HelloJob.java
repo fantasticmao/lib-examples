@@ -7,7 +7,7 @@ import org.quartz.JobExecutionException;
 /**
  * HelloJob
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-04-07
  */
 public class HelloJob implements Job {

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Matrix 矩阵
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/7/8
  */
 public interface Matrix<E> extends Serializable {

@@ -14,7 +14,7 @@ import java.io.*;
  * </pre>
  * </p>
  *
- * @author maodh
+ * @author fantasticmao
  * @see java.util.Date
  * @see IoStreamHookDemo.User#readObject(byte[])
  * @see IoStreamHookDemo.User#writeObject(User)

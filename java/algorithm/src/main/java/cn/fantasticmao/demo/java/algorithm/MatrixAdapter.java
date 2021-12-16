@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.algorithm;
 /**
  * MatrixAdapter
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/7/8
  */
 public class MatrixAdapter<E> implements Matrix {

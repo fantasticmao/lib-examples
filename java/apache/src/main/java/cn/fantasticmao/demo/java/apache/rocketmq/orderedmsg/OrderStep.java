@@ -5,7 +5,7 @@ package cn.fantasticmao.demo.java.apache.rocketmq.orderedmsg;
  * <p>
  * 订单顺序：创建 -> 支付 -> 完成
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-11-11
  */
 public class OrderStep {

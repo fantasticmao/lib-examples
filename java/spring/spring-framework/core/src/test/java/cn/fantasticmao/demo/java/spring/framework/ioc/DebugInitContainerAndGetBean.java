@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * DebugInitContainerAndGetBean
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-01-12
  */
 public class DebugInitContainerAndGetBean {

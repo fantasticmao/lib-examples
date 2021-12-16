@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.lang.spi;
 /**
  * HelloSam
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-01-02
  */
 public class HelloSam implements Hello {

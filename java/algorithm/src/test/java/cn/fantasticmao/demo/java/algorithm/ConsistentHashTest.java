@@ -9,7 +9,7 @@ import java.util.Arrays;
 /**
  * ConsistentHashTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-12-17
  */
 public class ConsistentHashTest {

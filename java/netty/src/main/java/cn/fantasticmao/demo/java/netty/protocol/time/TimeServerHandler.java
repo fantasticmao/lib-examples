@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * TimeServerHandler
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/6/25
  */
 public class TimeServerHandler extends ChannelInboundHandlerAdapter {

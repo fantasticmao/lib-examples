@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * ListForEachTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-11-14
  */
 public class ListForEachTest {

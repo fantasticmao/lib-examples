@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * HumanTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class HumanTest {

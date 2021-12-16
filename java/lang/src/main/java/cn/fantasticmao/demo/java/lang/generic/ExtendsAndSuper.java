@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.lang.generic;
 /**
  * ExtendsAndSuper
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2017.1.15
  */
 public class ExtendsAndSuper {

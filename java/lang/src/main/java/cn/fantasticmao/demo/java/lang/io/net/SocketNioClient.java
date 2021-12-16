@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * SocketNioClient
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/7
  */
 public class SocketNioClient implements Closeable {

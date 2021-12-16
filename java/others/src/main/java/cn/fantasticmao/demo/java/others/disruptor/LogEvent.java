@@ -6,7 +6,7 @@ import com.lmax.disruptor.EventTranslatorOneArg;
 /**
  * LogEvent
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-09-01
  */
 public class LogEvent {

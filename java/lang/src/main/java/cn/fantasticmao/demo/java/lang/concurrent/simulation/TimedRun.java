@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * TimedRun
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/3
  */
 public class TimedRun {

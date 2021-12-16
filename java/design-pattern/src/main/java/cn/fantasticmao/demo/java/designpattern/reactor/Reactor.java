@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Reactor
  *
- * @author maodh
+ * @author fantasticmao
  * @since 23/02/2018
  */
 public class Reactor implements Runnable {

@@ -7,7 +7,7 @@ import java.util.concurrent.*;
 /**
  * RateLimiterByBucket
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-12-02
  */
 public class RateLimiterByBucket {

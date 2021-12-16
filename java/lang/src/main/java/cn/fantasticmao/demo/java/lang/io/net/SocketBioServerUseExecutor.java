@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 /**
  * SocketBioServerUseExecutor
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/7
  */
 public class SocketBioServerUseExecutor {

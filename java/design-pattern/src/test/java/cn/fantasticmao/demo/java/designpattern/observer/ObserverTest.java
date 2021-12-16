@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * ObserverTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class ObserverTest {

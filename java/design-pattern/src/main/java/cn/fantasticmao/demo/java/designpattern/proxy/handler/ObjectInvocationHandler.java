@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationHandler;
 /**
  * ObjectInvocationHandler
  *
- * @author maodh
+ * @author fantasticmao
  * @since 11/06/2018
  */
 public abstract class ObjectInvocationHandler implements InvocationHandler {

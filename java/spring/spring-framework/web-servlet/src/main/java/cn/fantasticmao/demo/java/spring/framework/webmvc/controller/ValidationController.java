@@ -13,7 +13,7 @@ import javax.validation.constraints.Positive;
 /**
  * ValidationController 校验请求参数
  *
- * @author maomao
+ * @author fantasticmao
  * @see MvcConfiguration#methodValidationPostProcessor()
  * @see <a href="https://docs.spring.io/spring/docs/5.2.6.RELEASE/spring-framework-reference/web.html#mvc-config-validation">Validation</a>
  * @since 2020-06-29

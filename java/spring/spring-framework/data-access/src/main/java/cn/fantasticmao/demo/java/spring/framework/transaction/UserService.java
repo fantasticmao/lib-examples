@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * UserService
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-08-15
  */
 public interface UserService {

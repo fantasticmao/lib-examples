@@ -18,7 +18,7 @@ import java.net.InetSocketAddress;
  * Server
  * Test Command: <code>telnet localhost 9999</code>
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/2/2
  */
 public class Server {

@@ -15,7 +15,7 @@
  * <p>{@link org.springframework.web.filter.DelegatingFilterProxy} 类继承了 {@code GenericFilterBean} 抽象类，
  * 支持将 Servlet Filter 委托给 Spring IoC 容器中的 Bean 来实现。
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-06-30
  */
 package cn.fantasticmao.demo.java.spring.framework.webmvc.filter;

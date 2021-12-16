@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * <li>缓冲区为满时，生产者必须等待消费者</li>
  * </ul>
  *
- * @author maomao
+ * @author fantasticmao
  * @see Buffer 缓冲区
  * @see Producer 生产者
  * @see Consumer 消费者

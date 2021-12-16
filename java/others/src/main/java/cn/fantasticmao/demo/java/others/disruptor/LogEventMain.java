@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * LogEventMain
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-09-01
  */
 public class LogEventMain {

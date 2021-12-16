@@ -7,7 +7,7 @@ import java.util.Collections;
 /**
  * SortProxyTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class SortProxyTest {

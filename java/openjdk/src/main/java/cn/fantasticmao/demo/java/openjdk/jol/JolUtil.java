@@ -9,7 +9,7 @@ import java.lang.management.ManagementFactory;
 /**
  * JolUtil
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-11
  */
 public class JolUtil {

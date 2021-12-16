@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * <li></li>
  * </ol>
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/12/22
  */
 public class ObjectAllocateStrategy {

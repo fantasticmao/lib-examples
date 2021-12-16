@@ -25,7 +25,7 @@ import java.util.Objects;
 /**
  * LuceneDemo
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-03-10
  */
 public class LuceneDemo implements AutoCloseable {

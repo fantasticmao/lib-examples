@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.lang.classloader;
 /**
  * ContextClassLoaderDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/7/19
  */
 public class ContextClassLoaderDemo {

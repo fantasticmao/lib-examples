@@ -5,7 +5,7 @@ import net.bytebuddy.asm.Advice;
 /**
  * InterceptionByAdvice
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-03-23
  */
 public class InterceptionByAdvice {
