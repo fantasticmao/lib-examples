@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  * <p>Java 方法传递的参数实质是引用的副本</p>
  *
- * @author MaoMao
+ * @author fantasticmao
  * @since 2016.10.29
  */
 public class ParameterReference {

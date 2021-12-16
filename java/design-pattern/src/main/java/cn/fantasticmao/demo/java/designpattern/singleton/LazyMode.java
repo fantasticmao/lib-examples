@@ -5,7 +5,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 /**
  * LazyMode
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/4
  */
 @NotThreadSafe

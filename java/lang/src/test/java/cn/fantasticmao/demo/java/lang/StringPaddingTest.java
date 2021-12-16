@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * StringPaddingTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class StringPaddingTest {

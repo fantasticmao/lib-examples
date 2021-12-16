@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.spring.framework.ioc.bean;
 /**
  * NestedBeanA
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-01-12
  */
 public class NestedBeanA {

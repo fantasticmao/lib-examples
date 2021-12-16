@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * HelloFailureCommand
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/12/20
  */
 public class HelloFailureCommand extends HystrixCommand<String> {

@@ -16,7 +16,7 @@ import java.sql.SQLException;
 /**
  * ApplicationConfiguration
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-08-16
  */
 @Configuration

@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 /**
  * UserDao
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-08-15
  */
 public interface UserDao {

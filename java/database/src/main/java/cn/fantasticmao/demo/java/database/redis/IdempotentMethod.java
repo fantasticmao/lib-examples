@@ -6,7 +6,7 @@ import redis.clients.jedis.params.SetParams;
 /**
  * Idempotent Method
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-01-11
  */
 public class IdempotentMethod implements AutoCloseable {

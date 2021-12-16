@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * GeneralControllerAdvice
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="https://docs.spring.io/spring/docs/5.2.6.RELEASE/spring-framework-reference/web.html#mvc-ann-controller-advice">Controller Advice</a>
  * @since 2020-06-29
  */

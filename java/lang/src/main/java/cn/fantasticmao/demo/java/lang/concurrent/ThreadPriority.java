@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * ThreadPriority
  * 进程优先级
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.10.02
  */
 public class ThreadPriority implements Runnable {

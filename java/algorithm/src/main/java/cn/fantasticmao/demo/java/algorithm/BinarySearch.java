@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.algorithm;
 /**
  * BinarySearch
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/9/25
  */
 public class BinarySearch {

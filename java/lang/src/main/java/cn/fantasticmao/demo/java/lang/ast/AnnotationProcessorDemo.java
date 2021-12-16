@@ -14,7 +14,7 @@ import java.util.Objects;
  *     <li>--add-exports jdk.compiler/com.sun.tools.javac.util=cn.fantasticmao.demo.java.lang</li>
  * </ul>
  *
- * @author maomao
+ * @author fantasticmao
  * @see HelloAnnotation
  * @see HelloProcessor
  * @since 2020-01-10

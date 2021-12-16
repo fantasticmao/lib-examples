@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * AnniversaryCalculator
  *
- * @author maodh
+ * @author fantasticmao
  * @since 11/03/2018
  */
 public class AnniversaryCalculator {

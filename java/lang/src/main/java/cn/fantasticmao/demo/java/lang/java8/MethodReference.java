@@ -12,7 +12,7 @@ import java.util.Set;
  * 3. 引用特定类型的任意对象的实例方法
  * 4. 引用构造方法
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html">官方文档</a>
  * @since 2016.11.10
  */

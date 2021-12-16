@@ -6,7 +6,7 @@ import java.io.InputStream;
 /**
  * CustomClassLoader
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class CustomClassLoader extends ClassLoader {

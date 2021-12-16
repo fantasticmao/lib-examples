@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * IteratorDemo
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.11.09
  */
 public class IteratorDemo {

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * ReflectBenchmark
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="https://lexburner.github.io/java-jmh/">JAVA 拾遗 — JMH 与 8 个测试陷阱</a>
  * @see <a href="http://blog.dyngr.com/blog/2016/10/29/introduction-of-jmh/">Java 并发编程笔记：JMH 性能测试框架</a>
  * @see <a href="http://tutorials.jenkov.com/java-performance/jmh.html">JMH - Java Microbenchmark Harness</a>

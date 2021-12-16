@@ -8,7 +8,7 @@ import org.apache.zookeeper.ZooKeeper;
 /**
  * Consumer
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/9/30
  */
 public class Consumer {

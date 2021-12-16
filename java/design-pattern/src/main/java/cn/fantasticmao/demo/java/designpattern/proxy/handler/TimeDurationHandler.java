@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 /**
  * TimeDurationHandler
  *
- * @author maodh
+ * @author fantasticmao
  * @since 11/06/2018
  */
 public class TimeDurationHandler extends ObjectInvocationHandler {

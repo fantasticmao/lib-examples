@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * </ol>
  * </p>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-12-02
  */
 public class RateLimiterByCounter {

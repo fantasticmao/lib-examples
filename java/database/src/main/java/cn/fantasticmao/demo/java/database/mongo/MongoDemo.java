@@ -15,7 +15,7 @@ import java.util.Arrays;
 /**
  * MongoDBDemo
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="https://mongodb.github.io/mongo-java-driver/3.4/driver/getting-started/quick-start/">MongoDB Driver Quick Start</a>
  * @see <a href="https://docs.mongodb.com/manual/">The MongoDB 4.0 Manual</a>
  * @since 2019-05-22

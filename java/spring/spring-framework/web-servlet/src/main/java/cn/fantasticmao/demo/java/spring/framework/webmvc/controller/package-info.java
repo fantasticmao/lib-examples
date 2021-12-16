@@ -27,7 +27,7 @@
  *     <li>{@link org.springframework.web.bind.annotation.ResponseStatus} 设置 response status</li>
  * </ul>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-06-30
  */
 package cn.fantasticmao.demo.java.spring.framework.webmvc.controller;

@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * ArraySortTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-06-11
  */
 public class ArraySortTest {

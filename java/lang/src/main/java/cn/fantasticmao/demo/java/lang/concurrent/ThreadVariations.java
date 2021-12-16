@@ -177,7 +177,7 @@ class ThreadMethod {
  * ThreadVariations
  * 匿名内部类进程
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.10.02
  */
 public class ThreadVariations {

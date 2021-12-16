@@ -10,7 +10,7 @@ import java.util.List;
  * Java HotSpot(TM) 64-Bit Server VM warning: ignoring option PermSize=10M; support was removed in 8.0
  * Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=10M; support was removed in 8.0
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="http://openjdk.java.net/jeps/122">JEP 122: Remove the Permanent Generation</a>
  * @since 22/05/2018
  */

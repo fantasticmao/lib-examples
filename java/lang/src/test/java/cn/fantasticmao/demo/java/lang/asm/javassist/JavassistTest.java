@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * JavassistTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 public class JavassistTest {

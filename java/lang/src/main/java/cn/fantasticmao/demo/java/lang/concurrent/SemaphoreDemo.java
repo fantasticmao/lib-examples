@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * SemaphoreDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://en.wikipedia.org/wiki/Semaphore_(programming)">wikipedia</a>
  * @see java.util.concurrent.Semaphore
  * @since 08/02/2018

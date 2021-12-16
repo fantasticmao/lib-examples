@@ -15,7 +15,7 @@ import java.util.Set;
  * SocketNioServer
  * 多路复用（事件驱动） IO
  *
- * @author maodh
+ * @author fantasticmao
  * @since 23/02/2018
  */
 public class SocketNioServer implements Closeable {

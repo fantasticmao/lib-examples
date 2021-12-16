@@ -5,7 +5,7 @@ import java.math.BigInteger;
 /**
  * FibonacciNumber
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-10-28
  */
 public class FibonacciNumber {

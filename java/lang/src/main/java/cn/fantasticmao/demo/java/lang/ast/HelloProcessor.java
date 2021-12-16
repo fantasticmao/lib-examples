@@ -25,7 +25,7 @@ import java.util.Set;
  *
  * <p>需要使用 Java SPI 注册服务</p>
  *
- * @author maomao
+ * @author fantasticmao
  * @see javax.annotation.processing.Processor
  * @since 2020-01-09
  */

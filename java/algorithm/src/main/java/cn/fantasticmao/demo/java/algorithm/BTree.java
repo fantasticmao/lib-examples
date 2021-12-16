@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.algorithm;
 /**
  * BTree
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2017.02.03
  */
 public class BTree {

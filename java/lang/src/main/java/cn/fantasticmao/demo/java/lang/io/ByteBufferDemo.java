@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * ByteBufferDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/12/17
  */
 public class ByteBufferDemo {

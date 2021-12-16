@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.spring.framework.transaction;
 /**
  * User
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-08-15
  */
 public class User {

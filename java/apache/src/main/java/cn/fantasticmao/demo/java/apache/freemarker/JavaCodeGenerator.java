@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * JavaCodeGenerator
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-11-28
  */
 public class JavaCodeGenerator {

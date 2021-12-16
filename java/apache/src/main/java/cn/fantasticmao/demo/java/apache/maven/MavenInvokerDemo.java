@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * MavenInvokerDemo
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-11-28
  */
 public class MavenInvokerDemo {

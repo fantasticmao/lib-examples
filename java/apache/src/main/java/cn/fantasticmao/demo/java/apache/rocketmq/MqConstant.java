@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.apache.rocketmq;
 /**
  * MqConstant
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-11-10
  */
 public interface MqConstant {

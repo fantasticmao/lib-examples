@@ -52,7 +52,7 @@ class Consumer implements Runnable {
 /**
  * BlockingQueue 阻塞队列
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.11.10
  */
 public class BlockingQueueDemo {

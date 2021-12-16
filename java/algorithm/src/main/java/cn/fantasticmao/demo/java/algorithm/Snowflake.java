@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Snowflake
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake.html">Announcing Snowflake</a>
  * @see <a href="https://github.com/twitter-archive/snowflake/blob/b3f6a3c6ca8e1b6847baa6ff42bf72201e2c2231/src/main/scala/com/twitter/service/snowflake/IdWorker.scala">twitter-archive snowflake</a>
  * @since 2018/7/22

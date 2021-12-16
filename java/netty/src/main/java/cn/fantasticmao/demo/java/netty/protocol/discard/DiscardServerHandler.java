@@ -7,7 +7,7 @@ import io.netty.channel.embedded.EmbeddedChannel;
 /**
  * DiscardServerHandler
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/6/24
  */
 public class DiscardServerHandler extends SimpleChannelInboundHandler<String> {

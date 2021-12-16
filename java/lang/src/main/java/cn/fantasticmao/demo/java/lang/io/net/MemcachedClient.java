@@ -9,7 +9,7 @@ import java.net.Socket;
 /**
  * MemcachedClient
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/5
  */
 public class MemcachedClient implements Closeable {

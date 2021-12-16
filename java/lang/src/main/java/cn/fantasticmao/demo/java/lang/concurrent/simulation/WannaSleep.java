@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * WannaSleep
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2018/7/1
  */
 public class WannaSleep {

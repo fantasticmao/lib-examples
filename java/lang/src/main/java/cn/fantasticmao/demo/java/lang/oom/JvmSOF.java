@@ -4,7 +4,7 @@ package cn.fantasticmao.demo.java.lang.oom;
  * JvmSOF
  * -Xss256k
  *
- * @author maodh
+ * @author fantasticmao
  * @since 22/05/2018
  */
 public class JvmSOF {

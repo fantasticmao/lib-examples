@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * UnsafeTest
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="http://www.docjar.com/html/api/sun/misc/Unsafe.java.html">openjdk Unsafe</a>
  * @since 2020-05-14
  */

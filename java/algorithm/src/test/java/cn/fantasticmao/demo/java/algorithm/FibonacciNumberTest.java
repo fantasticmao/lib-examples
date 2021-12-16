@@ -8,7 +8,7 @@ import java.math.BigInteger;
 /**
  * FibonacciNumberTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-10-28
  */
 public class FibonacciNumberTest {

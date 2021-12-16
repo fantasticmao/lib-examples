@@ -5,7 +5,7 @@ import javax.annotation.concurrent.ThreadSafe;
 /**
  * InnerClassMode
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/4
  */
 @ThreadSafe

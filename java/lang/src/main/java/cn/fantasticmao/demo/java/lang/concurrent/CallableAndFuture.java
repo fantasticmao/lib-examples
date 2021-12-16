@@ -7,7 +7,7 @@ import java.util.concurrent.*;
 /**
  * CallableAndFuture
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.10.01
  */
 public class CallableAndFuture {

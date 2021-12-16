@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * CountDownLatchDemo
  *
- * @author maodh
+ * @author fantasticmao
  * @see java.util.concurrent.CountDownLatch
  * @since 2018/7/8
  */

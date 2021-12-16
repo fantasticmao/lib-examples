@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
  *      0      <=      readerIndex   <=   writerIndex    <=    capacity
  * </pre>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-15
  */
 public class ByteBufTest {

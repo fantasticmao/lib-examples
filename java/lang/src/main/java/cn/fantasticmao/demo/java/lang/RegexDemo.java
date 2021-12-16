@@ -129,7 +129,7 @@ import java.util.regex.Pattern;
  * (?>X): X, as an independent, non-capturing group
  * </p>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2016.12.23
  */
 public class RegexDemo {

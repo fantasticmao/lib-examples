@@ -30,7 +30,7 @@ class Son extends Father {
  *
  * <p>多态中的动态绑定</p>
  *
- * @author MaoMao
+ * @author fantasticmao
  * @since 2016.10.31
  */
 public class DynamicBind {

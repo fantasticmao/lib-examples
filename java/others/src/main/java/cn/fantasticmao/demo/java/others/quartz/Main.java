@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Main
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-04-07
  */
 public class Main {

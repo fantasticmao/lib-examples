@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.designpattern.builder;
 /**
  * Human
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/8/13
  */
 public class Human {

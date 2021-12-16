@@ -13,7 +13,7 @@ interface Foo {
 /**
  * Lambda、FunctionalInterface
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">官方文档</a>
  * @since 2016.11.10
  */

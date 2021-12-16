@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * FreemarkerDemo
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-11-27
  */
 public class FreemarkerDemo {

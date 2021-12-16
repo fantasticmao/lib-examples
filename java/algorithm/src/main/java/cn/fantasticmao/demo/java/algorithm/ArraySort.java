@@ -18,7 +18,7 @@ import java.util.Random;
  * +----------+----------------+-------------+-------------+-------------+--------+
  * </pre>
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-06-11
  */
 public interface ArraySort {

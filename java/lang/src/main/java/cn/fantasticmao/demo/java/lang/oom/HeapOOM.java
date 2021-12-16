@@ -11,7 +11,7 @@ import java.util.List;
  * -XX:+UseConcMarkSweepGC 使用 ParNew + CMS + Serial Old 的收集器组合进行内存回收，Serial Old 收集器将作为 CMS 收集器出现 Concurrent Mode Failure 失败后的后备收集器使用
  * -XX:+UseParallelGC 虚拟机在 Server 模式下的默认值，使用 Parallel Scavenge + Parallel Old 的收集器组合进行内存回收
  *
- * @author maodh
+ * @author fantasticmao
  * @since 22/05/2018
  */
 public class HeapOOM {

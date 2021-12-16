@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * Dispatcher
  *
- * @author maodh
+ * @author fantasticmao
  * @since 24/02/2018
  */
 public class Dispatcher {

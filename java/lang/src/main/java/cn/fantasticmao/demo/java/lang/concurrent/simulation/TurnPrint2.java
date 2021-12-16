@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * TurnPrint2
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2019-08-12
  */
 public class TurnPrint2 {

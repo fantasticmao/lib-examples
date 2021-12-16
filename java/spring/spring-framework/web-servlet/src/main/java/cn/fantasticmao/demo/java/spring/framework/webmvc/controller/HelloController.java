@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * HelloController
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-06-28
  */
 @Controller

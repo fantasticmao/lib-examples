@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * QuickSort
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/8/13
  */
 public class QuickSort<T extends Comparable<?>> implements Sortable<T> {

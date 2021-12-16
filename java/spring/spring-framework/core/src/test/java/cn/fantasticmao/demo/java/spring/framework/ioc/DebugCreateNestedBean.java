@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * DebugCreateNestedBean
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2021-01-15
  */
 public class DebugCreateNestedBean {

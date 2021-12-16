@@ -9,7 +9,7 @@ import org.ehcache.config.builders.ResourcePoolsBuilder;
 /**
  * EhcacheRepository
  *
- * @author maodh
+ * @author fantasticmao
  * @see <a href="https://www.ehcache.org/documentation/3.6/getting-started.html">Ehcache 3.6 Documentation CURRENT</a>
  * @since 2018/12/10
  */

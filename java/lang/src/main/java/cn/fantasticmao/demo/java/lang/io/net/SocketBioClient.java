@@ -12,7 +12,7 @@ import java.net.Socket;
  * 服务器发送给服务器输出流的所有信息都会成为客户端程序的输入，
  * 同时来自客户端程序的所有输出都会被包含在服务器输入流中。
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2017/9/4
  */
 public class SocketBioClient {

@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 /**
  * SocketAioClient
  *
- * @author maodh
+ * @author fantasticmao
  * @since 2019/1/18
  */
 public class SocketAioClient implements Closeable {

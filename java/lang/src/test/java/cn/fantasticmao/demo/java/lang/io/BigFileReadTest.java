@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 /**
  * BigFileReadTest
  *
- * @author maomao
+ * @author fantasticmao
  * @since 2020-05-14
  */
 @Ignore

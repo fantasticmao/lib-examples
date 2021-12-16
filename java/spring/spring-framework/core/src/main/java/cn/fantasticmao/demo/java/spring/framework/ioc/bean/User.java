@@ -17,7 +17,7 @@ import javax.annotation.PreDestroy;
  * <p>注意，Spring 不会完整管理 prototype Bean 的生命周期，prototype Bean 相关的销毁方法需要开发者自己调用。具体请见
  * <a href="https://docs.spring.io/spring/docs/5.2.7.RELEASE/spring-framework-reference/core.html#beans-factory-scopes-prototype">官方文档</a>。
  *
- * @author maomao
+ * @author fantasticmao
  * @see <a href="https://docs.spring.io/spring/docs/5.2.7.RELEASE/spring-framework-reference/core.html#beans-factory-lifecycle">Spring Bean 生命周期中的一些回调方法</a>
  * @since 2020-06-28
  */
