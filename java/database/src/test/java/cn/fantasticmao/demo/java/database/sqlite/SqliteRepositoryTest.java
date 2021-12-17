@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.database.sqlite;
 
+import cn.fantasticmao.demo.java.database.User;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,16 +17,16 @@ public class SqliteRepositoryTest {
 
     @Test
     public void test() throws SQLException {
-        SqliteRepository sqliteRepository = new SqliteRepository();
+        SqliteRepository repository = new SqliteRepository();
 
-        boolean insertStatus = sqliteRepository.insert(new User(1, "Tom"));
+        boolean insertStatus = repository.insert(new User(1, "Tom"));
         Assert.assertTrue(insertStatus);
-        insertStatus = sqliteRepository.insert(new User(2, "Bob"));
+        insertStatus = repository.insert(new User(2, "Bob"));
         Assert.assertTrue(insertStatus);
-        insertStatus = sqliteRepository.insert(new User(3, "Anni"));
+        insertStatus = repository.insert(new User(3, "Anni"));
         Assert.assertTrue(insertStatus);
 
-        List<User> userList = sqliteRepository.selectAll();
+        List<User> userList = repository.selectAll();
         Assert.assertEquals(3, userList.size());
     }
 }
