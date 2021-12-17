@@ -23,8 +23,6 @@
         <module>spring-framework/core</module>
         <module>spring-framework/data-access</module>
         <module>spring-framework/web-servlet</module>
-        <module>spring-security/oauth2-jose</module>
-        <module>spring-security/web</module>
     </modules>
 
     <dependencyManagement>
