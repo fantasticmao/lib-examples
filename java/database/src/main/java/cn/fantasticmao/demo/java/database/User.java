@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.database.sqlite;
+package cn.fantasticmao.demo.java.database;
 
 /**
  * User
