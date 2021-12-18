@@ -17,16 +17,16 @@ public class SqliteRepositoryTest {
 
     @Test
     public void test() throws SQLException {
-        SqliteRepository repository = new SqliteRepository();
+        try (SqliteRepository repository = new SqliteRepository()) {
+            boolean insertStatus = repository.insert(new User(1, "Tom"));
+            Assert.assertTrue(insertStatus);
+            insertStatus = repository.insert(new User(2, "Bob"));
+            Assert.assertTrue(insertStatus);
+            insertStatus = repository.insert(new User(3, "Anni"));
+            Assert.assertTrue(insertStatus);
 
-        boolean insertStatus = repository.insert(new User(1, "Tom"));
-        Assert.assertTrue(insertStatus);
-        insertStatus = repository.insert(new User(2, "Bob"));
-        Assert.assertTrue(insertStatus);
-        insertStatus = repository.insert(new User(3, "Anni"));
-        Assert.assertTrue(insertStatus);
-
-        List<User> userList = repository.selectAll();
-        Assert.assertEquals(3, userList.size());
+            List<User> userList = repository.selectAll();
+            Assert.assertEquals(3, userList.size());
+        }
     }
 }
