@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.apache.lucene;
+package cn.fantasticmao.demo.java.database.lucene;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -20,64 +20,53 @@ import org.apache.lucene.util.IOUtils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * LuceneDemo
+ * LuceneRepository
  *
  * @author fantasticmao
+ * @see <a href="https://lucene.apache.org/core/9_0_0/core/index.html">Lucene 9.0.0 core API</a>
  * @since 2020-03-10
  */
-public class LuceneDemo implements AutoCloseable {
-    private Path path;
-    private Analyzer analyzer;
+public class LuceneRepository implements AutoCloseable {
+    private final Path path;
+    private final Analyzer analyzer;
 
-    private LuceneDemo(String dir) throws IOException {
+    public LuceneRepository(String dir) throws IOException {
         this.path = Files.createTempDirectory(dir);
         this.analyzer = new StandardAnalyzer();
     }
 
     @Override
     public void close() throws IOException {
-        IOUtils.rm(path);
+        IOUtils.rm(this.path);
     }
 
-    /**
-     * 索引数据
-     */
-    private boolean indexData(String text) throws IOException {
-        IndexWriterConfig writerConfig = new IndexWriterConfig(analyzer);
+    public void index(String field, String data) throws IOException {
+        IndexWriterConfig writerConfig = new IndexWriterConfig(this.analyzer);
         try (Directory directory = FSDirectory.open(this.path);
              IndexWriter writer = new IndexWriter(directory, writerConfig)) {
             Document document = new Document();
-            document.add(new Field("fieldName", text, TextField.TYPE_STORED));
+            document.add(new Field(field, data, TextField.TYPE_STORED));
             writer.addDocument(document);
-            return true;
         }
     }
 
-    /**
-     * 查询数据
-     */
-    private Document searchData(String text) throws IOException, ParseException {
+    public List<Document> search(String field, String content) throws IOException, ParseException {
         try (Directory directory = FSDirectory.open(this.path);
              DirectoryReader reader = DirectoryReader.open(directory)) {
             IndexSearcher searcher = new IndexSearcher(reader);
-            QueryParser parser = new QueryParser("fieldName", analyzer);
-            Query query = parser.parse(text);
+            QueryParser parser = new QueryParser(field, this.analyzer);
+            Query query = parser.parse(content);
             ScoreDoc[] hits = searcher.search(query, 10).scoreDocs;
-            assert hits.length == 1;
-            return searcher.doc(hits[0].doc);
-        }
-    }
 
-    public static void main(String[] args) throws IOException, ParseException {
-        try (LuceneDemo demo = new LuceneDemo("tempIndex")) {
-            boolean result = demo.indexData("This is the text to be indexed.");
-            assert result;
-
-            Document document = demo.searchData("text");
-            assert Objects.equals("This is the text to be indexed.", document.get("fieldName"));
+            List<Document> docs = new ArrayList<>(hits.length);
+            for (ScoreDoc hit : hits) {
+                docs.add(searcher.doc(hit.doc));
+            }
+            return docs;
         }
     }
 }
