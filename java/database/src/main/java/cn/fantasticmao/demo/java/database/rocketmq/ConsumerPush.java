@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.apache.rocketmq;
+package cn.fantasticmao.demo.java.database.rocketmq;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;

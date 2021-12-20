@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.apache.rocketmq;
+package cn.fantasticmao.demo.java.database.rocketmq;
 
 /**
  * MqConstant
