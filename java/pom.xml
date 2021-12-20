@@ -25,10 +25,8 @@
 
     <modules>
         <module>algorithm</module>
-        <module>apache</module>
         <module>database</module>
         <module>design-pattern</module>
-        <module>elasticsearch</module>
         <module>google</module>
         <module>lang</module>
         <module>netty</module>
