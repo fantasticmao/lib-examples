@@ -14,14 +14,22 @@
     <name>demo-java-others</name>
 
     <properties>
+        <digester3>3.2</digester3>
         <disruptor.version>3.4.2</disruptor.version>
+        <freemarker.version>2.3.31</freemarker.version>
         <hystrix-core.version>1.5.18</hystrix-core.version>
-        <jol.version>0.9</jol.version>
         <jmh.version>1.22</jmh.version>
+        <jol.version>0.9</jol.version>
         <quartz.version>2.3.2</quartz.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-digester3</artifactId>
+            <version>${digester3}</version>
+        </dependency>
+
         <!-- Disruptor -->
         <dependency>
             <groupId>com.lmax</groupId>
@@ -29,18 +37,18 @@
             <version>${disruptor.version}</version>
         </dependency>
 
+        <!-- FreeMarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+        </dependency>
+
         <!-- Hystrix dependency -->
         <dependency>
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-core</artifactId>
             <version>${hystrix-core.version}</version>
-        </dependency>
-
-        <!-- JOL dependency -->
-        <dependency>
-            <groupId>org.openjdk.jol</groupId>
-            <artifactId>jol-core</artifactId>
-            <version>${jol.version}</version>
         </dependency>
 
         <!-- JMH dependency -->
@@ -54,6 +62,13 @@
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>${jmh.version}</version>
+        </dependency>
+
+        <!-- JOL dependency -->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>${jol.version}</version>
         </dependency>
 
         <!-- Quartz -->
