@@ -1,7 +1,6 @@
 package cn.fantasticmao.demo.java.database.h2;
 
 import cn.fantasticmao.demo.java.database.User;
-import org.h2.tools.Server;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,12 +19,9 @@ import java.util.List;
  * @since 2021-12-18
  */
 public class H2Repository implements AutoCloseable {
-    private final Server server;
     private final Connection connection;
 
     public H2Repository() throws SQLException {
-        this.server = Server.createWebServer();
-        this.server.start();
         this.connection = DriverManager.getConnection("jdbc:h2:mem:test");
         this.createTable();
     }
@@ -35,22 +31,19 @@ public class H2Repository implements AutoCloseable {
         if (this.connection != null) {
             this.connection.close();
         }
-        if (this.server != null) {
-            this.server.shutdown();
-        }
     }
 
     public void createTable() throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate("DROP TABLE IF EXISTS T_USER");
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS T_USER(" +
+            statement.executeUpdate("DROP TABLE IF EXISTS t_user");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS t_user(" +
                 "id INT PRIMARY KEY," +
                 "name VARCHAR(32))");
         }
     }
 
     public boolean insert(User user) throws SQLException {
-        String sql = "INSERT INTO T_USER(id, name) VALUES (?, ?)";
+        String sql = "INSERT INTO t_user(id, name) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, user.getId());
             statement.setString(2, user.getName());
@@ -60,7 +53,7 @@ public class H2Repository implements AutoCloseable {
 
     public List<User> selectAll() throws SQLException {
         List<User> result = new ArrayList<>();
-        String sql = "SELECT id, name FROM T_USER ORDER BY id";
+        String sql = "SELECT id, name FROM t_user ORDER BY id";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
