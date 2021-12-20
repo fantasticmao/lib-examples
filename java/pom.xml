@@ -31,7 +31,6 @@
         <module>elasticsearch</module>
         <module>google</module>
         <module>lang</module>
-        <module>netflix</module>
         <module>netty</module>
         <module>others</module>
         <module>spring</module>
