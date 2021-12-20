@@ -1,6 +1,6 @@
-package cn.fantasticmao.demo.java.apache.rocketmq.orderedmsg;
+package cn.fantasticmao.demo.java.database.rocketmq.orderedmsg;
 
-import cn.fantasticmao.demo.java.apache.rocketmq.MqConstant;
+import cn.fantasticmao.demo.java.database.rocketmq.MqConstant;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;

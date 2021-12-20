@@ -1,29 +1,31 @@
-package cn.fantasticmao.demo.java.apache.rocketmq;
+package cn.fantasticmao.demo.java.database.rocketmq;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 
 import java.nio.charset.StandardCharsets;
 
 /**
- * ProducerOneway
+ * ProducerSync
  *
  * @author fantasticmao
  * @since 2020-11-10
  */
-public class ProducerOneway {
+public class ProducerSync {
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer(MqConstant.PRODUCER_ONEWAY_GROUP);
+        DefaultMQProducer producer = new DefaultMQProducer(MqConstant.PRODUCER_SYNC_GROUP);
         producer.setNamesrvAddr(MqConstant.NAME_SERVER_ADDRESS);
 
         producer.start();
         try {
             for (int i = 0; i < 10; i++) {
                 Message message = new Message(MqConstant.TOPIC_DEFAULT, "tag1",
-                    ("Hello MQ Oneway " + i).getBytes(StandardCharsets.UTF_8));
-                // sendOneway 方法返回 void，所发送的消息是不可靠的
-                producer.sendOneway(message);
+                    ("Hello MQ Sync " + i).getBytes(StandardCharsets.UTF_8));
+                SendResult sendResult = producer.send(message);
+                System.out.printf("%-5d %s %s %s %n", i, sendResult.getSendStatus(),
+                    sendResult.getMessageQueue().getTopic(), sendResult.getMsgId());
             }
         } finally {
             producer.shutdown();
