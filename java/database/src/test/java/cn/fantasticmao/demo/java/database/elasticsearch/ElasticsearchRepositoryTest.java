@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.elasticsearch;
+package cn.fantasticmao.demo.java.database.elasticsearch;
 
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -12,10 +12,10 @@ import java.io.IOException;
  * ElasticsearchRepositoryTest
  *
  * @author fantasticmao
- * @since 2020-05-14
+ * @since 2021-12-19
  */
 public class ElasticsearchRepositoryTest {
-    private ElasticsearchRepository repository;
+    private final ElasticsearchRepository repository;
 
     public ElasticsearchRepositoryTest() {
         this.repository = new ElasticsearchRepository();
