@@ -1,9 +1,12 @@
 package cn.fantasticmao.demo.java.database.redis;
 
-import cn.fantasticmao.demo.java.algorithm.Snowflake;
 import org.junit.After;
-import org.junit.Ignore;
+import org.junit.Assert;
 import org.junit.Test;
+import redis.clients.jedis.Jedis;
+
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * IdempotentMethodTest
@@ -12,25 +15,27 @@ import org.junit.Test;
  * @since 2020-05-14
  */
 public class IdempotentMethodTest {
-    private IdempotentMethod idempotentMethod;
+    private final Jedis jedis;
 
     public IdempotentMethodTest() {
-        this.idempotentMethod = new IdempotentMethod();
+        this.jedis = new Jedis("localhost", 6379);
     }
 
     @After
-    public void after() throws Exception {
-        this.idempotentMethod.close();
+    public void after() {
+        this.jedis.close();
     }
 
     @Test
-    @Ignore
     public void idempotentMethod() {
-        final long uniqueId = Snowflake.getInstance(99).nextId();
+        final String uniqueKey = UUID.randomUUID().toString().replaceAll("-", "");
+        final AtomicInteger count = new AtomicInteger(0);
+
+        IdempotentMethod idempotentMethod = new IdempotentMethod(this.jedis);
         for (int i = 0; i < 100; i++) {
-            idempotentMethod.idempotentMethod(uniqueId);
+            idempotentMethod.idempotentMethod(uniqueKey, count::incrementAndGet);
         }
-        System.out.println("count: " + idempotentMethod.getCount());
+        Assert.assertEquals(1, count.get());
     }
 
 }
