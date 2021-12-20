@@ -15,6 +15,7 @@
 
     <properties>
         <disruptor.version>3.4.2</disruptor.version>
+        <hystrix-core.version>1.5.18</hystrix-core.version>
         <jol.version>0.9</jol.version>
         <jmh.version>1.22</jmh.version>
         <quartz.version>2.3.2</quartz.version>
@@ -26,6 +27,13 @@
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
             <version>${disruptor.version}</version>
+        </dependency>
+
+        <!-- Hystrix dependency -->
+        <dependency>
+            <groupId>com.netflix.hystrix</groupId>
+            <artifactId>hystrix-core</artifactId>
+            <version>${hystrix-core.version}</version>
         </dependency>
 
         <!-- JOL dependency -->
