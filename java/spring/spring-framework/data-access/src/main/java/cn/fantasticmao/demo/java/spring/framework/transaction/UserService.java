@@ -1,15 +1,11 @@
 package cn.fantasticmao.demo.java.spring.framework.transaction;
 
 import org.aopalliance.intercept.MethodInvocation;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import javax.annotation.Resource;
+import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 import java.sql.Statement;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 /**
  * UserService
@@ -19,17 +15,28 @@ import java.util.concurrent.TimeUnit;
  */
 public interface UserService {
 
+    void truncate(User user);
+
+    @Nullable
+    User selectUser(int id);
+
     int insertUser(User user);
 
-    boolean updateUser(User user);
-
     /**
-     * 执行异常，导致事务回滚
+     * 抛出 RuntimeException || Error，导致事务回滚
      *
      * @see org.springframework.transaction.interceptor.TransactionInterceptor#invoke(MethodInvocation)
      * @see org.springframework.transaction.interceptor.TransactionAspectSupport#invokeWithinTransaction(Method, Class, TransactionAspectSupport.InvocationCallback)
      */
-    boolean updateUserThrowException(User user);
+    boolean updateUserThrowRuntimeException(User user);
+
+    /**
+     * 抛出 Exception，不会导致事务回滚
+     *
+     * @see org.springframework.transaction.interceptor.TransactionInterceptor#invoke(MethodInvocation)
+     * @see org.springframework.transaction.interceptor.TransactionAspectSupport#invokeWithinTransaction(Method, Class, TransactionAspectSupport.InvocationCallback)
+     */
+    boolean updateUserThrowException(User user) throws Exception;
 
     /**
      * 执行超时，导致事务回滚
@@ -46,51 +53,5 @@ public interface UserService {
      * @see <a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/data-access.html#transaction-declarative-attransactional-settings">@Transactional Settings</a>
      */
     boolean selfInvocationWillNotLeadToAnActualTransaction(User user);
-}
-
-@Service
-class UserServiceImpl implements UserService {
-    @Resource
-    private UserDao userDao;
-
-    @Override
-    @Transactional
-    public int insertUser(User user) {
-        return userDao.insertUser(user);
-    }
-
-    @Override
-    @Transactional
-    public boolean updateUser(User user) {
-        return userDao.updateUser(user);
-    }
-
-    @Override
-    @Transactional
-    public boolean updateUserThrowException(User user) {
-        userDao.updateUser(user);
-        throw new RuntimeException();
-    }
-
-    @Override
-    @Transactional(timeout = 2)
-    public boolean updateUserOverTimeout(User user) {
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return userDao.updateUser(user);
-    }
-
-    @Override
-    @Transactional
-    public boolean selfInvocationWillNotLeadToAnActualTransaction(User user) {
-        final int id = insertUser(user);
-        user.setId(id);
-        user.setName(user.getName() + new Random().nextInt(10));
-        // updateUserOverTimeout 方法的事务超时设置不会被触发
-        return updateUserOverTimeout(user);
-    }
 }
 

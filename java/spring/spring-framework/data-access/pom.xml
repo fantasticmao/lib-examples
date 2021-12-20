@@ -15,7 +15,7 @@
     <name>demo-java-spring-framework-data-access</name>
 
     <properties>
-        <mysql.version>8.0.16</mysql.version>
+        <h2.version>2.0.202</h2.version>
     </properties>
 
     <dependencies>
@@ -30,11 +30,16 @@
             <artifactId>spring-jdbc</artifactId>
         </dependency>
 
-        <!-- MySQL driver dependency -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+
+        <!-- H2 dependency -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
 
         <dependency>
