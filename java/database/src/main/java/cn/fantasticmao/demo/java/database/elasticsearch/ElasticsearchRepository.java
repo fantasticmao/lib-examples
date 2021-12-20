@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.elasticsearch;
+package cn.fantasticmao.demo.java.database.elasticsearch;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.get.GetRequest;
@@ -9,7 +9,7 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.core.TimeValue;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
@@ -19,13 +19,15 @@ import java.io.IOException;
  * ElasticsearchRepository
  *
  * @author fantasticmao
+ * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html">Quick start</a>
  * @since 2019-09-12
  */
 public class ElasticsearchRepository implements AutoCloseable {
-    private RestHighLevelClient client;
+    private final RestHighLevelClient client;
 
     public ElasticsearchRepository() {
-        RestClientBuilder restClientBuilder = RestClient.builder(new HttpHost("localhost", 9200, "http"));
+        HttpHost host = new HttpHost("localhost", 9200, "http");
+        RestClientBuilder restClientBuilder = RestClient.builder(host);
         this.client = new RestHighLevelClient(restClientBuilder);
     }
 
@@ -35,7 +37,7 @@ public class ElasticsearchRepository implements AutoCloseable {
     }
 
     public GetResponse index() throws IOException {
-        GetRequest getRequest = new GetRequest("customer", "1");
+        GetRequest getRequest = new GetRequest("bank", "1");
         return client.get(getRequest, RequestOptions.DEFAULT);
     }
 

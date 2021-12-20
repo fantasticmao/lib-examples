@@ -14,48 +14,31 @@
     <name>demo-java-database</name>
 
     <properties>
-        <apache.zookeeper.version>3.4.14</apache.zookeeper.version>
-        <apache.lucene.version>9.0.0</apache.lucene.version>
         <ehcache.version>3.6.2</ehcache.version>
+        <elasticsearch.version>7.15.2</elasticsearch.version>
         <h2.version>2.0.202</h2.version>
+        <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
         <jedis.version>3.0.0</jedis.version>
+        <rocketmq.version>4.4.0</rocketmq.version>
         <sqlite.version>3.34.0</sqlite.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>cn.fantasticmao.demo</groupId>
-            <artifactId>java-algorithm</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <!-- Apache ZooKeeper dependency -->
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>${apache.zookeeper.version}</version>
-        </dependency>
-
-        <!-- Apache Lucene dependency -->
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-core</artifactId>
-            <version>${apache.lucene.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-queryparser</artifactId>
-            <version>${apache.lucene.version}</version>
-        </dependency>
-
         <!-- Ehcache dependency -->
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <version>${ehcache.version}</version>
+        </dependency>
+
+        <!-- Elasticsearch dependency -->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
         </dependency>
 
         <!-- H2 dependency -->
@@ -65,11 +48,17 @@
             <version>${h2.version}</version>
         </dependency>
 
-        <!-- Redis dependency -->
+        <!-- Apache Lucene dependency -->
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>${lucene.version}</version>
         </dependency>
 
         <!-- Memcached dependency -->
@@ -86,11 +75,37 @@
             <version>${mongodb-driver.version}</version>
         </dependency>
 
+        <!-- Redis dependency -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+
+        <!-- RocketMQ dependency -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>${rocketmq.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
         <!-- SQLite driver dependency -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>${sqlite.version}</version>
+        </dependency>
+
+        <!-- Apache ZooKeeper dependency -->
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zookeeper.version}</version>
         </dependency>
     </dependencies>
 </project>
