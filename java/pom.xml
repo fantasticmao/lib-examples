@@ -33,7 +33,6 @@
         <module>lang</module>
         <module>netflix</module>
         <module>netty</module>
-        <module>openjdk</module>
         <module>others</module>
         <module>spring</module>
     </modules>
