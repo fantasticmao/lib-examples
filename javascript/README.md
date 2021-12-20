@@ -10,10 +10,10 @@
 - **ESLint**: https://eslint.org/
 - **Jest**: https://jestjs.io/
 - **Vue**: https://vuejs.org/
-    - **Vue CLI**: https://cli.vuejs.org/
-    - **Vue Loader**: https://vue-loader.vuejs.org/
-    - **Vue Router**: https://router.vuejs.org/
-    - **Vuex**: https://vuex.vuejs.org/
+  - **Vue CLI**: https://cli.vuejs.org/
+  - **Vue Loader**: https://vue-loader.vuejs.org/
+  - **Vue Router**: https://router.vuejs.org/
+  - **Vuex**: https://vuex.vuejs.org/
 
 ## 中文文档
 
