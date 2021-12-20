@@ -3,32 +3,29 @@
 ## Contents
 
 - C
-    - [POSIX](c/posix)
-    - [the-c-programming-language](c/the-c-programming-language)
+  - [POSIX](c/posix)
+  - [the-c-programming-language](c/the-c-programming-language)
 - Go
-    - [learn-go-with-tests](go/learn-go-with-tests)
+  - [learn-go-with-tests](go/learn-go-with-tests)
 - Java
-    - [algorithm](java/algorithm)
-    - [apache](java/apache)
-    - [database](java/database)
-    - [design-pattern](java/design-pattern)
-    - [elasticsearch](java/elasticsearch)
-    - [google](java/google)
-    - [lang](java/lang)
-    - [netflix](java/netflix)
-    - [netty](java/netty)
-    - [openjdk](java/openjdk)
-    - [others](java/others)
-    - [spring](java/spring)
+  - [algorithm](java/algorithm)
+  - [database](java/database)
+  - [design-pattern](java/design-pattern)
+  - [google](java/google)
+  - [lang](java/lang)
+  - [netty](java/netty)
+  - [others](java/others)
+  - [spring](java/spring)
 - JavaScript
-    - [css](javascript/css)
-    - [lang](javascript/lang)
-    - [web-apis](javascript/web-apis)
+  - [css](javascript/css)
+  - [lang](javascript/lang)
+  - [web-apis](javascript/web-apis)
 - Python
-    - [practice](python/practice)
+  - [practice](python/practice)
 
 ## Thanks
 
-Thanks to [JetBrains](https://www.jetbrains.com/?from=lib-examples) for the [Open Source License](https://www.jetbrains.com/community/opensource/) support.
+Thanks to [JetBrains](https://www.jetbrains.com/?from=lib-examples) for
+the [Open Source License](https://www.jetbrains.com/community/opensource/) support.
 
 ![intellij-idea-logo](intellij-idea.svg)

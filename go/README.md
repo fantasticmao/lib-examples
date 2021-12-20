@@ -10,7 +10,8 @@
 - 16 August 2012 - **Organizing Go code**: https://blog.golang.org/organizing-go-code
 - 12 July 2011 - **Error handling and Go**: https://blog.golang.org/error-handling-and-go
 - 5 January 2011 - **Go Slices: usage and internals**: https://blog.golang.org/go-slices-usage-and-internals
-- 23 September 2010 - **Go Concurrency Patterns: Timing out, moving on**: https://blog.golang.org/go-concurrency-patterns-timing-out-and
+- 23 September 2010 - **Go Concurrency Patterns: Timing out, moving
+  on**: https://blog.golang.org/go-concurrency-patterns-timing-out-and
 - 7 July 2010 - **Go's Declaration Syntax**: https://blog.golang.org/gos-declaration-syntax
 - 4 August 2010 - **Defer, Panic, and Recover**: https://blog.golang.org/defer-panic-and-recover
 
