@@ -23,7 +23,7 @@
         <jedis.version>3.7.0</jedis.version>
         <rocketmq.version>4.4.0</rocketmq.version>
         <sqlite.version>3.34.0</sqlite.version>
-        <zookeeper.version>3.4.14</zookeeper.version>
+        <zookeeper.version>3.7.0</zookeeper.version>
     </properties>
 
     <dependencies>
