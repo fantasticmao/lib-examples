@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.lang.asm.bytebuddy;
+package cn.fantasticmao.demo.java.others.bytebuddy;
 
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.asm.Advice;
@@ -26,6 +26,7 @@ public class ByteBuddyTest {
             .make()
             .load(ClassLoader.getSystemClassLoader())
             .getLoaded()
+            .getDeclaredConstructor()
             .newInstance();
         Assert.assertEquals("Hello Byte Buddy", obj.toString());
         Assert.assertEquals(1234, obj.hashCode());
@@ -39,8 +40,9 @@ public class ByteBuddyTest {
             .make()
             .load(ClassLoader.getSystemClassLoader())
             .getLoaded()
+            .getDeclaredConstructor()
             .newInstance();
-        System.out.println("toString: " + obj.toString());
+        Assert.assertNotNull(obj.toString());
     }
 
     @Test
@@ -51,8 +53,9 @@ public class ByteBuddyTest {
             .make()
             .load(ClassLoader.getSystemClassLoader())
             .getLoaded()
+            .getDeclaredConstructor()
             .newInstance();
-        System.out.println("toString: " + obj.toString());
+        Assert.assertNotNull(obj.toString());
     }
 
 }

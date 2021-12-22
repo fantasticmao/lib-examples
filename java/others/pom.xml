@@ -14,30 +14,40 @@
     <name>demo-java-others</name>
 
     <properties>
+        <byte-buddy.version>1.12.6</byte-buddy.version>
         <digester3>3.2</digester3>
         <disruptor.version>3.4.2</disruptor.version>
         <freemarker.version>2.3.31</freemarker.version>
         <hystrix-core.version>1.5.18</hystrix-core.version>
+        <javassist.version>3.28.0-GA</javassist.version>
         <jmh.version>1.22</jmh.version>
         <jol.version>0.9</jol.version>
         <quartz.version>2.3.2</quartz.version>
     </properties>
 
     <dependencies>
+        <!-- Byte Buddy dependency -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>${byte-buddy.version}</version>
+        </dependency>
+
+        <!-- Digester3 dependency -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-digester3</artifactId>
             <version>${digester3}</version>
         </dependency>
 
-        <!-- Disruptor -->
+        <!-- Disruptor dependency -->
         <dependency>
             <groupId>com.lmax</groupId>
             <artifactId>disruptor</artifactId>
             <version>${disruptor.version}</version>
         </dependency>
 
-        <!-- FreeMarker -->
+        <!-- FreeMarker dependency -->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
@@ -49,6 +59,13 @@
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-core</artifactId>
             <version>${hystrix-core.version}</version>
+        </dependency>
+
+        <!-- Javassist dependency -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
         </dependency>
 
         <!-- JMH dependency -->
@@ -71,7 +88,7 @@
             <version>${jol.version}</version>
         </dependency>
 
-        <!-- Quartz -->
+        <!-- Quartz dependency -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>

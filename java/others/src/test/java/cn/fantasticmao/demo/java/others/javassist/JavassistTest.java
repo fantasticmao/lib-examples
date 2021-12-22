@@ -1,8 +1,9 @@
-package cn.fantasticmao.demo.java.lang.asm.javassist;
+package cn.fantasticmao.demo.java.others.javassist;
 
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -15,10 +16,10 @@ public class JavassistTest {
 
     @Test
     public void test() throws Exception {
-        CtClass ctClass = new ClassPool(true).get("cn.fantasticmao.demo.java.lang.asm.javassist.TestClass");
+        CtClass ctClass = new ClassPool(true).get("cn.fantasticmao.demo.java.others.javassist.TestClass");
         CtMethod ctMethod = ctClass.getDeclaredMethod("toString");
         ctMethod.insertBefore("System.out.println(\"Hello Javassist\");");
-        String toString = ctClass.toClass().newInstance().toString();
-        System.out.println(toString);
+        String toString = ctClass.toClass().getDeclaredConstructor().newInstance().toString();
+        Assert.assertEquals("TestClass", toString);
     }
 }
