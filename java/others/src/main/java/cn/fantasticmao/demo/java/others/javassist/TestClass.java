@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.lang.asm.javassist;
+package cn.fantasticmao.demo.java.others.javassist;
 
 /**
  * TestClass

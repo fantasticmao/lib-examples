@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.lang.asm.bytebuddy;
+package cn.fantasticmao.demo.java.others.bytebuddy;
 
 import net.bytebuddy.implementation.bind.annotation.AllArguments;
 import net.bytebuddy.implementation.bind.annotation.Origin;
@@ -24,8 +24,11 @@ public class InterceptorByMethodDelegation {
         try {
             return callable.call();
         } finally {
+            String[] args = Arrays.stream(arguments)
+                .map(Objects::toString)
+                .toArray(String[]::new);
             System.out.printf("invoke %s#%s(%s)%n", clazz.getName(), method.getName(),
-                String.join(",", Arrays.stream(arguments).map(Objects::toString).toArray(String[]::new)));
+                String.join(",", args));
         }
     }
 }

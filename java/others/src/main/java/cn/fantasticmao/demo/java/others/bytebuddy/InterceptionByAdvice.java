@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.lang.asm.bytebuddy;
+package cn.fantasticmao.demo.java.others.bytebuddy;
 
 import net.bytebuddy.asm.Advice;
 
