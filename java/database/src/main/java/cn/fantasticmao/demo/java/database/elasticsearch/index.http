@@ -9,45 +9,7 @@ Content-Type: application/json
 PUT http://localhost:9200/bank
 Content-Type: application/json
 
-{
-    "mappings": {
-        "properties": {
-            "account_number": {
-                "type": "integer"
-            },
-            "balance": {
-                "type": "long"
-            },
-            "firstname": {
-                "type": "keyword"
-            },
-            "lastname": {
-                "type": "keyword"
-            },
-            "age": {
-                "type": "integer"
-            },
-            "gender": {
-                "type": "keyword"
-            },
-            "address": {
-                "type": "text"
-            },
-            "employer": {
-                "type": "keyword"
-            },
-            "email": {
-                "type": "text"
-            },
-            "city": {
-                "type": "keyword"
-            },
-            "state": {
-                "type": "keyword"
-            }
-        }
-    }
-}
+< bank_mapping.json
 
 ### 查看 index
 GET http://localhost:9200/bank
@@ -61,4 +23,4 @@ Content-Type: application/json
 POST http://localhost:9200/bank/_bulk
 Content-Type: application/x-ndjson
 
-< ./accounts.json
+< bank_data.ndjson

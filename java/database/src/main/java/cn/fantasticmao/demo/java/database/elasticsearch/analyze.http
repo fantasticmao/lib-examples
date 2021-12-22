@@ -7,8 +7,8 @@ GET http://localhost:9200/_analyze
 Content-Type: application/json
 
 {
-    "analyzer": "standard",
-    "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+  "analyzer": "standard",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
 }
 
 ### 使用 simple analyzer
@@ -17,8 +17,8 @@ GET http://localhost:9200/_analyze
 Content-Type: application/json
 
 {
-    "analyzer": "simple",
-    "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+  "analyzer": "simple",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
 }
 
 ### 使用 whitespace analyzer
@@ -27,8 +27,8 @@ GET http://localhost:9200/_analyze
 Content-Type: application/json
 
 {
-    "analyzer": "whitespace",
-    "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+  "analyzer": "whitespace",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
 }
 
 ### 使用 pattern analyzer
@@ -37,6 +37,6 @@ GET http://localhost:9200/_analyze
 Content-Type: application/json
 
 {
-    "analyzer": "pattern",
-    "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+  "analyzer": "pattern",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
 }

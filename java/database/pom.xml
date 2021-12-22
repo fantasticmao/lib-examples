@@ -15,7 +15,7 @@
 
     <properties>
         <ehcache.version>3.6.2</ehcache.version>
-        <elasticsearch.version>7.15.2</elasticsearch.version>
+        <elasticsearch.version>7.16.2</elasticsearch.version>
         <h2.version>2.0.202</h2.version>
         <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
@@ -36,9 +36,15 @@
 
         <!-- Elasticsearch dependency -->
         <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <groupId>co.elastic.clients</groupId>
+            <artifactId>elasticsearch-java</artifactId>
             <version>${elasticsearch.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.12.3</version>
         </dependency>
 
         <!-- H2 dependency -->
