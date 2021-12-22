@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * ZookeeperRepository
+ * <p>
+ * 启动 Zookeeper Docker 容器 {@code docker run -d -p 2181:2181 --rm --name zookeeper-test zookeeper:3.7.0}
  *
  * @author fantasticmao
  * @see <a href="https://zookeeper.apache.org/doc/r3.7.0/zookeeperOver.html">Overview</a>
