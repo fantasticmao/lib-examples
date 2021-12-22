@@ -17,6 +17,7 @@
         <ehcache.version>3.6.2</ehcache.version>
         <elasticsearch.version>7.16.2</elasticsearch.version>
         <h2.version>2.0.202</h2.version>
+        <hbase.version>2.4.8</hbase.version>
         <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
@@ -52,6 +53,13 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
+        </dependency>
+
+        <!-- HBase dependency -->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.version}</version>
         </dependency>
 
         <!-- Apache Lucene dependency -->
