@@ -13,42 +13,4 @@ Content-Type: application/json
 PUT http://localhost:9200/bank
 Content-Type: application/json
 
-{
-    "mappings": {
-        "properties": {
-            "account_number": {
-                "type": "integer"
-            },
-            "balance": {
-                "type": "long"
-            },
-            "firstname": {
-                "type": "keyword"
-            },
-            "lastname": {
-                "type": "keyword"
-            },
-            "age": {
-                "type": "integer"
-            },
-            "gender": {
-                "type": "keyword"
-            },
-            "address": {
-                "type": "text"
-            },
-            "employer": {
-                "type": "keyword"
-            },
-            "email": {
-                "type": "text"
-            },
-            "city": {
-                "type": "keyword"
-            },
-            "state": {
-                "type": "keyword"
-            }
-        }
-    }
-}
+< bank_data.ndjson

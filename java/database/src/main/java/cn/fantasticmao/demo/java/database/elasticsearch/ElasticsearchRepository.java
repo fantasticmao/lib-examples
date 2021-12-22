@@ -1,67 +1,94 @@
 package cn.fantasticmao.demo.java.database.elasticsearch;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch.core.GetRequest;
+import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
-import org.elasticsearch.action.get.GetRequest;
-import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.core.TimeValue;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import java.io.IOException;
 
 /**
  * ElasticsearchRepository
+ * <p>
+ * <ol>
+ *     <li>启动 Elasticsearch Docker 容器 {@code docker run -d -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" --rm --name elasticsearch-test docker.elastic.co/elasticsearch/elasticsearch:7.16.2}</li>
+ *     <li>创建索引：{@code curl -i -X PUT 'http://localhost:9200/bank' -H 'Content-Type: application/json' -d @bank_mapping.json}</li>
+ *     <li>初始化数据：{@code curl -i -X POST 'http://localhost:9200/bank/_bulk' -H 'Content-Type: application/x-ndjson' --data-binary @bank_data.ndjson}</li>
+ * </ol>
  *
  * @author fantasticmao
  * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html">Quick start</a>
  * @since 2019-09-12
  */
-public class ElasticsearchRepository implements AutoCloseable {
-    private final RestHighLevelClient client;
+public class ElasticsearchRepository {
+    private final ElasticsearchClient client;
+    private final String index;
 
-    public ElasticsearchRepository() {
-        HttpHost host = new HttpHost("localhost", 9200, "http");
-        RestClientBuilder restClientBuilder = RestClient.builder(host);
-        this.client = new RestHighLevelClient(restClientBuilder);
+    public ElasticsearchRepository(String host, int port, String index) {
+        RestClient restClient = RestClient.builder(new HttpHost(host, port)).build();
+        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+        this.client = new ElasticsearchClient(transport);
+        this.index = index;
     }
 
-    @Override
-    public void close() throws Exception {
-        this.client.close();
+    public GetResponse<Account> index(String id) throws IOException {
+        GetRequest getRequest = new GetRequest.Builder()
+            .index(this.index)
+            .id(id)
+            .build();
+        return this.client.get(getRequest, Account.class);
     }
 
-    public GetResponse index() throws IOException {
-        GetRequest getRequest = new GetRequest("bank", "1");
-        return client.get(getRequest, RequestOptions.DEFAULT);
+    public SearchResponse<Account> matchAll(int limit) throws IOException {
+        SearchRequest searchRequest = new SearchRequest.Builder()
+            .index(this.index)
+            .query(new Query.Builder()
+                .matchAll(QueryBuilders.matchAll().
+                    build())
+                .build())
+            .size(limit)
+            .timeout("3s")
+            .build();
+        return this.client.search(searchRequest, Account.class);
     }
 
-    public SearchResponse matchAll() throws IOException {
-        SearchRequest searchRequest = new SearchRequest("bank");
-        searchRequest.source(new SearchSourceBuilder()
-            .query(QueryBuilders.matchAllQuery())
-            .from(0).size(5)
-            .timeout(TimeValue.timeValueSeconds(3)));
-        return client.search(searchRequest, RequestOptions.DEFAULT);
+    public SearchResponse<Account> match(String field, String value, int limit) throws IOException {
+        SearchRequest searchRequest = new SearchRequest.Builder()
+            .index(this.index)
+            .query(new Query.Builder()
+                // 全文本匹配
+                .match(QueryBuilders.match()
+                    .field(field)
+                    .query(FieldValue.of(value))
+                    .build())
+                .build())
+            .size(limit)
+            .build();
+        return this.client.search(searchRequest, Account.class);
     }
 
-    public SearchResponse match() throws IOException {
-        SearchRequest searchRequest = new SearchRequest("bank");
-        searchRequest.source(new SearchSourceBuilder()
-            .query(QueryBuilders.matchQuery("address", "mill lane")));
-        return client.search(searchRequest, RequestOptions.DEFAULT);
-    }
-
-    public SearchResponse matchPhrase() throws IOException {
-        SearchRequest searchRequest = new SearchRequest("bank");
-        searchRequest.source(new SearchSourceBuilder()
-            .query(QueryBuilders.matchPhraseQuery("address", "mill lane")));
-        return client.search(searchRequest, RequestOptions.DEFAULT);
+    public SearchResponse<Account> matchPhrase(String field, String value, int limit) throws IOException {
+        SearchRequest searchRequest = new SearchRequest.Builder()
+            .index(this.index)
+            .query(new Query.Builder()
+                // 短语匹配
+                .matchPhrase(QueryBuilders.matchPhrase()
+                    .field(field)
+                    .query(value)
+                    .build())
+                .build())
+            .size(limit)
+            .build();
+        return this.client.search(searchRequest, Account.class);
     }
 
 }

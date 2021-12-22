@@ -6,11 +6,11 @@ GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
 {
-    "query": {
-        "term": {
-            "age": 40
-        }
+  "query": {
+    "term": {
+      "age": 40
     }
+  }
 }
 
 
@@ -19,14 +19,14 @@ GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
 {
-    "query": {
-        "terms": {
-            "age": [
-                39,
-                40
-            ]
-        }
+  "query": {
+    "terms": {
+      "age": [
+        39,
+        40
+      ]
     }
+  }
 }
 
 ### 全文本匹配
@@ -34,19 +34,19 @@ GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
 {
-    "query": {
-        "match": {
-            "address": {
-                "query": "mill lane",
-                "operator": "or"
-            }
-        }
-    },
-    "highlight": {
-        "fields": {
-            "address": {}
-        }
+  "query": {
+    "match": {
+      "address": {
+        "query": "mill lane",
+        "operator": "or"
+      }
     }
+  },
+  "highlight": {
+    "fields": {
+      "address": {}
+    }
+  }
 }
 
 ### 多字段全文本匹配
@@ -54,15 +54,15 @@ GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
 {
-    "query": {
-        "multi_match": {
-            "query": "Duke",
-            "fields": [
-                "firstname",
-                "lastname"
-            ]
-        }
+  "query": {
+    "multi_match": {
+      "query": "Duke",
+      "fields": [
+        "firstname",
+        "lastname"
+      ]
     }
+  }
 }
 
 ### 短语匹配
@@ -70,13 +70,13 @@ GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
 {
-    "query": {
-        "match_phrase": {
-            "address": {
-                "query": "mill lane"
-            }
-        }
+  "query": {
+    "match_phrase": {
+      "address": {
+        "query": "mill lane"
+      }
     }
+  }
 }
 
 ### 复合查询 Boolean Query
@@ -84,38 +84,38 @@ GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
 {
-    "query": {
-        "bool": {
-            "must": [
-                {
-                    "term": {
-                        "state": "UT"
-                    }
-                },
-                {
-                    "term": {
-                        "gender": "F"
-                    }
-                }
-            ],
-            "filter": [
-                {
-                    "range": {
-                        "age": {
-                            "gte": 18,
-                            "lt": 30
-                        }
-                    }
-                }
-            ]
-        }
-    },
-    "sort": [
+  "query": {
+    "bool": {
+      "must": [
         {
-            "age": "asc"
+          "term": {
+            "state": "UT"
+          }
         },
         {
-            "account_number": "asc"
+          "term": {
+            "gender": "F"
+          }
         }
-    ]
+      ],
+      "filter": [
+        {
+          "range": {
+            "age": {
+              "gte": 18,
+              "lt": 30
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "age": "asc"
+    },
+    {
+      "account_number": "asc"
+    }
+  ]
 }
