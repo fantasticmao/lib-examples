@@ -1,34 +1,6 @@
 // search API
 // https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
 
-### 精确查询
-GET http://localhost:9200/bank/_search
-Content-Type: application/json
-
-{
-  "query": {
-    "term": {
-      "age": 40
-    }
-  }
-}
-
-
-### 多值精确查询
-GET http://localhost:9200/bank/_search
-Content-Type: application/json
-
-{
-  "query": {
-    "terms": {
-      "age": [
-        39,
-        40
-      ]
-    }
-  }
-}
-
 ### 全文本匹配
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
@@ -73,8 +45,37 @@ Content-Type: application/json
   "query": {
     "match_phrase": {
       "address": {
-        "query": "mill lane"
+        "query": "mill lane",
+        "analyzer": "whitespace"
       }
+    }
+  }
+}
+
+### 精确查询
+GET http://localhost:9200/bank/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "term": {
+      "age": 40
+    }
+  }
+}
+
+
+### 多值精确查询
+GET http://localhost:9200/bank/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "terms": {
+      "age": [
+        39,
+        40
+      ]
     }
   }
 }
