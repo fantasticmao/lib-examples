@@ -3,10 +3,9 @@ package cn.fantasticmao.demo.java.database.elasticsearch;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
-import co.elastic.clients.elasticsearch.core.GetRequest;
-import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
@@ -16,27 +15,21 @@ import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
- * ElasticsearchRepository
- * <p>
- * <ol>
- *     <li>启动 Elasticsearch Docker 容器 {@code docker run -d -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" --rm --name elasticsearch-test docker.elastic.co/elasticsearch/elasticsearch:7.16.2}</li>
- *     <li>创建索引：{@code curl -i -X PUT 'http://localhost:9200/bank' -H 'Content-Type: application/json' -d @bank_mapping.json}</li>
- *     <li>初始化数据：{@code curl -i -X POST 'http://localhost:9200/bank/_bulk' -H 'Content-Type: application/x-ndjson' --data-binary @bank_data.ndjson}</li>
- * </ol>
+ * SearchApis
  *
  * @author fantasticmao
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html">Quick start</a>
  * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">Query DSL</a>
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html">REST APIs</a>
+ * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html">Search APIs</a>
  * @since 2019-09-12
  */
-public class ElasticsearchRepository {
+public class SearchApis {
     private final ElasticsearchClient client;
     private final String index;
 
-    public ElasticsearchRepository(String host, int port, String index) {
+    public SearchApis(String host, int port, String index) {
         RestClient restClient = RestClient.builder(new HttpHost(host, port)).build();
         ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
         this.client = new ElasticsearchClient(transport);
@@ -44,50 +37,35 @@ public class ElasticsearchRepository {
     }
 
     /**
-     * 从 index 中获取指定 id 的 document
-     *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html">GET API</a>
-     */
-    public GetResponse<Account> get(String id) throws IOException {
-        GetRequest getRequest = new GetRequest.Builder()
-            .index(this.index)
-            .id(id)
-            .build();
-        return this.client.get(getRequest, Account.class);
-    }
-
-    /**
-     * 对于 text、number、date、boolean 类型的字段，{@code match} 返回匹配值的 document。
-     * <p>
-     * {@code match} 提供的查询文本必须是已经过解析的。
+     * 提供 text、number、date、boolean 类型的值，{@code match} 返回匹配该值的 document。text 类型的值在被匹配之前，会被分词器解析。
      * <p>
      * {@code match} 是执行 full-text search 的标准查询语句，包含了模糊匹配的选项。
      *
      * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html">Match Query</a>
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html">Search API</a>
      */
     public SearchResponse<Account> match(String field, FieldValue value, int limit) throws IOException {
-        SearchRequest searchRequest = new SearchRequest.Builder()
+        SearchRequest request = new SearchRequest.Builder()
             .index(this.index)
             .query(new Query.Builder()
                 .match(QueryBuilders.match()
                     .field(field)
                     .query(value)
+                    .analyzer(Analyzer.Kind.Whitespace.jsonValue())
+                    .operator(Operator.Or)
                     .build())
                 .build())
             .size(limit)
             .build();
-        return this.client.search(searchRequest, Account.class);
+        return this.client.search(request, Account.class);
     }
 
     /**
-     * {@code match_phrase} 解析查询文本，并使用解析后的文本创建 {@code phrase} 查询。
+     * {@code match_phrase} 解析查询文本，从解析后的文本中创建 {@code phrase} 查询。
      *
      * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html">Match phrase query</a>
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html">Search API</a>
      */
     public SearchResponse<Account> matchPhrase(String field, String text, int limit) throws IOException {
-        SearchRequest searchRequest = new SearchRequest.Builder()
+        SearchRequest request = new SearchRequest.Builder()
             .index(this.index)
             .query(new Query.Builder()
                 .matchPhrase(QueryBuilders.matchPhrase()
@@ -98,7 +76,26 @@ public class ElasticsearchRepository {
                 .build())
             .size(limit)
             .build();
-        return this.client.search(searchRequest, Account.class);
+        return this.client.search(request, Account.class);
+    }
+
+    /**
+     * {@code multi_match} 构建于 {@code match} 之上，支持多个字段的查询。
+     *
+     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html">Multi-match query</a>
+     */
+    public SearchResponse<Account> multiMatch(List<String> fields, String text, int limit) throws IOException {
+        SearchRequest request = new SearchRequest.Builder()
+            .index(this.index)
+            .query(new Query.Builder()
+                .multiMatch(QueryBuilders.multiMatch()
+                    .fields(fields)
+                    .query(text)
+                    .build())
+                .build())
+            .size(limit)
+            .build();
+        return this.client.search(request, Account.class);
     }
 
     /**
@@ -109,7 +106,7 @@ public class ElasticsearchRepository {
      * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html">Term query</a>
      */
     public SearchResponse<Account> term(String field, FieldValue value, int limit) throws IOException {
-        SearchRequest searchRequest = new SearchRequest.Builder()
+        SearchRequest request = new SearchRequest.Builder()
             .index(this.index)
             .query(new Query.Builder()
                 .term(QueryBuilders.term()
@@ -119,7 +116,7 @@ public class ElasticsearchRepository {
                 .build())
             .size(limit)
             .build();
-        return this.client.search(searchRequest, Account.class);
+        return this.client.search(request, Account.class);
     }
 
 }
