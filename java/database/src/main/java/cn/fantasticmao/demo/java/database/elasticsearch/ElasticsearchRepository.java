@@ -2,6 +2,7 @@ package cn.fantasticmao.demo.java.database.elasticsearch;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.GetRequest;
@@ -27,6 +28,8 @@ import java.io.IOException;
  *
  * @author fantasticmao
  * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html">Quick start</a>
+ * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">Query DSL</a>
+ * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html">REST APIs</a>
  * @since 2019-09-12
  */
 public class ElasticsearchRepository {
@@ -40,7 +43,12 @@ public class ElasticsearchRepository {
         this.index = index;
     }
 
-    public GetResponse<Account> index(String id) throws IOException {
+    /**
+     * 从 index 中获取指定 id 的 document
+     *
+     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html">GET API</a>
+     */
+    public GetResponse<Account> get(String id) throws IOException {
         GetRequest getRequest = new GetRequest.Builder()
             .index(this.index)
             .id(id)
@@ -48,27 +56,23 @@ public class ElasticsearchRepository {
         return this.client.get(getRequest, Account.class);
     }
 
-    public SearchResponse<Account> matchAll(int limit) throws IOException {
+    /**
+     * 对于 text、number、date、boolean 类型的字段，{@code match} 返回匹配值的 document。
+     * <p>
+     * {@code match} 提供的查询文本必须是已经过解析的。
+     * <p>
+     * {@code match} 是执行 full-text search 的标准查询语句，包含了模糊匹配的选项。
+     *
+     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html">Match Query</a>
+     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html">Search API</a>
+     */
+    public SearchResponse<Account> match(String field, FieldValue value, int limit) throws IOException {
         SearchRequest searchRequest = new SearchRequest.Builder()
             .index(this.index)
             .query(new Query.Builder()
-                .matchAll(QueryBuilders.matchAll().
-                    build())
-                .build())
-            .size(limit)
-            .timeout("3s")
-            .build();
-        return this.client.search(searchRequest, Account.class);
-    }
-
-    public SearchResponse<Account> match(String field, String value, int limit) throws IOException {
-        SearchRequest searchRequest = new SearchRequest.Builder()
-            .index(this.index)
-            .query(new Query.Builder()
-                // 全文本匹配
                 .match(QueryBuilders.match()
                     .field(field)
-                    .query(FieldValue.of(value))
+                    .query(value)
                     .build())
                 .build())
             .size(limit)
@@ -76,14 +80,41 @@ public class ElasticsearchRepository {
         return this.client.search(searchRequest, Account.class);
     }
 
-    public SearchResponse<Account> matchPhrase(String field, String value, int limit) throws IOException {
+    /**
+     * {@code match_phrase} 解析查询文本，并使用解析后的文本创建 {@code phrase} 查询。
+     *
+     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html">Match phrase query</a>
+     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html">Search API</a>
+     */
+    public SearchResponse<Account> matchPhrase(String field, String text, int limit) throws IOException {
         SearchRequest searchRequest = new SearchRequest.Builder()
             .index(this.index)
             .query(new Query.Builder()
-                // 短语匹配
                 .matchPhrase(QueryBuilders.matchPhrase()
                     .field(field)
-                    .query(value)
+                    .query(text)
+                    .analyzer(Analyzer.Kind.Whitespace.jsonValue())
+                    .build())
+                .build())
+            .size(limit)
+            .build();
+        return this.client.search(searchRequest, Account.class);
+    }
+
+    /**
+     * {@code term} 返回包含精确术语的 document。
+     * <p>
+     * 对于 text 类型字段，避免使用 {@code term}，应该使用 {@code match}。
+     *
+     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html">Term query</a>
+     */
+    public SearchResponse<Account> term(String field, FieldValue value, int limit) throws IOException {
+        SearchRequest searchRequest = new SearchRequest.Builder()
+            .index(this.index)
+            .query(new Query.Builder()
+                .term(QueryBuilders.term()
+                    .field(field)
+                    .value(value)
                     .build())
                 .build())
             .size(limit)

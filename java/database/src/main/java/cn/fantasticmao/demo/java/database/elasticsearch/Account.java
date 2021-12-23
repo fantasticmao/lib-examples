@@ -11,17 +11,17 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
  */
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Account {
-    private Integer accountNumber;
-    private Long balance;
-    private String firstname;
-    private String lastname;
-    private Integer age;
-    private String gender;
-    private String address;
-    private String employer;
-    private String email;
-    private String city;
-    private String state;
+    private Integer accountNumber; // type: integer
+    private Long balance; // type: long
+    private String firstname; // type: keyword
+    private String lastname; // type: keyword
+    private Integer age; // type: integer
+    private String gender; // type: keyword
+    private String address; // type: text
+    private String employer; // type: keyword
+    private String email; // type: text
+    private String city; // type: keyword
+    private String state; // type: keyword
 
     public Account() {
     }
