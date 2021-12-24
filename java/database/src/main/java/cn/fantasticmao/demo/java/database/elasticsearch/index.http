@@ -1,26 +1,29 @@
-// index API
-// https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html
+### Index APIs
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html
 
-### 创建 index
-PUT http://localhost:9200/bank
-Content-Type: application/json
-
-### 创建自定义 mappping 的 index
+### Create index API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
 PUT http://localhost:9200/bank
 Content-Type: application/json
 
 < bank_mapping.json
 
-### 查看 index
+### Get index API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-index.html
 GET http://localhost:9200/bank
 Content-Type: application/json
 
-### 删除 index
-DELETE http://localhost:9200/bank
+### Delete index API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-delete-index.html
+GET http://localhost:9200/bank
 Content-Type: application/json
 
-### 批量新增 document 至 index
-POST http://localhost:9200/bank/_bulk
-Content-Type: application/x-ndjson
+### Get mapping API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html
+GET http://localhost:9200/bank/_mapping
+Content-Type: application/json
 
-< bank_data.ndjson
+### Get field mapping API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-field-mapping.html
+GET http://localhost:9200/bank/_mapping/field/account_number
+Content-Type: application/json

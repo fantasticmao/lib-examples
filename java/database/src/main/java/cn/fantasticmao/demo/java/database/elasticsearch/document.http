@@ -1,18 +1,54 @@
-// document API
-// https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html
+### Document APIs
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html
 
-### 按 _id 查询文档
-GET http://localhost:9200/bank/_doc/1
+### Index API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html
+# PUT http://localhost:9200/bank/_doc/test
+PUT http://localhost:9200/bank/_create/test
 Content-Type: application/json
 
-### 判断 _id 所属的文档是否存在
-HEAD http://localhost:9200/bank/_doc/1
+{
+  "account_number": 1,
+  "balance": 999,
+  "firstname": "Mao",
+  "lastname": "Fantastic",
+  "age": 25,
+  "gender": "M",
+  "address": "Earth",
+  "employer": "Mao Boss",
+  "email": "maomao@gmail.com",
+  "city": "HangZhou",
+  "state": "ZheJiang"
+}
+
+### Get API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+GET http://localhost:9200/bank/_doc/test
 Content-Type: application/json
 
-### 按 _id 查询文档 _scource
-GET http://localhost:9200/bank/_source/1
+### Get API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+HEAD http://localhost:9200/bank/_doc/test
 Content-Type: application/json
 
-### 判断 _id 所属的文档 _source 是否存在
-HEAD http://localhost:9200/bank/_source/1
+### Get API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+GET http://localhost:9200/bank/_source/test
 Content-Type: application/json
+
+### Get API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+HEAD http://localhost:9200/bank/_source/test
+Content-Type: application/json
+
+### Delete API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html
+DELETE http://localhost:9200/bank/_doc/test
+Content-Type: application/json
+
+### Bulk API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html
+POST http://localhost:9200/bank/_bulk
+Content-Type: application/x-ndjson
+
+< bank_data.ndjson

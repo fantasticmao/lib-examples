@@ -1,7 +1,8 @@
-// search API
-// https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
+### search API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
 
-### 文本匹配（全文本检索）
+### Match query(full-text search)
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -17,7 +18,8 @@ Content-Type: application/json
   }
 }
 
-### 短语匹配
+### Match phrase query
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -32,7 +34,8 @@ Content-Type: application/json
   }
 }
 
-### 多字段的文本匹配
+### Multi-match query
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -48,7 +51,41 @@ Content-Type: application/json
   }
 }
 
-### 精确查询
+### IDs
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-ids-query.html
+GET http://localhost:9200/bank/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "ids": {
+      "values": [
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}
+
+### Range query
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html
+GET http://localhost:9200/bank/_search
+Content-Type: application/json
+
+{
+  "query": {
+    "range": {
+      "age": {
+        "gte": 25,
+        "lte": 30
+      }
+    }
+  }
+}
+
+### Term query
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -61,7 +98,8 @@ Content-Type: application/json
 }
 
 
-### 多值精确查询
+### Terms query
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-query.html
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -76,7 +114,8 @@ Content-Type: application/json
   }
 }
 
-### 复合查询 Boolean Query
+### Boolean query
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 

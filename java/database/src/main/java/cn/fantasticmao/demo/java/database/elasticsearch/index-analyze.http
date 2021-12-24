@@ -1,0 +1,43 @@
+### Analyze API
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-analyze.html
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis.html
+
+### Standard analyzer
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-standard-analyzer.html
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "standard",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+}
+
+### Simple Analyzer
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-simple-analyzer.html
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "simple",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+}
+
+### Whitespace Analyzer
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-whitespace-analyzer.html
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "whitespace",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+}
+
+### Pattern Analyzer
+### https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-pattern-analyzer.html
+GET http://localhost:9200/_analyze
+Content-Type: application/json
+
+{
+  "analyzer": "pattern",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+}
