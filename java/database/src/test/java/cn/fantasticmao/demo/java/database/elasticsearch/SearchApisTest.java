@@ -79,8 +79,48 @@ public class SearchApisTest {
     }
 
     @Test
+    public void ids() throws IOException {
+        SearchResponse<Account> response = searchApis.ids(List.of("1", "2", "3"));
+        Assert.assertNotNull(response);
+        Assert.assertEquals(3, response.hits().hits().size());
+        Account account = response.hits().hits().get(0).source();
+        Assert.assertNotNull(account);
+        Assert.assertEquals("Amber", account.getFirstname());
+        Assert.assertEquals("Duke", account.getLastname());
+        Assert.assertEquals("amberduke@pyrami.com", account.getEmail());
+    }
+
+    @Test
+    public void range() throws IOException {
+        SearchResponse<Account> response = searchApis.range("age", 35, 40, this.limit);
+        Assert.assertNotNull(response);
+        Assert.assertNotEquals(0, response.hits().hits().size());
+        List<String> addressList = response.hits().hits().stream()
+            .map(Hit::source)
+            .filter(Objects::nonNull)
+            .map(funcPrintAge)
+            .collect(Collectors.toList());
+        Assert.assertNotEquals(0, addressList.size());
+        addressList.forEach(System.out::println);
+    }
+
+    @Test
     public void term() throws IOException {
         SearchResponse<Account> response = searchApis.term("age", FieldValue.of(40), this.limit);
+        Assert.assertNotNull(response);
+        Assert.assertNotEquals(0, response.hits().hits().size());
+        List<String> addressList = response.hits().hits().stream()
+            .map(Hit::source)
+            .filter(Objects::nonNull)
+            .map(funcPrintAge)
+            .collect(Collectors.toList());
+        Assert.assertNotEquals(0, addressList.size());
+        addressList.forEach(System.out::println);
+    }
+
+    @Test
+    public void terms() throws IOException {
+        SearchResponse<Account> response = searchApis.terms("age", List.of(FieldValue.of(39), FieldValue.of(40)), this.limit);
         Assert.assertNotNull(response);
         Assert.assertNotEquals(0, response.hits().hits().size());
         List<String> addressList = response.hits().hits().stream()

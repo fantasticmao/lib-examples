@@ -23,10 +23,8 @@ public class CatApisTest {
     public void master() throws IOException {
         MasterResponse response = catApis.master();
         Assert.assertNotNull(response);
-        response.valueBody().forEach(record -> {
-            System.out.printf("id: %s, host: %s, ip: %s, node:%s\n",
-                record.id(), record.host(), record.ip(), record.node());
-        });
+        response.valueBody().forEach(record -> System.out.printf("id: %s, host: %s, ip: %s, node:%s\n",
+            record.id(), record.host(), record.ip(), record.node()));
     }
 
 }
