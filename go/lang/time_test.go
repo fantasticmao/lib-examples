@@ -1,4 +1,4 @@
-package time
+package lang
 
 import (
 	"github.com/stretchr/testify/assert"

@@ -3,9 +3,9 @@
 ## 官方文档
 
 - **Go Documentation**: https://go.dev/doc/
+- **How to Write Go Code**: https://golang.org/doc/code.html
 - **Standard library**: https://pkg.go.dev/std
 - **Language Specification**: https://golang.org/ref/spec
-- **How to Write Go Code**: https://golang.org/doc/code.html
 - **Effective Go**: https://golang.org/doc/effective_go.html
 - **Go for Java Programmers**: https://talks.golang.org/2015/go-for-java-programmers.slide#1
 
