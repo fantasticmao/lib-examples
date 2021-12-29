@@ -1,3 +1,3 @@
 module learn-go-with-tests
 
-go 1.13
+go 1.17
