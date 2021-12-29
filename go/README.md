@@ -21,7 +21,7 @@
 
 ## 中文文档
 
-- **A Tour of Go**: https://go-tour-zh.appspot.com/
+- **A Tour of Go**: https://tour.go-zh.org/
 - **How to Write Go Code**: https://go-zh.org/doc/code.html
 - **Effective Go**: https://go-zh.org/doc/effective_go.html
 - **《Go 语言标准库》**: https://books.studygolang.com/The-Golang-Standard-Library-by-Example/

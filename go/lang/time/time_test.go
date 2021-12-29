@@ -24,3 +24,9 @@ func TestParseTime(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, int64(1638288000000), datetime.UnixMilli())
 }
+
+func TestAfterTime(t *testing.T) {
+	ch := time.After(500 * time.Millisecond)
+	timePassed := <-ch
+	assert.True(t, time.Now().After(timePassed))
+}
