@@ -15,7 +15,7 @@
     <name>demo-java-spring-framework-data-access</name>
 
     <properties>
-        <h2.version>2.0.202</h2.version>
+        <h2.version>2.0.206</h2.version>
     </properties>
 
     <dependencies>
