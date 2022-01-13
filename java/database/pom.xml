@@ -18,6 +18,7 @@
         <elasticsearch.version>7.16.2</elasticsearch.version>
         <h2.version>2.0.202</h2.version>
         <hbase.version>2.4.8</hbase.version>
+        <influxdb.client.version>4.0.0</influxdb.client.version>
         <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
@@ -60,6 +61,18 @@
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
             <version>${hbase.version}</version>
+        </dependency>
+
+        <!-- InfluxDB 2.0 dependency -->
+        <dependency>
+            <groupId>com.influxdb</groupId>
+            <artifactId>influxdb-client-java</artifactId>
+            <version>${influxdb.client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
         </dependency>
 
         <!-- Apache Lucene dependency -->
