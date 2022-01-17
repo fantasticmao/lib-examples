@@ -6,7 +6,9 @@
   - [POSIX](c/posix)
   - [the-c-programming-language](c/the-c-programming-language)
 - Go
+  - [lang](go/lang)
   - [learn-go-with-tests](go/learn-go-with-tests)
+  - [x-net](go/x-net)
 - Java
   - [algorithm](java/algorithm)
   - [database](java/database)
