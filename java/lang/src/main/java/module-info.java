@@ -1,17 +1,12 @@
-
 module cn.fantasticmao.demo.java.lang {
     requires jdk.compiler;
     requires jdk.unsupported;
 
     requires cn.fantasticmao.demo.java.designpattern;
 
-    requires net.bytebuddy;
-    requires javassist;
     requires static jsr305;
 
     exports cn.fantasticmao.demo.java.lang;
-    exports cn.fantasticmao.demo.java.lang.asm.bytebuddy;
-    exports cn.fantasticmao.demo.java.lang.asm.javassist;
     exports cn.fantasticmao.demo.java.lang.ast;
     exports cn.fantasticmao.demo.java.lang.classloader;
     exports cn.fantasticmao.demo.java.lang.collection;
