@@ -35,19 +35,24 @@ More: https://www.oracle.com/java/technologies/javase/8-whats-new.html
 - Deprecate the Concurrent Mark Sweep (CMS) Garbage Collector
 - Process API
 - **Compact Strings**
-- **Convenience Factory Methods for Collections**
+- Convenience Factory Methods for Collections
 - Stack-Walking API
 
 More: https://docs.oracle.com/javase/9/whatsnew/toc.htm
 
 ### Java 10
 
-- **APIs for Creating Unmodifiable Collections**
+- **Local Variable Type Inference**
+- APIs for Creating Unmodifiable Collections
 - Parallel Full GC for G1
 
 More: https://www.oracle.com/java/technologies/javase/10-relnote-issues.html
 
 ### Java 11
+
+- **HTTP Client (Standard)**
+- **ZGC A Scalable Low-Latency Garbage Collector (Experimental)**
+- Removal of JavaFX from the Oracle JDK
 
 More: https://www.oracle.com/java/technologies/javase/11-relnote-issues.html#NewFeature
 
