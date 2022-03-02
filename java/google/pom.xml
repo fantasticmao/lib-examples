@@ -14,8 +14,8 @@
     <name>demo-java-google</name>
 
     <properties>
-        <google.protobuf.version>3.15.3</google.protobuf.version>
-        <google.protoc.version>3.15.3</google.protoc.version>
+        <google.protobuf.version>3.16.1</google.protobuf.version>
+        <google.protoc.version>3.16.1</google.protoc.version>
         <google.grpc.version>1.39.0</google.grpc.version>
         <google.guava.version>30.1.1-jre</google.guava.version>
         <google.auto-service.version>1.0-rc6</google.auto-service.version>
