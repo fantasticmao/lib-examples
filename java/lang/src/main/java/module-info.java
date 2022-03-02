@@ -1,4 +1,5 @@
 module cn.fantasticmao.demo.java.lang {
+    requires java.net.http;
     requires jdk.compiler;
     requires jdk.unsupported;
 
