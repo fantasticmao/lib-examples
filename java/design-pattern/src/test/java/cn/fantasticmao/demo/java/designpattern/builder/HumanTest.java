@@ -12,7 +12,10 @@ public class HumanTest {
 
     @Test
     public void test() {
-        Human human = new Human.Builder().firstName("猛").lastName("毛").build();
+        Human human = new Human.Builder()
+            .firstName("猛")
+            .lastName("毛")
+            .build();
         System.out.println(human);
     }
 
