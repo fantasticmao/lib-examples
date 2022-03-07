@@ -23,7 +23,9 @@ public class SortProxyTest {
     public void dynamicProxy() {
         Sortable<Integer> shellSort = new ShellSort<>();
         Sortable<Integer> shellSortProxy = SortDynamicProxy.Builder.create(shellSort)
-            .proxyTime().proxyMethod().build();
+            .proxyTime()
+            .proxyMethod()
+            .build();
         shellSortProxy.sort(Collections.emptyList());
     }
 }

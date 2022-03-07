@@ -16,7 +16,7 @@ public class MethodStartHandler extends ObjectInvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("start method: " + method.toString());
+        System.out.println("invoke method: " + method.toString());
         return method.invoke(this.object, args);
     }
 }
