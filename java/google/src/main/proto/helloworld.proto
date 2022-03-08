@@ -1,13 +1,20 @@
+// see https://developers.google.com/protocol-buffers/docs/javatutorial
+
 syntax = "proto3";
 
+// To avoid name collisions in the Protocol Buffers name space as well as in non-Java languages
 package helloworld;
 
+// Enables generating a separate .java file for each generated class
 option java_multiple_files = true;
-option java_package = "io.grpc.demo";
-option java_outer_classname = "HelloWorldProto";
-option objc_class_prefix = "HLW";
 
-// The greeting service definition.
+// Specifies in what Java package name your generated classes should live
+option java_package = "cn.fantasticmao.demo.java.google.proto";
+
+// Defines the class name of the wrapper class which will represent this file
+option java_outer_classname = "HelloWorldProto";
+
+// The greeting service definition
 service Greeter {
     // Sends a greeting
     rpc SayHello (HelloRequest) returns (HelloReply) {}
@@ -16,7 +23,7 @@ service Greeter {
     rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
 }
 
-// The request message containing the user's name.
+// The request message containing the user's name
 message HelloRequest {
     string name = 1;
 }

@@ -1,10 +1,10 @@
 package cn.fantasticmao.demo.java.google.grpc;
 
+import cn.fantasticmao.demo.java.google.proto.GreeterGrpc;
+import cn.fantasticmao.demo.java.google.proto.HelloReply;
+import cn.fantasticmao.demo.java.google.proto.HelloRequest;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.demo.GreeterGrpc;
-import io.grpc.demo.HelloReply;
-import io.grpc.demo.HelloRequest;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
