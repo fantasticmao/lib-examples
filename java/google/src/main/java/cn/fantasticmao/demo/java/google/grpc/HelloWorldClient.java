@@ -1,11 +1,11 @@
 package cn.fantasticmao.demo.java.google.grpc;
 
+import cn.fantasticmao.demo.java.google.proto.GreeterGrpc;
+import cn.fantasticmao.demo.java.google.proto.HelloReply;
+import cn.fantasticmao.demo.java.google.proto.HelloRequest;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
-import io.grpc.demo.GreeterGrpc;
-import io.grpc.demo.HelloReply;
-import io.grpc.demo.HelloRequest;
 
 import java.util.concurrent.TimeUnit;
 
