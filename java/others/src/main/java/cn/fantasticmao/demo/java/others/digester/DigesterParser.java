@@ -1,23 +1,24 @@
 package cn.fantasticmao.demo.java.others.digester;
 
+import cn.fantasticmao.demo.java.others.Employee;
 import org.apache.commons.digester3.Digester;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 
 /**
- * EmployeeParser
+ * DigesterParser
  *
  * @author fantasticmao
  * @since 2019-10-30
  */
-public class EmployeeParser {
+public class DigesterParser {
 
-    public EmployeeParser() {
+    public DigesterParser() {
     }
 
-    public Employee parse(String file) throws IOException, SAXException {
+    public Employee parse(InputStream input) throws IOException, SAXException {
         Digester digester = new Digester();
         digester.setValidating(false);
 
@@ -39,9 +40,7 @@ public class EmployeeParser {
         digester.addObjectCreate("employee/office/address", Employee.Office.Address.class.getName());
         digester.addSetProperties("employee/office/address");
         digester.addSetNext("employee/office/address", "setAddress");
-
-        URL xmlUrl = this.getClass().getResource(file);
-        return digester.parse(xmlUrl);
+        return digester.parse(input);
     }
 
 }
