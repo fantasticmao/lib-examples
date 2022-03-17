@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.others.digester;
+package cn.fantasticmao.demo.java.others;
 
 /**
  * Employee
