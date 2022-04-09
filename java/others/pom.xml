@@ -19,6 +19,7 @@
         <disruptor.version>3.4.2</disruptor.version>
         <freemarker.version>2.3.31</freemarker.version>
         <hystrix-core.version>1.5.18</hystrix-core.version>
+        <feign-core.version>11.8</feign-core.version>
         <javassist.version>3.28.0-GA</javassist.version>
         <jmh.version>1.22</jmh.version>
         <jol.version>0.9</jol.version>
@@ -60,6 +61,13 @@
             <groupId>com.netflix.hystrix</groupId>
             <artifactId>hystrix-core</artifactId>
             <version>${hystrix-core.version}</version>
+        </dependency>
+
+        <!-- Feign dependency -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>${feign-core.version}</version>
         </dependency>
 
         <!-- Javassist dependency -->
