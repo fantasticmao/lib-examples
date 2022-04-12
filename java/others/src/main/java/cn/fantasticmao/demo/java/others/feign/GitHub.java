@@ -3,6 +3,8 @@ package cn.fantasticmao.demo.java.others.feign;
 import feign.Param;
 import feign.RequestLine;
 
+import java.util.List;
+
 /**
  * GitHub
  *
@@ -11,10 +13,18 @@ import feign.RequestLine;
  */
 public interface GitHub {
     @RequestLine("GET /repos/{owner}/{repo}/contributors")
-    String contributors(@Param("owner") String owner, @Param("repo") String repository);
+    List<Contributor> contributors(@Param("owner") String owner, @Param("repo") String repository);
 
     class Contributor {
         String login;
         int contributions;
+
+        @Override
+        public String toString() {
+            return "Contributor{" +
+                "login='" + login + '\'' +
+                ", contributions=" + contributions +
+                '}';
+        }
     }
 }
