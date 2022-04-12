@@ -1,7 +1,10 @@
 package cn.fantasticmao.demo.java.others.feign;
 
 import feign.Feign;
+import feign.gson.GsonDecoder;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * FeignTest
@@ -32,8 +35,9 @@ public class FeignTest {
     @Test
     public void githubContributors() {
         GitHub github = Feign.builder()
+            .decoder(new GsonDecoder())
             .target(GitHub.class, "https://api.github.com");
-        String response = github.contributors("fantasticmao", "lib-examples");
-        System.out.println(response);
+        List<GitHub.Contributor> contributors = github.contributors("fantasticmao", "lib-examples");
+        System.out.println(contributors);
     }
 }
