@@ -10,7 +10,7 @@ import java.io.InputStream;
 /**
  * YamlParserTest
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2022-03-17
  */
 public class YamlParserTest {
