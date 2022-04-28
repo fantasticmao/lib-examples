@@ -13,7 +13,7 @@ import org.junit.Test;
 public class DiscardServerHandlerTest {
 
     @Test
-    public void channelRead0() {
+    public void channelRead() {
         EmbeddedChannel embeddedChannel = new EmbeddedChannel(new DiscardServerHandler());
         embeddedChannel.writeInbound("Hello World");
         embeddedChannel.finish();

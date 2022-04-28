@@ -1,11 +1,14 @@
 package cn.fantasticmao.demo.java.netty.protocol.http;
 
+import cn.fantasticmao.demo.java.netty.protocol.discard.DiscardServerHandler;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
+import io.netty.util.internal.logging.InternalLogger;
+import io.netty.util.internal.logging.InternalLoggerFactory;
 
 import java.util.Map;
 
@@ -16,13 +19,14 @@ import java.util.Map;
  * @since 2019/2/2
  */
 public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
+    private static final InternalLogger logger = InternalLoggerFactory.getInstance(DiscardServerHandler.class);
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
-        System.out.println("======== HTTP Request ========");
-        System.out.printf("%s %s %s", msg.method(), msg.uri(), msg.protocolVersion().toString());
+        logger.info("======== HTTP Request ========");
+        logger.info(String.format("%s %s %s", msg.method(), msg.uri(), msg.protocolVersion().toString()));
         for (Map.Entry<String, String> head : msg.headers()) {
-            System.out.println(head.getKey() + ": " + head.getValue());
+            logger.info(String.format("%s: %s", head.getKey(), head.getValue()));
         }
     }
 
