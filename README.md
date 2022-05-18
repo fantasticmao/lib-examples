@@ -3,8 +3,9 @@
 ## Contents
 
 - C
+  - [K & R (The C Programming Language)](c/k-and-r)
+  - [CS:APP (Computer Systems: A Programmer's Perspective)](c/csapp)
   - [POSIX](c/posix)
-  - [the-c-programming-language](c/the-c-programming-language)
 - Go
   - [lang](go/lang)
   - [learn-go-with-tests](go/learn-go-with-tests)

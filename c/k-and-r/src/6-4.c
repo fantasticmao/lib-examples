@@ -89,7 +89,7 @@ struct tnode *addnode(struct tnode *p, char *word) {
 }
 
 void *treesort(struct tnode *p) {
-    // TODO
+  // TODO
 }
 
 void treeprint(struct tnode *p) {
