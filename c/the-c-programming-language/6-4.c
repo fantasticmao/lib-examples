@@ -20,12 +20,17 @@ struct tnode {         /* 树的节点 */
   struct tnode *right; /* 右子节点 */
 };
 
+struct tnode *newnode(char *word, int count);
+
 void freenode(struct tnode *p);
 
 /* addnode 函数：在 p 的位置或 p 的下方增加一个节点 */
 struct tnode *addnode(struct tnode *p, char *word);
 
-/* treeprint 函数：按单词的出现频率降打印树 p */
+/* treesort 函数：排序树 p */
+void *treesort(struct tnode *p);
+
+/* treeprint 函数：递归打印树 p */
 void treeprint(struct tnode *p);
 
 /* getword 函数：从文件中读取下一个单词 */
@@ -50,6 +55,15 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+struct tnode *newnode(char *word, int count) {
+  struct tnode *p = (struct tnode *)malloc(sizeof(struct tnode));
+  p->word = strdup(word);
+  p->count = 1;
+  p->left = NULL;
+  p->right = NULL;
+  return p;
+}
+
 void freenode(struct tnode *p) {
   if (p != NULL) {
     freenode(p->left);
@@ -60,12 +74,7 @@ void freenode(struct tnode *p) {
 
 struct tnode *addnode(struct tnode *p, char *word) {
   if (p == NULL) {
-    p = (struct tnode *)malloc(sizeof(struct tnode));
-    p->word = strdup(word);
-    p->count = 1;
-    p->left = NULL;
-    p->right = NULL;
-    return p;
+    return newnode(word, 0);
   }
 
   int r = strcmp(p->word, word);
@@ -77,6 +86,10 @@ struct tnode *addnode(struct tnode *p, char *word) {
     p->left = addnode(p->left, word);
   }
   return p;
+}
+
+void *treesort(struct tnode *p) {
+    // TODO
 }
 
 void treeprint(struct tnode *p) {
