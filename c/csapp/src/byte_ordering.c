@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 typedef unsigned char *byte_pointer;
 
@@ -16,13 +17,17 @@ void show_float(float x) { show_bytes((byte_pointer)&x, sizeof(int)); }
 
 void show_pointer(void *x) { show_bytes((byte_pointer)&x, sizeof(void *)); }
 
+void show_string(char *s) { show_bytes((byte_pointer)s, strlen(s)); }
+
 int main() {
-  int ival = 0x01234567;
+  int ival = 12345;
   float fval = (float)ival;
   int *pval = &ival;
+  char *sval = "abcdef";
 
   show_int(ival);
   show_float(fval);
   show_pointer(pval);
+  show_string(sval);
   return 0;
 }

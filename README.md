@@ -4,7 +4,7 @@
 
 - C
   - [K & R (The C Programming Language)](c/k-and-r)
-  - [CS:APP (Computer Systems: A Programmer's Perspective)](c/csapp)
+  - [CS: APP (Computer Systems: A Programmer's Perspective)](c/csapp)
   - [POSIX](c/posix)
 - Go
   - [lang](go/lang)
