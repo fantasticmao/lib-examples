@@ -59,4 +59,14 @@ public class InformationRepresenting {
         Assert.assertEquals("1000001011000100000000000000000", Integer.toBinaryString(intBits));
     }
 
+    @Test
+    public void floatingPointZero() {
+        // 补码表示法中不存在 -0.0
+        // IEEE 浮点数 +0.0 表示：符号位为 0、指数为 0、尾数为 0
+        // IEEE 浮点数 -0.0 表示：符号位为 1、指数为 0、尾数为 0
+        Float zeroPositive = +0.0F;
+        Float zeroNegative = -0.0F;
+        Assert.assertNotEquals(zeroPositive, zeroNegative);
+    }
+
 }
