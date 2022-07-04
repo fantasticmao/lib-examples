@@ -12,7 +12,7 @@ import org.junit.Test;
 public class LRUCacheTest {
 
     @Test
-    public void test() {
+    public void example_1() {
         LRUCache lru = new LRUCache(2);
         lru.put(1, 1);
         lru.put(2, 2);

@@ -12,7 +12,7 @@ import org.junit.Test;
 public class LFUCacheTest {
 
     @Test
-    public void test() {
+    public void example_1() {
         LFUCache lfu = new LFUCache(2);
         lfu.put(1, 1);
         lfu.put(2, 2);
