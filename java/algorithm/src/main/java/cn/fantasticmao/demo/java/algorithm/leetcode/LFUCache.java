@@ -8,7 +8,7 @@ import java.util.Map;
  * LFUCache
  *
  * @author fantasticmao
- * @see <a href="https://leetcode.com/problems/lfu-cache/">LeetCode</a>
+ * @see <a href="https://leetcode.com/problems/lfu-cache/">LFU Cache</a>
  * @since 2021/11/22
  */
 public class LFUCache {

@@ -17,7 +17,7 @@ import java.util.Map;
  * </pre>
  *
  * @author fantasticmao
- * @see <a href="https://leetcode.com/problems/lru-cache/">LeetCode</a>
+ * @see <a href="https://leetcode.com/problems/lru-cache/">LRU Cache</a>
  * @since 2018/12/12
  */
 public class LRUCache {
