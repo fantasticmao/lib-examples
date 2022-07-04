@@ -4,28 +4,29 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * IntersectionOfTwoArraysTest
+ * IntersectionOfTwoArraysIITest
  *
  * @author fantasticmao
  * @since 2022-07-04
  */
-public class IntersectionOfTwoArraysTest {
+public class IntersectionOfTwoArraysIITest {
 
     @Test
     public void example_1() {
-        IntersectionOfTwoArrays intersection = new IntersectionOfTwoArrays();
+        IntersectionOfTwoArraysII intersection = new IntersectionOfTwoArraysII();
         int[] nums1 = new int[]{1, 2, 2, 1};
         int[] nums2 = new int[]{2, 2};
-        int[] result = intersection.intersection(nums1, nums2);
-        Assert.assertArrayEquals(new int[]{2}, result);
+        int[] result = intersection.intersect(nums1, nums2);
+        Assert.assertArrayEquals(new int[]{2, 2}, result);
     }
 
     @Test
     public void example_2() {
-        IntersectionOfTwoArrays intersection = new IntersectionOfTwoArrays();
+        IntersectionOfTwoArraysII intersection = new IntersectionOfTwoArraysII();
         int[] nums1 = new int[]{4, 9, 5};
         int[] nums2 = new int[]{9, 4, 9, 8, 4};
-        int[] result = intersection.intersection(nums1, nums2);
+        int[] result = intersection.intersect(nums1, nums2);
         Assert.assertArrayEquals(new int[]{4, 9}, result);
     }
+
 }
