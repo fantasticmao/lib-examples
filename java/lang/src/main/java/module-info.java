@@ -1,5 +1,6 @@
 module cn.fantasticmao.demo.java.lang {
     requires java.net.http;
+    requires java.management;
     requires jdk.compiler;
     requires jdk.unsupported;
 
@@ -18,6 +19,7 @@ module cn.fantasticmao.demo.java.lang {
     exports cn.fantasticmao.demo.java.lang.io;
     exports cn.fantasticmao.demo.java.lang.io.net;
     exports cn.fantasticmao.demo.java.lang.java8;
+    exports cn.fantasticmao.demo.java.lang.jmx;
     exports cn.fantasticmao.demo.java.lang.oom;
     exports cn.fantasticmao.demo.java.lang.spi;
 
