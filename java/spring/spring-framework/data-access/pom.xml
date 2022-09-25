@@ -14,10 +14,6 @@
 
     <name>demo-java-spring-framework-data-access</name>
 
-    <properties>
-        <h2.version>2.1.210</h2.version>
-    </properties>
-
     <dependencies>
         <!-- Spring dependency -->
         <dependency>
@@ -39,7 +35,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
         </dependency>
 
         <dependency>

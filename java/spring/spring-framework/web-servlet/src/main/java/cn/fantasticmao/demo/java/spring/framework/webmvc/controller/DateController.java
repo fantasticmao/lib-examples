@@ -1,11 +1,10 @@
 package cn.fantasticmao.demo.java.spring.framework.webmvc.controller;
 
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
@@ -16,8 +15,7 @@ import java.util.Date;
  * @see GeneralControllerAdvice#initBinder(WebDataBinder)
  * @since 2020-06-29
  */
-@Controller
-@ResponseBody
+@RestController
 public class DateController {
 
     @GetMapping(value = "/date", produces = MediaType.TEXT_PLAIN_VALUE)
