@@ -1,9 +1,12 @@
 package cn.fantasticmao.demo.java.spring.framework.webmvc.controller;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,8 +41,7 @@ public class GeneralControllerAdvice {
      */
     @ExceptionHandler
     @ResponseBody
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String exceptionHandler(Exception exception) {
-        return exception.getMessage();
+    public ResponseEntity<String> exceptionHandler(Exception e) {
+        return ResponseEntity.internalServerError().body(e.getMessage());
     }
 }
