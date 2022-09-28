@@ -8,10 +8,9 @@ import java.util.List;
 
 /**
  * FeignTest
- * <p>
- * 启动 httpbin Docker 容器 {@code docker run -d -p 8080:80 --rm --name httpbin kennethreitz/httpbin}
  *
  * @author fantasticmao
+ * @see <a href="https://github.com/OpenFeign/feign#templates-and-expressions">Templates and Expressions</a>
  * @since 2022-04-09
  */
 public class FeignTest {
