@@ -3,6 +3,8 @@ package cn.fantasticmao.demo.java.others.resilience4j;
 import feign.Param;
 import feign.RequestLine;
 
+import java.net.SocketTimeoutException;
+
 /**
  * HttpBinService
  * <p>
@@ -14,5 +16,5 @@ import feign.RequestLine;
 public interface HttpBinService {
 
     @RequestLine("GET /delay/{delay}")
-    String delay(@Param("delay") int delay);
+    String delay(@Param("delay") int delay) throws SocketTimeoutException;
 }
