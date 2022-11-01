@@ -20,6 +20,7 @@
         <freemarker.version>2.3.31</freemarker.version>
         <hystrix-core.version>1.5.18</hystrix-core.version>
         <feign-core.version>11.8</feign-core.version>
+        <groovy.version>4.0.6</groovy.version>
         <javassist.version>3.28.0-GA</javassist.version>
         <jmh.version>1.22</jmh.version>
         <jol.version>0.9</jol.version>
@@ -75,6 +76,19 @@
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-gson</artifactId>
             <version>${feign-core.version}</version>
+        </dependency>
+
+        <!-- Groovy dependency -->
+        <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy-jsr223</artifactId>
+            <version>${groovy.version}</version>
         </dependency>
 
         <!-- Javassist dependency -->
