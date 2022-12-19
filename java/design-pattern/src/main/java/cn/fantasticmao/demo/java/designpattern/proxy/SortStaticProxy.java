@@ -9,7 +9,7 @@ import java.util.List;
  * @since 2017/8/13
  */
 public class SortStaticProxy<T extends Comparable<?>> implements Sortable<T> {
-    private Sortable<T> sortable;
+    private final Sortable<T> sortable;
 
     public SortStaticProxy(Sortable<T> sortable) {
         this.sortable = sortable;

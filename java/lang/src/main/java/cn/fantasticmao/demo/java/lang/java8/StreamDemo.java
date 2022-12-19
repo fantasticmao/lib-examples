@@ -46,14 +46,14 @@ public class StreamDemo {
 
     public void intermediate() {
         long count = Stream.of(1, 1, null, 2, 3, 4, null, 5, 8, 7, 6, 9)
-                .filter(Objects::nonNull)
-                .distinct()
-                .sorted()
-                .mapToInt(e -> e)
-                .peek(System.out::println)
-                .skip(2)
-                .limit(3)
-                .count();
+            .filter(Objects::nonNull)
+            .distinct()
+            .sorted()
+            .mapToInt(e -> e)
+            .peek(System.out::println)
+            .skip(2)
+            .limit(3)
+            .count();
         System.out.println(count);
     }
 

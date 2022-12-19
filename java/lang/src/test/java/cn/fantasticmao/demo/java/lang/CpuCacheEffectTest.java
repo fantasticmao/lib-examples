@@ -30,14 +30,14 @@ public class CpuCacheEffectTest {
         for (int i = 0; i < arr.length; i++) {
             long tmp = arr[i];
         }
-        System.out.println("Loop1: " + (System.nanoTime() - start));
+        System.out.printf("Loop1: %d", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start));
 
         // 以步长为 16 遍历数组
         start = System.nanoTime();
         for (int i = 0; i < arr.length; i += 64) {
             long tmp = arr[i];
         }
-        System.out.println("Loop2: " + (System.nanoTime() - start));
+        System.out.printf("Loop2: %d", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start));
     }
 
     /**

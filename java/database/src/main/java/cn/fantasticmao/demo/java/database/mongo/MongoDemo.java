@@ -23,13 +23,13 @@ import java.util.Arrays;
 public class MongoDemo implements Closeable {
     private static final Logger LOGGER = LoggerFactory.getLogger(MongoDemo.class);
 
-    private MongoClient mongoClient;
-    private MongoCollection<Document> collection;
+    private final MongoClient mongoClient;
+    private final MongoCollection<Document> collection;
 
     private MongoDemo(String host, int port) {
         this.mongoClient = new MongoClient(host, port);
         this.collection = this.mongoClient.getDatabase("database_demo")
-                .getCollection("collection_demo");
+            .getCollection("collection_demo");
     }
 
     private void query() {
@@ -41,9 +41,9 @@ public class MongoDemo implements Closeable {
     private void insert() {
         LOGGER.debug("======= insert =======");
         Document document = new Document()
-                .append("username", "maomao")
-                .append("age", 23)
-                .append("favoriteFood", Arrays.asList("apple", "banana", "watermelon"));
+            .append("username", "maomao")
+            .append("age", 23)
+            .append("favoriteFood", Arrays.asList("apple", "banana", "watermelon"));
         this.collection.insertOne(document);
         LOGGER.info("insert document: {}", document.toJson());
     }

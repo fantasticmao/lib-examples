@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.lang.ast;
+package cn.fantasticmao.demo.java.lang.jsr269;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,14 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * HelloAnnotation
+ * SoonDeprecated
  *
  * @author fantasticmao
- * @since 2020-01-09
+ * @since 2022-12-19
  */
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.SOURCE)
-public @interface HelloAnnotation {
+public @interface SoonDeprecated {
 
-    String username();
+    String version();
+
 }

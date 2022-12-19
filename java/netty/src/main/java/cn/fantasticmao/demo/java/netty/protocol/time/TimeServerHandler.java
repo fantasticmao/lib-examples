@@ -13,7 +13,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    public void channelActive(ChannelHandlerContext ctx) {
         final ByteBuf byteBuf = ctx.alloc().buffer(Long.BYTES);
         byteBuf.writeLong(System.currentTimeMillis());
         ctx.writeAndFlush(byteBuf);

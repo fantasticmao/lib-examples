@@ -16,7 +16,7 @@ import io.netty.handler.logging.LoggingHandler;
 public class HttpChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
-    protected void initChannel(SocketChannel ch) throws Exception {
+    protected void initChannel(SocketChannel ch) {
         ch.pipeline()
             .addLast(new LoggingHandler(LogLevel.INFO))
             .addLast(new HttpServerCodec())

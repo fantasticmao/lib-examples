@@ -12,7 +12,7 @@ import java.util.function.Function;
  * @since 2020-05-14
  */
 public class CustomClassLoaderTest {
-    private ClassLoader customClassLoader = new CustomClassLoader();
+    private final ClassLoader customClassLoader = new CustomClassLoader();
 
     @Test
     public void test1() throws Exception {
@@ -24,7 +24,7 @@ public class CustomClassLoaderTest {
     @Test(expected = ClassCastException.class)
     public void test2() throws Exception {
         Class<?> clazz = customClassLoader.loadClass(CustomClassLoaderTest.class.getName());
-        CustomClassLoaderTest obj = (CustomClassLoaderTest) clazz.newInstance();
+        CustomClassLoaderTest obj = (CustomClassLoaderTest) clazz.getDeclaredConstructor().newInstance();
     }
 
     @Test

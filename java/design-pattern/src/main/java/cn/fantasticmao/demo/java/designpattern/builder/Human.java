@@ -16,7 +16,7 @@ public class Human {
     }
 
     public static class Builder {
-        private Human human = new Human();
+        private final Human human = new Human();
 
         public Builder firstName(String firstName) {
             this.human.firstName = firstName;

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author fantasticmao
  * @since 2021-01-12
  */
-public class DebugInitContainerAndGetBean {
+public class DebugInitContainerAndGetBeanTest {
 
     @Test
     public void debugInitContainerAndGetBean() {

@@ -22,8 +22,7 @@ import java.io.*;
  */
 public class IoStreamHookDemo {
 
-    private static class User implements Serializable {
-        private static final long serialVersionUID = 2196964377342851692L;
+    private static class User {
         private String username;
         private String password;
 
@@ -60,9 +59,9 @@ public class IoStreamHookDemo {
         @Override
         public String toString() {
             return "User{" +
-                    "username='" + username + '\'' +
-                    ", password='" + password + '\'' +
-                    '}';
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
         }
 
         @Override

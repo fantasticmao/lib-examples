@@ -38,7 +38,7 @@ public class H2Repository implements AutoCloseable {
             statement.executeUpdate("DROP TABLE IF EXISTS t_user");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS t_user(" +
                 "id INT PRIMARY KEY," +
-                "name VARCHAR(32))");
+                "NAME VARCHAR(32))");
         }
     }
 

@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * @author fantasticmao
  * @since 2021-01-15
  */
-public class DebugCreateNestedBean {
+public class DebugCreateNestedBeanTest {
 
     @Test(expected = BeanCurrentlyInCreationException.class)
     public void debugCreateNestedBean() throws Throwable {

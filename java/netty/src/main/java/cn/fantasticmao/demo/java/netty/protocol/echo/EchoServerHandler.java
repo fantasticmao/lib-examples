@@ -17,12 +17,12 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<String> {
     }
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    public void channelActive(ChannelHandlerContext ctx) {
         ctx.writeAndFlush("Welcome to EchoServer[port: " + port + "]");
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) {
         ctx.writeAndFlush("EchoServer[port: " + port + "] echo: " + msg);
     }
 }

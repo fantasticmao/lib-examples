@@ -1,5 +1,7 @@
 # Java
 
+![JDK Version](https://img.shields.io/badge/JDK-17%2B-blue)
+
 ## 官方文档
 
 - **Java Documentation**: https://docs.oracle.com/en/java/
@@ -24,7 +26,7 @@
 - Standard Encoding and Decoding Base64
 - Removal of PermGen
 
-More: https://www.oracle.com/java/technologies/javase/8-whats-new.html
+For more details see: https://www.oracle.com/java/technologies/javase/8-whats-new.html
 
 ### Java 9
 
@@ -38,7 +40,7 @@ More: https://www.oracle.com/java/technologies/javase/8-whats-new.html
 - Convenience Factory Methods for Collections
 - Stack-Walking API
 
-More: https://docs.oracle.com/javase/9/whatsnew/toc.htm
+For more details see: https://docs.oracle.com/javase/9/whatsnew/toc.htm
 
 ### Java 10
 
@@ -46,7 +48,7 @@ More: https://docs.oracle.com/javase/9/whatsnew/toc.htm
 - APIs for Creating Unmodifiable Collections
 - Parallel Full GC for G1
 
-More: https://www.oracle.com/java/technologies/javase/10-relnote-issues.html
+For more details see: https://www.oracle.com/java/technologies/javase/10-relnote-issues.html
 
 ### Java 11
 
@@ -54,7 +56,8 @@ More: https://www.oracle.com/java/technologies/javase/10-relnote-issues.html
 - **ZGC A Scalable Low-Latency Garbage Collector (Experimental)**
 - Removal of JavaFX from the Oracle JDK
 
-More: https://www.oracle.com/java/technologies/javase/11-relnote-issues.html#NewFeature
+For more details
+see: https://www.oracle.com/java/technologies/javase/11-relnote-issues.html#NewFeature
 
 ### Java 12
 

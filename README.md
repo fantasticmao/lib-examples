@@ -1,5 +1,9 @@
 # Lib-Examples
 
+![Go Version](https://img.shields.io/badge/Go-1.17%2B-blue)
+![JDK Version](https://img.shields.io/badge/JDK-17%2B-blue)
+![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
+
 ## Contents
 
 - C

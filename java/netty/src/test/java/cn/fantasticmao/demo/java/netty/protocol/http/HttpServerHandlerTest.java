@@ -60,7 +60,7 @@ public class HttpServerHandlerTest {
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 2_000)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
-                    protected void initChannel(SocketChannel ch) throws Exception {
+                    protected void initChannel(SocketChannel ch) {
                         ch.pipeline()
                             .addLast(new LoggingHandler(LogLevel.INFO))
                             .addLast(new HttpClientCodec());

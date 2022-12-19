@@ -18,15 +18,12 @@ public class IdempotentMethod {
         this.jedis = jedis;
     }
 
-    public boolean idempotentMethod(String uniqueKey, Runnable runnable) {
+    public void idempotentMethod(String uniqueKey, Runnable runnable) {
         final String key = "idempotent:" + uniqueKey;
         final String value = String.valueOf(uniqueKey);
         final String statusCode = jedis.set(key, value, SetParams.setParams().ex(5L).nx());
         if ("ok".equalsIgnoreCase(statusCode)) {
             runnable.run();
-            return true;
-        } else {
-            return false;
         }
     }
 

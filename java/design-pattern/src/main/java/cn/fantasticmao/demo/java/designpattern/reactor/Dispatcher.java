@@ -25,11 +25,12 @@ public class Dispatcher {
     public void dispatch(SelectionKey key) throws IOException {
         // a connection was accepted by a ServerSocketChannel.
         if (key.isAcceptable()) {
-            ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
-            SocketChannel clientSocketChannel = serverSocketChannel.accept();
-            clientSocketChannel.configureBlocking(false);
+            try (ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel()) {
+                SocketChannel clientSocketChannel = serverSocketChannel.accept();
+                clientSocketChannel.configureBlocking(false);
 
-            clientSocketChannel.register(selector, SelectionKey.OP_READ); // 接收连接之后，监听「读」事件
+                clientSocketChannel.register(selector, SelectionKey.OP_READ); // 接收连接之后，监听「读」事件
+            }
         }
 
         // a connection was established with a remote server.
@@ -56,11 +57,12 @@ public class Dispatcher {
 
         // a channel is ready for writing
         if (key.isValid() && key.isWritable()) {
-            SocketChannel socketChannel = (SocketChannel) key.channel();
-            ByteBuffer buffer = ByteBuffer.wrap(("Echo: " + data).getBytes());
-            socketChannel.write(buffer);
+            try (SocketChannel socketChannel = (SocketChannel) key.channel()) {
+                ByteBuffer buffer = ByteBuffer.wrap(("Echo: " + data).getBytes());
+                socketChannel.write(buffer);
 
-            socketChannel.register(selector, SelectionKey.OP_READ); // 写入数据之后，再次监听「读」事件
+                socketChannel.register(selector, SelectionKey.OP_READ); // 写入数据之后，再次监听「读」事件
+            }
         }
     }
 }

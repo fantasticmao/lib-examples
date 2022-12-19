@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * SearchApisTest
@@ -45,7 +44,7 @@ public class SearchApisTest {
             .map(Hit::source)
             .filter(Objects::nonNull)
             .map(funcPrintAddress)
-            .collect(Collectors.toList());
+            .toList();
         Assert.assertNotEquals(0, addressList.size());
         addressList.forEach(System.out::println);
     }
@@ -59,7 +58,7 @@ public class SearchApisTest {
             .map(Hit::source)
             .filter(Objects::nonNull)
             .map(funcPrintAddress)
-            .collect(Collectors.toList());
+            .toList();
         Assert.assertNotEquals(0, addressList.size());
         addressList.forEach(System.out::println);
     }
@@ -73,7 +72,7 @@ public class SearchApisTest {
             .map(Hit::source)
             .filter(Objects::nonNull)
             .map(account -> account.getLastname() + " " + account.getFirstname())
-            .collect(Collectors.toList());
+            .toList();
         Assert.assertNotEquals(0, addressList.size());
         addressList.forEach(System.out::println);
     }
@@ -99,7 +98,7 @@ public class SearchApisTest {
             .map(Hit::source)
             .filter(Objects::nonNull)
             .map(funcPrintAge)
-            .collect(Collectors.toList());
+            .toList();
         Assert.assertNotEquals(0, addressList.size());
         addressList.forEach(System.out::println);
     }
@@ -113,7 +112,7 @@ public class SearchApisTest {
             .map(Hit::source)
             .filter(Objects::nonNull)
             .map(funcPrintAge)
-            .collect(Collectors.toList());
+            .toList();
         Assert.assertNotEquals(0, addressList.size());
         addressList.forEach(System.out::println);
     }
@@ -127,7 +126,7 @@ public class SearchApisTest {
             .map(Hit::source)
             .filter(Objects::nonNull)
             .map(funcPrintAge)
-            .collect(Collectors.toList());
+            .toList();
         Assert.assertNotEquals(0, addressList.size());
         addressList.forEach(System.out::println);
     }
