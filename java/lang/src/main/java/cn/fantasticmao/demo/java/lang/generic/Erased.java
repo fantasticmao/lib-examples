@@ -8,7 +8,7 @@ public class Erased<T> {
 
     public void foo(Class<T> clazz) throws Exception {
         boolean f = t instanceof Integer; // ok
-        this.t = clazz.newInstance(); // error
+        this.t = clazz.getDeclaredConstructor().newInstance(); // error
         List<T> array1 = new ArrayList<>(); // error
     }
 }

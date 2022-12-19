@@ -15,8 +15,8 @@ public class ClassGenerator {
      */
     private static <T> T generate(Class<T> t) {
         try {
-            return t.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
+            return t.getDeclaredConstructor().newInstance();
+        } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }
         return null;

@@ -14,7 +14,7 @@ import org.ehcache.config.builders.ResourcePoolsBuilder;
  * @since 2018/12/10
  */
 public class EhcacheRepository implements AutoCloseable {
-    private CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build();
+    private final CacheManager cacheManager = CacheManagerBuilder.newCacheManagerBuilder().build();
 
     public EhcacheRepository() {
         cacheManager.init();

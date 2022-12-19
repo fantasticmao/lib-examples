@@ -12,7 +12,7 @@ import java.util.List;
  * @since 2020-05-14
  */
 public class BinaryTreeTest {
-    private BinaryTree tree;
+    private final BinaryTree tree;
 
     public BinaryTreeTest() {
         this.tree = new BinaryTree();

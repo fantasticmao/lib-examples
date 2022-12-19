@@ -22,7 +22,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
     private static final InternalLogger logger = InternalLoggerFactory.getInstance(DiscardServerHandler.class);
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, FullHttpRequest msg) {
         logger.info("======== HTTP Request ========");
         logger.info(String.format("%s %s %s", msg.method(), msg.uri(), msg.protocolVersion().toString()));
         for (Map.Entry<String, String> head : msg.headers()) {
@@ -31,7 +31,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
     }
 
     @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+    public void channelReadComplete(ChannelHandlerContext ctx) {
         byte[] bytes = "Hello Netty\r\n".getBytes();
         ByteBuf byteBuf = Unpooled.wrappedBuffer(bytes);
 
@@ -44,7 +44,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
     }

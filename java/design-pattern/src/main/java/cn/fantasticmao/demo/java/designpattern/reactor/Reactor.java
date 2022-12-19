@@ -22,10 +22,11 @@ public class Reactor implements Runnable {
         selector = Selector.open();
         dispatcher = new Dispatcher(selector);
 
-        ServerSocketChannel channel = ServerSocketChannel.open();
-        channel.configureBlocking(false); // 设置 channel 为非阻塞
-        channel.bind(new InetSocketAddress(port)); // 设置监听端口
-        channel.register(selector, SelectionKey.OP_ACCEPT); // 注册事件
+        try (ServerSocketChannel channel = ServerSocketChannel.open()) {
+            channel.configureBlocking(false); // 设置 channel 为非阻塞
+            channel.bind(new InetSocketAddress(port)); // 设置监听端口
+            channel.register(selector, SelectionKey.OP_ACCEPT); // 注册事件
+        }
     }
 
     @Override

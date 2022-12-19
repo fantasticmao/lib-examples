@@ -1,5 +1,7 @@
 # Go
 
+![Go Version](https://img.shields.io/badge/Go-1.17%2B-blue)
+
 ## 官方文档
 
 - **Go Documentation**: https://go.dev/doc/

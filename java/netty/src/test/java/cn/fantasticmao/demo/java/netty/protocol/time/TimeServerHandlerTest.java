@@ -65,7 +65,7 @@ public class TimeServerHandlerTest {
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
-                    protected void initChannel(SocketChannel ch) throws Exception {
+                    protected void initChannel(SocketChannel ch) {
                         ch.pipeline()
                             .addLast(new LoggingHandler(LogLevel.INFO))
                             .addLast(new TimeClientHandler());

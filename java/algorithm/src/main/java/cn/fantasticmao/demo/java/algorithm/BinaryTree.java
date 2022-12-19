@@ -1,6 +1,5 @@
 package cn.fantasticmao.demo.java.algorithm;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -91,16 +90,11 @@ public class BinaryTree {
 
     public List<Integer> traverse(TraverseType type) {
         List<Integer> keyList = new LinkedList<>();
-        switch (type) {
-            case PRE:
-                return preOrder(root, keyList);
-            case IN:
-                return inOrder(root, keyList);
-            case POST:
-                return postOrder(root, keyList);
-            default:
-                return Collections.emptyList();
-        }
+        return switch (type) {
+            case PRE -> preOrder(root, keyList);
+            case IN -> inOrder(root, keyList);
+            case POST -> postOrder(root, keyList);
+        };
     }
 
     /**

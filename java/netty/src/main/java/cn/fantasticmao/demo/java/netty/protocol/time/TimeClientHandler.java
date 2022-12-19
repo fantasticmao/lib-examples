@@ -18,7 +18,7 @@ public class TimeClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     private static final InternalLogger logger = InternalLoggerFactory.getInstance(TimeClientHandler.class);
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, ByteBuf byteBuf) throws Exception {
+    public void channelRead0(ChannelHandlerContext ctx, ByteBuf byteBuf) {
         final long currentTimeMillis = byteBuf.readLong();
         logger.info("Timestamp: " + new Date(currentTimeMillis));
     }

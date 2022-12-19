@@ -3,8 +3,6 @@ package cn.fantasticmao.demo.java.lang.java11;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.stream.Collectors;
-
 /**
  * StringTest
  *
@@ -21,7 +19,7 @@ public class StringTest {
     @Test
     public void lines() {
         var list = "line1\nline2\nline3".lines()
-            .collect(Collectors.toList());
+            .toList();
         Assert.assertEquals(3, list.size());
     }
 

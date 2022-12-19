@@ -1,14 +1,12 @@
 package cn.fantasticmao.demo.java.algorithm;
 
-import java.io.Serializable;
-
 /**
  * Matrix 矩阵
  *
  * @author fantasticmao
  * @since 2017/7/8
  */
-public interface Matrix<E> extends Serializable {
+public interface Matrix<E> {
 
     Integer getRow();
 

@@ -11,7 +11,6 @@ import com.influxdb.query.FluxTable;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * InfluxdbRepository
@@ -68,7 +67,7 @@ public class InfluxdbRepository implements AutoCloseable {
             bucket, start));
         return tableList.stream()
             .flatMap(table -> table.getRecords().stream())
-            .collect(Collectors.toList());
+            .toList();
     }
 
     @Override

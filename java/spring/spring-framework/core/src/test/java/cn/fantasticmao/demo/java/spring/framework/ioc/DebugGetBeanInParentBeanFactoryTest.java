@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @author fantasticmao
  * @since 2021-01-12
  */
-public class DebugGetBeanInParentBeanFactory {
+public class DebugGetBeanInParentBeanFactoryTest {
 
     @Test
     public void debugGetBeanInParentBeanFactory() {
