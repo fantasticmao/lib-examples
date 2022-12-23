@@ -56,10 +56,16 @@ For more details see: https://www.oracle.com/java/technologies/javase/10-relnote
 - **ZGC A Scalable Low-Latency Garbage Collector (Experimental)**
 - Removal of JavaFX from the Oracle JDK
 
-For more details
-see: https://www.oracle.com/java/technologies/javase/11-relnote-issues.html#NewFeature
+For more details see: https://www.oracle.com/java/technologies/javase/11-relnote-issues.html#NewFeature
 
 ### Java 12
+
+- Support for Compact Number Formatting
+- ZGC Concurrent Class Unloading
+- Removal of finalize Methods from FileInputStream and FileOutputStream
+- Removal of finalize Method in java.util.ZipFile/Inflator/Deflator
+
+For more details see: https://www.oracle.com/java/technologies/javase/12-relnote-issues.html#NewFeature
 
 ### Java 13
 
