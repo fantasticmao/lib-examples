@@ -25,6 +25,7 @@
         <javassist.version>3.28.0-GA</javassist.version>
         <jmh.version>1.22</jmh.version>
         <jol.version>0.9</jol.version>
+        <liteflow.version>2.6.14</liteflow.version>
         <quartz.version>2.3.2</quartz.version>
         <resilience4j.version>1.7.1</resilience4j.version>
         <snakeyaml.version>1.32</snakeyaml.version>
@@ -117,6 +118,13 @@
             <groupId>org.openjdk.jol</groupId>
             <artifactId>jol-core</artifactId>
             <version>${jol.version}</version>
+        </dependency>
+
+        <!-- LiteFlow dependency -->
+        <dependency>
+            <groupId>com.yomahub</groupId>
+            <artifactId>liteflow-core</artifactId>
+            <version>${liteflow.version}</version>
         </dependency>
 
         <!-- Quartz dependency -->

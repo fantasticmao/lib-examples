@@ -1,0 +1,44 @@
+{
+  "flow": {
+    "nodes": {
+      "node": [
+        {
+          "id": "A",
+          "class": "cn.fantasticmao.demo.java.others.liteflow.AComponent"
+        },
+        {
+          "id": "B",
+          "class": "cn.fantasticmao.demo.java.others.liteflow.BComponent"
+        },
+        {
+          "id": "C",
+          "class": "cn.fantasticmao.demo.java.others.liteflow.CComponent"
+        },
+        {
+          "id": "X",
+          "class": "cn.fantasticmao.demo.java.others.liteflow.XComponent"
+        }
+      ]
+    },
+    "chain": [
+      {
+        "name": "chain1",
+        "condition": [
+          {
+            "type": "then",
+            "value": "A,B,C"
+          }
+        ]
+      },
+      {
+        "name": "chain2",
+        "condition": [
+          {
+            "type": "then",
+            "value": "A,X(B|C)"
+          }
+        ]
+      }
+    ]
+  }
+}
