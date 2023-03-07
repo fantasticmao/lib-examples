@@ -28,7 +28,7 @@
         <liteflow.version>2.6.14</liteflow.version>
         <quartz.version>2.3.2</quartz.version>
         <resilience4j.version>1.7.1</resilience4j.version>
-        <snakeyaml.version>1.32</snakeyaml.version>
+        <snakeyaml.version>2.0</snakeyaml.version>
     </properties>
 
     <dependencies>
