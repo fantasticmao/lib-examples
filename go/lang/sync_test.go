@@ -7,7 +7,9 @@ import (
 	"testing"
 )
 
-func TestMutexExclusion(t *testing.T) {
+// see https://pkg.go.dev/sync
+
+func TestSyncMutexExclusion(t *testing.T) {
 	wait := sync.WaitGroup{}
 	lock := sync.Mutex{}
 	count := 0

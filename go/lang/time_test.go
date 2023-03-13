@@ -6,7 +6,9 @@ import (
 	"time"
 )
 
-func TestParseTime(t *testing.T) {
+// see https://pkg.go.dev/time#example-Parse
+
+func TestTimeParse(t *testing.T) {
 	var (
 		datetime time.Time
 		err      error
@@ -25,7 +27,7 @@ func TestParseTime(t *testing.T) {
 	assert.Equal(t, int64(1638288000000), datetime.UnixMilli())
 }
 
-func TestAfterTime(t *testing.T) {
+func TestTimeAfter(t *testing.T) {
 	ch := time.After(500 * time.Millisecond)
 	timePassed := <-ch
 	assert.True(t, time.Now().After(timePassed))
