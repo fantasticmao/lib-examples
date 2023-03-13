@@ -10,7 +10,11 @@ import (
 	"testing"
 )
 
-func TestExecExecutable(t *testing.T) {
+// see https://pkg.go.dev/os
+// see https://pkg.go.dev/os/exec
+// see https://pkg.go.dev/runtime
+
+func TestOsExecExecutable(t *testing.T) {
 	platform := runtime.GOOS
 	if !strings.Contains(platform, "linux") &&
 		!strings.Contains(platform, "darwin") {
@@ -24,7 +28,7 @@ func TestExecExecutable(t *testing.T) {
 	fmt.Print(string(out))
 }
 
-func TestExecShell_success(t *testing.T) {
+func TestOsExecShell_success(t *testing.T) {
 	platform := runtime.GOOS
 	if !strings.Contains(platform, "linux") &&
 		!strings.Contains(platform, "darwin") {
@@ -38,7 +42,7 @@ func TestExecShell_success(t *testing.T) {
 	assert.Equal(t, "hello\n", string(out))
 }
 
-func TestExecShell_error(t *testing.T) {
+func TestOsExecShell_error(t *testing.T) {
 	shellForm := "echp 'hello'"
 	cmd := exec.Command("/bin/sh", "-c", shellForm)
 	_, err := cmd.Output()

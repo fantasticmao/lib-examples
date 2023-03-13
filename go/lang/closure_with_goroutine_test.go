@@ -6,6 +6,7 @@ import (
 )
 
 // see https://go.dev/doc/faq#closures_and_goroutines
+
 func TestClosureWithGoroutine(t *testing.T) {
 	done := make(chan bool)
 	values := []string{"a", "b", "c"}
