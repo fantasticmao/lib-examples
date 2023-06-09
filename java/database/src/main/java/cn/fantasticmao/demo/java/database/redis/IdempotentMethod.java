@@ -6,7 +6,7 @@ import redis.clients.jedis.params.SetParams;
 /**
  * Idempotent Method
  * <p>
- * 启动 Redis Docker 容器 {@code docker run -d -p 6379:6379 --rm --name redis-test redis:6.2.6-alpine}
+ * 启动 Redis Docker 容器
  *
  * @author fantasticmao
  * @since 2020-01-11

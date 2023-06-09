@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.others.snakeyaml;
 
 import cn.fantasticmao.demo.java.others.Employee;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -17,7 +18,8 @@ public class YamlParser {
     private final Yaml yaml;
 
     public YamlParser() {
-        this.yaml = new Yaml(new Constructor(Employee.class));
+        LoaderOptions options = new LoaderOptions();
+        this.yaml = new Yaml(new Constructor(Employee.class, options));
     }
 
     public Employee parse(InputStream input) {
