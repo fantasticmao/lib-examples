@@ -14,7 +14,7 @@ import java.util.concurrent.locks.Lock;
 /**
  * DistributedRedisLock 单机 Redis 的分布式锁实现
  * <p>
- * 启动 Redis Docker 容器 {@code docker run -d -p 6379:6379 --rm --name redis-test redis:6.2.6-alpine}
+ * 启动 Redis Docker 容器
  *
  * @author fantasticmao
  * @see <a href="https://redis.io/topics/distlock">Distributed locks with Redis</a>

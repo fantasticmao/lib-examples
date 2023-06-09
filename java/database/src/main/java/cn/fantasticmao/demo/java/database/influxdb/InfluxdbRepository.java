@@ -16,7 +16,7 @@ import java.util.List;
  * InfluxdbRepository
  * <p>
  * <ol>
- *     <li>Run InfluxDB Docker Container: {@code docker run -d -p 8086:8086 --rm --name influxdb-test influxdb:2.1.1}</li>
+ *     <li>Run InfluxDB Docker Container</li>
  *     <li>Set up InfluxDB, username: {@code username}</li>
  *     <li>Set up InfluxDB, password: {@code password}</li>
  *     <li>Set up InfluxDB, organization name: {@code fantasticmao.cn}</li>

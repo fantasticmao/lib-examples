@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  redis:
+    container_name: lib-examples-redis
+    image: redis:6.2.6-alpine
+    ports:
+      - "6379:6379"
+  memcached:
+    container_name: lib-examples-memcached
+    image: memcached:1.6.12-alpine
+    ports:
+      - "11211:11211"
+  zookeeper:
+    container_name: lib-examples-zookeeper
+    image: zookeeper:3.7.0
+    ports:
+      - "2181:2181"
+  influxdb:
+    container_name: lib-examples-influxdb
+    image: influxdb:2.1.1
+    ports:
+      - "8086:8086"
+  elasticsearch:
+    container_name: lib-examples-elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+    ports:
+      - "9200:9200"
+    environment:
+      - "discovery.type=single-node"
+      - "xpack.security.enabled=false"
+  httpbin:
+    container_name: lib-examples-httpbin
+    image: kennethreitz/httpbin
+    ports:
+      - "8080:80"

@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * MemcachedRepository
  * <p>
- * 启动 Memcached Docker 容器 {@code docker run -d -p 11211:11211 --rm --name memcached-test memcached:1.6.12-alpine}
+ * 启动 Memcached Docker 容器
  *
  * @author fantasticmao
  * @see KetamaMemcachedSessionLocator Consistent Hash Algorithm
