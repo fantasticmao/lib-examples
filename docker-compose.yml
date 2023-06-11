@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
   redis:
@@ -13,9 +13,20 @@ services:
       - "11211:11211"
   zookeeper:
     container_name: lib-examples-zookeeper
-    image: zookeeper:3.7.0
+    image: zookeeper:3.8
     ports:
       - "2181:2181"
+  kafka:
+    container_name: lib-examples-kafka
+    image: bitnami/kafka:3.4
+    ports:
+      - "9094:9094"
+    environment:
+      - "ALLOW_PLAINTEXT_LISTENER=yes"
+      - "KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true"
+      - "KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094"
+      - "KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094"
+      - "KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT"
   influxdb:
     container_name: lib-examples-influxdb
     image: influxdb:2.1.1
