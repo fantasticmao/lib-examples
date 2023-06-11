@@ -20,13 +20,14 @@
         <h2.version>2.1.210</h2.version>
         <hbase.version>2.4.8</hbase.version>
         <influxdb.client.version>4.0.0</influxdb.client.version>
+        <kafka.version>3.4.0</kafka.version>
         <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
         <jedis.version>3.7.0</jedis.version>
         <rocketmq.version>4.4.0</rocketmq.version>
         <sqlite.version>3.42.0.0</sqlite.version>
-        <zookeeper.version>3.7.0</zookeeper.version>
+        <zookeeper.version>3.8.0</zookeeper.version>
     </properties>
 
     <dependencies>
@@ -69,6 +70,12 @@
             <groupId>com.influxdb</groupId>
             <artifactId>influxdb-client-java</artifactId>
             <version>${influxdb.client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.version}</version>
         </dependency>
 
         <dependency>
