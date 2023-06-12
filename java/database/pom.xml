@@ -25,7 +25,6 @@
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>3.10.2</mongodb-driver.version>
         <jedis.version>3.7.0</jedis.version>
-        <rocketmq.version>4.4.0</rocketmq.version>
         <sqlite.version>3.42.0.0</sqlite.version>
         <zookeeper.version>3.8.0</zookeeper.version>
     </properties>
@@ -117,18 +116,6 @@
             <version>${jedis.version}</version>
         </dependency>
 
-        <!-- RocketMQ dependency -->
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>${rocketmq.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
-
         <!-- SQLite driver dependency -->
         <dependency>
             <groupId>org.xerial</groupId>
@@ -141,6 +128,11 @@
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>${zookeeper.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
         </dependency>
     </dependencies>
 </project>
