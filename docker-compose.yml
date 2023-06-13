@@ -11,6 +11,11 @@ services:
     image: memcached:1.6.12-alpine
     ports:
       - "11211:11211"
+  mongodb:
+    container_name: lib-examples-mongodb
+    image: mongodb/mongodb-community-server:6.0.4-ubi8
+    ports:
+      - "27017:27017"
   zookeeper:
     container_name: lib-examples-zookeeper
     image: zookeeper:3.8
