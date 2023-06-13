@@ -23,7 +23,7 @@
         <kafka.version>3.4.0</kafka.version>
         <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
-        <mongodb-driver.version>3.10.2</mongodb-driver.version>
+        <mongodb-driver.version>4.9.1</mongodb-driver.version>
         <jedis.version>3.7.0</jedis.version>
         <sqlite.version>3.42.0.0</sqlite.version>
         <zookeeper.version>3.8.0</zookeeper.version>
@@ -105,7 +105,7 @@
         <!-- MongoDB driver dependency -->
         <dependency>
             <groupId>org.mongodb</groupId>
-            <artifactId>mongodb-driver</artifactId>
+            <artifactId>mongodb-driver-sync</artifactId>
             <version>${mongodb-driver.version}</version>
         </dependency>
 
