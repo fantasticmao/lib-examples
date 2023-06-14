@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.database.mongo;
+package cn.fantasticmao.demo.java.database.mongodb;
 
 import cn.fantasticmao.demo.java.database.User;
 import com.mongodb.client.FindIterable;
