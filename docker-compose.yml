@@ -1,42 +1,11 @@
 version: "3"
 
 services:
-  redis:
-    container_name: lib-examples-redis
-    image: redis:6.2.6-alpine
+  cassandra:
+    container_name: lib-examples-cassandra
+    image: cassandra:4.1
     ports:
-      - "6379:6379"
-  memcached:
-    container_name: lib-examples-memcached
-    image: memcached:1.6.12-alpine
-    ports:
-      - "11211:11211"
-  mongodb:
-    container_name: lib-examples-mongodb
-    image: mongodb/mongodb-community-server:6.0.4-ubi8
-    ports:
-      - "27017:27017"
-  zookeeper:
-    container_name: lib-examples-zookeeper
-    image: zookeeper:3.8
-    ports:
-      - "2181:2181"
-  kafka:
-    container_name: lib-examples-kafka
-    image: bitnami/kafka:3.4
-    ports:
-      - "9094:9094"
-    environment:
-      - "ALLOW_PLAINTEXT_LISTENER=yes"
-      - "KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true"
-      - "KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094"
-      - "KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094"
-      - "KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT"
-  influxdb:
-    container_name: lib-examples-influxdb
-    image: influxdb:2.1.1
-    ports:
-      - "8086:8086"
+      - "9042:9042"
   elasticsearch:
     container_name: lib-examples-elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
@@ -50,3 +19,39 @@ services:
     image: kennethreitz/httpbin
     ports:
       - "8080:80"
+  influxdb:
+    container_name: lib-examples-influxdb
+    image: influxdb:2.1.1
+    ports:
+      - "8086:8086"
+  kafka:
+    container_name: lib-examples-kafka
+    image: bitnami/kafka:3.4
+    ports:
+      - "9094:9094"
+    environment:
+      - "ALLOW_PLAINTEXT_LISTENER=yes"
+      - "KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true"
+      - "KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094"
+      - "KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094"
+      - "KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT"
+  memcached:
+    container_name: lib-examples-memcached
+    image: memcached:1.6.12-alpine
+    ports:
+      - "11211:11211"
+  mongodb:
+    container_name: lib-examples-mongodb
+    image: mongodb/mongodb-community-server:6.0.4-ubi8
+    ports:
+      - "27017:27017"
+  redis:
+    container_name: lib-examples-redis
+    image: redis:6.2.6-alpine
+    ports:
+      - "6379:6379"
+  zookeeper:
+    container_name: lib-examples-zookeeper
+    image: zookeeper:3.8
+    ports:
+      - "2181:2181"
