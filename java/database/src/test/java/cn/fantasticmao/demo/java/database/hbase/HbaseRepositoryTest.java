@@ -30,16 +30,21 @@ public class HbaseRepositoryTest {
 
     @Test
     public void test() throws IOException {
-        User tom = new User(1, "Tom", "tom@gmail.com");
-        User sam = new User(2, "Sam", "sam@gmail.com");
+        User tom = new User(1, "Tom", 20, "tom@google.com");
+        User bob = new User(2, "Bob", 17, "bob@apple.com");
+        User anni = new User(3, "Anni", 18, "anni@google.com");
+
         boolean insertStatus = hbaseRepository.insert(tom);
         Assert.assertTrue(insertStatus);
-        insertStatus = hbaseRepository.insert(sam);
+        insertStatus = hbaseRepository.insert(bob);
+        Assert.assertTrue(insertStatus);
+        insertStatus = hbaseRepository.insert(anni);
         Assert.assertTrue(insertStatus);
 
         User user = hbaseRepository.select(tom.getId());
         Assert.assertNotNull(user);
         Assert.assertEquals(tom.getName(), user.getName());
+        Assert.assertEquals(tom.getAge(), user.getAge());
         Assert.assertEquals(tom.getEmail(), user.getEmail());
     }
 }

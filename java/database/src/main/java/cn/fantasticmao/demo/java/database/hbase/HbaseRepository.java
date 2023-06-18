@@ -32,6 +32,7 @@ public class HbaseRepository {
 
     private final TableName tableName = TableName.valueOf("t_user");
     private final byte[] cfName = Bytes.toBytes("name");
+    private final byte[] cfAge = Bytes.toBytes("age");
     private final byte[] cfEmail = Bytes.toBytes("email");
 
     public HbaseRepository(Configuration config) throws IOException {
@@ -49,6 +50,7 @@ public class HbaseRepository {
 
             TableDescriptor tableDescriptor = TableDescriptorBuilder.newBuilder(tableName)
                 .setColumnFamily(ColumnFamilyDescriptorBuilder.of("name"))
+                .setColumnFamily(ColumnFamilyDescriptorBuilder.of("age"))
                 .setColumnFamily(ColumnFamilyDescriptorBuilder.of("email"))
                 .build();
             admin.createTable(tableDescriptor);
@@ -60,6 +62,7 @@ public class HbaseRepository {
              Table table = conn.getTable(tableName)) {
             Put put = new Put(Bytes.toBytes(user.getId().toString()));
             put.addColumn(cfName, null, Bytes.toBytes(user.getName()));
+            put.addColumn(cfAge, null, Bytes.toBytes(user.getAge()));
             put.addColumn(cfEmail, null, Bytes.toBytes(user.getEmail()));
             table.put(put);
             return true;
@@ -71,11 +74,13 @@ public class HbaseRepository {
              Table table = conn.getTable(tableName)) {
             Get get = new Get(Bytes.toBytes(String.valueOf(id)));
             get.addFamily(cfName);
+            get.addFamily(cfAge);
             get.addFamily(cfEmail);
             Result result = table.get(get);
             String name = Bytes.toString(result.getValue(cfName, null));
+            int age = Bytes.toInt(result.getValue(cfAge, null));
             String email = Bytes.toString(result.getValue(cfEmail, null));
-            return new User(id, name, email);
+            return new User(id, name, age, email);
         }
     }
 }

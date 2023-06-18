@@ -38,28 +38,31 @@ public class H2Repository implements AutoCloseable {
             statement.executeUpdate("DROP TABLE IF EXISTS t_user");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS t_user(" +
                 "id INT PRIMARY KEY," +
-                "NAME VARCHAR(32))");
+                "NAME VARCHAR(32)," +
+                "age INT)");
         }
     }
 
     public boolean insert(User user) throws SQLException {
-        String sql = "INSERT INTO t_user(id, name) VALUES (?, ?)";
+        String sql = "INSERT INTO t_user(id, name, age) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, user.getId());
             statement.setString(2, user.getName());
+            statement.setInt(3, user.getAge());
             return statement.executeUpdate() > 0;
         }
     }
 
     public List<User> selectAll() throws SQLException {
         List<User> result = new ArrayList<>();
-        String sql = "SELECT id, name FROM t_user ORDER BY id";
+        String sql = "SELECT id, name, age FROM t_user ORDER BY id";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     int id = resultSet.getInt("id");
                     String name = resultSet.getString("name");
-                    result.add(new User(id, name));
+                    int age = resultSet.getInt("age");
+                    result.add(new User(id, name, age));
                 }
             }
         }
