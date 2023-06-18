@@ -58,6 +58,7 @@ public class MongoRepository implements Closeable {
             .map(user -> new Document()
                 .append("id", user.getId())
                 .append("name", user.getName())
+                .append("age", user.getAge())
                 .append("email", user.getEmail())
             )
             .collect(Collectors.toList());
@@ -67,6 +68,7 @@ public class MongoRepository implements Closeable {
     public UpdateResult update(User user) {
         Bson updates = Updates.combine(
             Updates.set("name", user.getName()),
+            Updates.set("age", user.getAge()),
             Updates.set("email", user.getEmail())
         );
         return this.collection.updateMany(Filters.eq("id", user.getId()), updates);

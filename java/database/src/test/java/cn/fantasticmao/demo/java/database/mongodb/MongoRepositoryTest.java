@@ -24,14 +24,14 @@ public class MongoRepositoryTest {
         String uri = "mongodb://localhost:27017";
         try (MongoRepository repository = new MongoRepository(uri)) {
             InsertManyResult insertResult = repository.insert(
-                new User(1, "Tom", "tom@google.com"),
-                new User(2, "Bob", "bob@apple.com"),
-                new User(3, "Anni", "anni@google.com")
+                new User(1, "Tom", 20, "tom@google.com"),
+                new User(2, "Bob", 17, "bob@apple.com"),
+                new User(3, "Anni", 18, "anni@google.com")
             );
             Assert.assertTrue(insertResult.wasAcknowledged());
             Assert.assertEquals(3, insertResult.getInsertedIds().size());
 
-            UpdateResult updateResult = repository.update(new User(2, "Bob", "bob@google.com"));
+            UpdateResult updateResult = repository.update(new User(2, "Bob", 17, "bob@google.com"));
             Assert.assertTrue(updateResult.wasAcknowledged());
             Assert.assertTrue(updateResult.getModifiedCount() > 0);
 
