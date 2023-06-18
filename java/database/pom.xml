@@ -17,6 +17,7 @@
     <properties>
         <ehcache.version>3.6.2</ehcache.version>
         <elasticsearch.version>7.16.2</elasticsearch.version>
+        <flink.version>1.17.1</flink.version>
         <h2.version>2.1.210</h2.version>
         <hbase.version>2.4.8</hbase.version>
         <influxdb.client.version>4.0.0</influxdb.client.version>
@@ -50,6 +51,19 @@
             <version>2.12.7.1</version>
         </dependency>
 
+        <!-- Apache Flink dependency -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-test-utils</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
         <!-- H2 dependency -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -71,6 +85,7 @@
             <version>${influxdb.client.version}</version>
         </dependency>
 
+        <!-- Apache Kafka dependency -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
