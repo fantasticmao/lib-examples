@@ -4,6 +4,7 @@ package cn.fantasticmao.demo.java.database;
  * User
  *
  * @author fantasticmao
+ * @see cn.fantasticmao.demo.java.database.flink
  * @see cn.fantasticmao.demo.java.database.h2.H2Repository
  * @see cn.fantasticmao.demo.java.database.hbase.HbaseRepository
  * @see cn.fantasticmao.demo.java.database.mongodb.MongoRepository
