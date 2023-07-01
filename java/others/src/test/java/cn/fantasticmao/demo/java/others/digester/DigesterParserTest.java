@@ -18,8 +18,7 @@ public class DigesterParserTest {
 
     @Test
     public void parse() throws IOException, SAXException {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        try (InputStream input = classLoader.getResourceAsStream("employee.xml")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("employee.xml")) {
             final Employee employee = new DigesterParser().parse(input);
             Assert.assertNotNull(employee);
             Assert.assertEquals("Brian", employee.getFirstName());

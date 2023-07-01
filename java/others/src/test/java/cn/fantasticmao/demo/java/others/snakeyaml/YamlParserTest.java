@@ -17,8 +17,7 @@ public class YamlParserTest {
 
     @Test
     public void parse() throws IOException {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        try (InputStream input = classLoader.getResourceAsStream("employee.yml")) {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("employee.yml")) {
             final Employee employee = new YamlParser().parse(input);
             Assert.assertNotNull(employee);
             Assert.assertEquals("Brian", employee.getFirstName());
