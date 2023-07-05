@@ -26,6 +26,7 @@
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>4.9.1</mongodb-driver.version>
         <jedis.version>3.7.0</jedis.version>
+        <rocksdbjni.version>8.3.2</rocksdbjni.version>
         <sqlite.version>3.42.0.0</sqlite.version>
         <zookeeper.version>3.8.0</zookeeper.version>
     </properties>
@@ -135,6 +136,13 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>${jedis.version}</version>
+        </dependency>
+
+        <!-- RocksDB dependency -->
+        <dependency>
+            <groupId>org.rocksdb</groupId>
+            <artifactId>rocksdbjni</artifactId>
+            <version>${rocksdbjni.version}</version>
         </dependency>
 
         <!-- SQLite driver dependency -->

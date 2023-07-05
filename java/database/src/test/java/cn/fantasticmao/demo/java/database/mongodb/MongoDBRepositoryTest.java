@@ -23,23 +23,19 @@ public class MongoDBRepositoryTest {
     public void quickStart() {
         String uri = "mongodb://localhost:27017";
         try (MongoDBRepository repository = new MongoDBRepository(uri)) {
-            InsertManyResult insertResult = repository.insert(
-                new User(1, "Tom", 20, "tom@google.com"),
-                new User(2, "Bob", 17, "bob@apple.com"),
-                new User(3, "Anni", 18, "anni@google.com")
-            );
+            InsertManyResult insertResult = repository.insert(User.Tom, User.Bob, User.Anni);
             Assert.assertTrue(insertResult.wasAcknowledged());
             Assert.assertEquals(3, insertResult.getInsertedIds().size());
 
-            UpdateResult updateResult = repository.update(new User(2, "Bob", 17, "bob@google.com"));
+            UpdateResult updateResult = repository.update(User.Bob_2);
             Assert.assertTrue(updateResult.wasAcknowledged());
             Assert.assertTrue(updateResult.getModifiedCount() > 0);
 
-            Document document = repository.queryById(2);
-            Assert.assertEquals("bob@google.com", document.getString("email"));
-            document = repository.queryByName("Bob");
-            Assert.assertEquals(2, document.getInteger("id").intValue());
-            Assert.assertEquals("bob@google.com", document.getString("email"));
+            Document document = repository.queryById(User.Bob_2.getId());
+            Assert.assertEquals(User.Bob_2.getEmail(), document.getString("email"));
+            document = repository.queryByName(User.Bob_2.getName());
+            Assert.assertEquals(User.Bob_2.getId(), document.getInteger("id"));
+            Assert.assertEquals(User.Bob_2.getEmail(), document.getString("email"));
 
             FindIterable<Document> documents = repository.queryByIdIn(Arrays.asList(1, 2, 3));
             for (Document doc : documents) {

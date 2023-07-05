@@ -6,18 +6,16 @@ import org.junit.Test;
 /**
  * UserTest
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2023-07-05
  */
 public class UserTest {
 
     @Test
     public void serialize() {
-        User tom = new User(1, "Tom", 20, "tom@google.com");
-        byte[] bytes = User.toBytes(tom);
-
+        byte[] bytes = User.toBytes(User.Tom);
         User user = User.fromBytes(bytes);
-        Assert.assertEquals(user, tom);
+        Assert.assertEquals(user, User.Tom);
     }
 
 }
