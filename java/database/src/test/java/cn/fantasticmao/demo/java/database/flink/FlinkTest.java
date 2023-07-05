@@ -18,7 +18,7 @@ import java.net.URL;
 /**
  * FlinkTest
  *
- * @author maodaohe
+ * @author fantasticmao
  * @see <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/datastream/overview/">Flink DataStream API Programming Guide</a>
  * @see <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/datastream/event-time/generating_watermarks/">Generating Watermarks</a>
  * @see <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/datastream/fault-tolerance/state/">Working with State</a>

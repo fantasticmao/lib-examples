@@ -13,7 +13,7 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * InfluxdbRepository
+ * InfluxDBRepository
  * <p>
  * <ol>
  *     <li>Run InfluxDB Docker Container</li>
@@ -31,13 +31,13 @@ import java.util.List;
  * @see <a href="https://docs.influxdata.com/flux/v0.x/get-started/">Get started with Flux</a>
  * @since 2022/1/12
  */
-public class InfluxdbRepository implements AutoCloseable {
+public class InfluxDBRepository implements AutoCloseable {
     private final InfluxDBClient client;
     private final WriteApiBlocking writeApi;
     private final QueryApi queryApi;
     private final String measurement;
 
-    public InfluxdbRepository(String url, String token, String org, String bucket) {
+    public InfluxDBRepository(String url, String token, String org, String bucket) {
         this.client = InfluxDBClientFactory.create(url, token.toCharArray(), org, bucket);
         this.writeApi = this.client.getWriteApiBlocking();
         this.queryApi = this.client.getQueryApi();

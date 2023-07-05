@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * MongoRepository
+ * MongoDBRepository
  * <p>
  * 启动 MongoDB Docker 容器
  *
@@ -29,11 +29,11 @@ import java.util.stream.Collectors;
  * @see <a href="https://www.mongodb.com/docs/drivers/java/sync/current/quick-start/">Quick Start - MongoDB Drivers Java Sync</a>
  * @since 2019-05-22
  */
-public class MongoRepository implements Closeable {
+public class MongoDBRepository implements Closeable {
     private final MongoClient mongoClient;
     private final MongoCollection<Document> collection;
 
-    public MongoRepository(String uri) {
+    public MongoDBRepository(String uri) {
         this.mongoClient = MongoClients.create(uri);
         this.collection = this.mongoClient
             .getDatabase("t_users")

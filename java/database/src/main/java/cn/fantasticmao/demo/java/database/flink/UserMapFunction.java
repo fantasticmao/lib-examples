@@ -6,7 +6,7 @@ import org.apache.flink.api.common.functions.MapFunction;
 /**
  * UserMapFunction
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2023-06-29
  */
 public class UserMapFunction implements MapFunction<String, User> {
