@@ -18,11 +18,11 @@ public class H2RepositoryTest {
     @Test
     public void test() throws SQLException {
         try (H2Repository repository = new H2Repository()) {
-            boolean insertStatus = repository.insert(new User(1, "Tom", 20));
+            boolean insertStatus = repository.insert(User.Tom);
             Assert.assertTrue(insertStatus);
-            insertStatus = repository.insert(new User(2, "Bob", 17));
+            insertStatus = repository.insert(User.Bob);
             Assert.assertTrue(insertStatus);
-            insertStatus = repository.insert(new User(3, "Anni", 18));
+            insertStatus = repository.insert(User.Anni);
             Assert.assertTrue(insertStatus);
 
             List<User> userList = repository.selectAll();

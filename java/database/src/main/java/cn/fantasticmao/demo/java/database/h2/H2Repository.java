@@ -62,7 +62,7 @@ public class H2Repository implements AutoCloseable {
                     int id = resultSet.getInt("id");
                     String name = resultSet.getString("name");
                     int age = resultSet.getInt("age");
-                    result.add(new User(id, name, age));
+                    result.add(new User(id, name, age, null));
                 }
             }
         }
