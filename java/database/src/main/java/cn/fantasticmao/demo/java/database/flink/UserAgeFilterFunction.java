@@ -6,7 +6,7 @@ import org.apache.flink.api.common.functions.FilterFunction;
 /**
  * UserAgeFilterFunction
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2023-06-29
  */
 public class UserAgeFilterFunction implements FilterFunction<User> {

@@ -12,17 +12,17 @@ import org.junit.Test;
 import java.util.Arrays;
 
 /**
- * MongoRepositoryTest
+ * MongoDBRepositoryTest
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2023-06-13
  */
-public class MongoRepositoryTest {
+public class MongoDBRepositoryTest {
 
     @Test
     public void quickStart() {
         String uri = "mongodb://localhost:27017";
-        try (MongoRepository repository = new MongoRepository(uri)) {
+        try (MongoDBRepository repository = new MongoDBRepository(uri)) {
             InsertManyResult insertResult = repository.insert(
                 new User(1, "Tom", 20, "tom@google.com"),
                 new User(2, "Bob", 17, "bob@apple.com"),

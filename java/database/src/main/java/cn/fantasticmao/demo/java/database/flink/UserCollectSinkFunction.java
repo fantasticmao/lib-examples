@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * UserCollectSinkFunction
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2023-06-29
  */
 public class UserCollectSinkFunction implements SinkFunction<User> {

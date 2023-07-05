@@ -12,12 +12,12 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * InfluxdbRepositoryTest
+ * InfluxDBRepositoryTest
  *
  * @author fantasticmao
  * @since 2022/1/13
  */
-public class InfluxdbRepositoryTest {
+public class InfluxDBRepositoryTest {
 
     @Test
     public void test() throws InterruptedException {
@@ -28,7 +28,7 @@ public class InfluxdbRepositoryTest {
         final Random random = new Random();
         final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
-        try (InfluxdbRepository repository = new InfluxdbRepository(url, token, org, bucket)) {
+        try (InfluxDBRepository repository = new InfluxDBRepository(url, token, org, bucket)) {
             repository.writeByDataPoint("west", random.nextDouble() * 100);
             repository.writeByLineProtocol("north", random.nextDouble() * 100);
             repository.writeByPojo("south", random.nextDouble() * 100);

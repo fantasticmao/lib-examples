@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * UserLogSinkFunction
  *
- * @author maodaohe
+ * @author fantasticmao
  * @since 2023-06-29
  */
 public class UserLogSinkFunction implements SinkFunction<User> {
