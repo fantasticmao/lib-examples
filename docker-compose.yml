@@ -14,6 +14,13 @@ services:
     environment:
       - "discovery.type=single-node"
       - "xpack.security.enabled=false"
+  etcd:
+    container_name: lib-examples-etcd
+    image: gcr.io/etcd-development/etcd:v3.5.9
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    command: /usr/local/bin/etcd --name default --listen-client-urls http://0.0.0.0:2379 --advertise-client-urls http://0.0.0.0:2379 --listen-peer-urls http://0.0.0.0:2380 --initial-advertise-peer-urls http://0.0.0.0:2380 --initial-cluster default=http://0.0.0.0:2380
   flink-jobmanager:
     container_name: lib-examples-flink-jobmanager
     image: flink:1.17.1-scala_2.12-java11

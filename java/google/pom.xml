@@ -15,7 +15,6 @@
     <name>demo-java-google</name>
 
     <properties>
-        <google.protobuf.version>3.16.3</google.protobuf.version>
         <google.protoc.version>3.16.1</google.protoc.version>
         <google.grpc.version>1.39.0</google.grpc.version>
         <google.guava.version>32.0.0-jre</google.guava.version>
@@ -65,7 +64,6 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>${google.protobuf.version}</version>
         </dependency>
 
         <!-- Google gRPC dependency -->
