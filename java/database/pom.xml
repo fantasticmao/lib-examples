@@ -26,12 +26,28 @@
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>4.9.1</mongodb-driver.version>
         <jedis.version>3.7.0</jedis.version>
+        <jetcd-core.version>0.7.5</jetcd-core.version>
         <rocksdbjni.version>8.3.2</rocksdbjni.version>
         <sqlite.version>3.42.0.0</sqlite.version>
         <zookeeper.version>3.8.0</zookeeper.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
         <!-- Ehcache dependency -->
         <dependency>
             <groupId>org.ehcache</groupId>
@@ -50,6 +66,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.7.1</version>
+        </dependency>
+
+        <!-- jetcd dependency -->
+        <dependency>
+            <groupId>io.etcd</groupId>
+            <artifactId>jetcd-core</artifactId>
+            <version>${jetcd-core.version}</version>
         </dependency>
 
         <!-- Apache Flink dependency -->
@@ -97,11 +120,6 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>${kafka.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
         </dependency>
 
         <!-- Apache Lucene dependency -->
@@ -157,11 +175,6 @@
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>${zookeeper.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
         </dependency>
     </dependencies>
 </project>
