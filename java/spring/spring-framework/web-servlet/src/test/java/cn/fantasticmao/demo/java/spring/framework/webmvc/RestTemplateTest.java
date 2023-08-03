@@ -2,11 +2,14 @@ package cn.fantasticmao.demo.java.spring.framework.webmvc;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -41,8 +44,26 @@ public class RestTemplateTest {
             "name", "Tom",
             "method", "get"
         );
-        String url = "https://httpbin.org/{method}?name={name}";
+        String url = "http://localhost:8080/{method}?name={name}";
         ResponseEntity<String> entity = restTemplate.getForEntity(url, String.class, uriVariables);
         Assert.assertTrue(entity.getStatusCode().is2xxSuccessful());
+    }
+
+    @Test
+    public void post() {
+        MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+        form.add("name", "Tom");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        URI uri = URI.create("http://localhost:8080/post");
+
+        RequestEntity<MultiValueMap<String, String>> requestEntity
+            = new RequestEntity<>(form, headers, HttpMethod.POST, uri);
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);
+        Assert.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
     }
 }
