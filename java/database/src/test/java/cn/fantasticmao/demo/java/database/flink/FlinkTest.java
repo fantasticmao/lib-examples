@@ -37,11 +37,15 @@ public class FlinkTest {
             .setNumberTaskManagers(1)
             .build()
     );
+    private final StreamExecutionEnvironment env;
+
+    public FlinkTest() {
+        env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.getConfig().registerPojoType(User.class);
+    }
 
     @Test
-    public void example() throws Exception {
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
+    public void fileText() throws Exception {
         URL url = getClass().getClassLoader().getResource("user.csv");
         Assert.assertNotNull(url);
 
@@ -67,5 +71,22 @@ public class FlinkTest {
 
         Assert.assertEquals(2, userLogSink.count().intValue());
         Assert.assertEquals(2, userCollectSink.length());
+    }
+
+    @Test
+    public void socketStream() throws Exception {
+        DataStream<String> input = env.socketTextStream("localhost", 5678);
+
+        DataStream<User> users = input
+            .map(new UserMapFunction())
+            .name("Convert to User");
+
+        UserLogSinkFunction userLogSink = new UserLogSinkFunction();
+        users.addSink(userLogSink);
+        users.print();
+
+        env.execute();
+
+        Assert.assertEquals(3, userLogSink.count().intValue());
     }
 }

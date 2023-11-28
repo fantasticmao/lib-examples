@@ -17,7 +17,7 @@
     <properties>
         <ehcache.version>3.6.2</ehcache.version>
         <elasticsearch.version>7.16.2</elasticsearch.version>
-        <flink.version>1.17.1</flink.version>
+        <flink.version>1.18.0</flink.version>
         <h2.version>2.1.210</h2.version>
         <hbase.version>2.4.8</hbase.version>
         <influxdb.client.version>4.0.0</influxdb.client.version>
