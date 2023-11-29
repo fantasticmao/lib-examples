@@ -1,6 +1,6 @@
 # Go
 
-![Go Version](https://img.shields.io/badge/Go-1.17%2B-blue)
+![Go Version](https://img.shields.io/badge/Go-1.21%2B-blue)
 
 ## 官方文档
 
