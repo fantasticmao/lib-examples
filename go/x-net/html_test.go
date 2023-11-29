@@ -3,10 +3,10 @@ package xnet
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"golang.org/x/net/html"
 	"strings"
 	"testing"
 )
-import "golang.org/x/net/html"
 
 func TestParse(t *testing.T) {
 	s := `<p>golang.org/x/net:</p><ul><li>dns</li><li>html</li><li>icmp</li></ul>`
