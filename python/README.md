@@ -1,6 +1,6 @@
 # Python
 
-![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Python Version](https://img.shields.io/badge/Python-3.12%2B-blue)
 
 ## 官方文档
 
