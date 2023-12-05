@@ -5,6 +5,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
+	"unsafe"
 )
 
 // see https://go.dev/ref/spec#The_zero_value
@@ -29,4 +30,22 @@ func TestZeroValue(t *testing.T) {
 	assert.Nil(t, zeroValueSlice)
 	assert.Nil(t, zeroValueChannel)
 	assert.Nil(t, zeroValueMap)
+}
+
+// see https://stackoverflow.com/a/38034334/7590865
+
+func TestSizeOf(t *testing.T) {
+	size1 := unsafe.Sizeof(struct {
+		a bool
+		b string
+		c bool
+	}{})
+	assert.Equal(t, 32, int(size1))
+
+	size2 := unsafe.Sizeof(struct {
+		a bool
+		b bool
+		c string
+	}{})
+	assert.Equal(t, 24, int(size2))
 }
