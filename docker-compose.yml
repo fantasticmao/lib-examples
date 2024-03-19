@@ -66,11 +66,24 @@ services:
     image: memcached:1.6.12-alpine
     ports:
       - "11211:11211"
-  mongodb:
-    container_name: lib-examples-mongodb
+  mongodb-0:
+    container_name: lib-examples-mongodb-0
     image: mongodb/mongodb-community-server:6.0.4-ubi8
     ports:
       - "27017:27017"
+    command: mongod --replSet rs0 --port 27017
+  mongodb-1:
+    container_name: lib-examples-mongodb-1
+    image: mongodb/mongodb-community-server:6.0.4-ubi8
+    ports:
+      - "27018:27018"
+    command: mongod --replSet rs0 --port 27018
+  mongodb-2:
+    container_name: lib-examples-mongodb-2
+    image: mongodb/mongodb-community-server:6.0.4-ubi8
+    ports:
+      - "27019:27019"
+    command: mongod --replSet rs0 --port 27019
   redis:
     container_name: lib-examples-redis
     image: redis:6.2.6-alpine

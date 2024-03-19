@@ -11,7 +11,7 @@ import java.util.Objects;
  * @see cn.fantasticmao.demo.java.database.flink
  * @see cn.fantasticmao.demo.java.database.h2.H2Repository
  * @see cn.fantasticmao.demo.java.database.hbase.HbaseRepository
- * @see cn.fantasticmao.demo.java.database.mongodb.MongoDBRepository
+ * @see cn.fantasticmao.demo.java.database.mongodb.MongoCrudRepository
  * @see cn.fantasticmao.demo.java.database.sqlite.SqliteRepository
  * @since 2021-12-18
  */
