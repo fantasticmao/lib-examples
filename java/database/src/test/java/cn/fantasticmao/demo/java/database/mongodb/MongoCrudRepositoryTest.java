@@ -12,17 +12,17 @@ import org.junit.Test;
 import java.util.Arrays;
 
 /**
- * MongoDBRepositoryTest
+ * MongoCrudRepositoryTest
  *
  * @author fantasticmao
  * @since 2023-06-13
  */
-public class MongoDBRepositoryTest {
+public class MongoCrudRepositoryTest {
 
     @Test
     public void quickStart() {
         String uri = "mongodb://localhost:27017";
-        try (MongoDBRepository repository = new MongoDBRepository(uri)) {
+        try (MongoCrudRepository repository = new MongoCrudRepository(uri)) {
             InsertManyResult insertResult = repository.insert(User.Tom, User.Bob, User.Anni);
             Assert.assertTrue(insertResult.wasAcknowledged());
             Assert.assertEquals(3, insertResult.getInsertedIds().size());
