@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * HbaseRepositoryTest
@@ -30,17 +31,17 @@ public class HbaseRepositoryTest {
 
     @Test
     public void test() throws IOException {
-        boolean insertStatus = hbaseRepository.insert(User.Tom);
-        Assert.assertTrue(insertStatus);
-        insertStatus = hbaseRepository.insert(User.Bob);
-        Assert.assertTrue(insertStatus);
-        insertStatus = hbaseRepository.insert(User.Anni);
-        Assert.assertTrue(insertStatus);
+        hbaseRepository.put(User.Tom);
+        hbaseRepository.put(User.Bob);
+        hbaseRepository.put(User.Anni);
 
-        User user = hbaseRepository.select(User.Tom.getId());
+        User user = hbaseRepository.get(User.Tom.getId());
         Assert.assertNotNull(user);
         Assert.assertEquals(User.Tom.getName(), user.getName());
         Assert.assertEquals(User.Tom.getAge(), user.getAge());
         Assert.assertEquals(User.Tom.getEmail(), user.getEmail());
+
+        List<User> userList = hbaseRepository.scan(true);
+        Assert.assertEquals(2, userList.size());
     }
 }
