@@ -35,10 +35,12 @@ public class SqliteRepository implements AutoCloseable {
     public void createTable() throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP TABLE IF EXISTS t_user");
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS t_user(" +
-                "id INT PRIMARY KEY," +
-                "NAME VARCHAR(32)," +
-                "age INT)");
+            statement.executeUpdate("""
+                CREATE TABLE IF NOT EXISTS t_user(
+                    id INT PRIMARY KEY,
+                    NAME VARCHAR(32),
+                    age INT
+                )""");
         }
     }
 
