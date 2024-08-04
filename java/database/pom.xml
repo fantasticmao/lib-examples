@@ -25,6 +25,7 @@
         <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
         <mongodb-driver.version>4.9.1</mongodb-driver.version>
+        <postgresql.version>42.7.3</postgresql.version>
         <jedis.version>3.7.0</jedis.version>
         <jetcd-core.version>0.7.5</jetcd-core.version>
         <rocksdbjni.version>8.3.2</rocksdbjni.version>
@@ -147,6 +148,13 @@
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
             <version>${mongodb-driver.version}</version>
+        </dependency>
+
+        <!-- PostgreSQL driver dependency -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <!-- Redis dependency -->

@@ -84,6 +84,14 @@ services:
     ports:
       - "27019:27019"
     command: mongod --replSet rs0 --port 27019
+  postgres:
+    container_name: lib-examples-postgres
+    image: postgres:16.3-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=123456"
   redis:
     container_name: lib-examples-redis
     image: redis:6.2.6-alpine
