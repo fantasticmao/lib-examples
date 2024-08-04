@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.database.postgresql;
 
 import cn.fantasticmao.demo.java.database.User;
+import com.google.gson.Gson;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,19 +9,20 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * PostgresCrudRepository
+ * PostgresJsonbRepository
  * <p>
  * 启动 PostgreSQL Docker 容器
  *
  * @author fantasticmao
  * @see <a href="https://www.postgresql.org/docs/16/index.html">PostgreSQL 16.3 Documentation</a>
  * @see <a href="https://jdbc.postgresql.org/documentation/">PostgreSQL JDBC Driver</a>
- * @since 2024-08-04
+ * @since 2024-08-05
  */
-public class PostgresCrudRepository implements AutoCloseable {
+public class PostgresJsonbRepository implements AutoCloseable {
     private final Connection connection;
+    private final Gson gson = new Gson();
 
-    public PostgresCrudRepository() throws SQLException {
+    public PostgresJsonbRepository() throws SQLException {
         final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
         final Properties props = new Properties();
         props.put("user", "postgres");
@@ -42,36 +44,30 @@ public class PostgresCrudRepository implements AutoCloseable {
 
     public void createTable() throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            statement.executeUpdate("DROP TABLE IF EXISTS t_user");
+            statement.executeUpdate("DROP TABLE IF EXISTS t_user_json");
             statement.executeUpdate("""
-                CREATE TABLE IF NOT EXISTS t_user(
-                    id INT PRIMARY KEY,
-                    NAME VARCHAR(32),
-                    age INT
+                CREATE TABLE IF NOT EXISTS t_user_json (
+                    content JSONB NOT NULL
                 )""");
         }
     }
 
     public boolean insert(User user) throws SQLException {
-        String sql = "INSERT INTO t_user(id, name, age) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO t_user_json(content) VALUES (?::JSONB)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, user.getId());
-            statement.setString(2, user.getName());
-            statement.setInt(3, user.getAge());
+            statement.setObject(1, gson.toJson(user));
             return statement.executeUpdate() > 0;
         }
     }
 
     public List<User> selectAll() throws SQLException {
         List<User> result = new ArrayList<>();
-        String sql = "SELECT id, name, age FROM t_user ORDER BY id";
+        String sql = "SELECT content FROM t_user_json";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String name = resultSet.getString("name");
-                    int age = resultSet.getInt("age");
-                    result.add(new User(id, name, age, null));
+                    String content = resultSet.getString("content");
+                    result.add(gson.fromJson(content, User.class));
                 }
             }
         }
