@@ -27,6 +27,10 @@ public class H2RepositoryTest {
 
             List<User> userList = repository.selectAll();
             Assert.assertEquals(3, userList.size());
+
+            User user = repository.selectByName(User.Bob.getName());
+            Assert.assertNotNull(user);
+            Assert.assertEquals(User.Bob, user);
         }
     }
 

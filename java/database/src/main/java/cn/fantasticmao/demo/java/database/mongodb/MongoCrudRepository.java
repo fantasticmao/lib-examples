@@ -60,6 +60,7 @@ public class MongoCrudRepository implements Closeable {
                 .append("name", user.getName())
                 .append("age", user.getAge())
                 .append("email", user.getEmail())
+                .append("birthday", user.getBirthday())
             )
             .collect(Collectors.toList());
         return this.collection.insertMany(documents);
@@ -69,7 +70,8 @@ public class MongoCrudRepository implements Closeable {
         Bson updates = Updates.combine(
             Updates.set("name", user.getName()),
             Updates.set("age", user.getAge()),
-            Updates.set("email", user.getEmail())
+            Updates.set("email", user.getEmail()),
+            Updates.set("birthday", user.getBirthday())
         );
         return this.collection.updateMany(Filters.eq("id", user.getId()), updates);
     }
