@@ -61,14 +61,6 @@ services:
       - "KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094"
       - "KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT"
       - "KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER"
-  mysql:
-    container_name: lib-examples-mysql
-    image: mysql:8.4
-    ports:
-      - "3306:3306"
-    environment:
-      - "MYSQL_ROOT_PASSWORD=123456"
-      - "MYSQL_DATABASE=fantasticmao"
   memcached:
     container_name: lib-examples-memcached
     image: memcached:1.6.12-alpine
@@ -92,6 +84,14 @@ services:
     ports:
       - "27019:27019"
     command: mongod --replSet rs0 --port 27019
+  mysql:
+    container_name: lib-examples-mysql
+    image: mysql:8.4
+    ports:
+      - "3306:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+      - "MYSQL_DATABASE=fantasticmao"
   postgres:
     container_name: lib-examples-postgres
     image: postgres:16.3-alpine

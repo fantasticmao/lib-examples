@@ -30,7 +30,7 @@ public class PostgresCrudRepositoryTest {
 
             User user = repository.selectByName(User.Bob.getName());
             Assert.assertNotNull(user);
-            Assert.assertEquals(user.getId(), User.Bob.getId());
+            Assert.assertEquals(User.Bob, user);
         }
     }
 }

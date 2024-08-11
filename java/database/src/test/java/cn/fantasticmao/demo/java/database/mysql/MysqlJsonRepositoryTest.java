@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.database.postgresql;
+package cn.fantasticmao.demo.java.database.mysql;
 
 import cn.fantasticmao.demo.java.database.User;
 import com.fasterxml.jackson.core.JacksonException;
@@ -9,16 +9,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * PostgresJsonbRepositoryTest
+ * MysqlJsonRepositoryTest
  *
  * @author fantasticmao
- * @since 2024-08-05
+ * @since 2024-08-11
  */
-public class PostgresJsonbRepositoryTest {
+public class MysqlJsonRepositoryTest {
 
     @Test
     public void test() throws SQLException, JacksonException {
-        try (PostgresJsonbRepository repository = new PostgresJsonbRepository()) {
+        try (MysqlJsonRepository repository = new MysqlJsonRepository()) {
             boolean insertStatus = repository.insert(User.Tom);
             Assert.assertTrue(insertStatus);
             insertStatus = repository.insert(User.Bob);
