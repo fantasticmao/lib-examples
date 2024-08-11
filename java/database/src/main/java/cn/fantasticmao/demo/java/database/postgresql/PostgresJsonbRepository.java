@@ -33,7 +33,7 @@ public class PostgresJsonbRepository implements AutoCloseable {
         .build();
 
     public PostgresJsonbRepository() throws SQLException {
-        final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
+        final String jdbcUrl = "jdbc:postgresql://localhost:5432/fantasticmao";
         final Properties props = new Properties();
         props.put("user", "postgres");
         props.put("password", "123456");
