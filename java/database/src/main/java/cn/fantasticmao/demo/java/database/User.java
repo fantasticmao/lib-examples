@@ -13,13 +13,15 @@ import java.util.Objects;
  * User
  *
  * @author fantasticmao
+ * @see cn.fantasticmao.demo.java.database.etcd
  * @see cn.fantasticmao.demo.java.database.flink
- * @see cn.fantasticmao.demo.java.database.h2.H2Repository
- * @see cn.fantasticmao.demo.java.database.hbase.HbaseRepository
- * @see cn.fantasticmao.demo.java.database.mongodb.MongoCrudRepository
- * @see cn.fantasticmao.demo.java.database.postgresql.PostgresCrudRepository
- * @see cn.fantasticmao.demo.java.database.postgresql.PostgresJsonbRepository
- * @see cn.fantasticmao.demo.java.database.sqlite.SqliteRepository
+ * @see cn.fantasticmao.demo.java.database.h2
+ * @see cn.fantasticmao.demo.java.database.hbase
+ * @see cn.fantasticmao.demo.java.database.mongodb
+ * @see cn.fantasticmao.demo.java.database.mysql
+ * @see cn.fantasticmao.demo.java.database.postgresql
+ * @see cn.fantasticmao.demo.java.database.rocksdb
+ * @see cn.fantasticmao.demo.java.database.sqlite
  * @since 2021-12-18
  */
 public class User {

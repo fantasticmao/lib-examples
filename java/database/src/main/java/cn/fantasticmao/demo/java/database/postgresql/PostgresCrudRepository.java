@@ -25,7 +25,7 @@ public class PostgresCrudRepository implements AutoCloseable {
     private final Connection connection;
 
     public PostgresCrudRepository() throws SQLException {
-        final String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
+        final String jdbcUrl = "jdbc:postgresql://localhost:5432/fantasticmao";
         final Properties props = new Properties();
         props.put("user", "postgres");
         props.put("password", "123456");
