@@ -15,7 +15,7 @@ public class UserTest {
     public void serialize() {
         byte[] bytes = User.toBytes(User.Tom);
         User user = User.fromBytes(bytes);
-        Assert.assertEquals(user, User.Tom);
+        Assert.assertEquals(User.Tom, user);
     }
 
 }

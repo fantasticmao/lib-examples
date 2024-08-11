@@ -30,7 +30,7 @@ public class RocksDBRepositoryTest {
 
             User user = repository.get(User.Bob.getId());
             Assert.assertNotNull(user);
-            Assert.assertEquals(user, User.Bob);
+            Assert.assertEquals(User.Bob, user);
 
             repository.put(User.Bob_2);
             user = repository.get(User.Bob_2.getId());
