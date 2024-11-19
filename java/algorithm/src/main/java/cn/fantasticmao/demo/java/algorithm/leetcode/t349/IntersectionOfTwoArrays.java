@@ -1,26 +1,25 @@
-package cn.fantasticmao.demo.java.algorithm.leetcode;
+package cn.fantasticmao.demo.java.algorithm.leetcode.t349;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * IntersectionOfTwoArraysII
+ * IntersectionOfTwoArrays
  *
  * @author fantasticmao
- * @see <a href="https://leetcode.com/problems/intersection-of-two-arrays-ii/">Intersection of Two Arrays II</a>
+ * @see <a href="https://leetcode.com/problems/intersection-of-two-arrays/">Intersection of Two Arrays</a>
  * @since 2022-07-04
  */
-public class IntersectionOfTwoArraysII {
+public class IntersectionOfTwoArrays {
 
-    public int[] intersect(int[] nums1, int[] nums2) {
+    public int[] intersection(int[] nums1, int[] nums2) {
         Arrays.sort(nums1);
         Arrays.sort(nums2);
-        List<Integer> result = new ArrayList<>();
+        Set<Integer> result = new HashSet<>();
         for (int i1 = 0, i2 = 0; i1 < nums1.length && i2 < nums2.length; ) {
             if (nums1[i1] == nums2[i2]) {
                 result.add(nums1[i1]);
-                i1++;
                 i2++;
             } else if (nums1[i1] < nums2[i2]) {
                 i1++;

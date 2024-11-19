@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.algorithm.leetcode;
+package cn.fantasticmao.demo.java.algorithm.leetcode.t349;
 
 import org.junit.Assert;
 import org.junit.Test;

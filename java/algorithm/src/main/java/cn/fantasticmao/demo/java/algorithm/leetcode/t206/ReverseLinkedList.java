@@ -1,6 +1,4 @@
-package cn.fantasticmao.demo.java.algorithm.leetcode;
-
-import cn.fantasticmao.demo.java.algorithm.leetcode.model.ListNode;
+package cn.fantasticmao.demo.java.algorithm.leetcode.t206;
 
 /**
  * ReverseLinkedList
