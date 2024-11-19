@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.algorithm.leetcode.model;
+package cn.fantasticmao.demo.java.algorithm.leetcode.t206;
 
 /**
  * ListNode

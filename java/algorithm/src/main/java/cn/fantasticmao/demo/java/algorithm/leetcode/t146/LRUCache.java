@@ -1,4 +1,4 @@
-package cn.fantasticmao.demo.java.algorithm.leetcode;
+package cn.fantasticmao.demo.java.algorithm.leetcode.t146;
 
 import java.util.HashMap;
 import java.util.Map;
