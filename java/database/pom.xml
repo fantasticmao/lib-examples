@@ -15,6 +15,7 @@
     <name>demo-java-database</name>
 
     <properties>
+        <duckdb.version>1.2.2.0</duckdb.version>
         <ehcache.version>3.6.2</ehcache.version>
         <elasticsearch.version>7.16.2</elasticsearch.version>
         <flink.version>1.18.0</flink.version>
@@ -58,6 +59,13 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
+        </dependency>
+
+        <!-- DuckDB dependency -->
+        <dependency>
+            <groupId>org.duckdb</groupId>
+            <artifactId>duckdb_jdbc</artifactId>
+            <version>${duckdb.version}</version>
         </dependency>
 
         <!-- Ehcache dependency -->

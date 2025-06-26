@@ -26,7 +26,8 @@ import java.util.List;
  * </ol>
  *
  * @author fantasticmao
- * @see <a href="https://www.mongodb.com/docs/manual/changeStreams/">Change Streams - MongoDB Manual</a>
+ * @see <a href="https://www.mongodb.com/docs/manual/changeStreams/">Change Streams</a>
+ * @see <a href="https://www.mongodb.com/docs/manual/tutorial/deploy-replica-set/#deploy-a-replica-set-in-the-terminal">Deploy a Replica Set in the Terminal</a>
  * @since 2024-03-19
  */
 public class MongoChangeStreamRepository implements Closeable {
