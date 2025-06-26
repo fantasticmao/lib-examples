@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,9 +19,13 @@ public class FilesTest {
 
     @Test
     public void readString() throws IOException {
-        Path path = Paths.get(this.getClass().getResource("/io/test.txt").getPath());
+        URL url = getClass().getResource("/io/test.txt");
+        Assert.assertNotNull(url);
+
+        Path path = Paths.get(url.getPath());
         String str = Files.readString(path);
         Assert.assertNotNull(str);
+
         System.out.println(str);
     }
 }

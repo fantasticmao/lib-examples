@@ -1,10 +1,11 @@
 # Java
 
-![JDK Version](https://img.shields.io/badge/JDK-17%2B-blue)
+![JDK Version](https://img.shields.io/badge/JDK-21%2B-blue)
 
 ## 官方文档
 
 - **Java Documentation**: https://docs.oracle.com/en/java/
+- **JDK 21 Documentation**: https://docs.oracle.com/en/java/javase/21/
 - **JDK 17 Documentation**: https://docs.oracle.com/en/java/javase/17/
 - **JDK 11 Documentation**: https://docs.oracle.com/en/java/javase/11/
 - **JDK 8 Documentation**: https://docs.oracle.com/javase/8/
