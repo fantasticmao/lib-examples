@@ -9,16 +9,16 @@ import org.junit.Test;
  * @since 2025-06-26
  */
 public class RecordTest {
-    public record Coordinate(double x, double y) {
+    public record Point(double x, double y) {
     }
 
     @Test
     public void testRecord() {
-        Coordinate coordinate = new Coordinate(1.0, 2.0);
-        System.out.println("Coordinate x: " + coordinate.x());
-        System.out.println("Coordinate y: " + coordinate.y());
+        Point point = new Point(1.0, 2.0);
+        System.out.println("Point x: " + point.x());
+        System.out.println("Point y: " + point.y());
 
-        // Record classes are immutable
-        // coordinate.x = 3.0; // This line would cause a compilation error
+        //Record classes are immutable
+        //point.x = 3.0; // This line would cause a compilation error
     }
 }
