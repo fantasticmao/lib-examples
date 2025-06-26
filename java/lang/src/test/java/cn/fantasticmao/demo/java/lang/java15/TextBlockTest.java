@@ -19,4 +19,11 @@ public class TextBlockTest {
             """;
         Assert.assertEquals("hello,\nworld\n", text);
     }
+
+    @Test
+    public void formatted() {
+        String name = "fantasticmao";
+        String text = "hello, %s".formatted(name);
+        Assert.assertEquals("hello, fantasticmao", text);
+    }
 }

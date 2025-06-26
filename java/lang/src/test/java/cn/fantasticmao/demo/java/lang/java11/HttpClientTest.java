@@ -22,34 +22,36 @@ public class HttpClientTest {
 
     @Test
     public void syncSend() throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newBuilder()
+        try (HttpClient client = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(5))
             .followRedirects(HttpClient.Redirect.ALWAYS)
-            .build();
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/get"))
-            .timeout(Duration.ofSeconds(5))
-            .version(HttpClient.Version.HTTP_2)
-            .header("User-Agent", "lib-examples")
-            .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
+            .build()) {
+            HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/get"))
+                .version(HttpClient.Version.HTTP_2)
+                .header("User-Agent", "lib-examples")
+                .GET()
+                .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println(response.body());
+        }
     }
 
     @Test
     public void asyncSend() {
-        HttpClient client = HttpClient.newBuilder()
+        try (HttpClient client = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(5))
             .followRedirects(HttpClient.Redirect.ALWAYS)
-            .build();
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/get"))
-            .timeout(Duration.ofSeconds(5))
-            .version(HttpClient.Version.HTTP_2)
-            .header("User-Agent", "lib-examples")
-            .build();
-        CompletableFuture<Void> future = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-            .thenApply(HttpResponse::body)
-            .thenAccept(System.out::println);
-        System.out.println("httpclient async send");
-        future.join();
+            .build()) {
+            HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/get"))
+                .version(HttpClient.Version.HTTP_2)
+                .header("User-Agent", "lib-examples")
+                .GET()
+                .build();
+            CompletableFuture<Void> future = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenAccept(System.out::println);
+            System.out.println("httpclient async send");
+            future.join();
+        }
     }
 }
