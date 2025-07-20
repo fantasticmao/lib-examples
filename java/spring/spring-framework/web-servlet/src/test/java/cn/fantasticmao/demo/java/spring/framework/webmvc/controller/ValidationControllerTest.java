@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.spring.framework.webmvc.controller;
 
 import cn.fantasticmao.demo.java.spring.framework.webmvc.SpringTest;
+import jakarta.annotation.Resource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -8,7 +9,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import javax.annotation.Resource;
 
 /**
  * ValidationControllerTest

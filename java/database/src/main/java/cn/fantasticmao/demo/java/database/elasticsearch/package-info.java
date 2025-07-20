@@ -8,7 +8,8 @@
  * </ol>
  *
  * @author fantasticmao
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html">Quick start</a>
+ * @see <a href="https://www.elastic.co/docs/solutions/search/get-started">Get started</a>
+ * @see <a href="https://www.elastic.co/docs/deploy-manage/deploy/self-managed/install-elasticsearch-docker-basic">Start a single-node cluster in Docker</a>
  * @since 2021-12-24
  */
 package cn.fantasticmao.demo.java.database.elasticsearch;

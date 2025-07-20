@@ -8,7 +8,7 @@ services:
       - "9042:9042"
   elasticsearch:
     container_name: lib-examples-elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.18.1
     ports:
       - "9200:9200"
     environment:

@@ -15,7 +15,7 @@ import java.io.IOException;
  * CatApis
  *
  * @author fantasticmao
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cat.html">Compact and aligned text (CAT) APIs</a>
+ * @see <a href="https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-cat">Compact and aligned text (CAT) APIs</a>
  * @since 2021-12-24
  */
 public class CatApis {
@@ -30,7 +30,7 @@ public class CatApis {
     /**
      * {@code master} 返回主节点的信息
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-master.html">cat master API</a>
+     * @see <a href="https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-master">cat master API</a>
      */
     public MasterResponse master() throws IOException {
         return client.master();

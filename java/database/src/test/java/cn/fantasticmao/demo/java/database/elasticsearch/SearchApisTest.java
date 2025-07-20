@@ -91,7 +91,7 @@ public class SearchApisTest {
 
     @Test
     public void range() throws IOException {
-        SearchResponse<Account> response = searchApis.range("age", 35, 40, this.limit);
+        SearchResponse<Account> response = searchApis.range("age", 35D, 40D, this.limit);
         Assert.assertNotNull(response);
         Assert.assertNotEquals(0, response.hits().hits().size());
         List<String> addressList = response.hits().hits().stream()
