@@ -1,8 +1,8 @@
 ### Document APIs
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-document
 
 ### Index API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create
 # PUT http://localhost:9200/bank/_doc/test
 PUT http://localhost:9200/bank/_create/test
 Content-Type: application/json
@@ -22,32 +22,32 @@ Content-Type: application/json
 }
 
 ### Get API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get
 GET http://localhost:9200/bank/_doc/test
 Content-Type: application/json
 
 ### Get API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get
 HEAD http://localhost:9200/bank/_doc/test
 Content-Type: application/json
 
 ### Get API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get
 GET http://localhost:9200/bank/_source/test
 Content-Type: application/json
 
 ### Get API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get
 HEAD http://localhost:9200/bank/_source/test
 Content-Type: application/json
 
 ### Delete API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete
 DELETE http://localhost:9200/bank/_doc/test
 Content-Type: application/json
 
 ### Bulk API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk
 POST http://localhost:9200/bank/_bulk
 Content-Type: application/x-ndjson
 

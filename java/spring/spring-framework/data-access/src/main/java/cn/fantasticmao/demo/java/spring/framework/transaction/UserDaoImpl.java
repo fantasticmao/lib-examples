@@ -1,10 +1,9 @@
 package cn.fantasticmao.demo.java.spring.framework.transaction;
 
+import jakarta.annotation.Resource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.Resource;
 
 /**
  * UserDaoImpl

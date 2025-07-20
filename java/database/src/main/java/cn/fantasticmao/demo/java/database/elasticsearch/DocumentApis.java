@@ -17,7 +17,7 @@ import java.io.IOException;
  * DocumentApis
  *
  * @author fantasticmao
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html">Document APIs</a>
+ * @see <a href="https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-document">Document APIs</a>
  * @since 2021-12-24
  */
 public class DocumentApis {
@@ -32,26 +32,26 @@ public class DocumentApis {
     /**
      * 从指定的 index 中判断指定 id 的 document 是否存在
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html">GET API</a>
+     * @see <a href="https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">GET API</a>
      */
     public BooleanResponse exists(String index, String id) throws IOException {
-        ExistsRequest request = new ExistsRequest.Builder()
+        ExistsRequest request = ExistsRequest.of(builder -> builder
             .index(index)
             .id(id)
-            .build();
+        );
         return this.client.exists(request);
     }
 
     /**
      * 从指定的 index 中获取指定 id 的 document
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-get.html">GET API</a>
+     * @see <a href="https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Get a document by its ID</a>
      */
     public GetResponse<Account> get(String index, String id) throws IOException {
-        GetRequest request = new GetRequest.Builder()
+        GetRequest request = GetRequest.of(builder -> builder
             .index(index)
             .id(id)
-            .build();
+        );
         return this.client.get(request, Account.class);
     }
 }

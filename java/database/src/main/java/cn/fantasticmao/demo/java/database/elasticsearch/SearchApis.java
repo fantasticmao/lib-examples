@@ -4,12 +4,8 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
-import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
-import co.elastic.clients.elasticsearch._types.query_dsl.TermsQueryField;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
@@ -23,8 +19,8 @@ import java.util.List;
  * SearchApis
  *
  * @author fantasticmao
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">Query DSL</a>
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html">Search APIs</a>
+ * @see <a href="https://www.elastic.co/docs/explore-analyze/query-filter/languages/querydsl">Query DSL</a>
+ * @see <a href="https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-search">Search APIs</a>
  * @since 2019-09-12
  */
 public class SearchApis {
@@ -45,60 +41,55 @@ public class SearchApis {
      * <p>
      * {@code match} 是执行 full-text search 的标准查询语句，包含了模糊匹配的选项。
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html">Match Query</a>
+     * @see <a href="https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query">Match Query</a>
      */
     public SearchResponse<Account> match(String field, FieldValue value, int limit) throws IOException {
-        SearchRequest request = new SearchRequest.Builder()
+        SearchRequest request = SearchRequest.of(builder -> builder
             .index(this.index)
-            .query(new Query.Builder()
-                .match(QueryBuilders.match()
+            .query(query -> query.match(
+                match -> match
                     .field(field)
                     .query(value)
                     .analyzer(Analyzer.Kind.Whitespace.jsonValue())
                     .operator(Operator.Or)
-                    .build())
-                .build())
+            ))
             .size(limit)
-            .build();
+        );
         return this.client.search(request, Account.class);
     }
 
     /**
      * {@code match_phrase} 解析查询文本，从解析后的文本中创建 {@code phrase} 查询。
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html">Match phrase query</a>
+     * @see <a href="https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query-phrase">Match phrase query</a>
      */
     public SearchResponse<Account> matchPhrase(String field, String text, int limit) throws IOException {
-        SearchRequest request = new SearchRequest.Builder()
+        SearchRequest request = SearchRequest.of(builder -> builder
             .index(this.index)
-            .query(new Query.Builder()
-                .matchPhrase(QueryBuilders.matchPhrase()
+            .query(query -> query.matchPhrase(
+                matchPhrase -> matchPhrase
                     .field(field)
                     .query(text)
                     .analyzer(Analyzer.Kind.Whitespace.jsonValue())
-                    .build())
-                .build())
+            ))
             .size(limit)
-            .build();
+        );
         return this.client.search(request, Account.class);
     }
 
     /**
      * {@code multi_match} 构建于 {@code match} 之上，支持多个字段的查询。
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html">Multi-match query</a>
+     * @see <a href="https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-multi-match-query">Multi-match query</a>
      */
     public SearchResponse<Account> multiMatch(List<String> fields, String text, int limit) throws IOException {
-        SearchRequest request = new SearchRequest.Builder()
+        SearchRequest request = SearchRequest.of(builder -> builder
             .index(this.index)
-            .query(new Query.Builder()
-                .multiMatch(QueryBuilders.multiMatch()
-                    .fields(fields)
-                    .query(text)
-                    .build())
-                .build())
+            .query(query -> query.multiMatch(
+                multiMatch -> multiMatch.fields(fields).query(text)
+            ))
             .size(limit)
-            .build();
+        );
         return this.client.search(request, Account.class);
     }
 
@@ -107,37 +98,32 @@ public class SearchApis {
     /**
      * {@code ids} 返回匹配 _id 字段的 document。
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-ids-query.html">IDs</a>
+     * @see <a href="https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-ids-query">IDs</a>
      */
     public SearchResponse<Account> ids(List<String> values) throws IOException {
-        SearchRequest request = new SearchRequest.Builder()
+        SearchRequest request = SearchRequest.of(builder -> builder
             .index(this.index)
-            .query(new Query.Builder()
-                .ids(QueryBuilders.ids()
-                    .values(values)
-                    .build())
-                .build())
-            .build();
+            .query(query -> query.ids(
+                ids -> ids.values(values)
+            ))
+        );
         return this.client.search(request, Account.class);
     }
 
     /**
      * {@code range} 返回匹配指定范围的 document。
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html">Range query</a>
+     * @see <a href="https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-range-query">Range query</a>
      */
-    public <T> SearchResponse<Account> range(String field, T get, T lte, int limit) throws IOException {
-        SearchRequest request = new SearchRequest.Builder()
+    public SearchResponse<Account> range(String field, Double get, Double lte, int limit) throws IOException {
+        SearchRequest request = SearchRequest.of(builder -> builder
             .index(this.index)
-            .query(new Query.Builder()
-                .range(QueryBuilders.range()
-                    .field(field)
-                    .gte(JsonData.of(get))
-                    .lte(JsonData.of(lte))
-                    .build())
-                .build())
+            .query(query -> query.range(
+                range -> range.number(
+                    number -> number.field(field).gte(get).lte(lte)
+                )))
             .size(limit)
-            .build();
+        );
         return this.client.search(request, Account.class);
     }
 
@@ -146,19 +132,16 @@ public class SearchApis {
      * <p>
      * 对于 text 类型字段，避免使用 {@code term}，应该使用 {@code match}。
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html">Term query</a>
+     * @see <a href="https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-term-query">Term query</a>
      */
     public SearchResponse<Account> term(String field, FieldValue value, int limit) throws IOException {
-        SearchRequest request = new SearchRequest.Builder()
+        SearchRequest request = SearchRequest.of(builder -> builder
             .index(this.index)
-            .query(new Query.Builder()
-                .term(QueryBuilders.term()
-                    .field(field)
-                    .value(value)
-                    .build())
-                .build())
+            .query(query -> query.term(
+                term -> term.field(field).value(value)
+            ))
             .size(limit)
-            .build();
+        );
         return this.client.search(request, Account.class);
     }
 
@@ -167,19 +150,16 @@ public class SearchApis {
      * <p>
      * {@code terms} 与 {@code term} 类似，支持多值的查询。
      *
-     * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-query.html">Terms query</a>
+     * @see <a href="https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-terms-query">Terms query</a>
      */
     public SearchResponse<Account> terms(String field, List<FieldValue> values, int limit) throws IOException {
-        SearchRequest request = new SearchRequest.Builder()
+        SearchRequest request = SearchRequest.of(builder -> builder
             .index(this.index)
-            .query(new Query.Builder()
-                .terms(QueryBuilders.terms()
-                    .field(field)
-                    .terms(TermsQueryField.of(builder -> builder.value(values)))
-                    .build())
-                .build())
+            .query(query -> query.terms(
+                terms -> terms.field(field).terms(b -> b.value(values))
+            ))
             .size(limit)
-            .build();
+        );
         return this.client.search(request, Account.class);
     }
 

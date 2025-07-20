@@ -1,29 +1,29 @@
 ### Index APIs
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-indices
 
 ### Create index API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create
 PUT http://localhost:9200/bank
 Content-Type: application/json
 
 < bank_mapping.json
 
 ### Get index API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-index.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get
 GET http://localhost:9200/bank
 Content-Type: application/json
 
 ### Delete index API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-delete-index.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete
 GET http://localhost:9200/bank
 Content-Type: application/json
 
 ### Get mapping API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-mapping.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-mapping
 GET http://localhost:9200/bank/_mapping
 Content-Type: application/json
 
 ### Get field mapping API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-get-field-mapping.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-mapping
 GET http://localhost:9200/bank/_mapping/field/account_number
 Content-Type: application/json

@@ -1,8 +1,8 @@
 ### search API
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html
+### https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-search
 
 ### Match query(full-text search)
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Match phrase query
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-match-query-phrase
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -35,7 +35,7 @@ Content-Type: application/json
 }
 
 ### Multi-match query
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-multi-match-query
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 }
 
 ### IDs
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-ids-query.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-ids-query
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -69,7 +69,7 @@ Content-Type: application/json
 }
 
 ### Range query
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-range-query
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -85,7 +85,7 @@ Content-Type: application/json
 }
 
 ### Term query
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-term-query
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -99,7 +99,7 @@ Content-Type: application/json
 
 
 ### Terms query
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-query.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-terms-query
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
@@ -115,7 +115,7 @@ Content-Type: application/json
 }
 
 ### Boolean query
-### https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html
+### https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-bool-query
 GET http://localhost:9200/bank/_search
 Content-Type: application/json
 
