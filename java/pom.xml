@@ -48,6 +48,7 @@
                         <target>${java.version}</target>
                         <encoding>${java.encoding}</encoding>
                         <showWarnings>true</showWarnings>
+                        <parameters>true</parameters>
                     </configuration>
                 </plugin>
             </plugins>

@@ -16,7 +16,7 @@ import java.util.Date;
  * GeneralControllerAdvice
  *
  * @author fantasticmao
- * @see <a href="https://docs.spring.io/spring/docs/5.2.6.RELEASE/spring-framework-reference/web.html#mvc-ann-controller-advice">Controller Advice</a>
+ * @see <a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-advice.html">Controller Advice</a>
  * @since 2020-06-29
  */
 @ControllerAdvice
@@ -25,7 +25,7 @@ public class GeneralControllerAdvice {
     /**
      * DataBinder
      *
-     * @see <a href="https://docs.spring.io/spring/docs/5.2.6.RELEASE/spring-framework-reference/web.html#mvc-ann-initbinder">DataBinder</a>
+     * @see <a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-initbinder.html">InitBinder</a>
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -37,7 +37,7 @@ public class GeneralControllerAdvice {
     /**
      * Exceptions
      *
-     * @see <a href="https://docs.spring.io/spring/docs/5.2.6.RELEASE/spring-framework-reference/web.html#mvc-ann-exceptionhandler">Exceptions</a>
+     * @see <a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html">Exceptions</a>
      */
     @ExceptionHandler
     @ResponseBody

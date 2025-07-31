@@ -50,7 +50,7 @@ public interface UserService {
     /**
      * 在代理模式下，只有外部方法调用才会触发事务切面逻辑，同一个类的内部方法调用不会产生新的事务。
      *
-     * @see <a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/data-access.html#transaction-declarative-attransactional-settings">@Transactional Settings</a>
+     * @see <a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html#transaction-declarative-attransactional-settings">@Transactional Settings</a>
      */
     boolean selfInvocationWillNotLeadToAnActualTransaction(User user);
 }

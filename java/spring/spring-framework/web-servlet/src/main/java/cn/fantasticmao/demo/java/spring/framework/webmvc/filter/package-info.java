@@ -6,7 +6,7 @@
  *     <li>{@link org.springframework.web.filter.ForwardedHeaderFilter} 处理 HTTP Forwarded Header</li>
  * </ul>
  *
- * <p>{@link org.springframework.web.filter.GenericFilterBean} 抽象类简单实现了 {@link javax.servlet.Filter} 接口，
+ * <p>{@link org.springframework.web.filter.GenericFilterBean} 抽象类简单实现了 {@link jakarta.servlet.Filter} 接口，
  * 支持将 {@code init-param} 参数设置成 Spring Bean 的属性。
  *
  * <p>{@link org.springframework.web.filter.OncePerRequestFilter} 抽象类继承了 {@code GenericFilterBean} 抽象类，
