@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author fantasticmao
  * @see MvcConfiguration#methodValidationPostProcessor()
- * @see <a href="https://docs.spring.io/spring/docs/5.2.6.RELEASE/spring-framework-reference/web.html#mvc-config-validation">Validation</a>
+ * @see <a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-config/validation.html">Validation</a>
+ * @see <a href="https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html">Java Bean Validation</a>
  * @since 2020-06-29
  */
 @Validated

@@ -25,6 +25,7 @@ public class Param {
     private BigDecimal amount;
 
     @NotBlank
+    @UppercaseOnly
     private String message;
 
     @PastOrPresent
