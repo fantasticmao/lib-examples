@@ -38,12 +38,12 @@ public class DynamicBeanTest {
     static class AppConfiguration {
 
         @Bean
-        public DynamicBeanPostProcessor dynamicBeanPostProcessor() {
+        public static DynamicBeanPostProcessor dynamicBeanPostProcessor() {
             return new DynamicBeanPostProcessor();
         }
 
         @Bean
-        public DynamicBeanDefinitionPostProcessor dynamicBeanDefinitionPostProcessor() {
+        public static DynamicBeanDefinitionPostProcessor dynamicBeanDefinitionPostProcessor() {
             return new DynamicBeanDefinitionPostProcessor();
         }
     }
