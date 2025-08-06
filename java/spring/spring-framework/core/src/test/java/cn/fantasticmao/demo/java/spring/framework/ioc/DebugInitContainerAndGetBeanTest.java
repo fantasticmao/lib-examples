@@ -41,7 +41,7 @@ public class DebugInitContainerAndGetBeanTest {
          * 支持 JSR-250 注解的 {@link org.springframework.beans.factory.config.BeanPostProcessor}
          */
         @Bean
-        public CommonAnnotationBeanPostProcessor commonAnnotationBeanPostProcessor() {
+        public static CommonAnnotationBeanPostProcessor commonAnnotationBeanPostProcessor() {
             return new CommonAnnotationBeanPostProcessor();
         }
     }
