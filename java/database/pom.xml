@@ -21,6 +21,7 @@
         <influxdb.client.version>4.0.0</influxdb.client.version>
         <lucene.version>8.9.0</lucene.version>
         <xmemcached.version>2.3.2</xmemcached.version>
+        <postgis.version>2025.1.1</postgis.version>
         <jetcd-core.version>0.7.5</jetcd-core.version>
         <rocksdbjni.version>8.3.2</rocksdbjni.version>
         <zookeeper.version>3.8.0</zookeeper.version>
@@ -159,6 +160,12 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.postgis</groupId>
+            <artifactId>postgis-jdbc</artifactId>
+            <version>${postgis.version}</version>
         </dependency>
 
         <!-- Redis dependency -->

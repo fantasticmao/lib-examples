@@ -13,7 +13,7 @@ import java.util.Properties;
  * PostgresPartitionRepository
  *
  * @author fantasticmao
- * @see <a href="https://www.postgresql.org/docs/17/ddl-partitioning.html">Table Partitioning</a>
+ * @see <a href="https://www.postgresql.org/docs/current/ddl-partitioning.html">Table Partitioning</a>
  * @since 2024-09-29
  */
 public class PostgresPartitionRepository implements AutoCloseable {

@@ -7,7 +7,12 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import javax.annotation.Nullable;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,9 +25,9 @@ import java.util.Properties;
  * 启动 PostgreSQL Docker 容器
  *
  * @author fantasticmao
- * @see <a href="https://www.postgresql.org/docs/16/index.html">PostgreSQL 16.3 Documentation</a>
- * @see <a href="https://www.postgresql.org/docs/16/datatype-json.html">8.14. JSON Types</a>
- * @see <a href="https://www.postgresql.org/docs/16/functions-json.html">9.16. JSON Functions and Operators</a>
+ * @see <a href="https://www.postgresql.org/docs/current/index.html">PostgreSQL Documentation</a>
+ * @see <a href="https://www.postgresql.org/docs/current/datatype-json.html">JSON Types</a>
+ * @see <a href="https://www.postgresql.org/docs/current/functions-json.html">JSON Functions and Operators</a>
  * @see <a href="https://jdbc.postgresql.org/documentation/">PostgreSQL JDBC Driver</a>
  * @since 2024-08-05
  */
