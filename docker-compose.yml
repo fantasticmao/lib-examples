@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   cassandra:
     container_name: lib-examples-cassandra
@@ -92,6 +90,15 @@ services:
     environment:
       - "MYSQL_ROOT_PASSWORD=123456"
       - "MYSQL_DATABASE=fantasticmao"
+  postgis:
+    container_name: lib-examples-postgis
+    image: imresamu/postgis:17-3.5-alpine3.21
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=123456"
+      - "POSTGRES_DB=fantasticmao"
   postgres:
     container_name: lib-examples-postgres
     image: postgres:16.3-alpine

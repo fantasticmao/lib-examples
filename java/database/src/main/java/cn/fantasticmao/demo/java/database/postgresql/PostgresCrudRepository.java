@@ -3,7 +3,12 @@ package cn.fantasticmao.demo.java.database.postgresql;
 import cn.fantasticmao.demo.java.database.User;
 
 import javax.annotation.Nullable;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +20,9 @@ import java.util.Properties;
  * 启动 PostgreSQL Docker 容器
  *
  * @author fantasticmao
- * @see <a href="https://www.postgresql.org/docs/16/index.html">PostgreSQL 16.3 Documentation</a>
- * @see <a href="https://www.postgresql.org/docs/16/datatype.html">Chapter 8. Data Types</a>
- * @see <a href="https://www.postgresql.org/docs/16/functions.html">Chapter 9. Functions and Operators</a>
+ * @see <a href="https://www.postgresql.org/docs/current/index.html">PostgreSQL Documentation</a>
+ * @see <a href="https://www.postgresql.org/docs/current/datatype.html">Data Types</a>
+ * @see <a href="https://www.postgresql.org/docs/current/functions.html">Functions and Operators</a>
  * @see <a href="https://jdbc.postgresql.org/documentation/">PostgreSQL JDBC Driver</a>
  * @since 2024-08-04
  */
