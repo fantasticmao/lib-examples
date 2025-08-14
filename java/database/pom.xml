@@ -16,6 +16,7 @@
 
     <properties>
         <duckdb.version>1.2.2.0</duckdb.version>
+        <emqx.mqtt.version>1.2.5</emqx.mqtt.version>
         <flink.version>1.18.0</flink.version>
         <hbase.version>2.5.8</hbase.version>
         <influxdb.client.version>4.0.0</influxdb.client.version>
@@ -70,6 +71,13 @@
         <dependency>
             <groupId>co.elastic.clients</groupId>
             <artifactId>elasticsearch-java</artifactId>
+        </dependency>
+
+        <!-- EMQX MQTT dependency -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>${emqx.mqtt.version}</version>
         </dependency>
 
         <!-- jetcd dependency -->

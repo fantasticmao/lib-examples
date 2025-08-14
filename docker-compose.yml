@@ -12,6 +12,15 @@ services:
     environment:
       - "discovery.type=single-node"
       - "xpack.security.enabled=false"
+  emqx:
+    container_name: lib-examples-emqx
+    image: emqx/emqx:5.10.0
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "8084:8084"
+      - "8883:8883"
+      - "18083:18083"
   etcd:
     container_name: lib-examples-etcd
     image: gcr.io/etcd-development/etcd:v3.5.9
