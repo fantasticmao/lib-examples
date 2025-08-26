@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * @author fantasticmao
  * @since 2023-11-29
  */
-@WebFilter(filterName = "Logging filter", urlPatterns = "/*")
+@WebFilter(filterName = "Logging filter", urlPatterns = "/*", asyncSupported = true)
 public class LoggingFilter extends OncePerRequestFilter {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 

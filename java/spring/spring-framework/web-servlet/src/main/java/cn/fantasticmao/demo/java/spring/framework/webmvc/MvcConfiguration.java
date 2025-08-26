@@ -36,6 +36,7 @@ public class MvcConfiguration implements WebApplicationInitializer, WebMvcConfig
         ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcher", servlet);
         registration.setLoadOnStartup(1);
         registration.addMapping("/");
+        registration.setAsyncSupported(true);
     }
 
     /**
