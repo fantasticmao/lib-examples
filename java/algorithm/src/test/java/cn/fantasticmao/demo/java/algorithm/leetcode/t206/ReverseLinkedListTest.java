@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.algorithm.leetcode.t206;
 
+import cn.fantasticmao.demo.java.algorithm.leetcode.ListNode;
 import org.junit.Assert;
 import org.junit.Test;
 
