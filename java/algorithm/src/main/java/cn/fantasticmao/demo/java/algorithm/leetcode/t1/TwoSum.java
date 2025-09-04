@@ -7,7 +7,7 @@ import java.util.Map;
  * TwoSum
  *
  * @author fantasticmao
- * @see <a href="https://leetcode.com/problems/two-sum/>Two Sum</a>
+ * @see <a href="https://leetcode.com/problems/two-sum/">Two Sum</a>
  * @since 2024-11-18
  */
 public class TwoSum {
