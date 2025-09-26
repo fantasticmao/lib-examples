@@ -1,12 +1,14 @@
 package cn.fantasticmao.demo.java.database.emqx;
 
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import com.hivemq.client.mqtt.MqttClient;
+import com.hivemq.client.mqtt.MqttClientTransportConfig;
+import com.hivemq.client.mqtt.datatypes.MqttQos;
+import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
+import com.hivemq.client.mqtt.mqtt5.message.auth.Mqtt5SimpleAuth;
+import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5PublishResult;
 
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
 
 /**
  * MqttProducer
@@ -15,32 +17,50 @@ import java.nio.charset.StandardCharsets;
  * @since 2025-08-14
  */
 public class MqttProducer implements AutoCloseable {
-    private final MqttClient mqttClient;
+    private final Mqtt5BlockingClient mqttClient;
 
-    public MqttProducer(String clientId, String brokerUrl, String username, String password) throws MqttException {
-        this.mqttClient = new MqttClient(brokerUrl, clientId, new MemoryPersistence());
+    public MqttProducer(String clientId, String serverHost, int serverPort, String username, String password) {
+        this.mqttClient = MqttClient.builder()
+            .useMqttVersion5()
+            .identifier(clientId)
+            .simpleAuth(Mqtt5SimpleAuth.builder()
+                .username(username)
+                .password(password.getBytes())
+                .build()
+            )
+            .transportConfig(MqttClientTransportConfig.builder()
+                .serverHost(serverHost)
+                .serverPort(serverPort)
+                .mqttConnectTimeout(500, TimeUnit.MICROSECONDS)
+                .socketConnectTimeout(500, TimeUnit.MICROSECONDS)
+                .build())
+            .automaticReconnectWithDefaultConfig()
+            .addConnectedListener(context ->
+                System.out.printf("[MQTT Producer] Connected to server! clientId: %s, serverAddress: %s%n",
+                    context.getClientConfig().getClientIdentifier(),
+                    context.getClientConfig().getServerAddress())
+            )
+            .buildBlocking();
 
-        MqttConnectOptions connOpts = new MqttConnectOptions();
-        connOpts.setUserName(username);
-        connOpts.setPassword(password.toCharArray());
-        connOpts.setCleanSession(true);
-
-        System.out.println("[MQTT Producer] Connecting to broker: " + brokerUrl);
-        this.mqttClient.connect(connOpts);
-        System.out.println("[MQTT Producer] Connected to broker: " + brokerUrl);
+        this.mqttClient.connectWith()
+            .cleanStart(true)
+            .keepAlive(10)
+            .send();
     }
 
     @Override
-    public void close() throws MqttException {
-        if (this.mqttClient.isConnected()) {
+    public void close() {
+        if (this.mqttClient != null && this.mqttClient.getState().isConnected()) {
             this.mqttClient.disconnect();
-            this.mqttClient.close();
         }
     }
 
-    public void publish(String topic, String payload) throws MqttException {
-        MqttMessage message = new MqttMessage(payload.getBytes(StandardCharsets.UTF_8));
-        message.setRetained(false);
-        this.mqttClient.publish(topic, message);
+    public void publish(String topic, MqttQos qos, String payload) {
+        Mqtt5PublishResult result = mqttClient.publishWith()
+            .topic(topic)
+            .qos(qos)
+            .payload(payload.getBytes(StandardCharsets.UTF_8))
+            .send();
+        result.getError().ifPresent(Throwable::printStackTrace);
     }
 }
