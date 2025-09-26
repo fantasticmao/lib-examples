@@ -1,11 +1,15 @@
 package cn.fantasticmao.demo.java.database.emqx;
 
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import com.hivemq.client.mqtt.MqttClient;
+import com.hivemq.client.mqtt.MqttClientTransportConfig;
+import com.hivemq.client.mqtt.datatypes.MqttQos;
+import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
+import com.hivemq.client.mqtt.mqtt5.message.auth.Mqtt5SimpleAuth;
+import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5Publish;
+import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 /**
@@ -15,33 +19,56 @@ import java.util.function.Consumer;
  * @since 2025-08-14
  */
 public class MqttConsumer implements AutoCloseable {
-    private final MqttClient mqttClient;
+    private final Mqtt5BlockingClient mqttClient;
 
-    public MqttConsumer(String clientId, String brokerUrl, String username, String password) throws MqttException {
-        this.mqttClient = new MqttClient(brokerUrl, clientId, new MemoryPersistence());
+    public MqttConsumer(String clientId, String serverHost, int serverPort, String username, String password) {
+        this.mqttClient = MqttClient.builder()
+            .useMqttVersion5()
+            .identifier(clientId)
+            .simpleAuth(Mqtt5SimpleAuth.builder()
+                .username(username)
+                .password(password.getBytes())
+                .build()
+            )
+            .transportConfig(MqttClientTransportConfig.builder()
+                .serverHost(serverHost)
+                .serverPort(serverPort)
+                .mqttConnectTimeout(500, TimeUnit.MICROSECONDS)
+                .socketConnectTimeout(500, TimeUnit.MICROSECONDS)
+                .build())
+            .automaticReconnectWithDefaultConfig()
+            .addConnectedListener(context ->
+                System.out.printf("[MQTT Consumer] Connected to server! clientId: %s, serverAddress: %s%n",
+                    context.getClientConfig().getClientIdentifier(),
+                    context.getClientConfig().getServerAddress())
+            )
+            .buildBlocking();
 
-        MqttConnectOptions connOpts = new MqttConnectOptions();
-        connOpts.setUserName(username);
-        connOpts.setPassword(password.toCharArray());
-        connOpts.setCleanSession(true);
-
-        System.out.println("[MQTT Consumer] Connecting to broker: " + brokerUrl);
-        this.mqttClient.connect(connOpts);
-        System.out.println("[MQTT Consumer] Connected to broker: " + brokerUrl);
+        this.mqttClient.connectWith()
+            .cleanStart(true)
+            .keepAlive(10)
+            .send();
     }
 
     @Override
-    public void close() throws MqttException {
-        if (this.mqttClient.isConnected()) {
+    public void close() {
+        if (this.mqttClient != null && this.mqttClient.getState().isConnected()) {
             this.mqttClient.disconnect();
-            this.mqttClient.close();
         }
     }
 
-    public void subscribe(String topic, Consumer<MqttMessage> handler) throws MqttException {
-        this.mqttClient.subscribe(topic, (_topic, message) -> {
-            handler.accept(message);
+    public void subscribe(String topic, MqttQos qos, Consumer<Mqtt5Publish> callback) {
+        CompletableFuture<Mqtt5SubAck> ackFuture = this.mqttClient.toAsync().subscribeWith()
+            .topicFilter(topic)
+            .qos(qos)
+            .callback(callback)
+            .send();
+        ackFuture.whenComplete((subAck, throwable) -> {
+            if (throwable == null) {
+                System.out.println("[MQTT Consumer] Subscribed to topic: " + topic);
+            } else {
+                throwable.printStackTrace();
+            }
         });
-        System.out.println("[MQTT Consumer] Subscribed to topic: " + topic);
     }
 }

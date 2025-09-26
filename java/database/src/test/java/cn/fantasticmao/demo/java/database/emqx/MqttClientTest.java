@@ -1,6 +1,6 @@
 package cn.fantasticmao.demo.java.database.emqx;
 
-import org.eclipse.paho.client.mqttv3.MqttException;
+import com.hivemq.client.mqtt.datatypes.MqttQos;
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
@@ -12,48 +12,99 @@ import java.util.concurrent.CountDownLatch;
  * @since 2025-08-14
  */
 public class MqttClientTest {
+    final String serverHost = "localhost";
+    final int serverPort = 1883;
+    final String username = "username";
+    final String password = "password";
+    final String topicFormat = "sensor/%s/temperature";
 
     @Test
-    public void example() throws MqttException, InterruptedException {
-        final String brokerUrl = "tcp://localhost:1883";
-        final String username = "username";
-        final String password = "password";
-        final String topicFormat = "sensor/%s/temperature";
-
-        try (MqttConsumer consumer = new MqttConsumer("consumer-client-1", brokerUrl, username, password)) {
+    public void example() throws InterruptedException {
+        try (MqttConsumer consumer = new MqttConsumer("consumer-client", serverHost, serverPort, username, password)) {
             // MQTT 主题支持以下两种通配符：+ 和 #
             // +：表示单层通配符，例如 a/+ 匹配 a/x 或 a/y
             // #：表示多层通配符，例如 a/# 匹配 a/x、a/b/c/d
-            consumer.subscribe(topicFormat.formatted("+"), message -> {
-                System.out.printf("Received id: %d, message: %s\n", message.getId(), new String(message.getPayload()));
+            consumer.subscribe(topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
+                System.out.printf("[MQTT Consumer] Received message: %s\n", new String(message.getPayloadAsBytes()));
             });
 
             final int size = 10;
             final CountDownLatch count = new CountDownLatch(2 * size);
 
             Thread.startVirtualThread(() -> {
-                try (MqttProducer producer = new MqttProducer("producer-client-1", brokerUrl, username, password)) {
+                try (MqttProducer producer = new MqttProducer("producer-client-1", serverHost, serverPort, username, password)) {
                     for (int i = 0; i < size; i++) {
                         String payload = "Temperature %d°C".formatted(20 + i);
-                        producer.publish(topicFormat.formatted("1"), payload);
+                        producer.publish(topicFormat.formatted("1"), MqttQos.AT_LEAST_ONCE, payload);
                         count.countDown();
                     }
-                } catch (MqttException e) {
-                    e.printStackTrace();
                 }
             });
 
             Thread.startVirtualThread(() -> {
-                try (MqttProducer producer = new MqttProducer("producer-client-2", brokerUrl, username, password)) {
+                try (MqttProducer producer = new MqttProducer("producer-client-2", serverHost, serverPort, username, password)) {
                     for (int i = 0; i < size; i++) {
                         String payload = "Temperature %d°C".formatted(10 + i);
-                        producer.publish(topicFormat.formatted("2"), payload);
+                        producer.publish(topicFormat.formatted("2"), MqttQos.AT_LEAST_ONCE, payload);
                         count.countDown();
                     }
-                } catch (MqttException e) {
-                    e.printStackTrace();
                 }
             });
+
+            count.await();
+        }
+    }
+
+    @Test
+    public void subscribe() throws InterruptedException {
+        try (MqttConsumer consumer1 = new MqttConsumer("consumer-client-1", serverHost, serverPort, username, password);
+             MqttConsumer consumer2 = new MqttConsumer("consumer-client-2", serverHost, serverPort, username, password)) {
+            consumer1.subscribe(topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
+                System.out.printf("[MQTT Consumer 1] Received message: %s\n", new String(message.getPayloadAsBytes()));
+            });
+
+            consumer2.subscribe(topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
+                System.out.printf("[MQTT Consumer 2] Received message: %s\n", new String(message.getPayloadAsBytes()));
+            });
+
+            final int size = 10;
+            final CountDownLatch count = new CountDownLatch(size);
+
+            try (MqttProducer producer = new MqttProducer("producer-client-1", serverHost, serverPort, username, password)) {
+                for (int i = 0; i < size; i++) {
+                    String payload = "Temperature %d°C".formatted(20 + i);
+                    producer.publish(topicFormat.formatted("1"), MqttQos.AT_LEAST_ONCE, payload);
+                    count.countDown();
+                }
+            }
+
+            count.await();
+        }
+    }
+
+    @Test
+    public void shareSubscribe() throws InterruptedException {
+        final String sharePrefix = "$share/defaultGroup/";
+        try (MqttConsumer consumer1 = new MqttConsumer("consumer-client-1", serverHost, serverPort, username, password);
+             MqttConsumer consumer2 = new MqttConsumer("consumer-client-2", serverHost, serverPort, username, password)) {
+            consumer1.subscribe(sharePrefix + topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
+                System.out.printf("[MQTT Consumer 1] Received message: %s\n", new String(message.getPayloadAsBytes()));
+            });
+
+            consumer2.subscribe(sharePrefix + topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
+                System.out.printf("[MQTT Consumer 2] Received message: %s\n", new String(message.getPayloadAsBytes()));
+            });
+
+            final int size = 10;
+            final CountDownLatch count = new CountDownLatch(size);
+
+            try (MqttProducer producer = new MqttProducer("producer-client-1", serverHost, serverPort, username, password)) {
+                for (int i = 0; i < size; i++) {
+                    String payload = "Temperature %d°C".formatted(20 + i);
+                    producer.publish(topicFormat.formatted("1"), MqttQos.AT_LEAST_ONCE, payload);
+                    count.countDown();
+                }
+            }
 
             count.await();
         }
