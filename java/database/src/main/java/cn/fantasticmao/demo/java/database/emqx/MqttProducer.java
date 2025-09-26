@@ -8,6 +8,7 @@ import com.hivemq.client.mqtt.mqtt5.message.auth.Mqtt5SimpleAuth;
 import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5PublishResult;
 
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -20,7 +21,7 @@ public class MqttProducer implements AutoCloseable {
     private final Mqtt5BlockingClient mqttClient;
 
     public MqttProducer(String clientId, String serverHost, int serverPort, String username, String password) {
-        this.mqttClient = MqttClient.builder()
+        Mqtt5BlockingClient client = MqttClient.builder()
             .useMqttVersion5()
             .identifier(clientId)
             .simpleAuth(Mqtt5SimpleAuth.builder()
@@ -42,10 +43,12 @@ public class MqttProducer implements AutoCloseable {
             )
             .buildBlocking();
 
-        this.mqttClient.connectWith()
+        client.connectWith()
             .cleanStart(true)
             .keepAlive(10)
             .send();
+
+        this.mqttClient = client;
     }
 
     @Override
@@ -55,7 +58,21 @@ public class MqttProducer implements AutoCloseable {
         }
     }
 
-    public void publish(String topic, MqttQos qos, String payload) {
+    public void publishAsync(String topic, MqttQos qos, String payload) {
+        CompletableFuture<Mqtt5PublishResult> resultFuture = mqttClient.toAsync().publishWith()
+            .topic(topic)
+            .qos(qos)
+            .payload(payload.getBytes(StandardCharsets.UTF_8))
+            .send();
+        resultFuture.whenComplete((result, throwable) -> {
+            result.getError().ifPresent(Throwable::printStackTrace);
+            if (throwable != null) {
+                throwable.printStackTrace();
+            }
+        });
+    }
+
+    public void publishSync(String topic, MqttQos qos, String payload) {
         Mqtt5PublishResult result = mqttClient.publishWith()
             .topic(topic)
             .qos(qos)

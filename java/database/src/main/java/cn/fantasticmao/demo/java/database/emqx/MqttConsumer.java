@@ -2,6 +2,7 @@ package cn.fantasticmao.demo.java.database.emqx;
 
 import com.hivemq.client.mqtt.MqttClient;
 import com.hivemq.client.mqtt.MqttClientTransportConfig;
+import com.hivemq.client.mqtt.MqttGlobalPublishFilter;
 import com.hivemq.client.mqtt.datatypes.MqttQos;
 import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
 import com.hivemq.client.mqtt.mqtt5.message.auth.Mqtt5SimpleAuth;
@@ -22,7 +23,7 @@ public class MqttConsumer implements AutoCloseable {
     private final Mqtt5BlockingClient mqttClient;
 
     public MqttConsumer(String clientId, String serverHost, int serverPort, String username, String password) {
-        this.mqttClient = MqttClient.builder()
+        Mqtt5BlockingClient client = MqttClient.builder()
             .useMqttVersion5()
             .identifier(clientId)
             .simpleAuth(Mqtt5SimpleAuth.builder()
@@ -44,10 +45,12 @@ public class MqttConsumer implements AutoCloseable {
             )
             .buildBlocking();
 
-        this.mqttClient.connectWith()
+        client.connectWith()
             .cleanStart(true)
             .keepAlive(10)
             .send();
+
+        this.mqttClient = client;
     }
 
     @Override
@@ -57,18 +60,33 @@ public class MqttConsumer implements AutoCloseable {
         }
     }
 
-    public void subscribe(String topic, MqttQos qos, Consumer<Mqtt5Publish> callback) {
+    public void subscribeAsync(String topic, MqttQos qos, Consumer<Mqtt5Publish> callback) {
         CompletableFuture<Mqtt5SubAck> ackFuture = this.mqttClient.toAsync().subscribeWith()
             .topicFilter(topic)
             .qos(qos)
             .callback(callback)
             .send();
         ackFuture.whenComplete((subAck, throwable) -> {
-            if (throwable == null) {
+            if (subAck != null && throwable == null) {
                 System.out.println("[MQTT Consumer] Subscribed to topic: " + topic);
             } else {
                 throwable.printStackTrace();
             }
         });
+    }
+
+    public void subscribeSync(String topic, MqttQos qos, Consumer<Mqtt5Publish> callback) throws InterruptedException {
+        Mqtt5SubAck subAck = this.mqttClient.subscribeWith()
+            .topicFilter(topic)
+            .qos(qos)
+            .send();
+        System.out.println("[MQTT Consumer] Subscribed to topic: " + topic);
+
+        try (Mqtt5BlockingClient.Mqtt5Publishes accepter = this.mqttClient.publishes(MqttGlobalPublishFilter.SUBSCRIBED)) {
+            while (!Thread.interrupted()) {
+                Mqtt5Publish msg = accepter.receive();
+                callback.accept(msg);
+            }
+        }
     }
 }
