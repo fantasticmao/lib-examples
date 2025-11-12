@@ -6,9 +6,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * SingletonTest
@@ -20,91 +17,81 @@ public class SingletonTest {
 
     @Test
     public void testHungryMode() throws InterruptedException {
-        final int size = 100;
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        CountDownLatch count = new CountDownLatch(size);
-
-        List<Object> list = Collections.synchronizedList(new ArrayList<>());
-        for (int i = 0; i < size; i++) {
-            executorService.submit(() -> {
+        List<Thread> threads = new ArrayList<>();
+        List<HungryMode> list = Collections.synchronizedList(new ArrayList<>());
+        for (int i = 0; i < 1000; i++) {
+            Thread t = Thread.startVirtualThread(() -> {
                 list.add(HungryMode.getInstance());
-                count.countDown();
             });
+            threads.add(t);
         }
-        count.await();
-
+        for (Thread t : threads) {
+            t.join();
+        }
         Assert.assertEquals(1, list.stream().distinct().count());
     }
 
     @Test
     public void testLazyMode() throws InterruptedException {
-        final int size = 100;
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        CountDownLatch count = new CountDownLatch(size);
-
-        List<Object> list = Collections.synchronizedList(new ArrayList<>());
-        for (int i = 0; i < size; i++) {
-            executorService.submit(() -> {
+        List<Thread> threads = new ArrayList<>();
+        List<LazyMode> list = Collections.synchronizedList(new ArrayList<>());
+        for (int i = 0; i < 100000; i++) {
+            Thread t = Thread.startVirtualThread(() -> {
                 list.add(LazyMode.getInstance());
-                count.countDown();
             });
+            threads.add(t);
         }
-        count.await();
-
+        for (Thread t : threads) {
+            t.join();
+        }
         Assert.assertNotEquals(1, list.stream().distinct().count());
     }
 
     @Test
     public void testLazyModeThreadSafe() throws InterruptedException {
-        final int size = 100;
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        CountDownLatch count = new CountDownLatch(size);
-
-        List<Object> list = Collections.synchronizedList(new ArrayList<>());
-        for (int i = 0; i < size; i++) {
-            executorService.submit(() -> {
+        List<Thread> threads = new ArrayList<>();
+        List<LazyModeThreadSafe> list = Collections.synchronizedList(new ArrayList<>());
+        for (int i = 0; i < 1000; i++) {
+            Thread t = Thread.startVirtualThread(() -> {
                 list.add(LazyModeThreadSafe.getInstance());
-                count.countDown();
             });
+            threads.add(t);
         }
-        count.await();
-
+        for (Thread t : threads) {
+            t.join();
+        }
         Assert.assertEquals(1, list.stream().distinct().count());
     }
 
     @Test
     public void testInnerClassMode() throws InterruptedException {
-        final int size = 1000;
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        CountDownLatch count = new CountDownLatch(size);
-
-        List<Object> list = Collections.synchronizedList(new ArrayList<>());
-        for (int i = 0; i < size; i++) {
-            executorService.submit(() -> {
+        List<Thread> threads = new ArrayList<>();
+        List<InnerClassMode> list = Collections.synchronizedList(new ArrayList<>());
+        for (int i = 0; i < 1000; i++) {
+            Thread t = Thread.startVirtualThread(() -> {
                 list.add(InnerClassMode.getInstance());
-                count.countDown();
             });
+            threads.add(t);
         }
-        count.await();
-
+        for (Thread t : threads) {
+            t.join();
+        }
         Assert.assertEquals(1, list.stream().distinct().count());
     }
 
     @Test
     public void testEnumMode() throws InterruptedException {
-        final int size = 1000;
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        CountDownLatch count = new CountDownLatch(size);
-
-        List<Object> list = Collections.synchronizedList(new ArrayList<>());
-        for (int i = 0; i < size; i++) {
-            executorService.submit(() -> {
+        List<Thread> threads = new ArrayList<>();
+        List<EnumMode> list = Collections.synchronizedList(new ArrayList<>());
+        for (int i = 0; i < 1000; i++) {
+            Thread t = Thread.startVirtualThread(() -> {
                 list.add(EnumMode.INSTANCE);
-                count.countDown();
             });
+            threads.add(t);
         }
-        count.await();
-
+        for (Thread t : threads) {
+            t.join();
+        }
         Assert.assertEquals(1, list.stream().distinct().count());
     }
 }

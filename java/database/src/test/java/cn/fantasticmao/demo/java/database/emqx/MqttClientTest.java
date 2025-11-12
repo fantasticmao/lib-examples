@@ -3,8 +3,6 @@ package cn.fantasticmao.demo.java.database.emqx;
 import com.hivemq.client.mqtt.datatypes.MqttQos;
 import org.junit.Test;
 
-import java.util.concurrent.CountDownLatch;
-
 /**
  * MqttClientTest
  *
@@ -28,35 +26,31 @@ public class MqttClientTest {
                 System.out.printf("[MQTT Consumer] Received message: %s\n", new String(message.getPayloadAsBytes()));
             });
 
-            final int size = 10;
-            final CountDownLatch count = new CountDownLatch(2 * size);
-
-            Thread.startVirtualThread(() -> {
+            Thread t1 = Thread.startVirtualThread(() -> {
                 try (MqttProducer producer = new MqttProducer("producer-1", serverHost, serverPort, username, password)) {
-                    for (int i = 0; i < size; i++) {
+                    for (int i = 0; i < 10; i++) {
                         String payload = "Temperature %d°C".formatted(20 + i);
                         producer.publishSync(topicFormat.formatted("1"), MqttQos.AT_LEAST_ONCE, payload);
-                        count.countDown();
                     }
                 }
             });
 
-            Thread.startVirtualThread(() -> {
+            Thread t2 = Thread.startVirtualThread(() -> {
                 try (MqttProducer producer = new MqttProducer("producer-2", serverHost, serverPort, username, password)) {
-                    for (int i = 0; i < size; i++) {
+                    for (int i = 0; i < 10; i++) {
                         String payload = "Temperature %d°C".formatted(10 + i);
                         producer.publishSync(topicFormat.formatted("2"), MqttQos.AT_LEAST_ONCE, payload);
-                        count.countDown();
                     }
                 }
             });
 
-            count.await();
+            t1.join();
+            t2.join();
         }
     }
 
     @Test
-    public void subscribe() throws InterruptedException {
+    public void subscribe() {
         try (MqttConsumer consumer1 = new MqttConsumer("consumer-1", serverHost, serverPort, username, password);
              MqttConsumer consumer2 = new MqttConsumer("consumer-2", serverHost, serverPort, username, password)) {
             consumer1.subscribeAsync(topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
@@ -67,18 +61,12 @@ public class MqttClientTest {
                 System.out.printf("[MQTT Consumer 2] Received message: %s\n", new String(message.getPayloadAsBytes()));
             });
 
-            final int size = 10;
-            final CountDownLatch count = new CountDownLatch(size);
-
             try (MqttProducer producer = new MqttProducer("producer", serverHost, serverPort, username, password)) {
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i < 10; i++) {
                     String payload = "Temperature %d°C".formatted(20 + i);
                     producer.publishSync(topicFormat.formatted("1"), MqttQos.AT_LEAST_ONCE, payload);
-                    count.countDown();
                 }
             }
-
-            count.await();
         }
     }
 
@@ -95,18 +83,12 @@ public class MqttClientTest {
                 System.out.printf("[MQTT Consumer 2] Received message: %s\n", new String(message.getPayloadAsBytes()));
             });
 
-            final int size = 10;
-            final CountDownLatch count = new CountDownLatch(size);
-
             try (MqttProducer producer = new MqttProducer("producer-1", serverHost, serverPort, username, password)) {
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i < 10; i++) {
                     String payload = "Temperature %d°C".formatted(20 + i);
                     producer.publishSync(topicFormat.formatted("1"), MqttQos.AT_LEAST_ONCE, payload);
-                    count.countDown();
                 }
             }
-
-            count.await();
         }
     }
 }

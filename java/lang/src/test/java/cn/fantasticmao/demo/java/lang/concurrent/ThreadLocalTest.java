@@ -1,11 +1,7 @@
 package cn.fantasticmao.demo.java.lang.concurrent;
 
+import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Objects;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * ThreadLocalTest
@@ -14,25 +10,21 @@ import java.util.concurrent.Executors;
  * @since 2023-11-29
  */
 public class ThreadLocalTest {
+    String value = "hello world";
 
     /**
      * ThreadLocal 不支持跨线程传递数据
      */
     @Test
     public void threadLocal() throws Exception {
-        ThreadLocal<Object> threadLocal = new ThreadLocal<>();
-        threadLocal.set(new Object());
-        System.out.printf("ThreadLocal<Object> hashCode: %d\n", threadLocal.get().hashCode());
+        ThreadLocal<String> threadLocal = new ThreadLocal<>();
+        threadLocal.set(value);
+        Assert.assertEquals(value, threadLocal.get());
 
-        CountDownLatch count = new CountDownLatch(1);
-        Runnable runnable = () -> {
-            System.out.printf("ThreadName: %s, ThreadLocal<Object> hashCode: %d\n", Thread.currentThread().getName(),
-                Objects.hashCode(threadLocal.get()));
-            count.countDown();
-        };
+        Runnable runnable = () -> Assert.assertNull(threadLocal.get());
 
-        new Thread(runnable).start();
-        count.await();
+        Thread t = Thread.startVirtualThread(runnable);
+        t.join();
     }
 
     /**
@@ -40,43 +32,14 @@ public class ThreadLocalTest {
      */
     @Test
     public void threadLocal_inheritable() throws Exception {
-        InheritableThreadLocal<Object> inheritableThreadLocal = new InheritableThreadLocal<>();
-        inheritableThreadLocal.set(new Object());
-        System.out.printf("InheritableThreadLocal<Object> hashCode: %d\n", inheritableThreadLocal.get().hashCode());
+        InheritableThreadLocal<String> inheritableThreadLocal = new InheritableThreadLocal<>();
+        inheritableThreadLocal.set(value);
+        Assert.assertEquals(value, inheritableThreadLocal.get());
 
-        CountDownLatch count = new CountDownLatch(1);
-        Runnable runnable = () -> {
-            System.out.printf("ThreadName: %s, InheritableThreadLocal<Object> hashCode: %d\n", Thread.currentThread().getName(),
-                Objects.hashCode(inheritableThreadLocal.get()));
-            count.countDown();
-        };
+        Runnable runnable = () -> Assert.assertEquals(value, inheritableThreadLocal.get());
 
-        new Thread(runnable).start();
-        count.await();
+        Thread t = Thread.startVirtualThread(runnable);
+        t.join();
     }
 
-    /**
-     * InheritableThreadLocal 不支持跨非父子线程传递数据
-     */
-    @Test
-    public void threadLocal_pool() throws Exception {
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService.execute(() ->
-            System.out.printf("ThreadName: %s, initializing\n", Thread.currentThread().getName())
-        );
-
-        InheritableThreadLocal<Object> inheritableThreadLocal = new InheritableThreadLocal<>();
-        inheritableThreadLocal.set(new Object());
-        System.out.printf("InheritableThreadLocal<Object> hashCode: %d\n", inheritableThreadLocal.get().hashCode());
-
-        CountDownLatch count = new CountDownLatch(1);
-        Runnable runnable = () -> {
-            System.out.printf("ThreadName: %s, InheritableThreadLocal<Object> hashCode: %d\n", Thread.currentThread().getName(),
-                Objects.hashCode(inheritableThreadLocal.get()));
-            count.countDown();
-        };
-
-        executorService.execute(runnable);
-        count.await();
-    }
 }
