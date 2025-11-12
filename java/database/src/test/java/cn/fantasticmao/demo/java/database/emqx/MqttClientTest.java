@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.database.emqx;
 
 import com.hivemq.client.mqtt.datatypes.MqttQos;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 /**
@@ -9,6 +10,7 @@ import org.junit.Test;
  * @author fantasticmao
  * @since 2025-08-14
  */
+@Slf4j
 public class MqttClientTest {
     final String serverHost = "localhost";
     final int serverPort = 1883;
@@ -23,7 +25,7 @@ public class MqttClientTest {
             // +：表示单层通配符，例如 a/+ 匹配 a/x 或 a/y
             // #：表示多层通配符，例如 a/# 匹配 a/x、a/b/c/d
             consumer.subscribeAsync(topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
-                System.out.printf("[MQTT Consumer] Received message: %s\n", new String(message.getPayloadAsBytes()));
+                log.info("[MQTT Consumer] Received message: {}", new String(message.getPayloadAsBytes()));
             });
 
             Thread t1 = Thread.startVirtualThread(() -> {
@@ -54,11 +56,11 @@ public class MqttClientTest {
         try (MqttConsumer consumer1 = new MqttConsumer("consumer-1", serverHost, serverPort, username, password);
              MqttConsumer consumer2 = new MqttConsumer("consumer-2", serverHost, serverPort, username, password)) {
             consumer1.subscribeAsync(topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
-                System.out.printf("[MQTT Consumer 1] Received message: %s\n", new String(message.getPayloadAsBytes()));
+                log.info("[MQTT Consumer 1] Received message: {}", new String(message.getPayloadAsBytes()));
             });
 
             consumer2.subscribeAsync(topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
-                System.out.printf("[MQTT Consumer 2] Received message: %s\n", new String(message.getPayloadAsBytes()));
+                log.info("[MQTT Consumer 2] Received message: {}", new String(message.getPayloadAsBytes()));
             });
 
             try (MqttProducer producer = new MqttProducer("producer", serverHost, serverPort, username, password)) {
@@ -76,11 +78,11 @@ public class MqttClientTest {
         try (MqttConsumer consumer1 = new MqttConsumer("consumer-1", serverHost, serverPort, username, password);
              MqttConsumer consumer2 = new MqttConsumer("consumer-2", serverHost, serverPort, username, password)) {
             consumer1.subscribeAsync(sharePrefix + topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
-                System.out.printf("[MQTT Consumer 1] Received message: %s\n", new String(message.getPayloadAsBytes()));
+                log.info("[MQTT Consumer 1] Received message: {}", new String(message.getPayloadAsBytes()));
             });
 
             consumer2.subscribeAsync(sharePrefix + topicFormat.formatted("+"), MqttQos.AT_LEAST_ONCE, message -> {
-                System.out.printf("[MQTT Consumer 2] Received message: %s\n", new String(message.getPayloadAsBytes()));
+                log.info("[MQTT Consumer 2] Received message: {}", new String(message.getPayloadAsBytes()));
             });
 
             try (MqttProducer producer = new MqttProducer("producer-1", serverHost, serverPort, username, password)) {

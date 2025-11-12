@@ -1,10 +1,15 @@
 package cn.fantasticmao.demo.java.lang;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * CpuCacheEffectTest
@@ -13,6 +18,7 @@ import java.util.concurrent.*;
  * @see <a href="https://coolshell.cn/articles/10249.html">7个示例科普CPU CACHE</a>
  * @since 2020-05-14
  */
+@Slf4j
 public class CpuCacheEffectTest {
 
     /**
@@ -30,14 +36,14 @@ public class CpuCacheEffectTest {
         for (int i = 0; i < arr.length; i++) {
             long tmp = arr[i];
         }
-        System.out.printf("Loop1: %d", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start));
+        log.info("Loop1: {}", System.nanoTime() - start);
 
         // 以步长为 16 遍历数组
         start = System.nanoTime();
         for (int i = 0; i < arr.length; i += 64) {
             long tmp = arr[i];
         }
-        System.out.printf("Loop2: %d", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start));
+        log.info("Loop2: {}", System.nanoTime() - start);
     }
 
     /**
@@ -55,7 +61,7 @@ public class CpuCacheEffectTest {
                 long tmp = arr[i][j];
             }
         }
-        System.out.println("Loop1: " + (System.nanoTime() - start));
+        log.info("Loop1: {}", System.nanoTime() - start);
 
         // 没有利用 CPU Cache 特性
         start = System.nanoTime();
@@ -64,7 +70,7 @@ public class CpuCacheEffectTest {
                 long tmp = arr[j][i];
             }
         }
-        System.out.println("Loop2: " + (System.nanoTime() - start));
+        log.info("Loop2: {}", System.nanoTime() - start);
     }
 
     /**
@@ -139,7 +145,7 @@ public class CpuCacheEffectTest {
                 }
             }).reduce((value1, value2) -> value1 + value2)
             .orElseThrow(RuntimeException::new);
-        System.out.println("No  Padding: " + totalTime);
+        log.info("No  Padding: {}", totalTime);
 
         futureList.clear();
         for (int i = 0; i < numberOfThreads; i++) {
@@ -155,7 +161,7 @@ public class CpuCacheEffectTest {
                 }
             }).reduce((value1, value2) -> value1 + value2)
             .orElseThrow(RuntimeException::new);
-        System.out.println("Use Padding: " + totalTime);
+        log.info("Use Padding: {}", totalTime);
         exec.shutdown();
     }
 }

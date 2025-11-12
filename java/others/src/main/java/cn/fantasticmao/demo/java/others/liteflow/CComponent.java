@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.others.liteflow;
 
 import com.yomahub.liteflow.core.NodeComponent;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * CComponent
@@ -8,10 +9,11 @@ import com.yomahub.liteflow.core.NodeComponent;
  * @author fantasticmao
  * @since 2023-02-15
  */
+@Slf4j
 public class CComponent extends NodeComponent {
 
     @Override
     public void process() throws Exception {
-        System.out.println("LiftFlow Component C");
+        log.info("LiftFlow Component C");
     }
 }

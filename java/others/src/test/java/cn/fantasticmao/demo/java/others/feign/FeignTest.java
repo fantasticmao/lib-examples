@@ -2,6 +2,7 @@ package cn.fantasticmao.demo.java.others.feign;
 
 import feign.Feign;
 import feign.gson.GsonDecoder;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * @see <a href="https://github.com/OpenFeign/feign#templates-and-expressions">Templates and Expressions</a>
  * @since 2022-04-09
  */
+@Slf4j
 public class FeignTest {
 
     @Test
@@ -20,7 +22,7 @@ public class FeignTest {
         HttpBin httpBin = Feign.builder()
             .target(HttpBin.class, "http://localhost:8080");
         String response = httpBin.get("Tom");
-        System.out.println(response);
+        log.info("get response: {}", response);
     }
 
     @Test
@@ -28,7 +30,7 @@ public class FeignTest {
         HttpBin httpBin = Feign.builder()
             .target(HttpBin.class, "http://localhost:8080");
         String response = httpBin.post("Tom");
-        System.out.println(response);
+        log.info("post response: {}", response);
     }
 
     @Test
@@ -37,6 +39,6 @@ public class FeignTest {
             .decoder(new GsonDecoder())
             .target(GitHub.class, "https://api.github.com");
         List<GitHub.Contributor> contributors = github.contributors("fantasticmao", "lib-examples");
-        System.out.println(contributors);
+        log.info("contributors: {}", contributors);
     }
 }

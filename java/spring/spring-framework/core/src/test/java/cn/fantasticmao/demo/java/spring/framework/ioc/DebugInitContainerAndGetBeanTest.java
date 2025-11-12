@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.spring.framework.ioc;
 
 import cn.fantasticmao.demo.java.spring.framework.ioc.bean.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,8 @@ public class DebugInitContainerAndGetBeanTest {
                  = new AnnotationConfigApplicationContext(AppConfiguration.class)) {
             // debug IoC 容器的依赖注入
             User user = applicationContext.getBean("user", User.class);
-            System.out.println(user);
+            Assert.assertEquals("tom", user.getName());
+            Assert.assertEquals(18, user.getAge());
         }
     }
 

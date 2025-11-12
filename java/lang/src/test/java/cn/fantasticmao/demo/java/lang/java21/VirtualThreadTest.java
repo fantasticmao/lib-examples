@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.lang.java21;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.concurrent.ThreadFactory;
  * @author fantasticmao
  * @since 2025-06-26
  */
+@Slf4j
 public class VirtualThreadTest {
 
     @Test
@@ -24,7 +26,7 @@ public class VirtualThreadTest {
         for (int i = 0; i < size; i++) {
             Runnable runnable = () -> {
                 Thread t = Thread.currentThread();
-                System.out.printf("Virtual thread name: %s id: %d is running\n", t.getName(), t.threadId());
+                log.info("Virtual thread name: {} id: {} is running", t.getName(), t.threadId());
             };
             Thread t = threadFactory.newThread(runnable);
             threads.add(t);

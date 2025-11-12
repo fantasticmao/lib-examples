@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.lang.io;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.util.Map;
  * @author fantasticmao
  * @since 2022/3/2
  */
+@Slf4j
 public class UrlConnectionTest {
 
     @Test
@@ -39,17 +41,17 @@ public class UrlConnectionTest {
         // 4. 与服务器建立连接之后，可以查询响应属性
         String contentType = connection.getContentType();
         long contentLength = connection.getContentLength();
-        System.out.println("content type: " + contentType);
-        System.out.println("content length: " + contentLength);
+        log.info("content type: {}", contentType);
+        log.info("content length: {}", contentLength);
 
         // 5. 最后，访问资源数据
         Map<String, List<String>> map = connection.getHeaderFields();
         map.forEach((key, value) ->
-            System.out.printf("header fields: %s: %s%n", key, value)
+            log.info("header fields: {}: {}", key, value)
         );
         try (InputStream in = connection.getInputStream()) {
             String response = new String(in.readAllBytes(), StandardCharsets.UTF_8);
-            System.out.println("response body: " + response);
+            log.info("response body: {}", response);
         }
     }
 
@@ -77,11 +79,11 @@ public class UrlConnectionTest {
         // 5. 最后，调用 getInputStream() 读取服务器的响应信息
         Map<String, List<String>> map = connection.getHeaderFields();
         map.forEach((key, value) ->
-            System.out.printf("header fields: %s: %s%n", key, value)
+            log.info("header fields: {}: {}", key, value)
         );
         try (InputStream in = connection.getInputStream()) {
             String response = new String(in.readAllBytes(), StandardCharsets.UTF_8);
-            System.out.println("response body: " + response);
+            log.info("response body: {}", response);
         }
     }
 }

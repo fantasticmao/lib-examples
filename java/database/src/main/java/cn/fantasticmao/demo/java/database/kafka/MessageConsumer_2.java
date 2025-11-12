@@ -1,13 +1,24 @@
 package cn.fantasticmao.demo.java.database.kafka;
 
-import org.apache.kafka.clients.consumer.*;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.OffsetResetStrategy;
+import org.apache.kafka.clients.consumer.RoundRobinAssignor;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * MessageConsumer_2
@@ -18,6 +29,7 @@ import java.util.*;
  * @see <a href="https://developer.confluent.io/get-started/java/#build-consumer">Build Consumer</a>
  * @since 2023-06-10
  */
+@Slf4j
 public class MessageConsumer_2 {
 
     public static void main(String[] args) {
@@ -36,23 +48,23 @@ public class MessageConsumer_2 {
 
         try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(configs)) {
             List<PartitionInfo> partitionInfos = consumer.partitionsFor(KafkaConstant.TOPIC);
-            System.out.printf("partitions for %s: %s%n", KafkaConstant.TOPIC, partitionInfos);
+            log.info("partitions for {}: {}", KafkaConstant.TOPIC, partitionInfos);
 
             consumer.subscribe(Collections.singletonList(KafkaConstant.TOPIC), new ConsumerRebalanceListener() {
                 @Override
                 public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
-                    System.out.printf("%s partitions revoked: %s%n", LocalDateTime.now(), partitions);
+                    log.info("{} partitions revoked: {}", LocalDateTime.now(), partitions);
                 }
 
                 @Override
                 public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-                    System.out.printf("%s partitions assigned: %s%n", LocalDateTime.now(), partitions);
+                    log.info("{} partitions assigned: {}", LocalDateTime.now(), partitions);
                 }
             });
             for (; ; ) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(10_000));
                 for (ConsumerRecord<String, String> record : records) {
-                    System.out.printf("record: %s%n", record);
+                    log.info("record: {}", record);
                 }
             }
         }

@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.database.postgresql;
 
 import cn.fantasticmao.demo.java.database.Shop;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @author fantasticmao
  * @since 2025-08-13
  */
+@Slf4j
 public class PostgisRepositoryTest {
 
     @Test
@@ -35,14 +37,14 @@ public class PostgisRepositoryTest {
             List<List<String>> shopListMap = repository.selectAllAsGeoJson();
             Assert.assertEquals(5, shopListMap.size());
             for (List<String> row : shopListMap) {
-                System.out.printf("shopName: %s, location_ewkt: '%s', location_geojson: '%s'\n",
+                log.info("shopName: {}, location_ewkt: '{}', location_geojson: '{}'",
                     row.get(0), row.get(1), row.get(2));
             }
 
             shopListMap = repository.selectByDistance(Shop.ORIENTAL_PEARL_TOWER.getLocation(), 2000);
             Assert.assertEquals(3, shopListMap.size());
             for (List<String> row : shopListMap) {
-                System.out.printf("shopName: %s, location_text: '%s', distance: '%s'\n",
+                log.info("shopName: {}, location_text: '{}', distance: '{}'",
                     row.get(0), row.get(1), row.get(2));
             }
         }

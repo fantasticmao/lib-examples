@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.lang.java21;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * @author fantasticmao
  * @since 2025-06-26
  */
+@Slf4j
 public class RecordTest {
     public record Point(double x, double y) {
     }
@@ -23,7 +25,7 @@ public class RecordTest {
 
         for (Object obj : list) {
             if (obj instanceof Point(double x, double y)) {
-                System.out.printf("Point: x = %.2f, y=%.2f%n", x, y);
+                log.info("Point: x={}, y={}", x, y);
             }
         }
     }

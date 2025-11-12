@@ -8,6 +8,7 @@ import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
 import com.hivemq.client.mqtt.mqtt5.message.auth.Mqtt5SimpleAuth;
 import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5Publish;
 import com.hivemq.client.mqtt.mqtt5.message.subscribe.suback.Mqtt5SubAck;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +20,7 @@ import java.util.function.Consumer;
  * @author fantasticmao
  * @since 2025-08-14
  */
+@Slf4j
 public class MqttConsumer implements AutoCloseable {
     private final Mqtt5BlockingClient mqttClient;
 
@@ -39,7 +41,7 @@ public class MqttConsumer implements AutoCloseable {
                 .build())
             .automaticReconnectWithDefaultConfig()
             .addConnectedListener(context ->
-                System.out.printf("[MQTT Consumer] Connected to server! clientId: %s, serverAddress: %s%n",
+                log.info("[MQTT Consumer] Connected to server! clientId: {}, serverAddress: {}",
                     context.getClientConfig().getClientIdentifier(),
                     context.getClientConfig().getServerAddress())
             )
@@ -68,9 +70,9 @@ public class MqttConsumer implements AutoCloseable {
             .send();
         ackFuture.whenComplete((subAck, throwable) -> {
             if (subAck != null && throwable == null) {
-                System.out.println("[MQTT Consumer] Subscribed to topic: " + topic);
+                log.info("[MQTT Consumer] Subscribed to topic: {}", topic);
             } else {
-                throwable.printStackTrace();
+                log.error(throwable.getMessage(), throwable);
             }
         });
     }
@@ -80,7 +82,7 @@ public class MqttConsumer implements AutoCloseable {
             .topicFilter(topic)
             .qos(qos)
             .send();
-        System.out.println("[MQTT Consumer] Subscribed to topic: " + topic);
+        log.info("[MQTT Consumer] Subscribed to topic: {}", topic);
 
         try (Mqtt5BlockingClient.Mqtt5Publishes accepter = this.mqttClient.publishes(MqttGlobalPublishFilter.SUBSCRIBED)) {
             while (!Thread.interrupted()) {

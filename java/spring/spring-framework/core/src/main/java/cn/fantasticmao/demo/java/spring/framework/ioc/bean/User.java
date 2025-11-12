@@ -2,6 +2,7 @@ package cn.fantasticmao.demo.java.spring.framework.ioc.bean;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Bean;
  * @see <a href="https://docs.spring.io/spring-framework/reference/core/beans/factory-nature.html#beans-factory-lifecycle">Spring Bean 生命周期中的一些回调方法</a>
  * @since 2020-06-28
  */
+@Slf4j
 public class User implements InitializingBean, DisposableBean {
     private String name;
     private int age;
@@ -29,7 +31,7 @@ public class User implements InitializingBean, DisposableBean {
      */
     @PostConstruct
     public void postConstruct() {
-        System.out.printf("%s postConstruct%n", this.getClass().getName());
+        log.info("{}: postConstruct", this.getClass().getSimpleName());
     }
 
     /**
@@ -37,7 +39,7 @@ public class User implements InitializingBean, DisposableBean {
      */
     @PreDestroy
     public void preDestroy() {
-        System.out.printf("%s preDestroy%n", this.getClass().getName());
+        log.info("{}: preDestroy", this.getClass().getSimpleName());
     }
 
     /**
@@ -45,7 +47,7 @@ public class User implements InitializingBean, DisposableBean {
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.printf("%s InitializingBean afterPropertiesSet%n", this.getClass().getName());
+        log.info("{}: InitializingBean afterPropertiesSet", this.getClass().getSimpleName());
     }
 
     /**
@@ -53,21 +55,21 @@ public class User implements InitializingBean, DisposableBean {
      */
     @Override
     public void destroy() throws Exception {
-        System.out.printf("%s DisposableBean destroy%n", this.getClass().getName());
+        log.info("{}: DisposableBean destroy", this.getClass().getSimpleName());
     }
 
     /**
      * {@link Bean#initMethod()}
      */
     public void initMethod() {
-        System.out.printf("%s init method%n", this.getClass().getName());
+        log.info("{}: init method", this.getClass().getSimpleName());
     }
 
     /**
      * {@link Bean#destroyMethod()}
      */
     public void destroyMethod() {
-        System.out.printf("%s destroy method%n", this.getClass().getName());
+        log.info("{}: destroy method", this.getClass().getSimpleName());
     }
 
     @Override

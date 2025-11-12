@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.database.kafka;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit;
  * @see <a href="https://developer.confluent.io/get-started/java/#build-producer">Build Producer</a>
  * @since 2023-06-10
  */
+@Slf4j
 public class MessageProducer {
 
     public static void main(String[] args) {
@@ -43,12 +45,12 @@ public class MessageProducer {
             long startTime = System.nanoTime();
             producer.send(record, (metadata, exception) -> {
                 if (exception != null) {
-                    exception.printStackTrace();
+                    log.error(exception.getMessage(), exception);
                 }
-                System.out.printf("send msg to Kafka success, topic: %s, partition: %s, offset: %s%n",
+                log.info("send msg to Kafka success, topic: {}, partition: {}, offset: {}",
                     metadata.topic(), metadata.partition(), metadata.offset());
             });
-            System.out.printf("time elapsed: %dms%n", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
+            log.info("time elapsed: {}ms", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime));
         }
     }
 }
