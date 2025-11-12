@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.database.redis;
 
+import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
@@ -14,21 +15,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class PubSubDemo extends JedisPubSub {
 
+    @Slf4j
     static class Subscriber extends JedisPubSub {
 
         @Override
         public void onMessage(String channel, String message) {
-            System.out.printf("channel: %s, message: %s%n", channel, message);
+            log.info("channel: {}, message: {}", channel, message);
         }
 
         @Override
         public void onSubscribe(String channel, int subscribedChannels) {
-            System.out.printf("subscribe channel: %s%n", channel);
+            log.info("subscribe channel: {}", channel);
         }
 
         @Override
         public void onUnsubscribe(String channel, int subscribedChannels) {
-            System.out.printf("unsubscribe channel: %s%n", channel);
+            log.info("unsubscribe channel: {}", channel);
         }
     }
 

@@ -1,21 +1,26 @@
 package cn.fantasticmao.demo.java.lang.classloader;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
+
 /**
- * ContextClassLoaderDemo
+ * ContextClassLoaderTest
  *
  * @author fantasticmao
- * @since 2018/7/19
+ * @since 2025-11-12
  */
-public class ContextClassLoaderDemo {
+@Slf4j
+public class ContextClassLoaderTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void example() {
         // 获取当前线程的 class loader
-        System.out.println(Thread.currentThread().getContextClassLoader());
+        log.info("thread context class loader: {}", Thread.currentThread().getContextClassLoader());
 
         // 获取子线程的 class loader
         new Thread(() -> {
             // 从父线程继承 class loader
-            System.out.println("before set child thread:" + Thread.currentThread().getContextClassLoader());
+            log.info("before set, child thread context class loader: {}", Thread.currentThread().getContextClassLoader());
         }).start();
 
         // 设置当前线程的 class loader
@@ -31,12 +36,12 @@ public class ContextClassLoaderDemo {
                 return super.findClass(name);
             }
         });
-        System.out.println(Thread.currentThread().getContextClassLoader());
+        log.info("thread context class loader: {}", Thread.currentThread().getContextClassLoader());
 
         // 获取子线程的 class loader
         new Thread(() -> {
             // 从父线程继承 class loader
-            System.out.println("after set child thread:" + Thread.currentThread().getContextClassLoader());
+            log.info("after set, child thread context class loader: {}", Thread.currentThread().getContextClassLoader());
         }).start();
     }
 }

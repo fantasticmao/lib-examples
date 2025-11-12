@@ -1,5 +1,7 @@
 package cn.fantasticmao.demo.java.lang.jmx;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
@@ -13,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @see javax.management.DynamicMBean
  * @since 2022-07-29
  */
+@Slf4j
 public class JmxDemo {
 
     public static void main(String[] args) throws Exception {
@@ -22,7 +25,7 @@ public class JmxDemo {
         server.registerMBean(mbean, objectName);
 
         while (!Thread.currentThread().isInterrupted()) {
-            System.out.printf("Example: %s%n", mbean);
+            log.info("Example: {}", mbean);
             TimeUnit.SECONDS.sleep(3);
         }
     }

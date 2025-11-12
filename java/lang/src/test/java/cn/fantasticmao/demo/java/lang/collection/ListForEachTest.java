@@ -1,8 +1,13 @@
 package cn.fantasticmao.demo.java.lang.collection;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * ListForEachTest
@@ -10,6 +15,7 @@ import java.util.*;
  * @author fantasticmao
  * @since 2020-11-14
  */
+@Slf4j
 public class ListForEachTest {
 
     /**
@@ -24,7 +30,7 @@ public class ListForEachTest {
         Integer target = 2;
         for (int i = 0; i < list.size(); i++) {
             Integer e = list.get(i);
-            System.out.printf("%d ", e);
+            log.info("element: {}", e);
 
             if (e.equals(target)) {
                 list.remove(target);
@@ -68,7 +74,7 @@ public class ListForEachTest {
         Integer target = 2;
         for (int i = list.size() - 1; i >= 0; i--) {
             Integer e = list.get(i);
-            System.out.printf("%d ", e);
+            log.info("element: {}", e);
 
             if (e.equals(target)) {
                 list.remove(target);

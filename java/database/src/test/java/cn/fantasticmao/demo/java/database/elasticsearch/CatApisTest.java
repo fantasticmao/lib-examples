@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.database.elasticsearch;
 
 import co.elastic.clients.elasticsearch.cat.MasterResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
  * @author fantasticmao
  * @since 2021-12-24
  */
+@Slf4j
 public class CatApisTest {
     private final CatApis catApis;
 
@@ -23,7 +25,7 @@ public class CatApisTest {
     public void master() throws IOException {
         MasterResponse response = catApis.master();
         Assert.assertNotNull(response);
-        response.valueBody().forEach(record -> System.out.printf("id: %s, host: %s, ip: %s, node:%s\n",
+        response.valueBody().forEach(record -> log.info("id: {}, host: {}, ip: {}, node: {}",
             record.id(), record.host(), record.ip(), record.node()));
     }
 

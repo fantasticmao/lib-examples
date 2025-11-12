@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.database.influxdb;
 
 import com.influxdb.query.FluxRecord;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.time.ZoneId;
@@ -17,6 +18,7 @@ import java.util.Random;
  * @author fantasticmao
  * @since 2022/1/13
  */
+@Slf4j
 public class InfluxDBRepositoryTest {
 
     @Test
@@ -42,7 +44,7 @@ public class InfluxDBRepositoryTest {
                 .forEach(record -> {
                     ZonedDateTime time = record.getTime().atZone(ZoneId.systemDefault());
                     double value = (Double) record.getValue();
-                    System.out.printf("time: %s, location: %s, value: %.1f%n", time.format(timeFormatter),
+                    log.info("time: {}, location: {}, value: {}", time.format(timeFormatter),
                         record.getValueByKey("location"), value);
                 });
         }

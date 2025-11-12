@@ -5,36 +5,32 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * CountDownLatchTest
+ * SemaphoreTest
  *
  * @author fantasticmao
  * @since 2025-11-12
  */
 @Slf4j
-public class CountDownLatchTest {
+public class SemaphoreTest {
 
     @Test
     public void example() throws InterruptedException {
-        final int size = 5;
-        final AtomicInteger count = new AtomicInteger(0);
-        final CountDownLatch countDownLatch = new CountDownLatch(size);
+        final int parallelSize = 5;
+        SwimmingPool swimmingPool = new SwimmingPool(5);
 
         List<Thread> threads = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < parallelSize * 2; i++) {
             Thread t = Thread.startVirtualThread(() -> {
-                int timeout = count.incrementAndGet();
                 try {
-                    TimeUnit.SECONDS.sleep(timeout);
+                    swimmingPool.in();
+                    TimeUnit.MILLISECONDS.sleep(100);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    log.error(e.getMessage(), e);
                 }
-                log.info("thread id {} sleep {} seconds", Thread.currentThread().threadId(), timeout);
-                countDownLatch.countDown();
+                swimmingPool.out();
             });
             threads.add(t);
         }

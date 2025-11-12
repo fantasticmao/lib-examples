@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.database.redis;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.junit.After;
 import org.junit.Assert;
@@ -19,6 +20,7 @@ import java.util.concurrent.locks.Lock;
  * @author fantasticmao
  * @since 2020-05-14
  */
+@Slf4j
 public class DistributedRedisLockTest {
     private final int parallelSize;
     private final JedisPool jedisPool;
@@ -49,7 +51,7 @@ public class DistributedRedisLockTest {
                 lock.lock();
                 try {
                     for (int j = 0; j < repeatTimes; j++) {
-                        System.out.printf("thread id: %d, count: %d\n", Thread.currentThread().threadId(), count.getAndIncrement());
+                        log.info("thread id: {}, count: {}", Thread.currentThread().threadId(), count.getAndIncrement());
                     }
                 } finally {
                     lock.unlock();

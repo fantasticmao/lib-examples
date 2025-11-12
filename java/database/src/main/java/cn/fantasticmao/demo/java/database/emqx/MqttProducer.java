@@ -6,6 +6,7 @@ import com.hivemq.client.mqtt.datatypes.MqttQos;
 import com.hivemq.client.mqtt.mqtt5.Mqtt5BlockingClient;
 import com.hivemq.client.mqtt.mqtt5.message.auth.Mqtt5SimpleAuth;
 import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5PublishResult;
+import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
@@ -17,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author fantasticmao
  * @since 2025-08-14
  */
+@Slf4j
 public class MqttProducer implements AutoCloseable {
     private final Mqtt5BlockingClient mqttClient;
 
@@ -37,7 +39,7 @@ public class MqttProducer implements AutoCloseable {
                 .build())
             .automaticReconnectWithDefaultConfig()
             .addConnectedListener(context ->
-                System.out.printf("[MQTT Producer] Connected to server! clientId: %s, serverAddress: %s%n",
+                log.info("[MQTT Producer] Connected to server! clientId: {}, serverAddress: {}",
                     context.getClientConfig().getClientIdentifier(),
                     context.getClientConfig().getServerAddress())
             )
@@ -67,7 +69,7 @@ public class MqttProducer implements AutoCloseable {
         resultFuture.whenComplete((result, throwable) -> {
             result.getError().ifPresent(Throwable::printStackTrace);
             if (throwable != null) {
-                throwable.printStackTrace();
+                log.error(throwable.getMessage(), throwable);
             }
         });
     }

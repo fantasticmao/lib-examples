@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.others.bytebuddy;
 
+import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.implementation.bind.annotation.AllArguments;
 import net.bytebuddy.implementation.bind.annotation.Origin;
 import net.bytebuddy.implementation.bind.annotation.RuntimeType;
@@ -16,6 +17,7 @@ import java.util.concurrent.Callable;
  * @author fantasticmao
  * @since 2020-03-23
  */
+@Slf4j
 public class InterceptorByMethodDelegation {
 
     @RuntimeType
@@ -27,7 +29,7 @@ public class InterceptorByMethodDelegation {
             String[] args = Arrays.stream(arguments)
                 .map(Objects::toString)
                 .toArray(String[]::new);
-            System.out.printf("invoke %s#%s(%s)%n", clazz.getName(), method.getName(),
+            log.info("invoke {}#{}({})", clazz.getName(), method.getName(),
                 String.join(",", args));
         }
     }

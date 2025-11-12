@@ -1,5 +1,6 @@
 package cn.fantasticmao.demo.java.lang.classloader;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 /**
@@ -8,6 +9,7 @@ import org.junit.Test;
  * @author fantasticmao
  * @since 2020-05-14
  */
+@Slf4j
 public class ClassLoaderInfoTest {
 
     /**
@@ -17,7 +19,7 @@ public class ClassLoaderInfoTest {
     @Test
     public void bootstrapClassLoader() {
         ClassLoader bootstrapClassLoader = ClassLoader.getPlatformClassLoader().getParent();
-        System.out.println(bootstrapClassLoader);
+        log.info("bootstrap class loader: {}", bootstrapClassLoader);
     }
 
     /**
@@ -29,7 +31,7 @@ public class ClassLoaderInfoTest {
     @Test
     public void extClassLoader() {
         ClassLoader extClassLoader = ClassLoader.getPlatformClassLoader();
-        System.out.println(extClassLoader);
+        log.info("ext class loader: {}", extClassLoader);
     }
 
     /**
@@ -42,7 +44,7 @@ public class ClassLoaderInfoTest {
     @Test
     public void appClassLoader() {
         ClassLoader appClassLoader = ClassLoader.getSystemClassLoader();
-        System.out.println(appClassLoader);
+        log.info("app class loader: {}", appClassLoader);
     }
 
 }

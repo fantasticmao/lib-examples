@@ -1,6 +1,7 @@
 package cn.fantasticmao.demo.java.lang.io.net;
 
 import cn.fantasticmao.demo.java.designpattern.reactor.Dispatcher;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.Set;
  * @author fantasticmao
  * @since 23/02/2018
  */
+@Slf4j
 public class SocketNioServer implements Closeable {
     private Selector selector;
     private ServerSocketChannel serverSocketChannel;
