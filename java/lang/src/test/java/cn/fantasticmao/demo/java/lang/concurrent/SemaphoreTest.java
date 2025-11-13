@@ -22,8 +22,9 @@ public class SemaphoreTest {
         SwimmingPool swimmingPool = new SwimmingPool(5);
 
         List<Thread> threads = new ArrayList<>();
+        Thread.Builder builder = Thread.ofVirtual().name("SwimmingPool-", 0);
         for (int i = 0; i < parallelSize * 2; i++) {
-            Thread t = Thread.startVirtualThread(() -> {
+            Thread t = builder.start(() -> {
                 try {
                     swimmingPool.in();
                     TimeUnit.MILLISECONDS.sleep(100);

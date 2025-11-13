@@ -5,12 +5,9 @@ import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.file.src.FileSource;
 import org.apache.flink.connector.file.src.reader.TextLineInputFormat;
 import org.apache.flink.core.fs.Path;
-import org.apache.flink.runtime.testutils.MiniClusterResourceConfiguration;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.test.util.MiniClusterWithClientResource;
 import org.junit.Assert;
-import org.junit.ClassRule;
 import org.junit.Test;
 
 import java.net.URL;
@@ -30,13 +27,6 @@ import java.net.URL;
  */
 public class FlinkTest {
 
-    @ClassRule
-    public static MiniClusterWithClientResource cluster = new MiniClusterWithClientResource(
-        new MiniClusterResourceConfiguration.Builder()
-            .setNumberSlotsPerTaskManager(2)
-            .setNumberTaskManagers(1)
-            .build()
-    );
     private final StreamExecutionEnvironment env;
 
     public FlinkTest() {

@@ -22,12 +22,12 @@ public final class SwimmingPool {
 
     public void in() throws InterruptedException {
         semaphore.acquire();
-        log.info("thread id: {} in", Thread.currentThread().threadId());
+        log.info("in, permits: {}", semaphore.availablePermits());
     }
 
     public void out() {
         semaphore.release();
-        log.info("thread id: {} out", Thread.currentThread().threadId());
+        log.info("out, permits: {}", semaphore.availablePermits());
     }
 
 }

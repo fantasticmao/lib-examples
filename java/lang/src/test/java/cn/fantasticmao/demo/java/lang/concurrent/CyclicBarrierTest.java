@@ -26,16 +26,17 @@ public class CyclicBarrierTest {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(parallelSize);
 
         List<Thread> threads = new ArrayList<>();
+        Thread.Builder builder = Thread.ofVirtual().name("CyclicBarrier-", 0);
         for (int i = 0; i < parallelSize; i++) {
-            Thread t = Thread.startVirtualThread(() -> {
-                int timeout = count.incrementAndGet() * 100;
+            Thread t = builder.start(() -> {
+                int timeout = count.incrementAndGet();
                 try {
-                    TimeUnit.MILLISECONDS.sleep(timeout);
+                    TimeUnit.SECONDS.sleep(timeout);
                     cyclicBarrier.await();
                 } catch (InterruptedException | BrokenBarrierException e) {
                     log.error(e.getMessage(), e);
                 }
-                log.info("thread id {} sleep {} ms", Thread.currentThread().threadId(), timeout);
+                log.info("sleep {}s", timeout);
             });
             threads.add(t);
         }

@@ -47,8 +47,7 @@ public interface TurnPrint extends Runnable {
                         }
                     }
 
-                    log.info("thread id: {}, count {}", Thread.currentThread().threadId(),
-                        count.getAndIncrement());
+                    log.info("count: {}", count.getAndIncrement());
 
                 }
             }
@@ -82,8 +81,7 @@ public interface TurnPrint extends Runnable {
                             condition.awaitUninterruptibly();
                         }
                     }
-                    log.info("thread id: {}, count {}", Thread.currentThread().threadId(),
-                        count.getAndIncrement());
+                    log.info("count: {}", count.getAndIncrement());
                 }
             } finally {
                 lock.unlock();
