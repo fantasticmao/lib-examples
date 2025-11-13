@@ -22,11 +22,13 @@ public class BlockingQueueTest {
         final BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(parallelSize * 2);
 
         List<Thread> threads = new ArrayList<>();
-        threads.add(Thread.startVirtualThread(new PubAndSub.Consumer(queue)));
+        Thread.Builder concumerThreadBuilder = Thread.ofVirtual().name("BlockingQueue-Consumer");
+        threads.add(concumerThreadBuilder.start(new PubAndSub.Consumer(queue)));
 
         final AtomicInteger count = new AtomicInteger();
+        final Thread.Builder producerThreadBuilder = Thread.ofVirtual().name("BlockingQueue-Producer-", 0);
         for (int i = 0; i < parallelSize; i++) {
-            threads.add(Thread.startVirtualThread(new PubAndSub.Producer(queue, count)));
+            threads.add(producerThreadBuilder.start(new PubAndSub.Producer(queue, count)));
         }
 
         for (Thread t : threads) {

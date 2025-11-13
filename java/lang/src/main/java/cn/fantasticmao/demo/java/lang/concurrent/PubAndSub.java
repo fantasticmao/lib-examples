@@ -24,7 +24,7 @@ public class PubAndSub {
                 try {
                     if (i < 100) {
                         queue.put(i);
-                        log.info("producer: {}, put: {}", Thread.currentThread().threadId(), i);
+                        log.info("put: {}", i);
                     } else {
                         queue.put(-1);
                         break;
@@ -55,7 +55,7 @@ public class PubAndSub {
                 }
 
                 if (i >= 0) {
-                    log.info("consumer: {}, take: {}", Thread.currentThread().threadId(), i);
+                    log.info("take: {}", i);
                 } else {
                     break;
                 }
