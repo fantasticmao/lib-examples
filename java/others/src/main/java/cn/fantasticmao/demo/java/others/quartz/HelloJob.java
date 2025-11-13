@@ -16,6 +16,6 @@ public class HelloJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        log.info("thread id: {} - Hello Quartz!", Thread.currentThread().threadId());
+        log.info("Hello Quartz!");
     }
 }

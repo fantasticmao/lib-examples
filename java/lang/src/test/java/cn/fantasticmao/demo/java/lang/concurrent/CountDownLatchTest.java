@@ -25,15 +25,16 @@ public class CountDownLatchTest {
         final CountDownLatch countDownLatch = new CountDownLatch(size);
 
         List<Thread> threads = new ArrayList<>();
+        Thread.Builder builder = Thread.ofVirtual().name("CountDownLatch-", 0);
         for (int i = 0; i < size; i++) {
-            Thread t = Thread.startVirtualThread(() -> {
+            Thread t = builder.start(() -> {
                 int timeout = count.incrementAndGet();
                 try {
                     TimeUnit.SECONDS.sleep(timeout);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                log.info("thread id {} sleep {} seconds", Thread.currentThread().threadId(), timeout);
+                log.info("sleep {}s", timeout);
                 countDownLatch.countDown();
             });
             threads.add(t);

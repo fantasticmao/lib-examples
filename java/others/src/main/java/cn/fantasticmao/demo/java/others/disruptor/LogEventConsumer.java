@@ -14,6 +14,6 @@ public class LogEventConsumer implements EventHandler<LogEvent> {
 
     @Override
     public void onEvent(LogEvent event, long sequence, boolean endOfBatch) throws Exception {
-        log.info("thread id: {}, event: {}", Thread.currentThread().threadId(), event);
+        log.info("event: {}", event);
     }
 }

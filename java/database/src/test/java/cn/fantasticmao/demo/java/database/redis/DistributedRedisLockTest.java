@@ -45,13 +45,14 @@ public class DistributedRedisLockTest {
 
         AtomicInteger count = new AtomicInteger(0);
         List<Thread> threads = new ArrayList<>();
+        Thread.Builder builder = Thread.ofVirtual().name("DistributedLock-", 0);
         for (int i = 0; i < this.parallelSize; i++) {
-            Thread t = Thread.startVirtualThread(() -> {
+            Thread t = builder.start(() -> {
                 Lock lock = new DistributedRedisLock(this.jedisPool, "lock");
                 lock.lock();
                 try {
                     for (int j = 0; j < repeatTimes; j++) {
-                        log.info("thread id: {}, count: {}", Thread.currentThread().threadId(), count.getAndIncrement());
+                        log.info("count: {}", count.getAndIncrement());
                     }
                 } finally {
                     lock.unlock();
