@@ -2,7 +2,7 @@
 
 ![Go Version](https://img.shields.io/badge/Go-1.21%2B-blue)
 ![JDK Version](https://img.shields.io/badge/JDK-21%2B-blue)
-![Python Version](https://img.shields.io/badge/Python-3.12%2B-blue)
+![Python Version](https://img.shields.io/badge/Python-3.14%2B-blue)
 
 ## Contents
 
