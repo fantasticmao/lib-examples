@@ -9,10 +9,10 @@ from datetime import datetime
 
 
 def main():
-    print("当前工作目录: {}".format(os.getcwd()))
+    print(f"当前工作目录: {os.getcwd()}")
     print("执行系统命令 cal: ")
     os.system("cal")
-    print("命令行参数: {}".format(sys.argv))
+    print(f"命令行参数: {sys.argv}")
     sys.stdout.write("sys.stdout.write\n")
     sys.stderr.write("sys.stderr.write\n")
     print("math.pi: {:.8f}".format(math.pi))
