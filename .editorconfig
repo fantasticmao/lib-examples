@@ -9,24 +9,33 @@ indent_size = 4
 max_line_length = 100
 trim_trailing_whitespace = true
 
-[*.java]
-indent_size = 4
+[{*.c,*.h}]
+indent_size = 2
 
 [*.go]
 indent_style = tab
 indent_size = 1
 tab_width = 4
 
+[*.java]
+indent_size = 4
+
 [{*.js,*.json,*.css}]
+indent_size = 2
+
+[*.py]
+indent_size = 4
+
+[*.proto]
 indent_size = 2
 
 [*.sh]
 indent_size = 2
 
-[{*.cql,*.ddl,*.sql}]
+[{*.sql,*.cql,*.ddl}]
 indent_size = 2
 
-[*.xml]
+[{*.html,*.xml}]
 indent_size = 4
 
 [{*.yaml,*.yml}]

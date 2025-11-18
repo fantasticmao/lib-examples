@@ -29,7 +29,7 @@ class Person(object):
     # 定义 public 方法
     def to_string(self):
         attributes = [attr for attr in dir(self) if not attr.startswith("__")]
-        print("{}: {}".format(self.__class__.__name__, ", ".join(attributes)))
+        return f"{self.__class__.__name__}: {', '.join(attributes)}"
 
     # 定义 protected 方法
     def _how_old_are_you(self):
@@ -37,7 +37,7 @@ class Person(object):
 
     # 定义 private 方法
     def __who_do_you_love(self):
-        return "黄小敏"
+        return "Anni"
 
     # 定义 static 方法
     @staticmethod
@@ -62,20 +62,6 @@ class Adult(Person):
 
 
 def main():
-    person = Person("毛毛", 24, 177)
-    person.to_string()
-    print(person.name)
-    # print(person.__age)
-    print(person.height)
-    person.height = 180
-    print(person.height)
-    print(person._how_old_are_you())
-    # print(person.__who_do_you_love())  # 调用 private 方法
-    print(Person.class_name())  # 调用 static 方法
-    # print(person.job())  # 调用 abstract 方法
-    person._email = "maomao8017@gamil.com"  # 动态添加属性
-    print(person._email)
-
     adult = Adult(person, "programmer")
     adult.to_string()  # 调用 override 方法
     print(adult.job)
