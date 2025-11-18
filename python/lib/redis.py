@@ -10,10 +10,11 @@ key_patterns = (
 startup_nodes = [
     ClusterNode(host="192.168.1.100", port=6379),
     ClusterNode(host="192.168.1.101", port=6379),
-    ClusterNode(host="192.168.1.102", port=6379)
+    ClusterNode(host="192.168.1.102", port=6379),
 ]
-redis_client = RedisCluster(startup_nodes=startup_nodes, password=None,
-                            decode_responses=True)
+redis_client = RedisCluster(
+    startup_nodes=startup_nodes, password=None, decode_responses=True
+)
 
 
 def main():

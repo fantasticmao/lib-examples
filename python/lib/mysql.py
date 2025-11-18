@@ -11,7 +11,7 @@ def select(conn):
     try:
         cursor = conn.cursor()
         cursor.execute(sql, (10,))
-        for (id, name) in cursor:
+        for id, name in cursor:
             print("select user id: {} name: {}".format(id, name))
     finally:
         cursor.close()
@@ -58,9 +58,13 @@ def delete(conn, user_id):
 
 def main():
     try:
-        connection = mysql.connector.connect(user="root", password="",
-                                             host="localhost", port=3306,
-                                             database="lib_examples")
+        connection = mysql.connector.connect(
+            user="root",
+            password="",
+            host="localhost",
+            port=3306,
+            database="lib_examples",
+        )
         select(connection)
         # user_id = insert(connection)
         # update(connection, user_id)

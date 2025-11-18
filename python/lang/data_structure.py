@@ -13,7 +13,7 @@ def hello():
 def calculate_circle():
     radius = float(input("请输入圆的半径: "))
     print("圆的周长: {:.2f}".format(2 * math.pi * radius))
-    print("圆的面积: {:.2f}".format(math.pi * radius ** 2))
+    print("圆的面积: {:.2f}".format(math.pi * radius**2))
 
 
 # 判断是否为闰年
