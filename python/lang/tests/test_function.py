@@ -82,6 +82,6 @@ def test_lambda():
     assert 42 == foo(0)
     assert 43 == foo(1)
 
-    pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]
+    pairs = [(1, "one"), (2, "two"), (3, "three"), (4, "four")]
     pairs.sort(key=lambda e: e[1])
-    assert [(4, 'four'), (1, 'one'), (3, 'three'), (2, 'two')] == pairs
+    assert [(4, "four"), (1, "one"), (3, "three"), (2, "two")] == pairs

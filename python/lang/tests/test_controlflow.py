@@ -16,7 +16,7 @@ def test_if():
 
 
 def test_for():
-    words = ['cat', 'window', 'defenestrate']
+    words = ["cat", "window", "defenestrate"]
     for w in words:
         print(w, len(w))
 
@@ -38,7 +38,7 @@ def test_range():
     assert [0, 3, 6, 9] == nums
 
     text = ""
-    a = ['Mary', 'had', 'a', 'little', 'lamb']
+    a = ["Mary", "had", "a", "little", "lamb"]
     for i in range(len(a)):
         if i != len(a) - 1:
             text = text + a[i] + " "
