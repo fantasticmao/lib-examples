@@ -8,8 +8,8 @@ def test_list():
     fruits = ["orange", "apple", "pear", "banana", "kiwi", "apple", "banana"]
     assert 2 == fruits.count("apple")
     assert 0 == fruits.count("tangerine")
-    assert 3 == fruits.index('banana')
-    assert 6 == fruits.index('banana', 4)
+    assert 3 == fruits.index("banana")
+    assert 6 == fruits.index("banana", 4)
 
     fruits.reverse()
     assert ["banana", "apple", "kiwi", "banana", "pear", "apple", "orange"] == fruits
@@ -68,7 +68,7 @@ def test_list_comprehensions():
     # 对所有元素应用一个函数
     assert [4, 2, 0, 2, 4] == [abs(x) for x in vec]
 
-    freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']
+    freshfruit = ["  banana", "  loganberry ", "passion fruit  "]
     # 在每个元素上调用一个方法
     assert ["banana", "loganberry", "passion fruit"] == [weapon.strip() for weapon in freshfruit]
 
@@ -78,4 +78,50 @@ def test_list_comprehensions():
     # 使用两个 'for' 来展平嵌套的列表
     assert [1, 2, 3, 4, 5, 6, 7, 8, 9] == [num for elem in vec for num in elem]
 
-    assert ["3.1", "3.14", "3.142", "3.1416", "3.14159"] == [str(round(pi, x)) for x in range(1, 6)]
+    assert ["3.1", "3.14", "3.142", "3.1416", "3.14159"] == [
+        str(round(pi, x)) for x in range(1, 6)
+    ]
+
+
+def test_del():
+    a = [-1, 1, 66.25, 333, 333, 1234.5]
+
+    del a[0]
+    assert [1, 66.25, 333, 333, 1234.5] == a
+
+    del a[2:4]
+    assert [1, 66.25, 1234.5] == a
+
+    del a[:]
+    assert [] == a
+
+    del a
+
+
+def test_tuples():
+    t = 12345, 54321, "hello!"
+    assert 12345 == t[0]
+    assert (12345, 54321, "hello!") == t
+
+    # 元组可以嵌套
+    u = t, (1, 2, 3, 4, 5)
+    assert ((12345, 54321, "hello!"), (1, 2, 3, 4, 5)) == u
+
+    # 元组是不可变对象
+    try:
+        t[0] = 8888
+    except TypeError:
+        assert True
+
+    # 元组是 immutable 不可变的，一般包含异质元素，通过解包或索引访问。
+    # 列表是 mutable 可变的，一般包含同质元素，可迭代访问。
+    v = ([1, 2, 3], [3, 2, 1])
+    v[0].append(4)
+    v[1].append(5)
+    assert ([1, 2, 3, 4], [3, 2, 1, 5]) == v
+
+    # 元组解包，多重赋值其实只是元组打包和序列解包的组合
+    x, y, z = t
+    assert x == 12345
+    assert y == 54321
+    assert z == "hello!"

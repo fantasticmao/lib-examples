@@ -1,5 +1,6 @@
 # https://docs.python.org/zh-cn/3/tutorial/controlflow.html#defining-functions
 
+
 def fib(n: int) -> list:
     # 函数内的第一条语句是字符串时，该字符串就是文档字符串。
     """Return a list containing the Fibonacci series up to n."""

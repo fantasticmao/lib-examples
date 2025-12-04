@@ -1,5 +1,6 @@
 # https://docs.python.org/zh-cn/3/tutorial/controlflow.html
 
+
 def test_if():
     def f(x: int):
         if x < 0:
