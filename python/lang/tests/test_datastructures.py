@@ -228,3 +228,10 @@ def test_looping():
         if not math.isnan(value):
             filtered_data.append(value)
     assert filtered_data == [56.2, 51.7, 55.3, 52.5, 47.8]
+
+
+def test_conditions():
+    # 运算符 in 和 not in 用于执行确定一个值是否存在（或不存在）于某个容器中的成员检测。
+    # 运算符 is 和 is not 用于比较两个对象是否是同一个对象。
+    # 比较操作可以用布尔运算符 and 和 or 组合，并且比较操作（或其他布尔运算）的结果都可以用 not 取反。
+    pass
