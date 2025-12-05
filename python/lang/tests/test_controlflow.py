@@ -12,8 +12,8 @@ def test_if():
         else:
             return "More"
 
-    assert "Zero" == f(0)
-    assert "More" == f(3)
+    assert f(0) == "Zero"
+    assert f(3) == "More"
 
 
 def test_for():
@@ -26,17 +26,17 @@ def test_range():
     nums = []
     for i in range(5):
         nums.append(i)
-    assert [0, 1, 2, 3, 4] == nums
+    assert nums == [0, 1, 2, 3, 4]
 
     nums = []
     for i in range(5, 10):
         nums.append(i)
-    assert [5, 6, 7, 8, 9] == nums
+    assert nums == [5, 6, 7, 8, 9]
 
     nums = []
     for i in range(0, 10, 3):
         nums.append(i)
-    assert [0, 3, 6, 9] == nums
+    assert nums == [0, 3, 6, 9]
 
     text = ""
     a = ["Mary", "had", "a", "little", "lamb"]
@@ -45,10 +45,10 @@ def test_range():
             text = text + a[i] + " "
         else:
             text = text + a[i]
-    assert "Mary had a little lamb" == text
+    assert text == "Mary had a little lamb"
 
     count = sum(range(5))
-    assert 10 == count
+    assert count == 10
 
 
 def test_break_else():
@@ -62,7 +62,7 @@ def test_break_else():
         else:
             # 循环到底未找到一个因数
             prime_nums.append(n)
-    assert [2, 3, 5, 7] == prime_nums
+    assert prime_nums == [2, 3, 5, 7]
 
 
 def test_pass():
@@ -84,5 +84,5 @@ def test_match():
             case _:
                 return "Something's wrong with the internet"
 
-    assert "Not allowed" == http_error(404)
-    assert "Something's wrong with the internet" == http_error(500)
+    assert http_error(404) == "Not allowed"
+    assert http_error(500) == "Something's wrong with the internet"
