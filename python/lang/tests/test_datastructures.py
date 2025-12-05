@@ -1,6 +1,7 @@
 # https://docs.python.org/zh-cn/3/tutorial/datastructures.html
 from collections import deque
 
+import math
 from math import pi
 
 
@@ -75,7 +76,7 @@ def test_list_comprehensions():
     assert [(x, x ** 2) for x in range(6)] == [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
 
     vec = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    # 使用两个 'for' 来展平嵌套的列表
+    # 使用两个 for 来展平嵌套的列表
     assert [num for elem in vec for num in elem] == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     assert [str(round(pi, x)) for x in range(1, 6)] == ["3.1", "3.14", "3.142", "3.1416", "3.14159"]
@@ -170,7 +171,7 @@ def test_dict():
 
     # 通过 del 可以删除键值对
     del tel["sape"]
-    tel['irv'] = 4127
+    tel["irv"] = 4127
     assert tel == {"jack": 4098, "guido": 4127, "irv": 4127}
 
     # 使用 list(d) 返回该字典中所有键的列表，按插入次序排列
@@ -188,3 +189,42 @@ def test_dict():
 
     # 字典推导式
     assert {x: x ** 2 for x in (2, 4, 6)} == {2: 4, 4: 16, 6: 36}
+
+
+def test_looping():
+    # 循环字典时，使用 items() 方法同时提取键及其对应的值
+    knights = {"gallahad": "the pure", "robin": "the brave"}
+    result = [k + ": " + v for k, v in knights.items()]
+    assert result == ["gallahad: the pure", "robin: the brave"]
+
+    # 循环序列时，使用 enumerate() 函数可以同时取出位置索引和对应的值
+    result = [str(i) + ": " + v for i, v in enumerate(["tic", "tac", "toe"])]
+    assert result == ["0: tic", "1: tac", "2: toe"]
+
+    # 循环两个或多个序列时，使用 zip() 函数可以将其内的元素一一匹配
+    questions = ["name", "quest", "favorite color"]
+    answers = ["lancelot", "the holy grail", "blue"]
+    result = [q + ": " + a for q, a in zip(questions, answers)]
+    assert result == ["name: lancelot", "quest: the holy grail", "favorite color: blue"]
+
+    # 逆向循环序列时，使用 reversed() 函数
+    result = [i for i in reversed(range(1, 10, 2))]
+    assert result == [9, 7, 5, 3, 1]
+
+    # 指定顺序循环序列时，使用 sorted() 函数，在不改动原序列的基础上，返回一个重新的序列
+    basket = ["apple", "orange", "apple", "pear", "orange", "banana"]
+    result = [i for i in sorted(basket)]
+    assert result == ["apple", "apple", "banana", "orange", "orange", "pear"]
+
+    # 去重循环序列时，使用 set() 函数
+    basket = ["apple", "orange", "apple", "pear", "orange", "banana"]
+    result = sorted(set(basket))
+    assert result == ["apple", "banana", "orange", "pear"]
+
+    # 一般来说，在循环中修改列表的内容时，创建新列表比较简单，且安全
+    raw_data = [56.2, float('NaN'), 51.7, 55.3, 52.5, float('NaN'), 47.8]
+    filtered_data = []
+    for value in raw_data:
+        if not math.isnan(value):
+            filtered_data.append(value)
+    assert filtered_data == [56.2, 51.7, 55.3, 52.5, 47.8]
