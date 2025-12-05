@@ -6,110 +6,109 @@ from math import pi
 
 def test_list():
     fruits = ["orange", "apple", "pear", "banana", "kiwi", "apple", "banana"]
-    assert 2 == fruits.count("apple")
-    assert 0 == fruits.count("tangerine")
-    assert 3 == fruits.index("banana")
-    assert 6 == fruits.index("banana", 4)
+    assert fruits.count("apple") == 2
+    assert fruits.count("tangerine") == 0
+    assert fruits.index("banana") == 3
+    assert fruits.index("banana", 4) == 6
 
     fruits.reverse()
-    assert ["banana", "apple", "kiwi", "banana", "pear", "apple", "orange"] == fruits
+    assert fruits == ["banana", "apple", "kiwi", "banana", "pear", "apple", "orange"]
 
     fruits.append("grape")
-    assert ["banana", "apple", "kiwi", "banana", "pear", "apple", "orange", "grape"] == fruits
+    assert fruits == ["banana", "apple", "kiwi", "banana", "pear", "apple", "orange", "grape"]
 
     fruits.sort()
-    assert ["apple", "apple", "banana", "banana", "grape", "kiwi", "orange", "pear"] == fruits
+    assert fruits == ["apple", "apple", "banana", "banana", "grape", "kiwi", "orange", "pear"]
 
-    assert "pear" == fruits.pop()
+    assert fruits.pop() == "pear"
 
 
 def test_list_stack():
     stack = [3, 4, 5]
     stack.append(6)
     stack.append(7)
-    assert [3, 4, 5, 6, 7] == stack
+    assert stack == [3, 4, 5, 6, 7]
 
     assert 7 == stack.pop()
-    assert [3, 4, 5, 6] == stack
+    assert stack == [3, 4, 5, 6]
 
-    assert 6 == stack.pop()
-    assert 5 == stack.pop()
-    assert [3, 4] == stack
+    assert stack.pop() == 6
+    assert stack.pop() == 5
+    assert stack == [3, 4]
 
 
 def test_list_queue():
     queue = deque(["Eric", "John", "Michael"])
     queue.append("Terry")
     queue.append("Graham")
-    assert "Eric" == queue.popleft()
-    assert "John" == queue.popleft()
+    assert queue.popleft() == "Eric"
+    assert queue.popleft() == "John"
 
-    assert ["Michael", "Terry", "Graham"] == list(queue)
+    assert list(queue) == ["Michael", "Terry", "Graham"]
 
 
 def test_list_comprehensions():
     squares = []
     for x in range(10):
         squares.append(x ** 2)
-    assert [0, 1, 4, 9, 16, 25, 36, 49, 64, 81] == squares
+    assert squares == [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
     # 列表推导式的方括号内包含以下内容：一个表达式，后面为一个 for 子句，然后，是零个或多个 for 或 if 子句。
     # 结果是由表达式依据 for 和 if 子句求值计算而得出一个新列表。
     squares = [x ** 2 for x in range(10)]
-    assert [0, 1, 4, 9, 16, 25, 36, 49, 64, 81] == squares
+    assert squares == [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
     combs = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
-    assert [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)] == combs
+    assert combs == [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
 
     vec = [-4, -2, 0, 2, 4]
-    assert [-8, -4, 0, 4, 8] == [x * 2 for x in vec]
+    assert [x * 2 for x in vec] == [-8, -4, 0, 4, 8]
     # 过滤列表以排除负数
-    assert [0, 2, 4] == [x for x in vec if x >= 0]
+    assert [x for x in vec if x >= 0] == [0, 2, 4]
     # 对所有元素应用一个函数
-    assert [4, 2, 0, 2, 4] == [abs(x) for x in vec]
+    assert [abs(x) for x in vec] == [4, 2, 0, 2, 4]
 
     freshfruit = ["  banana", "  loganberry ", "passion fruit  "]
     # 在每个元素上调用一个方法
-    assert ["banana", "loganberry", "passion fruit"] == [weapon.strip() for weapon in freshfruit]
+    assert [weapon.strip() for weapon in freshfruit] == ["banana", "loganberry", "passion fruit"]
 
-    assert [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)] == [(x, x ** 2) for x in range(6)]
+    assert [(x, x ** 2) for x in range(6)] == [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
 
     vec = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     # 使用两个 'for' 来展平嵌套的列表
-    assert [1, 2, 3, 4, 5, 6, 7, 8, 9] == [num for elem in vec for num in elem]
+    assert [num for elem in vec for num in elem] == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    assert ["3.1", "3.14", "3.142", "3.1416", "3.14159"] == [
-        str(round(pi, x)) for x in range(1, 6)
-    ]
+    assert [str(round(pi, x)) for x in range(1, 6)] == ["3.1", "3.14", "3.142", "3.1416", "3.14159"]
 
 
 def test_del():
     a = [-1, 1, 66.25, 333, 333, 1234.5]
 
     del a[0]
-    assert [1, 66.25, 333, 333, 1234.5] == a
+    assert a == [1, 66.25, 333, 333, 1234.5]
 
     del a[2:4]
-    assert [1, 66.25, 1234.5] == a
+    assert a == [1, 66.25, 1234.5]
 
     del a[:]
-    assert [] == a
+    assert a == []
 
     del a
 
 
 def test_tuples():
     t = 12345, 54321, "hello!"
-    assert 12345 == t[0]
-    assert (12345, 54321, "hello!") == t
+    assert t[0] == 12345
+    assert t == (12345, 54321, "hello!")
 
     # 元组可以嵌套
     u = t, (1, 2, 3, 4, 5)
-    assert ((12345, 54321, "hello!"), (1, 2, 3, 4, 5)) == u
+    assert u == ((12345, 54321, "hello!"), (1, 2, 3, 4, 5))
 
     # 元组是不可变对象
     try:
         t[0] = 8888
+        assert False
     except TypeError:
         assert True
 
@@ -125,3 +124,67 @@ def test_tuples():
     assert x == 12345
     assert y == 54321
     assert z == "hello!"
+
+
+def test_set():
+    # 创建集合用花括号或 set() 函数。注意，创建空集合只能用 set()，不能用 {}，因为使用 {} 创建的结果是空字典
+    basket = {"apple", "orange", "apple", "pear", "orange", "banana"}
+    assert {"apple", "orange", "pear", "orange", "banana"} == basket
+
+    assert "orange" in basket
+    assert "crabgrass" not in basket
+
+    a = set("abracadabra")
+    b = set("alacazam")
+
+    # 差集：存在于 a 中但不存在于 b 中的字母
+    assert a - b == {"b", "r", "d"}
+    # 或运算：存在于 a 或 b 中或两者中皆有的字母
+    assert a | b == {"a", "b", "c", "d", "r", "l", "m", "z"}
+    # 与运算：同时存在于 a 和 b 中的字母
+    assert a & b == {"a", "c"}
+    # 异或运算：
+    assert a ^ b == {"b", "d", "r", "l", "m", "z"}
+
+    # 集合推导式
+    a = {x for x in "abracadabra" if x not in "abc"}
+    assert a == {"r", "d"}
+
+
+def test_dict():
+    # 字典是以键来索引的，键可以是任何不可变类型，字符串和数字总是可以作为键。
+    # 元组在其仅包含字符串、数字或元组时也可以作为键，如果一个元组直接或间接地包含了任何可变对象，则不可以用作键。
+    tel = {"jack": 4098, "sape": 4139}
+    tel["guido"] = 4127
+    assert tel == {"jack": 4098, "sape": 4139, "guido": 4127}
+    assert tel["jack"] == 4098
+
+    # 使用 d[key] 提取不存在的键的值会引发 KeyError
+    # 使用 get(key) 提取不存在的键的值会返回 None
+    try:
+        print(tel["irv"])
+        assert False
+    except KeyError:
+        assert True
+    assert tel.get("irv") is None
+
+    # 通过 del 可以删除键值对
+    del tel["sape"]
+    tel['irv'] = 4127
+    assert tel == {"jack": 4098, "guido": 4127, "irv": 4127}
+
+    # 使用 list(d) 返回该字典中所有键的列表，按插入次序排列
+    assert list(tel) == ["jack", "guido", "irv"]
+    assert sorted(tel) == ["guido", "irv", "jack"]
+
+    # 使用关键字 in 检查字典里是否存在某个键
+    assert "guido" in tel
+    assert "sape" not in tel
+
+    # dict() 构造函数可以直接用键值对序列创建字典
+    assert dict([("sape", 4139), ("guido", 4127), ("jack", 4098)]) == {"jack": 4098, "sape": 4139,
+                                                                       "guido": 4127}
+    assert dict(jack=4098, sape=4139, guido=4127) == {"jack": 4098, "sape": 4139, "guido": 4127}
+
+    # 字典推导式
+    assert {x: x ** 2 for x in (2, 4, 6)} == {2: 4, 4: 16, 6: 36}

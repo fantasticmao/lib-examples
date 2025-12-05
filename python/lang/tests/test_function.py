@@ -21,7 +21,7 @@ def fib(n: int) -> list:
 
 def test_fib():
     fib_100 = fib(100)
-    assert [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89] == fib_100
+    assert fib_100 == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 
 
 def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
@@ -49,16 +49,16 @@ def in_clause(collection: list[str], *args, left="(", right=")", separator=",", 
 
 def test_in_clause():
     text = in_clause(["Tom", "Bob", "Anni"])
-    assert "(Tom,Bob,Anni)" == text
+    assert text == "(Tom,Bob,Anni)"
 
     text = in_clause(["Tom", "Bob", "Anni"], 250)
-    assert "(Tom,Bob,Anni,250)" == text
+    assert text == "(Tom,Bob,Anni,250)"
 
     text = in_clause(["Tom", "Bob", "Anni"], 250, left="[", right="]", separator=", ")
-    assert "[Tom, Bob, Anni, 250]" == text
+    assert text == "[Tom, Bob, Anni, 250]"
 
     text = in_clause(["Tom", "Bob", "Anni"], 250, separator="-", end="\n")
-    assert "(Tom-Bob-Anni-250)\n" == text
+    assert text == "(Tom-Bob-Anni-250)\n"
 
 
 def test_unpacking():
@@ -66,12 +66,12 @@ def test_unpacking():
     # 如果这些参数不是独立的，则要在调用函数时，使用 * 操作符把实参从列表或元组解包出来
     args = [3, 6]
     s = sum(range(*args))
-    assert 3 + 4 + 5 == s
+    assert s == 3 + 4 + 5
 
     # 使用 ** 操作符把实参从字典解包出来
     kwargs = {"left": "[", "right": "]", "separator": ", "}
     text = in_clause(["Tom", "Bob", "Anni"], **kwargs)
-    assert "[Tom, Bob, Anni]" == text
+    assert text == "[Tom, Bob, Anni]"
 
 
 def make_incrementor(n):
@@ -80,9 +80,9 @@ def make_incrementor(n):
 
 def test_lambda():
     foo = make_incrementor(42)
-    assert 42 == foo(0)
-    assert 43 == foo(1)
+    assert foo(0) == 42
+    assert foo(1) == 43
 
     pairs = [(1, "one"), (2, "two"), (3, "three"), (4, "four")]
     pairs.sort(key=lambda e: e[1])
-    assert [(4, "four"), (1, "one"), (3, "three"), (2, "two")] == pairs
+    assert pairs == [(4, "four"), (1, "one"), (3, "three"), (2, "two")]
