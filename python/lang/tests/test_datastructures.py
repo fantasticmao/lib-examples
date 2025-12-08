@@ -2,7 +2,6 @@
 from collections import deque
 
 import math
-from math import pi
 
 
 def test_list():
@@ -79,7 +78,7 @@ def test_list_comprehensions():
     # 使用两个 for 来展平嵌套的列表
     assert [num for elem in vec for num in elem] == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    assert [str(round(pi, x)) for x in range(1, 6)] == ["3.1", "3.14", "3.142", "3.1416", "3.14159"]
+    assert [str(round(math.pi, x)) for x in range(1, 6)] == ["3.1", "3.14", "3.142", "3.1416", "3.14159"]
 
 
 def test_del():
