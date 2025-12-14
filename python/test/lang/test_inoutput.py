@@ -36,14 +36,10 @@ def test_str_format():
     text = "{1} and {0}".format("spam", "eggs")
     assert text == "eggs and spam"
 
-    text = "This {food} is {adjective}.".format(
-        food="spam", adjective="absolutely horrible"
-    )
+    text = "This {food} is {adjective}.".format(food="spam", adjective="absolutely horrible")
     assert text == "This spam is absolutely horrible."
 
-    text = "The story of {0}, {1}, and {other}.".format(
-        "Bill", "Manfred", other="Georg"
-    )
+    text = "The story of {0}, {1}, and {other}.".format("Bill", "Manfred", other="Georg")
     assert text == "The story of Bill, Manfred, and Georg."
 
     table = {"Sjoerd": 4127, "Jack": 4098, "Dcab": 8637678}

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["uv_build>=0.9.10,<0.10.0"]
+build-backend = "uv_build"
+
+[project]
+name = "demo-python"
+version = "1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "mysql-connector-python>=9.5.0,<9.6",
+    "openpyxl>=3.1.5,<3.2",
+    "redis>=7.1.0,<7.2",
+    "requests>=2.32.5,<2.33"
+]
+
+[project.optional-dependencies]
+ruff = ["ruff>=0.14.9"]
+pyright = ["pyright>=1.1.407"]
+pytest = ["pytest>=9.0.2"]
+
+[tool.pyright]
+include = ["src"]
+
+[tool.pytest]
+pythonpath = ["src"]
+testpaths = ["test"]
+
+[tool.ruff]
+indent-width = 4
+line-length = 100
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.uv.build-backend]
+module-name = ["lang", "lib"]
