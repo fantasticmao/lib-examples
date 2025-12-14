@@ -78,7 +78,13 @@ def test_list_comprehensions():
     # 使用两个 for 来展平嵌套的列表
     assert [num for elem in vec for num in elem] == [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    assert [str(round(math.pi, x)) for x in range(1, 6)] == ["3.1", "3.14", "3.142", "3.1416", "3.14159"]
+    assert [str(round(math.pi, x)) for x in range(1, 6)] == [
+        "3.1",
+        "3.14",
+        "3.142",
+        "3.1416",
+        "3.14159",
+    ]
 
 
 def test_del():
@@ -182,8 +188,11 @@ def test_dict():
     assert "sape" not in tel
 
     # dict() 构造函数可以直接用键值对序列创建字典
-    assert dict([("sape", 4139), ("guido", 4127), ("jack", 4098)]) == {"jack": 4098, "sape": 4139,
-                                                                       "guido": 4127}
+    assert dict([("sape", 4139), ("guido", 4127), ("jack", 4098)]) == {
+        "jack": 4098,
+        "sape": 4139,
+        "guido": 4127,
+    }
     assert dict(jack=4098, sape=4139, guido=4127) == {"jack": 4098, "sape": 4139, "guido": 4127}
 
     # 字典推导式
@@ -221,7 +230,7 @@ def test_looping():
     assert result == ["apple", "banana", "orange", "pear"]
 
     # 一般来说，在循环中修改列表的内容时，创建新列表比较简单，且安全
-    raw_data = [56.2, float('NaN'), 51.7, 55.3, 52.5, float('NaN'), 47.8]
+    raw_data = [56.2, float("NaN"), 51.7, 55.3, 52.5, float("NaN"), 47.8]
     filtered_data = []
     for value in raw_data:
         if not math.isnan(value):
