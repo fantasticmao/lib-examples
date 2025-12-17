@@ -27,8 +27,7 @@
   - [css](javascript/css)
   - [lang](javascript/lang)
   - [web-apis](javascript/web-apis)
-- Python
-  - [practice](python/practice)
+- [Python](python)
 
 ## Thanks
 
