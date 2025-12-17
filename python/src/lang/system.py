@@ -1,11 +1,12 @@
 # Python 练习 - 标准库
 
-import math
 import os
 import random
 import re
 import sys
 from datetime import datetime
+
+import math
 
 
 def main():
