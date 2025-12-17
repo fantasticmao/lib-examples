@@ -1,3 +1,6 @@
+# https://docs.python.org/zh-cn/3/tutorial/classes.html
+
+
 import dataclasses
 
 from lang import clazz
