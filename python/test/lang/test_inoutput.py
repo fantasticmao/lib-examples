@@ -1,3 +1,5 @@
+import json
+
 import math
 
 
@@ -48,3 +50,29 @@ def test_str_format():
 
     text = "Jack: {Jack}; Sjoerd: {Sjoerd}; Dcab: {Dcab}".format(**table)
     assert text == "Jack: 4098; Sjoerd: 4127; Dcab: 8637678"
+
+
+def test_file():
+    with open("../test.txt", mode="r", encoding="utf-8") as file:
+        poetry = """声声慢·寻寻觅觅
+
+寻寻觅觅，冷冷清清，凄凄惨惨戚戚。
+乍暖还寒时候，最难将息。
+三杯两盏淡酒，怎敌他晚来风急！
+雁过也，正伤心，却是旧时相识。
+
+满地黄花堆积，憔悴损，如今有谁堪摘？
+守着窗儿独自，怎生得黑！
+梧桐更兼细雨，到黄昏点点滴滴。
+这次第，怎一个愁字了得！"""
+        text = file.read()
+        assert text == poetry
+
+
+def test_json():
+    x = [1, "simple", "list"]
+    text = json.dumps(x)
+    assert text == '[1, "simple", "list"]'
+
+    x = json.loads(text)
+    assert x == [1, "simple", "list"]
