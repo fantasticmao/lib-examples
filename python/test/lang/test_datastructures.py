@@ -1,4 +1,6 @@
 # https://docs.python.org/zh-cn/3/tutorial/datastructures.html
+
+
 from collections import deque
 
 import math
