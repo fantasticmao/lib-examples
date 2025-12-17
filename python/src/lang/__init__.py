@@ -19,4 +19,4 @@
 # 使用 `import item.subitem.subsubitem` 句法时，除最后一项外，每个 item 都必须是包，最后一项可以是模块或包。
 
 # 包的显式索引：如果包的 `__init__.py` 代码定义了列表`__all__`，运行 `from package import *` 时，它就是被导入的模块名列表。
-__all__ = ["fibo"]
+__all__ = ["clazz", "fibo"]
