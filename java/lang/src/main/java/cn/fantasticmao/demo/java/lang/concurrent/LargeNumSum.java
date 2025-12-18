@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * LargeNumSum
+ * 并行计算任务
  *
  * @author fantasticmao
  * @since 2025-11-14
