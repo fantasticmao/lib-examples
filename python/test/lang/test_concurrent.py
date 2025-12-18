@@ -1,5 +1,5 @@
 # https://docs.python.org/zh-cn/3/tutorial/stdlib2.html#multi-threading
-# https://docs.python.org/zh-cn/3/library/threading.html
+# https://docs.python.org/zh-cn/3/library/concurrency.html
 #
 # threading 模块提供了一种在单个进程内部并发地运行多个线程 (从进程分出的更小单位) 的方式。线程是一种对于非顺序依赖的多个任务进行解耦的技术。
 # 多线程应用面临的主要挑战是，相互协调的多个线程之间需要共享数据或其他资源。为此，threading 模块提供了多个同步操作原语，包括线程锁、事件、条件变量和信号量。
@@ -7,14 +7,15 @@
 
 
 import threading
+from concurrent.futures import ThreadPoolExecutor
 
-from lang import concurrent
+from lang.concurrent import SafeCounter
 
 
-def test_safe_counter():
+def test_safe_counter_1():
     count = 100
     times = 1000
-    counter = concurrent.SafeCounter()
+    counter = SafeCounter()
 
     def func():
         for _ in range(0, times):
@@ -25,5 +26,23 @@ def test_safe_counter():
         t.start()
     for t in threads:
         t.join()
+
+    assert counter.count == count * times
+
+
+def test_safe_counter_2():
+    count = 100
+    times = 1000
+    counter = SafeCounter()
+
+    def func():
+        for _ in range(0, times):
+            counter.increment()
+
+    result = []
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        result = [executor.submit(func) for _ in range(0, count)]
+    for future in result:
+        future.done()
 
     assert counter.count == count * times
