@@ -4,6 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * 简单的生产者-消费者
+ *
+ * @author fantasticmao
+ * @since 2025-11-14
+ */
 public interface TaskQueue {
 
     @FunctionalInterface

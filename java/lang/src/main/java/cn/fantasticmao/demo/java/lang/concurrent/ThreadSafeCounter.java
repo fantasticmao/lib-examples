@@ -3,7 +3,7 @@ package cn.fantasticmao.demo.java.lang.concurrent;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ThreadSafeCounter
+ * 线程安全的计数器
  *
  * @author fantasticmao
  * @since 2025-11-07

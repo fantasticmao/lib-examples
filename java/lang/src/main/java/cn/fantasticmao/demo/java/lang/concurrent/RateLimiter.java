@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.Semaphore;
 
 /**
- * RateLimiter
+ * 限流器实现
  *
  * @author fantasticmao
  * @see <a href="https://en.wikipedia.org/wiki/Semaphore_(programming)">wikipedia</a>

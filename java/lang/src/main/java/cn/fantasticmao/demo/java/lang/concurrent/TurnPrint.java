@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * TurnPrint
+ * 交替打印数字
  *
  * @author fantasticmao
  * @since 2025-11-10
