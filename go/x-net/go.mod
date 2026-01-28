@@ -1,10 +1,10 @@
 module xnet
 
-go 1.21
+go 1.25
 
 require (
-	github.com/stretchr/testify v1.8.4
-	golang.org/x/net v0.18.0
+	github.com/stretchr/testify v1.11.1
+	golang.org/x/net v0.49.0
 )
 
 require (
