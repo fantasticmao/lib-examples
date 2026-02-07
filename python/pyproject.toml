@@ -11,8 +11,9 @@ requires-python = ">=3.14"
 dependencies = [
     "mysql-connector-python>=9.5.0,<9.6",
     "openpyxl>=3.1.5,<3.2",
+    "pydantic>=2.12.5,<2.13",
     "redis>=7.1.0,<7.2",
-    "requests>=2.32.5,<2.33"
+    "requests>=2.32.5,<2.33",
 ]
 
 [project.optional-dependencies]
