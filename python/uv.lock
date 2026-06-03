@@ -266,7 +266,7 @@ ruff = [
 requires-dist = [
     { name = "mysql-connector-python", specifier = ">=9.5.0,<9.6" },
     { name = "open3d", specifier = ">=0.19.0" },
-    { name = "opencv-python", specifier = ">=4.13.0.92" },
+    { name = "opencv-python", specifier = ">=4.13.0" },
     { name = "openpyxl", specifier = ">=3.1.5,<3.2" },
     { name = "pydantic", specifier = ">=2.12.5,<2.13" },
     { name = "pyright", marker = "extra == 'pyright'", specifier = ">=1.1.407" },

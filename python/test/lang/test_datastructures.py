@@ -52,12 +52,12 @@ def test_list_queue():
 def test_list_comprehensions():
     squares = []
     for x in range(10):
-        squares.append(x ** 2)
+        squares.append(x**2)
     assert squares == [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
     # 列表推导式的方括号内包含以下内容：一个表达式，后面为一个 for 子句，然后，是零个或多个 for 或 if 子句。
     # 结果是由表达式依据 for 和 if 子句求值计算而得出一个新列表。
-    squares = [x ** 2 for x in range(10)]
+    squares = [x**2 for x in range(10)]
     assert squares == [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
     combs = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
@@ -74,7 +74,7 @@ def test_list_comprehensions():
     # 在每个元素上调用一个方法
     assert [weapon.strip() for weapon in freshfruit] == ["banana", "loganberry", "passion fruit"]
 
-    assert [(x, x ** 2) for x in range(6)] == [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+    assert [(x, x**2) for x in range(6)] == [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
 
     vec = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     # 使用两个 for 来展平嵌套的列表
@@ -198,7 +198,7 @@ def test_dict():
     assert dict(jack=4098, sape=4139, guido=4127) == {"jack": 4098, "sape": 4139, "guido": 4127}
 
     # 字典推导式
-    assert {x: x ** 2 for x in (2, 4, 6)} == {2: 4, 4: 16, 6: 36}
+    assert {x: x**2 for x in (2, 4, 6)} == {2: 4, 4: 16, 6: 36}
 
 
 def test_looping():
