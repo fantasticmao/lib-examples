@@ -16,8 +16,8 @@ def test_numbers():
     assert 17 % 3 == 2
 
     # ** 运算符计算幂
-    assert 5 ** 2 == 25
-    assert 2 ** 10 == 1024
+    assert 5**2 == 25
+    assert 2**10 == 1024
 
     width = 20
     height = 5 * 9
@@ -97,7 +97,7 @@ def test_lists():
     assert cubes == [1, 8, 27, 64, 125]
 
     cubes.append(216)  # 添加 6 的立方
-    cubes.append(7 ** 3)  # 和 7 的立方
+    cubes.append(7**3)  # 和 7 的立方
     assert cubes == [1, 8, 27, 64, 125, 216, 343]
 
     # 将一个列表赋值给一个变量时，该变量将引用现有的列表。通过一个变量对列表所做的任何更改，都会被引用它的所有其他变量看到。
