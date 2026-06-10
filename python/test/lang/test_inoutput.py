@@ -71,6 +71,10 @@ def test_file():
         text = file.read()
         assert text == poetry
 
+    with open("../test.txt", mode="r", encoding="utf-8") as file:
+        lines = file.readlines()
+        assert lines[0] == "声声慢·寻寻觅觅\n"
+
 
 def test_json():
     x = [1, "simple", "list"]
