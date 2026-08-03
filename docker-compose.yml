@@ -56,7 +56,7 @@ services:
       - "8086:8086"
   kafka:
     container_name: lib-examples-kafka
-    image: bitnami/kafka:3.4
+    image: soldevelo/kafka:3.4
     ports:
       - "9094:9094"
     environment:
