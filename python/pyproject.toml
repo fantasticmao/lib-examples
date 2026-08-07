@@ -16,6 +16,7 @@ dependencies = [
     "requests>=2.32.5,<2.33",
     "open3d>=0.19.0",
     "opencv-python>=4.13.0",
+    "dracopy>=2.0.0",
 ]
 
 [project.optional-dependencies]
