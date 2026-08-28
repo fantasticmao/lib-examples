@@ -18,6 +18,7 @@ def test_user_deserialize():
     user = pydantic.User.model_validate_json(json)
     assert user.id == 123
     assert user.name == "John Doe"
+    assert user.signup_ts is not None
     assert user.signup_ts.year == 2019
     assert user.signup_ts.month == 6
     assert user.signup_ts.day == 1

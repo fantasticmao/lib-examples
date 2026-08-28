@@ -1,8 +1,11 @@
+import os
+
 import DracoPy
 import open3d as o3d
 
-pcd_file = "../939452553.pcd"
-drc_file = "../939452553.drc"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+pcd_file = f"{current_dir}/../939452553.pcd"
+drc_file = f"{current_dir}/../939452553.drc"
 
 
 def test_draco_encode():

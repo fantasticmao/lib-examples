@@ -34,7 +34,7 @@ def test_basic_operate():
     # 矩阵数乘
     d = b * 2
     np.testing.assert_array_equal(d, [0, 2, 4, 6])
-    d = b ** 2
+    d = b**2
     np.testing.assert_array_equal(d, [0, 1, 4, 9])
     np.testing.assert_array_equal(d < 5, [True, True, True, False])
 
