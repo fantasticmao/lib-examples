@@ -1,17 +1,25 @@
+import os
+
 import cv2
 import numpy
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+img_source_path = f"{current_dir}/../test.jpg"
+img_target_path = f"{current_dir}/../test_cut.jpg"
+
 
 def test_cut():
-    img = cv2.imread("../test.jpg")
-    print(f"px at 100x100: {img[100, 100]}")
+    img = cv2.imread(img_source_path)
+    assert img is not None
 
+    print(f"px at 100x100: {img[100, 100]}")
     print(f"image shape: {img.shape}, size: {img.size}, dtype: {img.dtype}")
+
     rows, columns, channels = img.shape
     assert rows * columns * channels == img.size
 
     img_copy = img[rows // 4 : (rows // 4) * 3, columns // 4 : (columns // 4) * 3]
-    cv2.imwrite("../test_cut.jpg", img_copy)
+    cv2.imwrite(img_target_path, img_copy)
 
 
 camera_intrinsics = {
@@ -31,7 +39,8 @@ camera_intrinsics = {
 
 
 def test_undistort():
-    img = cv2.imread("../test.jpg")
+    img = cv2.imread(img_source_path)
+    assert img is not None
 
     K = numpy.array(
         [

@@ -1,6 +1,9 @@
+import os
+
 import open3d as o3d
 
-pcd_file = "../939452553.pcd"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+pcd_file = f"{current_dir}/../939452553.pcd"
 
 
 def test_point_cloud_read():
