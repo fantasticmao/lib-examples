@@ -1,7 +1,9 @@
 /**
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
  */
-test('filter', () => {
+import { expect, test } from "vitest";
+
+test("filter", () => {
   const arr = [1, 2, 3, 4, 5, 6].filter((element) => {
     return element > 3;
   });
@@ -11,7 +13,7 @@ test('filter', () => {
 /**
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
  */
-test('map', () => {
+test("map", () => {
   const arr = [1, 2, 3, 4, 5, 6].map((element) => {
     return element * 100;
   });
@@ -21,7 +23,7 @@ test('map', () => {
 /**
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
  */
-test('reduce', () => {
+test("reduce", () => {
   const sum = [1, 2, 3, 4, 5, 6].reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   }, 0);

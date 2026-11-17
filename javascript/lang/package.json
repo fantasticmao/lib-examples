@@ -3,19 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "jest",
-    "lint": "eslint --ext .js src/ tests/"
-  },
-  "author": "fantasticmao",
   "license": "GPL-3.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "lint": "eslint src/**"
+  },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "babel-jest": "^27.4.5",
-    "eslint": "^8.4.1",
-    "eslint-config-google": "^0.14.0",
-    "jest": "^27.4.5"
+    "@eslint/css": "^2.0.1",
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^2.1.1",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "vitest": "^5.1.0"
   }
 }

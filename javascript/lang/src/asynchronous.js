@@ -4,7 +4,7 @@
  * @param {number} timeout
  */
 export function useCallback(task, timeout) {
-  setTimeout(task, timeout, 'callback');
+  setTimeout(task, timeout, "callback");
 }
 
 /**
@@ -14,7 +14,7 @@ export function useCallback(task, timeout) {
  */
 export function usePromise(timeout) {
   return new Promise((resolve) => {
-    setTimeout(resolve, timeout, 'promise');
+    setTimeout(resolve, timeout, "promise");
   });
 }
 
@@ -25,6 +25,6 @@ export function usePromise(timeout) {
  */
 export function useAsyncWithAwait(timeout) {
   return new Promise((resolve) => {
-    setTimeout(resolve, timeout, 'async + await');
+    setTimeout(resolve, timeout, "async + await");
   });
 }
