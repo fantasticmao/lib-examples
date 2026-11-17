@@ -17,7 +17,7 @@
     <properties>
         <google.protoc.version>4.31.1</google.protoc.version>
         <google.grpc.version>1.73.0</google.grpc.version>
-        <google.guava.version>32.0.0-jre</google.guava.version>
+        <google.guava.version>33.7.1-jre</google.guava.version>
         <google.auto-service.version>1.0-rc6</google.auto-service.version>
     </properties>
 
