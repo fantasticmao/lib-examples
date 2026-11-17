@@ -25,7 +25,7 @@
         <postgis.version>2025.1.1</postgis.version>
         <jetcd-core.version>0.7.5</jetcd-core.version>
         <rocksdbjni.version>8.3.2</rocksdbjni.version>
-        <zookeeper.version>3.9.4</zookeeper.version>
+        <zookeeper.version>3.9.5</zookeeper.version>
     </properties>
 
     <dependencies>
